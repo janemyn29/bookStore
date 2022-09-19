@@ -5,6 +5,8 @@
  */
 package com.bookstore.Book;
 
+import java.sql.Date;
+
 /**
  *
  * @author tramy
@@ -23,6 +25,7 @@ public class Book {
     private String postName;
     private int companyID;
     private String companyName;
+    private Date postDate;
 
     public Book() {
     }
@@ -42,6 +45,24 @@ public class Book {
         this.companyID = companyID;
         this.companyName = companyName;
     }
+
+    public Book(long bookCode, String bookName, String image, int importPrice, int buyPrice, String description, int qty, int cateID, String cateName, int postID, String postName, int companyID, String companyName, Date postDate) {
+        this.bookCode = bookCode;
+        this.bookName = bookName;
+        this.image = image;
+        this.importPrice = importPrice;
+        this.buyPrice = buyPrice;
+        this.description = description;
+        this.qty = qty;
+        this.cateID = cateID;
+        this.cateName = cateName;
+        this.postID = postID;
+        this.postName = postName;
+        this.companyID = companyID;
+        this.companyName = companyName;
+        this.postDate = postDate;
+    }
+    
 
     public long getBookCode() {
         return bookCode;
@@ -147,10 +168,20 @@ public class Book {
         this.companyName = companyName;
     }
 
+    public Date getPostDate() {
+        return postDate;
+    }
+
+    public void setPostDate(Date postDate) {
+        this.postDate = postDate;
+    }
+
     @Override
     public String toString() {
-        return "Book{" + "bookCode=" + bookCode + ", bookName=" + bookName + ", image=" + image + ", importPrice=" + importPrice + ", buyPrice=" + buyPrice + ", description=" + description + ", qty=" + qty + ", cateID=" + cateID + ", cateName=" + cateName + ", postID=" + postID + ", postName=" + postName + ", companyID=" + companyID + ", companyName=" + companyName + '}';
+        return "Book{" + "bookCode=" + bookCode + ", bookName=" + bookName + ", image=" + image + ", importPrice=" + importPrice + ", buyPrice=" + buyPrice + ", description=" + description + ", qty=" + qty + ", cateID=" + cateID + ", cateName=" + cateName + ", postID=" + postID + ", postName=" + postName + ", companyID=" + companyID + ", companyName=" + companyName + ", postDate=" + postDate + '}';
     }
+    
+
     
    
     
