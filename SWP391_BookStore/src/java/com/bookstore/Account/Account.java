@@ -35,6 +35,17 @@ public class Account {
         this.actionName = actionName;
     }
 
+    public Account(int accID, String username, String phone, String email, String password, int roleID, int actionID) {
+        this.accID = accID;
+        this.username = username;
+        this.phone = phone;
+        this.email = email;
+        this.password = password;
+        this.roleID = roleID;
+        this.actionID = actionID;
+    }
+    
+
     public int getAccID() {
         return accID;
     }
