@@ -20,7 +20,7 @@
                             <li><a href=""></a></li>
                             <li><a href="about.html">About Us</a></li>
                             <li><a href="contact.html">Contact Us</a></li>
-                            <li><a href="login.jsp" data-toggle="modal"><i class="icon-user"></i>Login</a></li>
+                            <li><a href="login.jsp">Login</a></li>
                         </ul>
                     </li>
                 </ul><!-- End .top-menu -->

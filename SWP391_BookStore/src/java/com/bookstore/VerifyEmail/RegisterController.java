@@ -33,7 +33,7 @@ public class RegisterController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String email = request.getParameter("email").trim();
+            String email = request.getParameter("email").trim().toLowerCase();
             String username = request.getParameter("username").trim();
             String phone = request.getParameter("phone").trim();
 
@@ -45,6 +45,8 @@ public class RegisterController extends HttpServlet {
             request.getRequestDispatcher("send").forward(request, response);
             
             
+        }catch(Exception e){
+            response.sendRedirect("404.jsp");
         }
     }
 

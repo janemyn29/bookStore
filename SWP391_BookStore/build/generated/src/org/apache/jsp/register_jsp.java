@@ -109,7 +109,7 @@ public final class register_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                <div class=\"form-tab\">\n");
       out.write("                                    <ul class=\"nav nav-pills nav-fill\" role=\"tablist\">\n");
       out.write("                                        <li class=\"nav-item\">\n");
-      out.write("                                            <a class=\"nav-link active\" id=\"signin-tab-2\" href=\"register.jsp\">Register</a>\n");
+      out.write("                                            <a class=\"nav-link active\" id=\"signin-tab-2\" href=\"register.jsp\">Sign Up</a>\n");
       out.write("                                        </li>\n");
       out.write("                                        <li class=\"nav-item\">\n");
       out.write("                                            <a class=\"nav-link\" id=\"register-tab-2\" href=\"login.jsp\">Sign In</a>\n");

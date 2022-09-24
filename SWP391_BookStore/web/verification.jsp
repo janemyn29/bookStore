@@ -65,7 +65,7 @@
                                     <div class="tab-content">
 
                                         <div class="tab-pane fade show active" id="register-2" role="tabpanel" aria-labelledby="register-tab-2">
-                                            <form action="verify">
+                                            <form action="verify"  method="POST">
                                                 <div class="form-group">
                                                 <c:if test='${check == "The verification code is incorrect!"}'>
                                                     <label for="singin-email-2" style="color: red;">${check}</label>

@@ -58,7 +58,7 @@
                                 <div class="form-tab">
                                     <ul class="nav nav-pills nav-fill" role="tablist">
                                         <li class="nav-item">
-                                            <a class="nav-link" id="signin-tab-2"  href="register.jsp">Register</a>
+                                            <a class="nav-link" id="signin-tab-2"  href="register.jsp">Sign Up</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link active" id="register-tab-2" href="login.jsp" >Sign In</a>
@@ -74,6 +74,9 @@
                                             <c:if test='${check == "You have successfully registered. Please use your registered account to login!"}'>
                                                 <label for="singin-email-2" style="color: green;">${check}</label>
                                             </c:if>
+                                            <c:if test='${check == "Reset password successfully. Please use your account to login!"}'>
+                                                <label for="singin-email-2" style="color: green;">${check}</label>
+                                            </c:if>
                                             <div class="form-group">
                                                 <label for="singin-email-2">Email address *</label>
                                                 <input type="email" class="form-control" id="singin-email-2" name="email" required>
@@ -86,7 +89,7 @@
                                             <input type="hidden" class="form-control" id="singin-password-2" name="" >
                                             <div class="form-footer">
                                                 <button type="submit" class="btn btn-outline-primary-2">
-                                                    <span>LOG IN</span>
+                                                    <span>SIGN IN</span>
                                                     <i class="icon-long-arrow-right"></i>
                                                 </button>
 
@@ -94,7 +97,7 @@
 
                                                 </div><!-- End .custom-checkbox -->
 
-                                                <a href="#" class="forgot-link">Forgot Your Password?</a>
+                                                <a href="forgotPass.jsp" class="forgot-link">Forgot Your Password?</a>
                                             </div><!-- End .form-footer -->
                                         </form>
                                     </div><!-- .End .tab-pane -->

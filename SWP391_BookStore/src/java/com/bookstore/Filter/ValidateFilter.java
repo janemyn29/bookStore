@@ -40,7 +40,8 @@ public class ValidateFilter implements Filter {
         if (debug) {
             log("ValidateFilter:DoBeforeProcessing");
         }
-        String email = request.getParameter("email").trim();
+        String tempemail = request.getParameter("email").trim();
+        String email=tempemail.toLowerCase();
         String password = request.getParameter("password").trim();
         if (email != null && password != null) {
             AccountDAO dao = new AccountDAO();

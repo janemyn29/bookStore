@@ -39,7 +39,7 @@ public class ConfirmFilter implements Filter {
         if (debug) {
             log("ConfirmFilter:DoBeforeProcessing");
         }
-        String email = request.getParameter("email").trim();
+        String email = request.getParameter("email").trim().toLowerCase();
         String username = request.getParameter("username").trim();
         String phone = request.getParameter("phone").trim();
         

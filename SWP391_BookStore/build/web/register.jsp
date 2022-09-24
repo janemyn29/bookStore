@@ -58,7 +58,7 @@
                                 <div class="form-tab">
                                     <ul class="nav nav-pills nav-fill" role="tablist">
                                         <li class="nav-item">
-                                            <a class="nav-link active" id="signin-tab-2" href="register.jsp">Register</a>
+                                            <a class="nav-link active" id="signin-tab-2" href="register.jsp">Sign Up</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" id="register-tab-2" href="login.jsp">Sign In</a>

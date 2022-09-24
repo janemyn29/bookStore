@@ -19,6 +19,16 @@ public class UserVerify {
     public UserVerify() {
     }
 
+    public UserVerify(String email) {
+        this.email = email;
+    }
+
+    public UserVerify(String email, String code) {
+        this.email = email;
+        this.code = code;
+    }
+    
+
     public UserVerify( String username, String phone, String email, String password, String code) {
 
         this.username = username;

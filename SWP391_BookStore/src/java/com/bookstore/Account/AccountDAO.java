@@ -11,6 +11,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.DatatypeConverter;
@@ -47,7 +48,7 @@ public class AccountDAO {
                 int accID = rs.getInt(1);
                 String username = rs.getString(2).trim();
                 String phone = rs.getString(3).trim();
-                String accEmail = rs.getString(4).trim();
+                String accEmail = rs.getString(4).trim().toLowerCase();
                 String userpass = rs.getString(5).trim();
                 int roleId = rs.getInt(6);
                 String roleName = rs.getString(7).trim();
@@ -74,7 +75,7 @@ public class AccountDAO {
                 int accID = rs.getInt(1);
                 String username = rs.getString(2).trim();
                 String phone = rs.getString(3).trim();
-                String accEmail = rs.getString(4).trim();
+                String accEmail = rs.getString(4).trim().toLowerCase();
                 String userpass = rs.getString(5).trim();
                 int roleId = rs.getInt(6);
                 int actionID = rs.getInt(7);
@@ -100,7 +101,7 @@ public class AccountDAO {
                 int accID = rs.getInt(1);
                 String tempusername = rs.getString(2).trim();
                 String phone = rs.getString(3).trim();
-                String accEmail = rs.getString(4).trim();
+                String accEmail = rs.getString(4).trim().toLowerCase();
                 String userpass = rs.getString(5).trim();
                 int roleId = rs.getInt(6);
                 int actionID = rs.getInt(7);
@@ -158,7 +159,7 @@ public class AccountDAO {
             ps.setInt(1, lastUID);
             ps.setString(2, username);
             ps.setString(3, phone);
-            ps.setString(4, email);
+            ps.setString(4, email.toLowerCase());
             ps.setString(5, dePass);
             ps.executeUpdate();
         } catch (Exception e) {
@@ -166,9 +167,36 @@ public class AccountDAO {
 
     }
 
+    public boolean resetPassword(String email, String pass) throws NoSuchAlgorithmException {
+        String password = pass;
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        md.update(password.getBytes());
+        byte[] digest = md.digest();
+        String dePass = DatatypeConverter.printHexBinary(digest).toLowerCase();
+        String sql = " UPDATE tblAccount\n"
+                + "set userPass=?\n"
+                + "where email like ? ";
+        boolean check = false;
+        try {
+
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setString(2, email);
+            ps.setString(1, dePass);
+
+            check = ps.executeUpdate() > 0;
+
+        } catch (SQLException ex) {
+            System.out.println("Update Student error!" + ex.getMessage());
+        }
+        return check;
+    }
+
     public static void main(String[] args) throws NoSuchAlgorithmException {
-        AccountDAO dAO = new AccountDAO();
-        dAO.signup("my123","0000", "@@@@","1223");
+        AccountDAO dao = new AccountDAO();
+
+
 
     }
 }

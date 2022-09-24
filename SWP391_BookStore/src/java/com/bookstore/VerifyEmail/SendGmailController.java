@@ -52,6 +52,8 @@ public class SendGmailController extends HttpServlet {
                 
                 
             }
+        }catch(Exception e){
+            response.sendRedirect("404.jsp");
         }
     }
 

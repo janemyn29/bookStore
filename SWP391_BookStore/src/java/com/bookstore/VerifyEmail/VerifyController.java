@@ -50,11 +50,14 @@ public class VerifyController extends HttpServlet {
                 }
                 request.setAttribute("check","You have successfully registered. Please use your registered account to login!");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
+                session.removeAttribute("authcode");
             }else{
                 request.setAttribute("check","The verification code is incorrect!");
                 
                 request.getRequestDispatcher("verification.jsp").forward(request, response);
             }
+        }catch(Exception e){
+            response.sendRedirect("404.jsp");
         }
     }
 
