@@ -41,8 +41,8 @@ public class LoginController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
+            String email = request.getParameter("email").trim().toLowerCase();
+            String password = request.getParameter("password").trim();
 
             AccountDAO dao = new AccountDAO();
             Account account = null;
@@ -63,6 +63,8 @@ public class LoginController extends HttpServlet {
             } else if (account.getRoleName().equals("customer")) {
                 request.getRequestDispatcher("home.jsp").forward(request, response);
             }
+        }catch (Exception e) {
+            response.sendRedirect("404.jsp");
         }
 
         }

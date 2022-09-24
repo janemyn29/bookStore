@@ -41,71 +41,45 @@
     <body>
         <div class="page-wrapper">
             <jsp:include page="header.jsp"></jsp:include>
-            <main class="main">
+                <main class="main">
 
-                <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
-                    <div class="container">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="home.jsp">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Login</li>
-                        </ol>
-                    </div><!-- End .container -->
-                </nav><!-- End .breadcrumb-nav -->
+                    <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
+                        <div class="container">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="home.jsp">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Login</li>
+                            </ol>
+                        </div><!-- End .container -->
+                    </nav><!-- End .breadcrumb-nav -->
 
-                <div class="login-page bg-image pt-8 pb-8 pt-md-12 pb-md-12 pt-lg-17 pb-lg-17" style="background-image: url('assets/images/backgrounds/login-bg.jpg')">
-                    <div class="container">
-                        <div class="form-box">
-                            <div class="form-tab">
-                                <ul class="nav nav-pills nav-fill" role="tablist">
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="signin-tab-2" data-toggle="tab" href="#signin-2" role="tab" aria-controls="signin-2" aria-selected="false">Register</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link active" id="register-tab-2" data-toggle="tab" href="#register-2" role="tab" aria-controls="register-2" aria-selected="true">Sign In</a>
-                                    </li>
-                                </ul>
-                                <div class="tab-content">
-                                    <div class="tab-pane fade" id="signin-2" role="tabpanel" aria-labelledby="signin-tab-2">
-                                        <form action="login" method="POST">
-                                            <div class="form-group">
-                                                <label for="register-email-2">Your email address *</label>
-                                                <input type="email" class="form-control" id="register-email-2" name="email" required>
-                                            </div><!-- End .form-group -->
+                    <div class="login-page bg-image pt-8 pb-8 pt-md-12 pb-md-12 pt-lg-17 pb-lg-17" style="background-image: url('assets/images/backgrounds/login-bg.jpg')">
+                        <div class="container">
+                            <div class="form-box">
+                                <div class="form-tab">
+                                    <ul class="nav nav-pills nav-fill" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="signin-tab-2"  href="register.jsp">Sign Up</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="register-tab-2" href="login.jsp" >Sign In</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content">
 
-                                            <div class="form-group">
-                                                <label for="register-password-2">Username *</label>
-                                                <input type="password" class="form-control" id="register-password-2" name="username" required>
-                                            </div><!-- End .form-group -->
-
-                                            <div class="form-group">
-                                                <label for="register-password-2">Password *</label>
-                                                <input type="password" class="form-control" id="register-password-2" name="password" required>
-                                            </div><!-- End .form-group -->
-                                            <div c<lass="form-group">
-                                                <label for="register-password-2">Confirm Password *</label>
-                                                <input type="password" class="form-control" id="register-password-2" name="confirm-password" required>
-                                            </div><!-- End .form-group -->
-
-                                            <div class="form-footer">
-                                                <button type="submit" class="btn btn-outline-primary-2">
-                                                    <span>SIGN UP</span>
-                                                    <i class="icon-long-arrow-right"></i>
-                                                </button>
-
-
-                                            </div><!-- End .form-footer -->
-                                            
-                                        </form>
-
-                                    </div><!-- .End .tab-pane -->
-                                    <div class="tab-pane fade show active" id="register-2" role="tabpanel" aria-labelledby="register-tab-2">
-                                        <form action="login" method="POST">
-                                        <c:if test='${check == "fail"}'>
-                                            <label for="singin-email-2" style="color: red;">Email or Password is incorrect! Please login again!</label>
-                                        </c:if>
+                                        <div class="tab-pane fade show active" id="register-2" role="tabpanel" aria-labelledby="register-tab-2">
+                                            <form action="login" method="POST">
+                                            <c:if test='${check == "Email or Password is incorrect! Please login again!"}'>
+                                                <label for="singin-email-2" style="color: red;">${check}</label>
+                                            </c:if>
+                                            <c:if test='${check == "You have successfully registered. Please use your registered account to login!"}'>
+                                                <label for="singin-email-2" style="color: green;">${check}</label>
+                                            </c:if>
+                                            <c:if test='${check == "Reset password successfully. Please use your account to login!"}'>
+                                                <label for="singin-email-2" style="color: green;">${check}</label>
+                                            </c:if>
                                             <div class="form-group">
                                                 <label for="singin-email-2">Email address *</label>
-                                                <input type="text" class="form-control" id="singin-email-2" name="email" required>
+                                                <input type="email" class="form-control" id="singin-email-2" name="email" required>
                                             </div><!-- End .form-group -->
 
                                             <div class="form-group">
@@ -115,7 +89,7 @@
                                             <input type="hidden" class="form-control" id="singin-password-2" name="" >
                                             <div class="form-footer">
                                                 <button type="submit" class="btn btn-outline-primary-2">
-                                                    <span>LOG IN</span>
+                                                    <span>SIGN IN</span>
                                                     <i class="icon-long-arrow-right"></i>
                                                 </button>
 
@@ -123,7 +97,7 @@
 
                                                 </div><!-- End .custom-checkbox -->
 
-                                                <a href="#" class="forgot-link">Forgot Your Password?</a>
+                                                <a href="forgotPass.jsp" class="forgot-link">Forgot Your Password?</a>
                                             </div><!-- End .form-footer -->
                                         </form>
                                     </div><!-- .End .tab-pane -->

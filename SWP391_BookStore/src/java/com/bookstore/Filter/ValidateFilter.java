@@ -40,15 +40,16 @@ public class ValidateFilter implements Filter {
         if (debug) {
             log("ValidateFilter:DoBeforeProcessing");
         }
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
+        String tempemail = request.getParameter("email").trim();
+        String email=tempemail.toLowerCase();
+        String password = request.getParameter("password").trim();
         if (email != null && password != null) {
             AccountDAO dao = new AccountDAO();
             try {
                 Account account = dao.login(email, password);
 
                 if (account == null) {
-                    request.setAttribute("check", "fail");
+                    request.setAttribute("check", "Email or Password is incorrect! Please login again!");
                     request.getRequestDispatcher("login.jsp").forward(request, response);
                 }
 //                else {
