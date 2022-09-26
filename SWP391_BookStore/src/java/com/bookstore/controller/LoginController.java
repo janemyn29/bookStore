@@ -55,7 +55,7 @@ public class LoginController extends HttpServlet {
             session.setAttribute("acc", account);
 
             if (account.getRoleName().equals("manager")) {
-                request.getRequestDispatcher("home.jsp").forward(request, response);
+                request.getRequestDispatcher("admin/adhome").forward(request, response);
             } else if (account.getRoleName().equals("seller")) {
                 request.getRequestDispatcher("home.jsp").forward(request, response);
             } else if (account.getRoleName().equals("importer")) {

@@ -44,6 +44,17 @@ public class Account {
         this.roleID = roleID;
         this.actionID = actionID;
     }
+
+    public Account(int accID, String username, String phone, String email, int roleID, String roleName, int actionID, String actionName) {
+        this.accID = accID;
+        this.username = username;
+        this.phone = phone;
+        this.email = email;
+        this.roleID = roleID;
+        this.roleName = roleName;
+        this.actionID = actionID;
+        this.actionName = actionName;
+    }
     
 
     public int getAccID() {

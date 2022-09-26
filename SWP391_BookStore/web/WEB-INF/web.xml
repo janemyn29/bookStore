@@ -16,6 +16,38 @@
         <filter-name>CheckPassFilter</filter-name>
         <filter-class>com.bookstore.Filter.CheckPassFilter</filter-class>
     </filter>
+    <filter>
+        <filter-name>AdminFilter</filter-name>
+        <filter-class>com.bookstore.Filter.AdminFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>CheckExistFilter</filter-name>
+        <filter-class>com.bookstore.Filter.CheckExistFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CheckExistFilter</filter-name>
+        <servlet-name>AddNewSellerController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CheckExistFilter</filter-name>
+        <servlet-name>AddNewImpController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AdHomeController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AdSellerController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AdminController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AdImporterController</servlet-name>
+    </filter-mapping>
     <filter-mapping>
         <filter-name>CheckPassFilter</filter-name>
         <servlet-name>ResetPassController</servlet-name>
@@ -64,6 +96,46 @@
         <servlet-name>ResetPassController</servlet-name>
         <servlet-class>com.bookbook.ResetPass.ResetPassController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LogoutController</servlet-name>
+        <servlet-class>com.bookstore.controller.LogoutController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdImporterController</servlet-name>
+        <servlet-class>com.bookstore.Admin.AdImporterController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdHomeController</servlet-name>
+        <servlet-class>com.bookstore.Admin.AdHomeController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>WarnningController</servlet-name>
+        <servlet-class>com.bookstore.controller.WarningController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdSellerController</servlet-name>
+        <servlet-class>com.bookstore.Admin.AdSellerController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminController</servlet-name>
+        <servlet-class>com.bookstore.Admin.AdminController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddSellerNavController</servlet-name>
+        <servlet-class>com.bookstore.Admin.AddSellerNavController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddImpNavController</servlet-name>
+        <servlet-class>com.bookstore.Admin.AddImpNavController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddNewSellerController</servlet-name>
+        <servlet-class>com.bookstore.Admin.AddNewSellerController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddNewImpController</servlet-name>
+        <servlet-class>com.bookstore.Admin.AddNewImpController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -95,6 +167,46 @@
     <servlet-mapping>
         <servlet-name>ResetPassController</servlet-name>
         <url-pattern>/reset</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutController</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdImporterController</servlet-name>
+        <url-pattern>/admin/adimporter</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdHomeController</servlet-name>
+        <url-pattern>/admin/adhome</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WarnningController</servlet-name>
+        <url-pattern>/admin/warning</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdSellerController</servlet-name>
+        <url-pattern>/admin/adseller</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminController</servlet-name>
+        <url-pattern>/admin/home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddSellerNavController</servlet-name>
+        <url-pattern>/admin/addsellernav</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddImpNavController</servlet-name>
+        <url-pattern>/admin/addimpnav</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddNewSellerController</servlet-name>
+        <url-pattern>/admin/addnewseller</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddNewImpController</servlet-name>
+        <url-pattern>/admin/addnewimp</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
