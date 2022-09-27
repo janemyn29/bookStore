@@ -20,18 +20,6 @@
         <filter-name>AdminFilter</filter-name>
         <filter-class>com.bookstore.Filter.AdminFilter</filter-class>
     </filter>
-    <filter>
-        <filter-name>CheckExistFilter</filter-name>
-        <filter-class>com.bookstore.Filter.CheckExistFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>CheckExistFilter</filter-name>
-        <servlet-name>AddNewSellerController</servlet-name>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>CheckExistFilter</filter-name>
-        <servlet-name>AddNewImpController</servlet-name>
-    </filter-mapping>
     <filter-mapping>
         <filter-name>AdminFilter</filter-name>
         <servlet-name>AdHomeController</servlet-name>

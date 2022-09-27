@@ -5,6 +5,7 @@
  */
 package com.bookstore.Admin;
 
+import com.bookstore.Account.Account;
 import com.bookstore.Account.AccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -36,16 +37,36 @@ public class AddNewSellerController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String email = request.getParameter("email").trim().toLowerCase();
-            String username = request.getParameter("username").trim();
-            String phone = request.getParameter("phone").trim();
+            
             AccountDAO dao = new AccountDAO();
-            try {
+            
+            
+            String email = request.getParameter("email").trim().toLowerCase();
+            String role = request.getParameter("rolename").trim().toLowerCase();
+            String phone = request.getParameter("phone").trim();
+            String username = request.getParameter("username").trim();
+            Account account = dao.existMail(email);
+            Account account1 = dao.existUsername(username);
+            if (account != null) {
+                request.setAttribute("mess", "This email is registered!");
+                
+                    request.getRequestDispatcher("addsellernav").forward(request, response);
+            }
+            
+            if (account1 != null) {
+                request.setAttribute("mess", "This username already existed!");
+                
+                    request.getRequestDispatcher("addsellernav").forward(request, response);
+            }
+            if (account==null&&account1==null) {
+                try {
                 dao.addNewAccount(username, phone, email, "2");
             } catch (NoSuchAlgorithmException ex) {
                 Logger.getLogger(AddNewImpController.class.getName()).log(Level.SEVERE, null, ex);
             }
             request.getRequestDispatcher("adseller").forward(request, response);
+            
+            }
         }
     }
 

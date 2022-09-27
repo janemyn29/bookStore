@@ -13,7 +13,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width,initial-scale=1">
-        <title>Quixlab - Bootstrap Admin Dashboard Template by Themefisher.com</title>
+        <title>THE5 BookStore</title>
         <!-- Favicon icon -->
         <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
         <!-- Custom Stylesheet -->
@@ -110,95 +110,96 @@
                                     <c:if test='${role == "importer"}'>
                                         <h4 class="card-title">Add New Importer</h4>
                                     </c:if>
-                                    <div class="basic-form">
-                                        <c:if test='${role == "seller"}'>
-                                            <form action="addnewseller" method="POST">
+                                    <c:if test='${temMess == "This username already existed!"}'>
+                                        <h5  style="color: red ;">${temMess}</h5>
+                                    </c:if>
+                                    <c:if test='${temMess == "This email is registered!"}'>
+                                    <h5 style="color: red" >${temMess}</h5>
+                                </c:if>
+                                <div class="basic-form">
+                                    <c:if test='${role == "seller"}'>
+                                        <form action="addnewseller" method="POST">
+                                        </c:if>
+                                        <c:if test='${role == "importer"}'>
+                                            <form action="addnewimp" method="POST">
                                             </c:if>
-                                            <c:if test='${role == "importer"}'>
-                                                <form action="addnewimp" method="POST">
-                                                </c:if>
-                                                <c:if test='${temMess == "This username already existed!"}'>
-                                                    <dive  style="color: red ;width: 300px;" >${temMess}</div>
-                                                </c:if>
-                                                <c:if test='${temMess == "This email is registered!"}'>
-                                                    <div style="color: red" class="col-sm-2 col-form-label">${temMess}</div>
-                                                </c:if>
 
-                                                <div class="form-group row">
-                                                    <label class="col-sm-2 col-form-label">Email</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="email" name="email" class="form-control" placeholder="Email">
+
+                                            <div class="form-group row">
+                                                <label class="col-sm-2 col-form-label">Email</label>
+                                                <div class="col-sm-10">
+                                                    <input type="email" name="email" class="form-control" placeholder="Email">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-2 col-form-label">Username</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="username" class="form-control" placeholder="Username">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-2 col-form-label">Phone</label>
+                                                <div class="col-sm-10">
+                                                    <input type="number" name="phone" class="form-control" placeholder="Phone">
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group row">
+                                                <div class="col-sm-10">
+                                                    <div class="basic-form">
+                                                        <c:if test='${role == "seller"}'>
+                                                            <input type="hidden" name="rolename" class="form-control" value="seller">
+                                                            <button type="submit" class="btn mb-1 btn-warning">Add New Seller</button>
+                                                        </c:if>
+                                                        <c:if test='${role == "importer"}'>
+                                                            <input type="hidden" name="rolename" class="form-control" value="importer">
+                                                            <button type="submit" class="btn mb-1 btn-warning">Add New Importer</button>
+                                                        </c:if>
+
                                                     </div>
                                                 </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-2 col-form-label">Username</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" name="username" class="form-control" placeholder="Username">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-2 col-form-label">Phone</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="number" name="phone" class="form-control" placeholder="Phone">
-                                                    </div>
-                                                </div>
-                                                     
-
-                                                <div class="form-group row">
-                                                    <div class="col-sm-10">
-                                                        <div class="basic-form">
-                                                            <c:if test='${role == "seller"}'>
-                                                                <input type="hidden" name="rolename" class="form-control" value="seller">
-                                                                <button type="submit" class="btn mb-1 btn-warning">Add New Seller</button>
-                                                                </c:if>
-                                                                <c:if test='${role == "importer"}'>
-                                                                    <input type="hidden" name="rolename" class="form-control" value="importer">
-                                                                    <button type="submit" class="btn mb-1 btn-warning">Add New Importer</button>
-                                                                    </c:if>
-                                                                    
-                                                                    </div>
-                                                                    </div>
-                                                                </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                </div>
+                                        </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
-                                                </div>
-                                                </div>
-                                                <!-- #/ container -->
-                                                </div>
-                                                <!--**********************************
-                                                    Content body end
-                                                ***********************************-->
+                </div>
+            </div>
+            <!-- #/ container -->
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
 
 
-                                                <!--**********************************
-                                                    Footer start
-                                                ***********************************-->
-                                                <div class="footer">
-                                                    <div class="copyright">
-                                                        <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Quixlab</a> 2018</p>
-                                                    </div>
-                                                </div>
-                                                <!--**********************************
-                                                    Footer end
-                                                ***********************************-->
-                                                </div>
-                                                <!--**********************************
-                                                    Main wrapper end
-                                                ***********************************-->
+        <!--**********************************
+            Footer start
+        ***********************************-->
+        <div class="footer">
+            <div class="copyright">
+                <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Quixlab</a> 2018</p>
+            </div>
+        </div>
+        <!--**********************************
+            Footer end
+        ***********************************-->
+    </div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
 
-                                                <!--**********************************
-                                                    Scripts
-                                                ***********************************-->
-                                                <script src="plugins/common/common.min.js"></script>
-                                                <script src="js/custom.min.js"></script>
-                                                <script src="js/settings.js"></script>
-                                                <script src="js/gleek.js"></script>
-                                                <script src="js/styleSwitcher.js"></script>
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <script src="plugins/common/common.min.js"></script>
+    <script src="js/custom.min.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/gleek.js"></script>
+    <script src="js/styleSwitcher.js"></script>
 
-                                                </body>
+</body>
 
-                                                </html>
+</html>

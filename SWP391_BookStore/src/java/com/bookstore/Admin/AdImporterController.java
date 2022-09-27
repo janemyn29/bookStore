@@ -35,7 +35,7 @@ public class AdImporterController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            AccountDAO dao = new AccountDAO();
+        AccountDAO dao = new AccountDAO();
         List<Account> list=dao.getListImporterAccountsByRole("3");
         request.setAttribute("listImp", list);
 //        response.sendRedirect("admin/adImporter.jsp");
