@@ -75,37 +75,37 @@
                     </li>
                     <li class="mega-menu mega-menu-sm">
                         <a href="widgets.html" aria-expanded="false">
-                            <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Customer Management</span>
+                            <i class="fa fa-user menu-icon"></i><span class="nav-text">Customer Management</span>
                         </a>
                         
                     </li>
                     <li>
                         <a href="adseller" aria-expanded="false">
-                            <i class="icon-envelope menu-icon"></i> <span class="nav-text">Seller Management</span>
+                            <i class="fa fa-cart-plus menu-icon"></i> <span class="nav-text">Seller Management</span>
                         </a>
                         
                     </li>
                     <li>
                         <a href="adimporter" aria-expanded="false">
-                            <i class="icon-screen-tablet menu-icon"></i><span class="nav-text">Importer Management</span>
+                            <i class="fa fa-arrow-circle-right menu-icon"></i><span class="nav-text">Importer Management</span>
                         </a>
                         
                     </li>
                     <li>
                         <a href="widgets.html" aria-expanded="false">
-                            <i class="icon-graph menu-icon"></i> <span class="nav-text">Blacklist Management</span>
+                            <i class="fa fa-minus-circle menu-icon"></i> <span class="nav-text">Blacklist Management</span>
                         </a>
                         
                     </li>
                     <li>
                         <a href="widgets.html" aria-expanded="false">
-                            <i class="icon-grid menu-icon"></i><span class="nav-text">Feedback Management</span>
+                            <i class="icon-envelope menu-icon"></i><span class="nav-text">Feedback Management</span>
                         </a>
                        
                     </li>
                     <li>
                         <a href="widgets.html" aria-expanded="false">
-                            <i class="icon-badge menu-icon"></i><span class="nav-text">Profit Management</span>
+                            <i class="fa fa-money menu-icon"></i><span class="nav-text">Profit Management</span>
                         </a>
                     </li>
                     
