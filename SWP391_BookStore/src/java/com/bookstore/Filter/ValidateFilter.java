@@ -164,7 +164,6 @@ public class ValidateFilter implements Filter {
     public FilterConfig getFilterConfig() {
         return (this.filterConfig);
     }
-
     /**
      * Set the filter configuration object for this filter.
      *
@@ -253,5 +252,4 @@ public class ValidateFilter implements Filter {
     public void log(String msg) {
         filterConfig.getServletContext().log(msg);
     }
-
 }
