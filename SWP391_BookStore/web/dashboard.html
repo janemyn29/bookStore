@@ -1,6 +1,7 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
+
 <!-- molla/dashboard.html  22 Nov 2019 10:03:13 GMT -->
 <head>
     <meta charset="UTF-8">
@@ -103,7 +104,7 @@
                                                 </div><!-- End .demo-item -->
 
                                                 <div class="demo-item">
-                                                    <a href="index.html">
+                                                    <a href="index-2.html">
                                                         <span class="demo-bg" style="background-image: url(assets/images/menu/demos/2.jpg);"></span>
                                                         <span class="demo-title">02 - furniture store</span>
                                                     </a>
@@ -650,35 +651,34 @@
 								    </div><!-- .End .tab-pane -->
 
 								    <div class="tab-pane fade" id="tab-account" role="tabpanel" aria-labelledby="tab-account-link">
-                                                                        <form  action="EditProFileController" method="post">
-                                                                        <script>Account acc = (Account) request.getSession().getAttribute("acc");</script>
+								    	<form action="#">
 			                				<div class="row">
 			                					<div class="col-sm-6">
 			                						<label>First Name *</label>
-                                                                                        <input type="text" name="txtfirstName" value="" class="form-control required>
+			                						<input type="text" class="form-control" required>
 			                					</div><!-- End .col-sm-6 -->
 
 			                					<div class="col-sm-6">
 			                						<label>Last Name *</label>
-                                                                                        <input type="text" name="txtlastName" value="" class="form-control" required>
+			                						<input type="text" class="form-control" required>
 			                					</div><!-- End .col-sm-6 -->
 			                				</div><!-- End .row -->
 
 		            						<label>Display Name *</label>
-                                                                        <input type="text" class="form-control" name="txtuserName" value="" required>
+		            						<input type="text" class="form-control" required>
 		            						<small class="form-text">This will be how your name will be displayed in the account section and in reviews</small>
 
 		                					<label>Email address *</label>
-                                                                        <input type="email" class="form-control" name="txtEmailAddress" value="" required>
+		        							<input type="email" class="form-control" required>
 
 		            						<label>Current password (leave blank to leave unchanged)</label>
-                                                                        <input type="password" name="txtCurrentPassword" class="form-control">
+		            						<input type="password" class="form-control">
 
 		            						<label>New password (leave blank to leave unchanged)</label>
-                                                                        <input type="password" name="txtNewPassword" class="form-control">
+		            						<input type="password" class="form-control">
 
 		            						<label>Confirm new password</label>
-                                                                        <input type="password" name="txtConfirmPassword" class="form-control mb-2">
+		            						<input type="password" class="form-control mb-2">
 
 		                					<button type="submit" class="btn btn-outline-primary-2">
 			                					<span>SAVE CHANGES</span>
@@ -791,7 +791,7 @@
 
                         <ul>
                             <li><a href="index-1.html">01 - furniture store</a></li>
-                            <li><a href="index.html">02 - furniture store</a></li>
+                            <li><a href="index-2.html">02 - furniture store</a></li>
                             <li><a href="index-3.html">03 - electronic store</a></li>
                             <li><a href="index-4.html">04 - electronic store</a></li>
                             <li><a href="index-5.html">05 - fashion store</a></li>

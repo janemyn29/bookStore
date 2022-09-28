@@ -1341,7 +1341,7 @@
 
                         <ul>
                             <li><a href="index-1.html">01 - furniture store</a></li>
-                            <li><a href="index.html">02 - furniture store</a></li>
+                            <li><a href="index-2.html">02 - furniture store</a></li>
                             <li><a href="index-3.html">03 - electronic store</a></li>
                             <li><a href="index-4.html">04 - electronic store</a></li>
                             <li><a href="index-5.html">05 - fashion store</a></li>
