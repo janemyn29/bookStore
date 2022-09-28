@@ -12,9 +12,49 @@
         <servlet-name>LoginController</servlet-name>
         <servlet-class>com.bookstore.controller.LoginController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>HomeController</servlet-name>
+        <servlet-class>com.bookstore.controller.HomeController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ShoppingController</servlet-name>
+        <servlet-class>com.bookstore.controller.ShoppingController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CategoryController</servlet-name>
+        <servlet-class>com.bookstore.controller.CategoryController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchBookByCategory</servlet-name>
+        <servlet-class>com.bookstore.controller.SearchBookByCategory</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DetailController</servlet-name>
+        <servlet-class>com.bookstore.controller.DetailController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HomeController</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShoppingController</servlet-name>
+        <url-pattern>/shopping</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CategoryController</servlet-name>
+        <url-pattern>/CategoryController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchBookByCategory</servlet-name>
+        <url-pattern>/category</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DetailController</servlet-name>
+        <url-pattern>/detailProduct</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -22,6 +62,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>/home.jsp</welcome-file>
     </welcome-file-list>
 </web-app>
