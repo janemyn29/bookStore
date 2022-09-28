@@ -7,6 +7,7 @@ package com.bookstore.Customer;
 
 import com.bookstore.Account.Account;
 import com.bookstore.Account.AccountDAO;
+import static com.sun.corba.se.impl.util.Utility.printStackTrace;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -33,26 +34,28 @@ public class CusEditProfileController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            String displayName = request.getParameter("txtDisplayName");
-            String emailAddress = request.getParameter("txtEmailAddress");
-            String currentPassword = request.getParameter("txtCurrentPassword");
-            String newPassword = request.getParameter("txtNewPassword");
-            String comfirmPassword = request.getParameter("txtConfirmPassword");
-
+        String userName = request.getParameter("txtUserName");
+        String emailAddress = request.getParameter("txtEmailAddress");
+        String newPassword = request.getParameter("txtNewPassword");
+        String comfirmPassword = request.getParameter("txtConfirmPassword");
+        try {
             HttpSession session = request.getSession();
-            Account acc = (Account) session.getAttribute("acc");
-            if (currentPassword.equals(acc.getPassword())) {
-                acc.setUsername(displayName);
-                acc.setEmail(emailAddress);
+            Account dto = (Account) session.getAttribute("acc");
+            AccountDAO dao = new AccountDAO();
+            boolean check = dao.updateAccountDetails(dto);
+            if (check) {
                 if (newPassword.equals(comfirmPassword)) {
-                    acc.setPassword(newPassword);
+                    dto.setUsername(userName);
+                    dto.setEmail(emailAddress);
+                    dto.setPassword(newPassword);
+                    dao.updateAccountDetails(dto);
+                    request.getRequestDispatcher("cusView.jsp.").forward(request, response);
                 }
-                AccountDAO accDAO = new AccountDAO();
-                accDAO.updateAccountDetails(acc);
-                request.getRequestDispatcher("cusEditProfile.").forward(request, response);
             }
+        } catch (Exception e) {
+            log("Error at updateAccountDetails " + e.getMessage());
+        } finally {
+            response.sendRedirect("cusEditProfile.jsp");
         }
     }
 

@@ -79,17 +79,14 @@
                                             </div><!-- .End .tab-pane -->
 
                                             <div class="tab-pane fade show active" id="tab-account" role="tabpanel" aria-labelledby="tab-account-link">
-                                                <form  action="EditProFileController" method="post">
+                                                <form  action="cuseditprofile" method="post">
 
                                                     <label>User Name *</label>
-                                                    <input type="text" class="form-control" name="txtuserName" value="${acc.getUsername()}" required>
+                                                    <input type="text" class="form-control" name="txtUserName" value="${acc.getUsername()}" required>
                                                 <small class="form-text">This will be how your name will be displayed in the account section and in reviews</small>
 
                                                 <label>Email address *</label>
                                                 <input type="email" class="form-control" name="txtEmailAddress" value="${acc.getEmail()}"required>
-
-                                                <label>Current password (leave blank to leave unchanged)</label>
-                                                <input type="password" class="form-control">
 
                                                 <label>New password (leave blank to leave unchanged)</label>
                                                 <input type="password" name="txtNewPassword" class="form-control">

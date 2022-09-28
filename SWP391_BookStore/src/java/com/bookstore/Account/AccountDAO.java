@@ -11,6 +11,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.xml.bind.DatatypeConverter;
 
@@ -59,27 +60,34 @@ public class AccountDAO {
         return null;
     }
 
-    
-    public boolean updateAccountDetails(Account acc){
-        boolean f = false;
-        try{
+    public boolean updateAccountDetails(Account acc) throws SQLException {
+        boolean check = false;
+        try {
+
             conn = new DBUtils().getConnection();
-            String sql="update tblAccount set userName =? , userPass=? " 
-                    + "where email =?";
-            ps = conn.prepareStatement(sql);
-            ps.setString(1, acc.getUsername());
-            ps.setString(2, acc.getEmail());
-            ps.setString(3, acc.getPassword());
-            ps.executeUpdate();
-            f =true;
-            
-        }catch(Exception e){
-            e.printStackTrace();
+            acc.getAccID();
+            if (conn != null) {
+                String sql = "Update tblAccount " 
+                        + "Set userName = ? , userPass= ? , email= ? "
+                        + "where accID = ? ";
+                ps = conn.prepareStatement(sql);
+                ps.setString(1, acc.getUsername());
+                ps.setString(2, acc.getEmail());
+                ps.setString(3, acc.getPassword());
+
+                ps.executeUpdate();
+                check = ps.executeUpdate() > 0;
+            }
+        } finally {
+            if (ps != null) {
+                ps.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
-        return f;
+        return check;
     }
-    
-    
 
     public static void main(String[] args) throws NoSuchAlgorithmException {
         AccountDAO dAO = new AccountDAO();
