@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <header class="header">
     <div class="header-top">
@@ -36,35 +37,31 @@
                     <i class="icon-bars"></i>
                 </button>
 
-                <a href="home.jsp" class="logo">
+                <a href="home" class="logo">
                     <img src="assets/images/logo.png" alt="Molla Logo" width="105" height="25">
                 </a>
 
                 <nav class="main-nav">
                     <ul class="menu sf-arrows">
                         <li class="megamenu-container active">
-                            <a href="home.jsp" class="sf-with-ul">Home</a>
+                            <a href="home" class="sf-with-ul">Home</a>
                         </li>
                         <li>
-                            <a href="category.html" class="sf-with-ul">Shopping</a>
+                            <a href="shopping" class="sf-with-ul">Shopping</a>
 
                         </li>
                         <li>
-                            <a href="product.html" id="sf-with-ul">Category</a>
+                            <a href="" id="sf-with-ul">Category</a>
 
                             <div class="megamenu megamenu-sm">
                                 <div class="row no-gutters">
                                     <div class="col-md-12">
                                         <div class="menu-col">
                                             <ul>
-                                                <li><a href="product.html">Default</a></li>
-                                                <li><a href="product-centered.html">Centered</a></li>
-                                                <li><a href="product-extended.html"><span>Extended Info<span class="tip tip-new">New</span></span></a></li>
-                                                <li><a href="product-gallery.html">Gallery</a></li>
-                                                <li><a href="product-sticky.html">Sticky Info</a></li>
-                                                <li><a href="product-sidebar.html">Boxed With Sidebar</a></li>
-                                                <li><a href="product-fullwidth.html">Full Width</a></li>
-                                                <li><a href="product-masonry.html">Masonry Sticky Info</a></li>
+                                                <c:forEach items="${listC}" var="o">
+                                                    <li><a href="category?id=${o.id}">${o.name}</a></li>
+                                                    <!--href giúp truyền đường dẫn--> 
+                                                </c:forEach>
                                             </ul>
                                         </div><!-- End .menu-col -->
                                     </div><!-- End .col-md-6 -->
