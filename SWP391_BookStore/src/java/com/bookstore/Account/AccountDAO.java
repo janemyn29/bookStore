@@ -74,7 +74,6 @@ public class AccountDAO {
                 ps.setString(1, acc.getUsername());
                 ps.setString(2, acc.getEmail());
                 ps.setString(3, acc.getPassword());
-
                 ps.executeUpdate();
                 check = ps.executeUpdate() > 0;
             }
