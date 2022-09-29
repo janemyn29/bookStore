@@ -32,7 +32,8 @@ public class CusHomeController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            response.sendRedirect("customer/cusHome.jsp");
+            //response.sendRedirect("customer/cusHome");
+            request.getRequestDispatcher("cusHome.jsp").forward(request, response);
         }
     }
 

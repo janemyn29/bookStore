@@ -4,7 +4,9 @@
     Author     : tramy
 --%>
 
+<%@page import="com.bookstore.Account.Account"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib  prefix ="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <header class="header">
     <div class="header-top">
@@ -20,7 +22,15 @@
                             <li><a href="/SWP391/logout"></a>Logout</li>
                             <li><a href="about.html">About Us</a></li>
                             <li><a href="contact.html">Contact Us</a></li>
-                            <li><a href="cusview" >Hello ${acc.getUsername()}</a></li>
+                                <%
+                                    Account acc = (Account) request.getSession().getAttribute("acc");
+                                    if (acc == null) {
+                                %>
+                            <li><a href="login.jsp">Login</li>
+                                <%
+                                } else {%>
+                            <li><a href="customer/cusView.jsp">Hello ${acc.getUsername()}</a></li>
+                                <%}%>
                         </ul>
                     </li>
                 </ul><!-- End .top-menu -->
@@ -36,17 +46,17 @@
                     <i class="icon-bars"></i>
                 </button>
 
-                <a href="home.jsp" class="logo">
+                <a href="cusHome.jsp" class="logo">
                     <img src="assets/images/logo.png" alt="Molla Logo" width="105" height="25">
                 </a>
 
                 <nav class="main-nav">
                     <ul class="menu sf-arrows">
                         <li class="megamenu-container active">
-                            <a href="home.jsp" class="sf-with-ul">Home</a>
+                            <a href="cusHome.jsp" class="sf-with-ul">Home</a>
                         </li>
                         <li>
-                            <a href="category.html" class="sf-with-ul">Shopping</a>
+                            <a href="shopping.jsp" class="sf-with-ul">Shopping</a>
 
                         </li>
                         <li>

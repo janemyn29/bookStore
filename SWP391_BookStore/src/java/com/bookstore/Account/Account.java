@@ -10,6 +10,7 @@ package com.bookstore.Account;
  * @author tramy
  */
 public class Account {
+
     private int accID;
     private String username;
     private String phone;
@@ -33,6 +34,16 @@ public class Account {
         this.roleName = roleName;
         this.actionID = actionID;
         this.actionName = actionName;
+    }
+
+    public Account(int accID, String username, String phone, String email, String password, int roleID, int actionID) {
+        this.accID = accID;
+        this.username = username;
+        this.phone = phone;
+        this.email = email;
+        this.password = password;
+        this.roleID = roleID;
+        this.actionID = actionID;
     }
 
     public int getAccID() {
@@ -111,9 +122,5 @@ public class Account {
     public String toString() {
         return "Account{" + "accID=" + accID + ", username=" + username + ", phone=" + phone + ", email=" + email + ", password=" + password + ", roleID=" + roleID + ", roleName=" + roleName + ", actionID=" + actionID + ", actionName=" + actionName + '}';
     }
-    
-    
-    
-    
-    
+
 }

@@ -39,7 +39,7 @@
                 <main class="main">
                     <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
                         <div class="container">
-                            <h1 class="page-title">My Account<span>Shop</span></h1>
+                            <h1 class="page-title">Edit Account</h1>
                         </div><!-- End .container -->
                     </div><!-- End .page-header -->
                     <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
@@ -75,7 +75,7 @@
 
                                             <div class="tab-pane fade" id="tab-orders" role="tabpanel" aria-labelledby="tab-orders-link">
                                                 <p>No order has been made yet.</p>
-                                                <a href="category.html" class="btn btn-outline-primary-2"><span>GO SHOP</span><i class="icon-long-arrow-right"></i></a>
+                                                <a href="shopping.jsp" class="btn btn-outline-primary-2"><span>GO SHOP</span><i class="icon-long-arrow-right"></i></a>
                                             </div><!-- .End .tab-pane -->
 
                                             <div class="tab-pane fade show active" id="tab-account" role="tabpanel" aria-labelledby="tab-account-link">
@@ -85,18 +85,18 @@
                                                     <input type="text" class="form-control" name="txtUserName" value="${acc.getUsername()}" required>
                                                 <small class="form-text">This will be how your name will be displayed in the account section and in reviews</small>
 
+                                                <label>Phone Number *</label>
+                                                <input type="text" class="form-control" name="txtPhoneNumber" value="${acc.getPhone()}"required>
+
                                                 <label>Email address *</label>
                                                 <input type="email" class="form-control" name="txtEmailAddress" value="${acc.getEmail()}"required>
-
-                                                <label>New password (leave blank to leave unchanged)</label>
-                                                <input type="password" name="txtNewPassword" class="form-control">
-
-                                                <label>Confirm new password</label>
-                                                <input type="password" name="txtConfirmPassword" class="form-control mb-2">
-
+                                                <a class="btn btn-outline-primary-2" href="cusView.jsp">
+                                                    <i class="icon-long-arrow-left"></i>
+                                                    <span>BACK</span>
+                                                </a>
                                                 <button type="submit" class="btn btn-outline-primary-2">
                                                     <span>SAVE CHANGES</span>
-                                                    <i class="icon-long-arrow-right"></i>
+                                                    <i class="icon-arrow-down"></i>
                                                 </button>
                                             </form>
                                         </div><!-- .End .tab-pane -->

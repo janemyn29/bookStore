@@ -34,28 +34,32 @@ public class CusEditProfileController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String userName = request.getParameter("txtUserName");
-        String emailAddress = request.getParameter("txtEmailAddress");
-        String newPassword = request.getParameter("txtNewPassword");
-        String comfirmPassword = request.getParameter("txtConfirmPassword");
+        PrintWriter out = response.getWriter();
         try {
+            String username = request.getParameter("txtUserName");
+            String email = request.getParameter("txtEmailAddress");
+            String phone = request.getParameter("txtPhoneNumber");
             HttpSession session = request.getSession();
             Account dto = (Account) session.getAttribute("acc");
             AccountDAO dao = new AccountDAO();
-            boolean check = dao.updateAccountDetails(dto);
-            if (check) {
-                if (newPassword.equals(comfirmPassword)) {
-                    dto.setUsername(userName);
-                    dto.setEmail(emailAddress);
-                    dto.setPassword(newPassword);
-                    dao.updateAccountDetails(dto);
+            if (dao.existUsername(username) != null) {
+                if (dao.existMail(email) != null) {
+                    dto.setUsername(username);
+                    dto.setEmail(email);
+                    dto.setPhone(phone);
+                    dao.updateAccountDetails(username, email, phone);
                     request.getRequestDispatcher("cusView.jsp.").forward(request, response);
                 }
+                response.sendRedirect("cusEditProfile.jsp");
+                System.out.println("Email Existed!");
+            } else {
+                request.getRequestDispatcher("cusEditProfile.jsp.").forward(request, response);
+                System.out.println("User Name Existed!");
             }
         } catch (Exception e) {
             log("Error at updateAccountDetails " + e.getMessage());
         } finally {
-            response.sendRedirect("cusEditProfile.jsp");
+            request.getRequestDispatcher("cusEditProfile.jsp").forward(request, response);
         }
     }
 

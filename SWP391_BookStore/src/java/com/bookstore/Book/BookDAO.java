@@ -78,28 +78,7 @@ public class BookDAO {
         String dateToString = formatter.format(date);
         return dateToString;
     }
-//           public boolean checkActive(String dateToString) throws SQLException {
-//        InstrucmentDTO dto = new InstrucmentDTO();
-//        List<InstrucmentDTO> list = new ArrayList<>();
-//        list = getAllListInstrucment();
-//        for (InstrucmentDTO getDate : list) {
-//            if (dateToString.compareTo(getDate.getStartDate()) > 0 && getDate.getEndDate().compareTo(dateToString) < 0) {
-//                getDate.checkActive = false;
-//                boolean check = updateCheckActive(getDate.checkActive, getDate.getCourseID());
-//                if (check) {
-//                    continue;
-//                }
-//            } else {
-//                getDate.checkActive = true;
-//                boolean check = updateCheckActive(getDate.checkActive, getDate.getCourseID());
-//                if (check) {
-//                    continue;
-//                }
-//            }
-//        }
-//        return false;
-//    }
-//       hàm check còn trong mục giảm giá
+       
     public static void main(String[] args) {
         BookDAO dao =new BookDAO();
         Book b=dao.getBookBybookCode("9789814195673");

@@ -3,25 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bookstore.controller;
+package com.bookstore.Customer;
 
-import com.bookstore.Book.Book;
-import com.bookstore.Book.BookDAO;
-import com.bookstore.Category.Category;
-import com.bookstore.Category.CategoryDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Admin
  */
-public class HomeController extends HttpServlet {
+public class CusLogOut extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,19 +33,15 @@ public class HomeController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            // hàm này lấy hết book từ database
-        // hàm này ở trang home.jsp
-        CategoryDAO dao= new CategoryDAO();
-        BookDAO daoB=new BookDAO();
-        
-        
-        List<Category> listC=dao.getCategoryBook();
-        List<Book> listAll=daoB.getAllBook();
-        
-        
-        request.setAttribute("listC", listC);
-        request.setAttribute("listAllB", listAll);
-        request.getRequestDispatcher("cusHome.jsp").forward(request, response);
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet CusLogOut</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet CusLogOut at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
@@ -79,7 +71,9 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession();
+        session.invalidate();
+        response.sendRedirect("login.jsp");
     }
 
     /**
