@@ -4,7 +4,6 @@
     Author     : Admin
 --%>
 
-<%@page import="com.bookstore.Account.Account"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -40,7 +39,7 @@
                 <main class="main">
                     <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
                         <div class="container">
-                            <h1 class="page-title">View Account</h1>
+                            <h1 class="page-title">Change Password</h1>
                         </div><!-- End .container -->
                     </div><!-- End .page-header -->
                     <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
@@ -63,42 +62,38 @@
                                                 <a class="nav-link active" id="tab-account-link" data-toggle="tab" href="#tab-account" role="tab" aria-controls="tab-account" aria-selected="true">My Account</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" id="tab-orders-link" data-toggle="tab" href="#tab-orders" role="tab" aria-controls="tab-orders" aria-selected="false">My Orders</a>
+                                                <a class="nav-link" href="#">Sign Out</a>
                                             </li>
-                                            <li class="nav-item">
-                                            <a class = "nav-link" href="#">Sign Out</a>
-                                        </li>
-                                    </ul>
-                                </aside><!-- End .col-lg-3 -->
+                                        </ul>
+                                    </aside><!-- End .col-lg-3 -->
 
-                                <div class="col-md-8 col-lg-9">
-                                    <div class="tab-content">
+                                    <div class="col-md-8 col-lg-9">
+                                        <div class="tab-content">
 
-                                        <div class="tab-pane fade" id="tab-orders" role="tabpanel" aria-labelledby="tab-orders-link">
-                                            <p>No order has been made yet.</p>
-                                            <a href="shopping.jsp" class="btn btn-outline-primary-2"><span>GO SHOP</span><i class="icon-long-arrow-right"></i></a>
-                                        </div><!-- .End .tab-pane -->
+                                            <div class="tab-pane fade" id="tab-orders" role="tabpanel" aria-labelledby="tab-orders-link">
+                                                <p>No order has been made yet.</p>
+                                                <a href="shopping.jsp" class="btn btn-outline-primary-2"><span>GO SHOP</span><i class="icon-long-arrow-right"></i></a>
+                                            </div><!-- .End .tab-pane -->
 
-                                        <div class="tab-pane fade show active" id="tab-account" role="tabpanel" aria-labelledby="tab-account-link">
+                                            <div class="tab-pane fade show active" id="tab-account" role="tabpanel" aria-labelledby="tab-account-link">
+                                                <form  action="cuseditprofile" method="post">
 
-                                            <label>User Name</label>
-                                            <input type="text" class="form-control" value="${acc.getUsername()}"  readonly>
+                                                    <label>New Password *</label>
+                                                    <input type="password" class="form-control" name="txtUserName" value="${acc.getUsername()}" required>
+                                                <small class="form-text">This will be how your name will be displayed in the account section and in reviews</small>
 
-                                            <label>Phone Number</label>
-                                            <input type="text" class="form-control" value="${acc.getPhone()}"  readonly>
+                                                <label>Confirm Password *</label>
+                                                <input type="password" class="form-control" name="txtPhoneNumber" value="${acc.getPhone()}"required>
 
-
-                                            <label>Email address</label>
-                                            <input type="email" class="form-control" value="${acc.getEmail()}" readonly>
-
-                                            <a class="btn btn-outline-primary-2" href="cusEditProfile.jsp">
-                                                <span>Edit Account</span>
-                                                <i class="icon-edit"></i>
-                                            </a>
-                                            <a class="btn btn-outline-primary-2" href="cusChangePass.jsp">
-                                                <span>CHANGE PASSWORD</span>
-                                                <i class="icon-edit"></i>
-                                            </a>
+                                                <a class="btn btn-outline-primary-2" href="cusView.jsp">
+                                                    <i class="icon-long-arrow-left"></i>
+                                                    <span>BACK</span>
+                                                </a>
+                                                <button type="submit" class="btn btn-outline-primary-2">
+                                                    <span>SAVE CHANGES</span>
+                                                    <i class="icon-arrow-down"></i>
+                                                </button>
+                                            </form>
                                         </div><!-- .End .tab-pane -->
                                     </div>
                                 </div><!-- End .col-lg-9 -->

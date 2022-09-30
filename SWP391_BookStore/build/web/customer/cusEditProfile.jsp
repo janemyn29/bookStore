@@ -62,9 +62,6 @@
                                                 <a class="nav-link active" id="tab-account-link" data-toggle="tab" href="#tab-account" role="tab" aria-controls="tab-account" aria-selected="true">My Account</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" id="tab-orders-link" data-toggle="tab" href="#tab-orders" role="tab" aria-controls="tab-orders" aria-selected="false">My Orders</a>
-                                            </li>
-                                            <li class="nav-item">
                                                 <a class="nav-link" href="#">Sign Out</a>
                                             </li>
                                         </ul>

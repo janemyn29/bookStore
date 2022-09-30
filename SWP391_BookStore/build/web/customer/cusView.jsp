@@ -95,7 +95,7 @@
                                                 <span>Edit Account</span>
                                                 <i class="icon-edit"></i>
                                             </a>
-                                            <a class="btn btn-outline-primary-2" href="#">
+                                            <a class="btn btn-outline-primary-2" href="cusChangePass.jsp">
                                                 <span>CHANGE PASSWORD</span>
                                                 <i class="icon-edit"></i>
                                             </a>

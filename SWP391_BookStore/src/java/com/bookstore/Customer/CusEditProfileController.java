@@ -51,11 +51,11 @@ public class CusEditProfileController extends HttpServlet {
                     request.getRequestDispatcher("cusView.jsp.").forward(request, response);
                 }
                 response.sendRedirect("cusEditProfile.jsp");
-                System.out.println("Email Existed!");
+                response.sendError(0, username);
             } else {
                 request.getRequestDispatcher("cusEditProfile.jsp.").forward(request, response);
                 System.out.println("User Name Existed!");
-            }
+            }response.sendError(0, email);
         } catch (Exception e) {
             log("Error at updateAccountDetails " + e.getMessage());
         } finally {
