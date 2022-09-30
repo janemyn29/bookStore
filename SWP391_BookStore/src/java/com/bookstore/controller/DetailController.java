@@ -38,7 +38,7 @@ public class DetailController extends HttpServlet {
             Book b=dao.getBookBybookCode(bookcode);
             
             request.setAttribute("detailProduct", b);
-            request.getRequestDispatcher("product.html").forward(request, response);
+            request.getRequestDispatcher("product.jsp").forward(request, response);
         }
     }
 

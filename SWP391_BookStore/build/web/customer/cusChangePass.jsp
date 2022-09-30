@@ -79,11 +79,11 @@
                                                 <form  action="cuseditprofile" method="post">
 
                                                     <label>New Password *</label>
-                                                    <input type="password" class="form-control" name="txtUserName" value="${acc.getUsername()}" required>
+                                                    <input type="password" class="form-control" name="txtNewPassword" required>
                                                 <small class="form-text">This will be how your name will be displayed in the account section and in reviews</small>
 
                                                 <label>Confirm Password *</label>
-                                                <input type="password" class="form-control" name="txtPhoneNumber" value="${acc.getPhone()}"required>
+                                                <input type="password" class="form-control" name="txtComfirmPassword"required>
 
                                                 <a class="btn btn-outline-primary-2" href="cusView.jsp">
                                                     <i class="icon-long-arrow-left"></i>

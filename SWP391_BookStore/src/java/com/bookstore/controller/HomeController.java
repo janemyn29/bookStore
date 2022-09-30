@@ -49,7 +49,7 @@ public class HomeController extends HttpServlet {
         
         request.setAttribute("listC", listC);
         request.setAttribute("listAllB", listAll);
-        request.getRequestDispatcher("cusHome.jsp").forward(request, response);
+        request.getRequestDispatcher("home.jsp").forward(request, response);
         }
     }
 

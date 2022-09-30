@@ -85,7 +85,7 @@
                             }'>
                             <div class="product product-11 text-center">
                                 <figure class="product-media">
-                                    <a href="product.html">
+                                    <a href="product.jsp">
                                         <img src="assets/images/demos/demo-2/products/product-1-1.jpg" alt="Product image" class="product-image">
                                         <img src="assets/images/demos/demo-2/products/product-1-2.jpg" alt="Product image" class="product-image-hover">
                                     </a>
@@ -96,7 +96,7 @@
                                 </figure><!-- End .product-media -->
 
                                 <div class="product-body">
-                                    <h3 class="product-title"><a href="product.html">Butler Stool Ladder</a></h3><!-- End .product-title -->
+                                    <h3 class="product-title"><a href="product.jsp">Butler Stool Ladder</a></h3><!-- End .product-title -->
                                     <div class="product-price">
                                         $251,00
                                     </div><!-- End .product-price -->
@@ -108,7 +108,7 @@
 
                             <div class="product product-11 text-center">
                                 <figure class="product-media">
-                                    <a href="product.html">
+                                    <a href="product.jsp">
                                         <img src="assets/images/demos/demo-2/products/product-2-1.jpg" alt="Product image" class="product-image">
                                         <img src="assets/images/demos/demo-2/products/product-2-2.jpg" alt="Product image" class="product-image-hover">
                                     </a>
@@ -119,7 +119,7 @@
                                 </figure><!-- End .product-media -->
 
                                 <div class="product-body">
-                                    <h3 class="product-title"><a href="product.html">Octo 4240</a></h3><!-- End .product-title -->
+                                    <h3 class="product-title"><a href="product.jsp">Octo 4240</a></h3><!-- End .product-title -->
                                     <div class="product-price">
                                         $746,00
                                     </div><!-- End .product-price -->
@@ -137,7 +137,7 @@
                             <div class="product product-11 text-center">
                                 <figure class="product-media">
                                     <span class="product-label label-new">NEW</span>
-                                    <a href="product.html">
+                                    <a href="product.jsp">
                                         <img src="assets/images/demos/demo-2/products/product-3-1.jpg" alt="Product image" class="product-image">
                                         <img src="assets/images/demos/demo-2/products/product-3-2.jpg" alt="Product image" class="product-image-hover">
                                     </a>
@@ -149,7 +149,7 @@
                                 </figure><!-- End .product-media -->
 
                                 <div class="product-body">
-                                    <h3 class="product-title"><a href="product.html">Flow Slim Armchair</a></h3><!-- End .product-title -->
+                                    <h3 class="product-title"><a href="product.jsp">Flow Slim Armchair</a></h3><!-- End .product-title -->
                                     <div class="product-price">
                                         $970,00
                                     </div><!-- End .product-price -->
@@ -162,7 +162,7 @@
                             <div class="product product-11 text-center">
                                 <figure class="product-media">
                                     <span class="product-label label-sale">30% OFF</span>
-                                    <a href="product.html">
+                                    <a href="product.jsp">
                                         <img src="assets/images/demos/demo-2/products/product-4-1.jpg" alt="Product image" class="product-image">
                                         <img src="assets/images/demos/demo-2/products/product-4-2.jpg" alt="Product image" class="product-image-hover">
                                     </a>
@@ -174,7 +174,7 @@
                                 </figure><!-- End .product-media -->
 
                                 <div class="product-body">
-                                    <h3 class="product-title"><a href="product.html">Roots Sofa Bed</a></h3><!-- End .product-title -->
+                                    <h3 class="product-title"><a href="product.jsp">Roots Sofa Bed</a></h3><!-- End .product-title -->
                                     <div class="product-price">
                                         <span class="new-price">$337,00</span>
                                         <span class="old-price">Was $449,00</span>
@@ -192,7 +192,7 @@
 
                             <div class="product product-11 text-center">
                                 <figure class="product-media">
-                                    <a href="product.html">
+                                    <a href="product.jsp">
                                         <img src="assets/images/demos/demo-2/products/product-5-1.jpg" alt="Product image" class="product-image">
                                         <img src="assets/images/demos/demo-2/products/product-5-2.jpg" alt="Product image" class="product-image-hover">
                                     </a>
@@ -204,7 +204,7 @@
                                 </figure><!-- End .product-media -->
 
                                 <div class="product-body">
-                                    <h3 class="product-title"><a href="product.html">Petite Table Lamp</a></h3><!-- End .product-title -->
+                                    <h3 class="product-title"><a href="product.jsp">Petite Table Lamp</a></h3><!-- End .product-title -->
                                     <div class="product-price">
                                         $675,00
                                     </div><!-- End .product-price -->
@@ -221,7 +221,7 @@
 
                             <div class="product product-11 text-center">
                                 <figure class="product-media">
-                                    <a href="product.html">
+                                    <a href="product.jsp">
                                         <img src="assets/images/demos/demo-2/products/product-6-1.jpg" alt="Product image" class="product-image">
                                         <img src="assets/images/demos/demo-2/products/product-6-2.jpg" alt="Product image" class="product-image-hover">
                                     </a>
@@ -233,7 +233,7 @@
                                 </figure><!-- End .product-media -->
 
                                 <div class="product-body">
-                                    <h3 class="product-title"><a href="product.html">Elephant Armchair</a></h3><!-- End .product-title -->
+                                    <h3 class="product-title"><a href="product.jsp">Elephant Armchair</a></h3><!-- End .product-title -->
                                     <div class="product-price">
                                         $457,00
                                     </div><!-- End .product-price -->
@@ -245,7 +245,7 @@
 
                             <div class="product product-11 text-center">
                                 <figure class="product-media">
-                                    <a href="product.html">
+                                    <a href="product.jsp">
                                         <img src="assets/images/demos/demo-2/products/product-1-1.jpg" alt="Product image" class="product-image">
                                         <img src="assets/images/demos/demo-2/products/product-1-2.jpg" alt="Product image" class="product-image-hover">
                                     </a>
@@ -257,7 +257,7 @@
                                 </figure><!-- End .product-media -->
 
                                 <div class="product-body">
-                                    <h3 class="product-title"><a href="product.html">Butler Stool Ladder</a></h3><!-- End .product-title -->
+                                    <h3 class="product-title"><a href="product.jsp">Butler Stool Ladder</a></h3><!-- End .product-title -->
                                     <div class="product-price">
                                         $251,00
                                     </div><!-- End .product-price -->
@@ -298,7 +298,7 @@
                             <div class="product product-11 text-center">
                                 <figure class="product-media">
                                     <span class="product-label label-new">NEW</span>
-                                    <a href="product.html">
+                                    <a href="product.jsp">
                                         <img src="assets/images/demos/demo-2/products/product-3-1.jpg" alt="Product image" class="product-image">
                                         <img src="assets/images/demos/demo-2/products/product-3-2.jpg" alt="Product image" class="product-image-hover">
                                     </a>
@@ -310,7 +310,7 @@
                                 </figure><!-- End .product-media -->
 
                                 <div class="product-body">
-                                    <h3 class="product-title"><a href="product.html">Flow Slim Armchair</a></h3><!-- End .product-title -->
+                                    <h3 class="product-title"><a href="product.jsp">Flow Slim Armchair</a></h3><!-- End .product-title -->
                                     <div class="product-price">
                                         $970,00
                                     </div><!-- End .product-price -->
@@ -323,7 +323,7 @@
                             <div class="product product-11 text-center">
                                 <figure class="product-media">
                                     <span class="product-label label-sale">30% OFF</span>
-                                    <a href="product.html">
+                                    <a href="product.jsp">
                                         <img src="assets/images/demos/demo-2/products/product-4-1.jpg" alt="Product image" class="product-image">
                                         <img src="assets/images/demos/demo-2/products/product-4-2.jpg" alt="Product image" class="product-image-hover">
                                     </a>
@@ -335,7 +335,7 @@
                                 </figure><!-- End .product-media -->
 
                                 <div class="product-body">
-                                    <h3 class="product-title"><a href="product.html">Roots Sofa Bed</a></h3><!-- End .product-title -->
+                                    <h3 class="product-title"><a href="product.jsp">Roots Sofa Bed</a></h3><!-- End .product-title -->
                                     <div class="product-price">
                                         <span class="new-price">$337,00</span>
                                         <span class="old-price">Was $449,00</span>
@@ -381,7 +381,7 @@
                             }'>
                             <div class="product product-11 text-center">
                                 <figure class="product-media">
-                                    <a href="product.html">
+                                    <a href="product.jsp">
                                         <img src="assets/images/demos/demo-2/products/product-1-1.jpg" alt="Product image" class="product-image">
                                         <img src="assets/images/demos/demo-2/products/product-1-2.jpg" alt="Product image" class="product-image-hover">
                                     </a>
@@ -392,7 +392,7 @@
                                 </figure><!-- End .product-media -->
 
                                 <div class="product-body">
-                                    <h3 class="product-title"><a href="product.html">Butler Stool Ladder</a></h3><!-- End .product-title -->
+                                    <h3 class="product-title"><a href="product.jsp">Butler Stool Ladder</a></h3><!-- End .product-title -->
                                     <div class="product-price">
                                         $251,00
                                     </div><!-- End .product-price -->
@@ -403,7 +403,7 @@
                             </div><!-- End .product -->
                             <div class="product product-11 text-center">
                                 <figure class="product-media">
-                                    <a href="product.html">
+                                    <a href="product.jsp">
                                         <img src="assets/images/demos/demo-2/products/product-6-1.jpg" alt="Product image" class="product-image">
                                         <img src="assets/images/demos/demo-2/products/product-6-2.jpg" alt="Product image" class="product-image-hover">
                                     </a>
@@ -415,7 +415,7 @@
                                 </figure><!-- End .product-media -->
 
                                 <div class="product-body">
-                                    <h3 class="product-title"><a href="product.html">Elephant Armchair</a></h3><!-- End .product-title -->
+                                    <h3 class="product-title"><a href="product.jsp">Elephant Armchair</a></h3><!-- End .product-title -->
                                     <div class="product-price">
                                         $457,00
                                     </div><!-- End .product-price -->
@@ -455,7 +455,7 @@
                             }'>
                             <div class="product product-11 text-center">
                                 <figure class="product-media">
-                                    <a href="product.html">
+                                    <a href="product.jsp">
                                         <img src="assets/images/demos/demo-2/products/product-2-1.jpg" alt="Product image" class="product-image">
                                         <img src="assets/images/demos/demo-2/products/product-2-2.jpg" alt="Product image" class="product-image-hover">
                                     </a>
@@ -466,7 +466,7 @@
                                 </figure><!-- End .product-media -->
 
                                 <div class="product-body">
-                                    <h3 class="product-title"><a href="product.html">Octo 4240</a></h3><!-- End .product-title -->
+                                    <h3 class="product-title"><a href="product.jsp">Octo 4240</a></h3><!-- End .product-title -->
                                     <div class="product-price">
                                         $746,00
                                     </div><!-- End .product-price -->
@@ -482,7 +482,7 @@
                             </div><!-- End .product -->
                             <div class="product product-11 text-center">
                                 <figure class="product-media">
-                                    <a href="product.html">
+                                    <a href="product.jsp">
                                         <img src="assets/images/demos/demo-2/products/product-5-1.jpg" alt="Product image" class="product-image">
                                         <img src="assets/images/demos/demo-2/products/product-5-2.jpg" alt="Product image" class="product-image-hover">
                                     </a>
@@ -494,7 +494,7 @@
                                 </figure><!-- End .product-media -->
 
                                 <div class="product-body">
-                                    <h3 class="product-title"><a href="product.html">Petite Table Lamp</a></h3><!-- End .product-title -->
+                                    <h3 class="product-title"><a href="product.jsp">Petite Table Lamp</a></h3><!-- End .product-title -->
                                     <div class="product-price">
                                         $675,00
                                     </div><!-- End .product-price -->
@@ -585,7 +585,7 @@
                                 <div class="col-6 col-md-4 col-lg-3">
                                     <div class="product product-11 mt-v3 text-center">
                                         <figure class="product-media">
-                                            <a href="product.html">
+                                            <a href="product.jsp">
                                                 <img src="${o.image}" alt="Product image" class="product-image">
                                                 <img src="" alt="Product image" class="product-image-hover">
                                                 <!--ảnh động-->
@@ -633,7 +633,7 @@
                                     <div class="product product-11 mt-v3 text-center">
                                         <figure class="product-media">
                                             <span class="product-label label-new">NEW</span>
-                                            <a href="product.html">
+                                            <a href="product.jsp">
                                                 <img src="assets/images/demos/demo-2/products/product-9-1.jpg" alt="Product image" class="product-image">
                                                 <img src="assets/images/demos/demo-2/products/product-9-2.jpg" alt="Product image" class="product-image-hover">
                                             </a>
@@ -644,7 +644,7 @@
                                         </figure><!-- End .product-media -->
 
                                         <div class="product-body">
-                                            <h3 class="product-title"><a href="product.html">Garden Armchair</a></h3><!-- End .product-title -->
+                                            <h3 class="product-title"><a href="product.jsp">Garden Armchair</a></h3><!-- End .product-title -->
                                             <div class="product-price">
                                                 $94,00
                                             </div><!-- End .product-price -->
@@ -658,7 +658,7 @@
                                 <div class="col-6 col-md-4 col-lg-3">
                                     <div class="product product-11 mt-v3 text-center">
                                         <figure class="product-media">
-                                            <a href="product.html">
+                                            <a href="product.jsp">
                                                 <img src="assets/images/demos/demo-2/products/product-12-1.jpg" alt="Product image" class="product-image">
                                                 <img src="assets/images/demos/demo-2/products/product-12-2.jpg" alt="Product image" class="product-image-hover">
                                             </a>
@@ -669,7 +669,7 @@
                                         </figure><!-- End .product-media -->
 
                                         <div class="product-body">
-                                            <h3 class="product-title"><a href="product.html">Block Side Table/Trolley</a></h3><!-- End .product-title -->
+                                            <h3 class="product-title"><a href="product.jsp">Block Side Table/Trolley</a></h3><!-- End .product-title -->
                                             <div class="product-price">
                                                 $229,00
                                             </div><!-- End .product-price -->
@@ -688,7 +688,7 @@
                                 <div class="col-6 col-md-4 col-lg-3">
                                     <div class="product product-11 mt-v3 text-center">
                                         <figure class="product-media">
-                                            <a href="product.html">
+                                            <a href="product.jsp">
                                                 <img src="assets/images/demos/demo-2/products/product-13-1.jpg" alt="Product image" class="product-image">
                                                 <img src="assets/images/demos/demo-2/products/product-13-2.jpg" alt="Product image" class="product-image-hover">
                                             </a>
@@ -699,7 +699,7 @@
                                         </figure><!-- End .product-media -->
 
                                         <div class="product-body">
-                                            <h3 class="product-title"><a href="product.html">2-Seater</a></h3><!-- End .product-title -->
+                                            <h3 class="product-title"><a href="product.jsp">2-Seater</a></h3><!-- End .product-title -->
                                             <div class="product-price">
                                                 $3.107,00
                                             </div><!-- End .product-price -->
@@ -718,7 +718,7 @@
                                 <div class="col-6 col-md-4 col-lg-3">
                                     <div class="product product-11 mt-v3 text-center">
                                         <figure class="product-media">
-                                            <a href="product.html">
+                                            <a href="product.jsp">
                                                 <img src="assets/images/demos/demo-2/products/product-8-1.jpg" alt="Product image" class="product-image">
                                                 <img src="assets/images/demos/demo-2/products/product-8-2.jpg" alt="Product image" class="product-image-hover">
                                             </a>
@@ -729,7 +729,7 @@
                                         </figure><!-- End .product-media -->
 
                                         <div class="product-body">
-                                            <h3 class="product-title"><a href="product.html">Madra Log Holder</a></h3><!-- End .product-title -->
+                                            <h3 class="product-title"><a href="product.jsp">Madra Log Holder</a></h3><!-- End .product-title -->
                                             <div class="product-price">
                                                 $104,00
                                             </div><!-- End .product-price -->
@@ -749,7 +749,7 @@
                                 <div class="col-6 col-md-4 col-lg-3">
                                     <div class="product product-11 mt-v3 text-center">
                                         <figure class="product-media">
-                                            <a href="product.html">
+                                            <a href="product.jsp">
                                                 <img src="assets/images/demos/demo-2/products/product-11-1.jpg" alt="Product image" class="product-image">
                                                 <img src="assets/images/demos/demo-2/products/product-11-2.jpg" alt="Product image" class="product-image-hover">
                                             </a>
@@ -760,7 +760,7 @@
                                         </figure><!-- End .product-media -->
 
                                         <div class="product-body">
-                                            <h3 class="product-title"><a href="product.html">Original Outdoor Beanbag</a></h3><!-- End .product-title -->
+                                            <h3 class="product-title"><a href="product.jsp">Original Outdoor Beanbag</a></h3><!-- End .product-title -->
                                             <div class="product-price">
                                                 $259,00
                                             </div><!-- End .product-price -->
@@ -774,7 +774,7 @@
                                 <div class="col-6 col-md-4 col-lg-3">
                                     <div class="product product-11 mt-v3 text-center">
                                         <figure class="product-media">
-                                            <a href="product.html">
+                                            <a href="product.jsp">
                                                 <img src="assets/images/demos/demo-2/products/product-14-1.jpg" alt="Product image" class="product-image">
                                                 <img src="assets/images/demos/demo-2/products/product-14-2.jpg" alt="Product image" class="product-image-hover">
                                             </a>
@@ -785,7 +785,7 @@
                                         </figure><!-- End .product-media -->
 
                                         <div class="product-body">
-                                            <h3 class="product-title"><a href="product.html">Wingback Chair</a></h3><!-- End .product-title -->
+                                            <h3 class="product-title"><a href="product.jsp">Wingback Chair</a></h3><!-- End .product-title -->
                                             <div class="product-price">
                                                 $2.486,00
                                             </div><!-- End .product-price -->
@@ -809,7 +809,7 @@
                                 <div class="col-6 col-md-4 col-lg-3">
                                     <div class="product product-11 mt-v3 text-center">
                                         <figure class="product-media">
-                                            <a href="product.html">
+                                            <a href="product.jsp">
                                                 <img src="assets/images/demos/demo-2/products/product-10-1.jpg" alt="Product image" class="product-image">
                                                 <img src="assets/images/demos/demo-2/products/product-10-2.jpg" alt="Product image" class="product-image-hover">
                                             </a>
@@ -820,7 +820,7 @@
                                         </figure><!-- End .product-media -->
 
                                         <div class="product-body">
-                                            <h3 class="product-title"><a href="product.html">Carronade Suspension Lamp</a></h3><!-- End .product-title -->
+                                            <h3 class="product-title"><a href="product.jsp">Carronade Suspension Lamp</a></h3><!-- End .product-title -->
                                             <div class="product-price">
                                                 $892,00
                                             </div><!-- End .product-price -->
@@ -841,7 +841,7 @@
                                     <div class="product product-11 mt-v3 text-center">
                                         <figure class="product-media">
                                             <span class="product-label label-new">NEW</span>
-                                            <a href="product.html">
+                                            <a href="product.jsp">
                                                 <img src="assets/images/demos/demo-2/products/product-16-1.jpg" alt="Product image" class="product-image">
                                                 <img src="assets/images/demos/demo-2/products/product-16-2.jpg" alt="Product image" class="product-image-hover">
                                             </a>
@@ -855,7 +855,7 @@
                                             <div class="product-cat">
                                                 <a href="#">Decor</a>
                                             </div><!-- End .product-cat -->
-                                            <h3 class="product-title"><a href="product.html">Cushion Set 3 Pieces</a></h3><!-- End .product-title -->
+                                            <h3 class="product-title"><a href="product.jsp">Cushion Set 3 Pieces</a></h3><!-- End .product-title -->
                                             <div class="product-price">
                                                 $199,00
                                             </div><!-- End .product-price -->
@@ -1174,9 +1174,9 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="product.html" class="sf-with-ul">Product</a>
+                        <a href="product.jsp" class="sf-with-ul">Product</a>
                         <ul>
-                            <li><a href="product.html">Default</a></li>
+                            <li><a href="product.jsp">Default</a></li>
                             <li><a href="product-centered.html">Centered</a></li>
                             <li><a href="product-extended.html"><span>Extended Info<span class="tip tip-new">New</span></span></a></li>
                             <li><a href="product-gallery.html">Gallery</a></li>
