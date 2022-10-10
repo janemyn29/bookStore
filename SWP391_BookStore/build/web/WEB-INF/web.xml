@@ -20,6 +20,10 @@
         <filter-name>AdminFilter</filter-name>
         <filter-class>com.bookstore.Filter.AdminFilter</filter-class>
     </filter>
+    <filter>
+        <filter-name>CheckActionFilter</filter-name>
+        <filter-class>com.bookstore.Filter.CheckActionFilter</filter-class>
+    </filter>
     <filter-mapping>
         <filter-name>AdminFilter</filter-name>
         <servlet-name>AdHomeController</servlet-name>
@@ -37,6 +41,26 @@
         <servlet-name>AdImporterController</servlet-name>
     </filter-mapping>
     <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AddSellerNavController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AddImpNavController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AddNewSellerController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AddNewImpController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AdProfileController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
         <filter-name>CheckPassFilter</filter-name>
         <servlet-name>ResetPassController</servlet-name>
     </filter-mapping>
@@ -50,6 +74,10 @@
     </filter-mapping>
     <filter-mapping>
         <filter-name>ValidateFilter</filter-name>
+        <servlet-name>LoginController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CheckActionFilter</filter-name>
         <servlet-name>LoginController</servlet-name>
     </filter-mapping>
     <servlet>
@@ -137,12 +165,24 @@
         <servlet-class>com.bookstore.controller.HomeController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>SearchBookByCategory</servlet-name>
-        <servlet-class>com.bookstore.controller.SearchBookByCategory</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ShoppingController</servlet-name>
         <servlet-class>com.bookstore.controller.ShoppingController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoginNavController</servlet-name>
+        <servlet-class>com.bookstore.controller.LoginNavController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdProfileController</servlet-name>
+        <servlet-class>com.bookstore.Admin.AdProfileController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdEditProfileNavController</servlet-name>
+        <servlet-class>com.bookstore.Admin.AdEditProfileNavController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdEditProfileController</servlet-name>
+        <servlet-class>com.bookstore.Admin.AdEditProfileController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -218,23 +258,36 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CategoryController</servlet-name>
-        <url-pattern>/CategoryController</url-pattern>
+        <url-pattern>/category</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DetailController</servlet-name>
-        <url-pattern>/detailProduct</url-pattern>
+        <url-pattern>/detail</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SearchBookByCategory</servlet-name>
-        <url-pattern>/category</url-pattern>
-    </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>ShoppingController</servlet-name>
         <url-pattern>/shopping</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginNavController</servlet-name>
+        <url-pattern>/loginnav</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdProfileController</servlet-name>
+        <url-pattern>/admin/adProfile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdEditProfileNavController</servlet-name>
+        <url-pattern>/admin/editProfileNav</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdEditProfileController</servlet-name>
+        <url-pattern>/admin/adEditProfile</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -21,7 +21,7 @@
                             <li><a href=""></a></li>
                             <li><a href="about.html">About Us</a></li>
                             <li><a href="contact.html">Contact Us</a></li>
-                            <li><a href="login.jsp">Login</a></li>
+                            <li><a href="loginnav">Login</a></li>
                         </ul>
                     </li>
                 </ul><!-- End .top-menu -->
@@ -59,7 +59,7 @@
                                         <div class="menu-col">
                                             <ul>
                                                 <c:forEach items="${listC}" var="o">
-                                                    <li><a href="category?id=${o.id}">${o.name}</a></li>
+                                                    <li><a href="category?categoryIDBook=${o.id}">${o.name}</a></li>
                                                     <!--href giúp truyền đường dẫn--> 
                                                 </c:forEach>
                                             </ul>

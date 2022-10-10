@@ -77,6 +77,16 @@
                                             <c:if test='${check == "Reset password successfully. Please use your account to login!"}'>
                                                 <label for="singin-email-2" style="color: green;">${check}</label>
                                             </c:if>
+                                                
+                                                
+                                                
+                                            <c:if test='${temp == "Your Account has been blocked for violating the Ordering Regulations!"}'>
+                                                <label for="singin-email-2" style="color: red;">${temp}</label>
+                                            </c:if>
+                                            <c:if test='${temp == "Your Account has been blocked !"}'>
+                                                <label for="singin-email-2" style="color: red;">${temp}</label>
+                                            </c:if>
+                                           
                                             <div class="form-group">
                                                 <label for="singin-email-2">Email address *</label>
                                                 <input type="email" class="form-control" id="singin-email-2" name="email" required>

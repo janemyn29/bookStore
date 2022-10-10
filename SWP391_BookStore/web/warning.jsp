@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Simple 404 Error Page Design</title>
+<title>Warning</title>
 <link href="https://fonts.googleapis.com/css?family=Roboto:700" rel="stylesheet">
 <style>
 h1{

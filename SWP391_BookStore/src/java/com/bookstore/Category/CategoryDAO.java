@@ -39,7 +39,6 @@ public class CategoryDAO {
         }
         return list;
     }
-    
     public List<Book> getBookByCategory(String Cid) {
         List<Book> list = new ArrayList<>();
         String sql = "select b.bookCode, b.bookName, b.img, b.importPrice, b.buyPrice, b.description, b.quantity,c.cateID,c.cateName,p.postID,p.postName,pc.companyID,pc.companyName,b.postDate\n" +
@@ -68,8 +67,6 @@ public class CategoryDAO {
 
     public static void main(String[] args) {
         CategoryDAO dao = new CategoryDAO();
-        List<Category> list=dao.getCategoryBook();
-        System.out.println(list);
         }
     }
 

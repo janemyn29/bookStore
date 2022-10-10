@@ -39,16 +39,21 @@ public class HomeController extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             // hàm này lấy hết book từ database
         // hàm này ở trang home.jsp
-        CategoryDAO dao= new CategoryDAO();
+        CategoryDAO daoC= new CategoryDAO();
         BookDAO daoB=new BookDAO();
         
         
-        List<Category> listC = dao.getCategoryBook();
-        List<Book> listAll=daoB.getAllBook();
+        
+        List<Category> listC=daoC.getCategoryBook();
+        List<Book> listRecentArrival=daoB.getRecentBook();
+        List<Book> listDiscountBook=daoB.getDiscountBook();
         
         
+        request.setAttribute("listRecentArrival", listRecentArrival);
         request.setAttribute("listC", listC);
-        request.setAttribute("listAllB", listAll);
+        request.setAttribute("listDiscountBook", listDiscountBook);
+        
+        
         request.getRequestDispatcher("home.jsp").forward(request, response);
         }
     }

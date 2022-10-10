@@ -64,7 +64,7 @@
                         </li>
                         <c:if test='${role == "seller"}'>
                             <li>
-                                <a class="active" href="" aria-expanded="false">
+                                <a class="active" href="adseller" aria-expanded="false">
                                     <i class="fa fa-cart-plus menu-icon"></i> <span class="nav-text">Seller Management</span>
                                 </a>
 
@@ -78,7 +78,7 @@
                         </c:if>
                         <c:if test='${role == "importer"}'>
                             <li>
-                                <a  href="" aria-expanded="false">
+                                <a  href="adseller" aria-expanded="false">
                                     <i class="fa fa-cart-plus menu-icon"></i> <span class="nav-text">Seller Management</span>
                                 </a>
 
@@ -117,6 +117,15 @@
                 Sidebar end
             ***********************************-->
             <div class="content-body">
+                <div class="row page-titles mx-0">
+                    <div class="col p-md-0">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">Home</li>
+                            <li class="breadcrumb-item active">Add New</li>
+                        </ol>
+                    </div>
+                </div>
+
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
@@ -193,17 +202,7 @@
             ***********************************-->
 
 
-            <!--**********************************
-                Footer start
-            ***********************************-->
-            <div class="footer">
-                <div class="copyright">
-                    <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Quixlab</a> 2018</p>
-                </div>
-            </div>
-            <!--**********************************
-                Footer end
-            ***********************************-->
+            
         </div>
         <!--**********************************
             Main wrapper end

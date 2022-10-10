@@ -5,10 +5,11 @@
  */
 package com.bookstore.controller;
 
-import com.bookstore.Book.Book;
-import com.bookstore.Book.BookDAO;
+import com.bookstore.Category.Category;
+import com.bookstore.Category.CategoryDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,9 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Admin
+ * @author tramy
  */
-public class DetailController extends HttpServlet {
+public class LoginNavController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,15 +33,12 @@ public class DetailController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-             try (PrintWriter out = response.getWriter()) {
-            
-            
-            String bookcode = request.getParameter("pbookCode");
-            BookDAO dao = new BookDAO();
-            Book b = dao.getBookBybookCode(bookcode);
-
-            request.setAttribute("detailProduct", b);
-            request.getRequestDispatcher("product.jsp").forward(request, response);
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            CategoryDAO dao= new CategoryDAO();
+        List<Category> listC=dao.getCategoryBook();
+        request.setAttribute("listC", listC);
+        request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }
 

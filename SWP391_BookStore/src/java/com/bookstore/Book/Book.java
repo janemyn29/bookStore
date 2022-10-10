@@ -12,6 +12,7 @@ import java.sql.Date;
  * @author tramy
  */
 public class Book {
+
     private long bookCode;
     private String bookName;
     private String image;
@@ -26,6 +27,8 @@ public class Book {
     private int companyID;
     private String companyName;
     private Date postDate;
+    private int discountPercent;
+    
 
     public Book() {
     }
@@ -62,8 +65,31 @@ public class Book {
         this.companyName = companyName;
         this.postDate = postDate;
     }
+
+    public Book(long bookCode, String bookName, String image, int importPrice, int buyPrice, String description, int qty, int cateID, String cateName, int postID, String postName, int companyID, String companyName, Date postDate, int discountPercent) {
+        this.bookCode = bookCode;
+        this.bookName = bookName;
+        this.image = image;
+        this.importPrice = importPrice;
+        this.buyPrice = buyPrice;
+        this.description = description;
+        this.qty = qty;
+        this.cateID = cateID;
+        this.cateName = cateName;
+        this.postID = postID;
+        this.postName = postName;
+        this.companyID = companyID;
+        this.companyName = companyName;
+        this.postDate = postDate;
+        this.discountPercent = discountPercent;
+    }
+
+
     
 
+
+    
+    
     public long getBookCode() {
         return bookCode;
     }
@@ -178,13 +204,33 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book{" + "bookCode=" + bookCode + ", bookName=" + bookName + ", image=" + image + ", importPrice=" + importPrice + ", buyPrice=" + buyPrice + ", description=" + description + ", qty=" + qty + ", cateID=" + cateID + ", cateName=" + cateName + ", postID=" + postID + ", postName=" + postName + ", companyID=" + companyID + ", companyName=" + companyName + ", postDate=" + postDate + '}';
+        return "Book{" + "bookCode=" + getBookCode() + ", bookName=" + getBookName() + ", image=" + getImage() + ", importPrice=" + getImportPrice() + ", buyPrice=" + getBuyPrice() + ", description=" + getDescription() + ", qty=" + getQty() + ", cateID=" + getCateID() + ", cateName=" + getCateName() + ", postID=" + getPostID() + ", postName=" + getPostName() + ", companyID=" + getCompanyID() + ", companyName=" + getCompanyName() + ", postDate=" + getPostDate() + '}';
     }
-    
 
-    
-   
-    
-    
-            
+    /**
+     * @return the checkActive
+     */
+
+    /**
+     * @param checkActive the checkActive to set
+     */
+
+    /**
+     * @return the discountPercent
+     */
+    public int getDiscountPercent() {
+        return discountPercent;
+    }
+
+    /**
+     * @param discountPercent the discountPercent to set
+     */
+
+    /**
+     * @param discountPercent the discountPercent to set
+     */
+    public void setDiscountPercent(int discountPercent) {
+        this.discountPercent = discountPercent;
+    }
+
 }

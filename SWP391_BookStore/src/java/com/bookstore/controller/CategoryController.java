@@ -5,6 +5,7 @@
  */
 package com.bookstore.controller;
 
+import com.bookstore.Book.Book;
 import com.bookstore.Category.Category;
 import com.bookstore.Category.CategoryDAO;
 import java.io.IOException;
@@ -33,11 +34,25 @@ public class CategoryController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-        CategoryDAO dao= new CategoryDAO();
-        List<Category> listC=dao.getCategoryBook();
-        request.setAttribute("listC", listC);
-        request.getRequestDispatcher("home.jsp").forward(request, response);
+        try (PrintWriter out = response.getWriter()) { 
+            String categoryIDBook=request.getParameter("categoryIDBook");
+            CategoryDAO daoC=new CategoryDAO();
+            
+            
+            
+            List<Book> list=daoC.getBookByCategory(categoryIDBook);
+            List<Category> listC=daoC.getCategoryBook();
+            
+            
+            
+            request.setAttribute("listAll", list);
+            request.setAttribute("listC", listC);
+            // listAll vì sort bằng category ở trong shopping
+            request.getRequestDispatcher("shopping.jsp").forward(request, response);
+            
+            
+            
+            
         }
     }
 

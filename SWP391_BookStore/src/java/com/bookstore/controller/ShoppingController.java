@@ -5,8 +5,13 @@
  */
 package com.bookstore.controller;
 
+import com.bookstore.Book.Book;
+import com.bookstore.Book.BookDAO;
+import com.bookstore.Category.Category;
+import com.bookstore.Category.CategoryDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,9 +35,20 @@ public class ShoppingController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            response.sendRedirect("shopping.jsp");
+            //url: shopping
+            BookDAO daoB = new BookDAO();
+            CategoryDAO daoC = new CategoryDAO();
+            List<Book> listAll = daoB.getAllBook();
+            List<Category> listC=daoC.getCategoryBook();
+            
+            
+            request.setAttribute("listAll", listAll);
+            request.setAttribute("listC", listC);
+            
+            request.getRequestDispatcher("shopping.jsp").forward(request, response);
+
         }
     }
 

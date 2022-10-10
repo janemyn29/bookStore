@@ -3,10 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bookstore.controller;
+package com.bookstore.Admin;
 
-import com.bookstore.Book.Book;
-import com.bookstore.Book.BookDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -16,9 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Admin
+ * @author tramy
  */
-public class DetailController extends HttpServlet {
+public class AdEditProfileController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,15 +30,12 @@ public class DetailController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-             try (PrintWriter out = response.getWriter()) {
-            
-            
-            String bookcode = request.getParameter("pbookCode");
-            BookDAO dao = new BookDAO();
-            Book b = dao.getBookBybookCode(bookcode);
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            String email = request.getParameter("email").trim().toLowerCase();
+            String phone = request.getParameter("phone").trim();
+            String username = request.getParameter("username").trim();
 
-            request.setAttribute("detailProduct", b);
-            request.getRequestDispatcher("product.jsp").forward(request, response);
         }
     }
 
