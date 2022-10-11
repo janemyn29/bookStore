@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Quixlab - Bootstrap Admin Dashboard Template by Themefisher.com</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <!-- Custom Stylesheet -->
+    <link href="./plugins/tables/css/datatable/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+            </svg>
+        </div>
+    </div>
+
+    <div id="main-wrapper">
+
+        <div class="nav-header">
+
+            <div class="brand-logo">
+
+                <a href="index.html">
+                    <img src="images/logo.png" alt="" width="120" height="56.5">
+                </a>
+            </div>
+        </div>
+        <!--**********************************
+            Nav header end
+        ***********************************-->
+
+        <!--**********************************
+            Header start
+        ***********************************-->
+        <div class="header">
+            <div class="header-content clearfix">
+
+
+                <div class="header-left">
+                    <div class="nav-control">
+                        <div class="hamburger">
+                            <span class="toggle-icon"><i class="icon-menu"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <ul class="clearfix">
+                        <li class="icons dropdown">
+                            <h6>Hello Importer</h6>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+
+        <!--**********************************
+            Sidebar start
+        ***********************************-->
+        <div class="nk-sidebar">
+            <div class="nk-nav-scroll">
+                <ul class="metismenu" id="menu">
+                    <li class="mega-menu mega-menu-sm">
+                    <li class="nav-label">Management</li>
+
+                    <li class="mega-menu mega-menu-sm">
+                        <a href="./index.html" aria-expanded="false">
+                            <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dash Board</span>
+                        </a>
+
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-people menu-icon"></i><span class="nav-text">Receipt</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./table-datatable.html">List Receipt</a></li>
+
+                        </ul>
+
+                    </li>
+
+
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-note menu-icon"></i><span class="nav-text">Publish Company</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./table-basic.html" aria-expanded="false">List Publish Company</a></li>
+                            <!-- <li><a href="./table-datatable.html" aria-expanded="false">Data Table</a></li> -->
+                        </ul>
+                    </li>
+
+                    <li class="mega-menu mega-menu-sm">
+                        <a href="./app-profile.html" aria-expanded="false">
+                            <i class="icon-user menu-icon"></i><span class="nav-text">My Account</span>
+                        </a>
+                    <li>
+                        <a  href="page-login.html" aria-expanded="false">
+                            <i class="icon-logout menu-icon"></i><span class="nav-text">LogOut</span>
+                        </a>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+       
+        <!--***********************************-->
+          
+       
+        <!--**********************************
+            Sidebar end
+        ***********************************-->
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+
+            <div class="row page-titles mx-0">
+                <div class="col p-md-0">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Receipt Detail</a></li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Receipt</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Home</a></li>
+                    </ol>
+                </div>
+            </div>
+            <!-- row -->
+            <div class="card-body">
+                <div class="container-fluid">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="form-validation">
+                                        <form class="form-valide" action="#" method="post">
+                                            <div class="form-group row">
+                                                <label class="col-lg-4 col-form-label" for="val-username">IMPORTER ID <span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    <input type="text" class="form-control" id="val-username" name="val-username" placeholder="Enter a Importer ID">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-lg-4 col-form-label" for="val-email">IMPORTER NAME<span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    <input type="text" class="form-control" id="val-email" name="val-email" placeholder="Enter a Importer Name">
+                                                </div>
+                                            </div><div class="form-group row">
+                                                <label class="col-lg-4 col-form-label" for="val-password">RECEIPT DATE <span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    <input type="date" class="form-control" id="val-password" name="val-password" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <lable class="col-lg-4 col-form-label" for="val-password">PUBLISH COMPANY <span class="text-danger">*</span>
+                                                </lable>
+                                                <div class="col-lg-6">
+                                                    <input type="Text" class="form-control" id="val-currency" name="val-currency" placeholder="Company">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-lg-4 col-form-label" for="val-currency">TOTAL PRICE<span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    <input type="Text" class="form-control" id="val-currency" name="val-currency" placeholder="$21.60">
+                                                </div>
+                                            </div>
+                                           
+                                            <div class="table-responsive">
+                                                <table class="table table-striped table-bordered zero-configuration">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>BookCode</th>
+                                                            <th>BookName</th>                                         
+                                                            <th>Total Import Price</th>
+                                                            <th>Quantity</th>            
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>3300000018287</td>
+                                                            <td>Van Hao Luu Lac - Part 2: Dazai Osamu And Thoi Ki Den Toi</td>
+                                                            <td>$120.000 đ</td>
+                                                            <td>3</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>8935244867312</td>
+                                                            <td>Thien Su Nha Ben</td>
+                                                            <td>$50.000 đ</td>
+                                                            <td>4</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>8935244875430</td>
+                                                            <td>Chitose Trong Chai Ramune</td>
+                                                            <td>$40.000 đ</td>
+                                                            <td>7</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>8935244875454</td>
+                                                            <td>Speak Now 1 Sb Pk Richards & Bohl</td>
+                                                            <td>$29.000 đ</td>
+                                                            <td>3</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>8935325005794</td>
+                                                            <td>Cambridge English Starters 1 for Revised Exam</td>
+                                                            <td>$98.000 đ</td>
+                                                            <td>9</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>9349741227531</td>
+                                                            <td>Nhan Vat Ha Cap Tomozaki</td>
+                                                            <td>$12.000 đ</td>
+                                                            <td>2</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>9780061336461</td>
+                                                            <td>
+                                                                The Gioi Otome Game That Khac Nghiet Voi Nhan Vat Quan Chung</td>
+                                                            <td>$43.000 đ</td>
+                                                            <td>1</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>9780062023131</td>
+                                                            <td>The Language Instinct: How the Mind Creates Language</td>
+                                                            <td>$77.000 đ</td>
+                                                            <td>12</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>9780062316110</td>
+                                                            <td>Mat Biec</td>
+                                                            <td>$100.000 đ</td>
+                                                            <td>23</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>9780062464316</td>
+                                                            <td>Culture: Leading Scientists Explore Societies, Art, Power, and Technology </td>
+                                                            <td>$90.000 đ</td>
+                                                            <td>21</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>9780099584575</td>
+                                                            <td>Sapiens: A Brief History of Humankind</td>
+                                                            <td>$20.000 đ</td>
+                                                            <td>14</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>9780141018782</td>
+                                                            <td>No One Is Too Small To Make A Difference</td>
+                                                            <td>$45.000 đ</td>
+                                                            <td>15</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>9780143133568</td>
+                                                            <td>Oxford Collocations Dictionary Pack</td>
+                                                            <td>$64.000 đ</td>
+                                                            <td>17</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>9780194030151</td>
+                                                            <td>Homo Deus: A Brief History of Tomorrow</td>
+                                                            <td>$200.000 đ</td>
+                                                            <td>9</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>9780194325387</td>
+                                                            <td>God Created the Integers: The Mathematical Breakthroughs That Changed History</td>
+                                                            <td>$40.000 đ</td>
+                                                            <td>8</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>9780194620123</td>
+                                                            <td>Oxford Word Skills Intermediate Idioms and Phrasal Verbs</td>
+                                                            <td>$38.000 đ</td>
+                                                            <td>7</td>
+                                                        </tr>
+                                                      
+                                                        <tr>
+                                                            <td>9780194801850</td>
+                                                            <td>The Gene</td>
+                                                            <td>$23.000 đ</td>
+                                                            <td>4</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>9780241240458</td>
+                                                            <td>
+                                                                Family And Friends Special Edition 5</td>
+                                                            <td>$34.000 đ</td>
+                                                            <td>3</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>9780241403372</td>
+                                                            <td>The Complete Human Body</td>
+                                                            <td>$34.000 đ</td>
+                                                            <td>5</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>9780316703048</td>
+                                                            <td>How The Brain Works: The Facts Visually Explained</td>
+                                                            <td>$56.000 đ</td>
+                                                            <td>3</td>
+                                                        </tr>
+                                                        
+
+                                                      
+                                                    </tbody>
+
+                                                    
+                                                </table><br>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            <!-- #/ container -->
+        
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+        
+        
+        <!--**********************************
+            Footer start
+        ***********************************-->
+        <div class="footer">
+            <div class="copyright">
+                <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Quixlab</a> 2018</p>
+            </div>
+        </div>
+        <!--**********************************
+            Footer end
+        ***********************************-->
+    </div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <script src="plugins/common/common.min.js"></script>
+    <script src="js/custom.min.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/gleek.js"></script>
+    <script src="js/styleSwitcher.js"></script>
+
+    <script src="./plugins/tables/js/jquery.dataTables.min.js"></script>
+    <script src="./plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
+    <script src="./plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
+
+</body>
+
+</html>

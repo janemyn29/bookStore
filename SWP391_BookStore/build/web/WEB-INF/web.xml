@@ -12,9 +12,73 @@
         <servlet-name>LoginController</servlet-name>
         <servlet-class>com.bookstore.controller.LoginController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ImpHomeController</servlet-name>
+        <servlet-class>com.bookstore.Importer.ImpHomeController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ImpController</servlet-name>
+        <servlet-class>com.bookstore.Importer.ImpController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ImpReceiptController</servlet-name>
+        <servlet-class>com.bookstore.Importer.ImpReceiptController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ImpCreateReceiptController</servlet-name>
+        <servlet-class>com.bookstore.Importer.ImpCreateReceiptController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ImpDetailReceipt</servlet-name>
+        <servlet-class>com.bookstore.Importer.ImpDetailReceipt</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ImpCreateCompanyController</servlet-name>
+        <servlet-class>com.bookstore.Importer.ImpCreateCompanyController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ImpCompanyController</servlet-name>
+        <servlet-class>com.bookstore.Importer.ImpCompanyController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ImpProfileController</servlet-name>
+        <servlet-class>com.bookstore.Importer.ImpProfileController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImpHomeController</servlet-name>
+        <url-pattern>/importer/imphome</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImpController</servlet-name>
+        <url-pattern>/importer/ImpController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImpReceiptController</servlet-name>
+        <url-pattern>/importer/ImpReceiptController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImpCreateReceiptController</servlet-name>
+        <url-pattern>/importer/ImpCreateReceiptController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImpDetailReceipt</servlet-name>
+        <url-pattern>/importer/ImpDetailReceipt</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImpCreateCompanyController</servlet-name>
+        <url-pattern>/importer/ImpCreateCompanyController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImpCompanyController</servlet-name>
+        <url-pattern>/importer/ImpCompanyController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImpProfileController</servlet-name>
+        <url-pattern>/importer/ImpProfileController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -22,6 +86,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

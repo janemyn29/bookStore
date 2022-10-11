@@ -81,7 +81,7 @@
                                                 <label for="register-password-2">Password *</label>
                                                 <input type="password" class="form-control" id="register-password-2" name="password" required>
                                             </div><!-- End .form-group -->
-                                            <div c<lass="form-group">
+                                            <div class="form-group">
                                                 <label for="register-password-2">Confirm Password *</label>
                                                 <input type="password" class="form-control" id="register-password-2" name="confirm-password" required>
                                             </div><!-- End .form-group -->

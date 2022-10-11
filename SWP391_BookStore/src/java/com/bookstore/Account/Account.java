@@ -19,6 +19,10 @@ public class Account {
     private String roleName;
     private int actionID;
     private String actionName;
+    private String temusername;
+    private String temPhone;
+    private String accEmail;
+    private String userpass;
 
     public Account() {
     }
@@ -34,6 +38,19 @@ public class Account {
         this.actionID = actionID;
         this.actionName = actionName;
     }
+
+
+    public Account(int accID,String temusername,  String temPhone, String accEmail, String userpass, int roleID, int actionID) {
+        this.accID = accID;
+        this.roleID = roleID;
+        this.actionID = actionID;
+        this.temusername = temusername;
+        this.temPhone = temPhone;
+        this.accEmail = accEmail;
+        this.userpass = userpass;
+    }
+
+  
 
     public int getAccID() {
         return accID;
