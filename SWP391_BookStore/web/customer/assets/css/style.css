@@ -19889,4 +19889,8 @@ button:focus {
     content: '\f7e3'
 }
 
+.align-right {
+    text-align: right;
+}
+
 /*# sourceMappingURL=style.css.map */

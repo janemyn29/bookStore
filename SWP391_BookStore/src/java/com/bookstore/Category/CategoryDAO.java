@@ -67,6 +67,7 @@ public class CategoryDAO {
 
     public static void main(String[] args) {
         CategoryDAO dao = new CategoryDAO();
+        
         }
     }
 

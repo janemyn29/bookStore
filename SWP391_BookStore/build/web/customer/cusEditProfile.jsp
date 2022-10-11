@@ -4,6 +4,7 @@
     Author     : Admin
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -39,7 +40,7 @@
                 <main class="main">
                     <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
                         <div class="container">
-                            <h1 class="page-title">Edit Account</h1>
+                            <h1 class="page-title">My Account</h1>
                         </div><!-- End .container -->
                     </div><!-- End .page-header -->
                     <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
@@ -59,10 +60,16 @@
                                     <aside class="col-md-4 col-lg-3">
                                         <ul class="nav nav-dashboard flex-column mb-3 mb-md-0" role="tablist">
                                             <li class="nav-item">
-                                                <a class="nav-link active" id="tab-account-link" data-toggle="tab" href="#tab-account" role="tab" aria-controls="tab-account" aria-selected="true">My Account</a>
+                                                <a class="nav-link active" id="tab-account-link" data-toggle="tab" href="#tab-account" role="tab" aria-controls="tab-account" aria-selected="true">Profile</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="#">Sign Out</a>
+                                                <a class="nav-link" id="tab-orders-link" data-toggle="tab" href="#tab-orders" role="tab" aria-controls="tab-orders" aria-selected="false">My Orders</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="cusChangePass.jsp">Change Password</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="cusHome.jsp">Sign Out</a>
                                             </li>
                                         </ul>
                                     </aside><!-- End .col-lg-3 -->
@@ -70,32 +77,45 @@
                                     <div class="col-md-8 col-lg-9">
                                         <div class="tab-content">
 
-                                            <div class="tab-pane fade" id="tab-orders" role="tabpanel" aria-labelledby="tab-orders-link">
+                                            <div class="tab-pane fade show" id="tab-orders" role="tabpanel" aria-labelledby="tab-orders-link">
                                                 <p>No order has been made yet.</p>
-                                                <a href="shopping.jsp" class="btn btn-outline-primary-2"><span>GO SHOP</span><i class="icon-long-arrow-right"></i></a>
+                                                <a href="cusShopping.jsp" class="btn btn-outline-primary-2"><span>GO SHOP</span><i class="icon-long-arrow-right"></i></a>
                                             </div><!-- .End .tab-pane -->
 
                                             <div class="tab-pane fade show active" id="tab-account" role="tabpanel" aria-labelledby="tab-account-link">
-                                                <form  action="cuseditprofile" method="post">
 
-                                                    <label>User Name *</label>
-                                                    <input type="text" class="form-control" name="txtUserName" value="${acc.getUsername()}" required>
-                                                <small class="form-text">This will be how your name will be displayed in the account section and in reviews</small>
 
-                                                <label>Phone Number *</label>
-                                                <input type="text" class="form-control" name="txtPhoneNumber" value="${acc.getPhone()}"required>
-
+                                                <form name="formEditProfile" action="cuseditprofile" method="post">
+                                                    <div>
+                                                        <label>User Name *</label>
+                                                        <small class="form-text">(This will be how your name will be displayed in the account section and in reviews)</small>
+                                                        <input type="text" class="form-control" name="txtUserName" value="${acc.getUsername()}" required>
+                                                    <c:if test='${check == "The user name is already used!!!"}'>
+                                                        <small style="color: red;">${check}</small>
+                                                    </c:if>
+                                                </div>
+                                                <div>
+                                                    <label>Phone Number *</label>
+                                                    <input type="text" class="form-control" name="txtPhoneNumber" value="${acc.getPhone()}" maxlength="10" required>
+                                                    <c:if test='${check == "The phone numer is already used!!!"}'>
+                                                        <small style="color: red;">${check}</small>
+                                                    </c:if>
+                                                </div>
                                                 <label>Email address *</label>
-                                                <input type="email" class="form-control" name="txtEmailAddress" value="${acc.getEmail()}"required>
-                                                <a class="btn btn-outline-primary-2" href="cusView.jsp">
-                                                    <i class="icon-long-arrow-left"></i>
-                                                    <span>BACK</span>
-                                                </a>
-                                                <button type="submit" class="btn btn-outline-primary-2">
+                                                <input type="email" class="form-control" name="txtEmailAddress" value="${acc.getEmail()}"readonly>
+                                                <small class="form-text">(Email is read only, u can change your email when login)</small>
+
+                                                <button type="submit" class="btn btn-outline-primary-2" onclick="alertShow()">
                                                     <span>SAVE CHANGES</span>
                                                     <i class="icon-arrow-down"></i>
                                                 </button>
+                                                <c:if test='${check == "UPDATE SUCCESS"}'>
+                                                    <label  style="color: greenyellow;">${check}</label>
+                                                </c:if>
+
+                                                </script>
                                             </form>
+
                                         </div><!-- .End .tab-pane -->
                                     </div>
                                 </div><!-- End .col-lg-9 -->

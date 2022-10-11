@@ -306,7 +306,7 @@
                                                                 <div class="menu-title">Shop Pages</div><!-- End .menu-title -->
                                                                 <ul>
                                                                     <li><a href="cart.html">Cart</a></li>
-                                                                    <li><a href="checkout.html">Checkout</a></li>
+                                                                    <li><a href="cusCheckOut.jsp">Checkout</a></li>
                                                                     <li><a href="wishlist.html">Wishlist</a></li>
                                                                     <li><a href="dashboard.html">My Account</a></li>
                                                                     <li><a href="#">Lookbook</a></li>
@@ -491,7 +491,7 @@
                             </div><!-- End .compare-dropdown -->
 
                             <div class="dropdown cart-dropdown">
-                                <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                                <a href="customer/cusCart.jsp" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
                                     <i class="icon-shopping-cart"></i>
                                     <span class="cart-count">2</span>
                                 </a>
@@ -546,8 +546,8 @@
                                     </div><!-- End .dropdown-cart-total -->
 
                                     <div class="dropdown-cart-action">
-                                        <a href="cart.html" class="btn btn-primary">View Cart</a>
-                                        <a href="checkout.html" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
+                                        <a href="cusCart.jsp" class="btn btn-primary">View Cart</a>
+                                        <a href="cusCheckOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
                                     </div><!-- End .dropdown-cart-total -->
                                 </div><!-- End .dropdown-menu -->
                             </div><!-- End .cart-dropdown -->
@@ -907,7 +907,7 @@
                                 <li><a href="product-category-boxed.html">Product Category Boxed</a></li>
                                 <li><a href="product-category-fullwidth.html"><span>Product Category Fullwidth<span class="tip tip-new">New</span></span></a></li>
                                 <li><a href="cart.html">Cart</a></li>
-                                <li><a href="checkout.html">Checkout</a></li>
+                                <li><a href="cusCheckOut.jsp">Checkout</a></li>
                                 <li><a href="wishlist.html">Wishlist</a></li>
                                 <li><a href="#">Lookbook</a></li>
                             </ul>

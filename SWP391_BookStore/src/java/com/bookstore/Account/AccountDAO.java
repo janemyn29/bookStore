@@ -60,15 +60,47 @@ public class AccountDAO {
         return null;
     }
 
-    public boolean updateAccountDetails(String username, String email, String password) throws SQLException {
+    public boolean updateAccountDetails(String username, String email, String phone, int accID) throws SQLException {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = "Update tblAccount Set userName = ?, email = ?, userPass = ? where accountID= ?";
+                String sql = "Update tblAccount Set userName = ?, email = ?, phoneNumber = ? where accountID= ?";
                 ps = conn.prepareStatement(sql);
                 ps.setString(1, username);
                 ps.setString(2, email);
-                ps.setString(3, password);
+                ps.setString(3, phone);
+                ps.setInt(4, accID);
+
+                int row = ps.executeUpdate();
+
+                if (row > 0) {
+                    return true;
+                }
+            }
+        } finally {
+            if (ps != null) {
+                ps.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return false;
+    }
+
+    public boolean updatePassword(String pass, int accID) throws SQLException, NoSuchAlgorithmException {
+        String password = pass;
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        md.update(password.getBytes());
+        byte[] digest = md.digest();
+        String dePass = DatatypeConverter.printHexBinary(digest).toLowerCase();
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = "Update tblAccount Set userPass = ? where accountID= ?";
+                ps = conn.prepareStatement(sql);
+                ps.setString(1, dePass);
+                ps.setInt(2, accID);
 
                 int row = ps.executeUpdate();
 
@@ -89,8 +121,8 @@ public class AccountDAO {
 
     public Account existUsername(String username) {
 
-        String sql = "select * from tblAccount\n"
-                + "where userName=?";
+        String sql = " select * from tblAccount\n"
+                + "where userName=? ";
         try {
             conn = new DBUtils().getConnection();
             ps = conn.prepareStatement(sql);
@@ -99,13 +131,13 @@ public class AccountDAO {
             while (rs.next()) {
                 int accID = rs.getInt(1);
                 String tempusername = rs.getString(2).trim();
-                String phone = rs.getString(3).trim();
+                String tempPhone = rs.getString(3).trim();
                 String accEmail = rs.getString(4).trim().toLowerCase();
                 String userpass = rs.getString(5).trim();
                 int roleId = rs.getInt(6);
                 int actionID = rs.getInt(7);
 
-                return new Account(accID, tempusername, phone, accEmail, userpass, roleId, actionID);
+                return new Account(accID, tempusername, tempPhone, accEmail, userpass, roleId, actionID);
             }
         } catch (Exception e) {
         }
@@ -125,14 +157,14 @@ public class AccountDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 int accID = rs.getInt(1);
-                String username = rs.getString(2).trim();
-                String phone = rs.getString(3).trim();
+                String tempusername = rs.getString(2).trim();
+                String tempPhone = rs.getString(3).trim();
                 String accEmail = rs.getString(4).trim().toLowerCase();
                 String userpass = rs.getString(5).trim();
                 int roleId = rs.getInt(6);
                 int actionID = rs.getInt(7);
 
-                return new Account(accID, username, phone, accEmail, userpass, roleId, actionID);
+                return new Account(accID, tempusername, tempPhone, accEmail, userpass, roleId, actionID);
             }
         } catch (Exception e) {
         }
@@ -140,9 +172,37 @@ public class AccountDAO {
         return null;
     }
 
-    public static void main(String[] args) throws NoSuchAlgorithmException {
+    public Account existPhoneNumber(String phone) {
+
+        String sql = " select * from tblAccount\n"
+                + "where phoneNumber=? ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, phone);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                int accID = rs.getInt(1);
+                String tempusername = rs.getString(2).trim();
+                String tempPhone = rs.getString(3).trim();
+                String accEmail = rs.getString(4).trim().toLowerCase();
+                String userpass = rs.getString(5).trim();
+                int roleId = rs.getInt(6);
+                int actionID = rs.getInt(7);
+
+                return new Account(accID, tempusername, tempPhone, accEmail, userpass, roleId, actionID);
+            }
+        } catch (Exception e) {
+        }
+
+        return null;
+    }
+
+    public static void main(String[] args) throws NoSuchAlgorithmException, SQLException {
         AccountDAO dAO = new AccountDAO();
         Account account = dAO.login("loan@gmail.com", "123456");
         System.out.println(account);
+        //Account acc = dAO.existPhoneNumber("0987654321");
+        //System.out.println(acc);
     }
 }

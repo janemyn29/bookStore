@@ -29,7 +29,7 @@
                             <li><a href="login.jsp">Login</li>
                                 <%
                                 } else {%>
-                            <li><a href="customer/cusView.jsp">Hello ${acc.getUsername()}</a></li>
+                            <li><a href="customer/cusEditProfile.jsp">Hello ${acc.getUsername()}</a></li>
                                 <%}%>
                         </ul>
                     </li>
@@ -56,7 +56,7 @@
                             <a href="cusHome.jsp" class="sf-with-ul">Home</a>
                         </li>
                         <li>
-                            <a href="shopping.jsp" class="sf-with-ul">Shopping</a>
+                            <a href="cusShopping.jsp" class="sf-with-ul">Shopping</a>
 
                         </li>
                         <li>

@@ -76,7 +76,7 @@
 
                                         <div class="tab-pane fade" id="tab-orders" role="tabpanel" aria-labelledby="tab-orders-link">
                                             <p>No order has been made yet.</p>
-                                            <a href="shopping.jsp" class="btn btn-outline-primary-2"><span>GO SHOP</span><i class="icon-long-arrow-right"></i></a>
+                                            <a href="cusShopping.jsp" class="btn btn-outline-primary-2"><span>GO SHOP</span><i class="icon-long-arrow-right"></i></a>
                                         </div><!-- .End .tab-pane -->
 
                                         <div class="tab-pane fade show active" id="tab-account" role="tabpanel" aria-labelledby="tab-account-link">

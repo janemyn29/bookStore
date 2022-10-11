@@ -7,10 +7,10 @@ package com.bookstore.Customer;
 
 import com.bookstore.Account.Account;
 import com.bookstore.Account.AccountDAO;
-import com.bookstore.Category.Category;
-import static com.sun.corba.se.impl.util.Utility.printStackTrace;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,12 +19,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.xml.bind.DatatypeConverter;
 
 /**
  *
  * @author Admin
  */
-public class CusEditProfileController extends HttpServlet {
+public class CusChangePasswordController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,31 +37,39 @@ public class CusEditProfileController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException, SQLException, NoSuchAlgorithmException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String username = request.getParameter("txtUserName");
-            String phone = request.getParameter("txtPhoneNumber");
+            //get parameter from editprofile.jsp
+            String password = request.getParameter("txtCurrentPassword");
+            String newpass = request.getParameter("txtNewPassword");
+            String confimpass = request.getParameter("txtComfirmPassword");
+            //depass
+            String depassword = password;
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(depassword.getBytes());
+            byte[] digest = md.digest();
+            String dePass = DatatypeConverter.printHexBinary(digest).toLowerCase();
+            
             HttpSession session = request.getSession();
             Account dto = (Account) session.getAttribute("acc");
             AccountDAO dao = new AccountDAO();
             int accID = dto.getAccID();
-            String email = dto.getEmail();
-            if (dao.existUsername(username) == null || username.equals(dto.getUsername())) {
-                if (dao.existPhoneNumber(phone) == null || phone.equals(dto.getPhone()) ) {
-                    dto.setUsername(username);
-                    dto.setPhone(phone);
-                    dao.updateAccountDetails(username, email, phone, accID);
+
+            if (dePass.equals(dto.getPassword())) { 
+                if (newpass.equals(confimpass)) {
+                    dto.setPassword(newpass);
+                    dao.updatePassword(newpass, accID);
                     session.setAttribute("acc", dto);
-                    request.setAttribute("check", "UPDATE SUCCESS");
-                    request.getRequestDispatcher("cusEditProfile.jsp").forward(request, response);
+                    request.setAttribute("checksuccess", "Password update success");
+                    request.getRequestDispatcher("cusChangePass.jsp").forward(request, response);
                 } else {
-                    request.setAttribute("check","The phone numer is already used!!!");
-                    request.getRequestDispatcher("cusEditProfile.jsp").forward(request, response);
+                    request.setAttribute("check2", "Confirm password do not match!!!");
+                    request.getRequestDispatcher("cusChangePass.jsp").forward(request, response);
                 }
             } else {
-                request.setAttribute("check","The user name is already used!!!");
-                request.getRequestDispatcher("cusEditProfile.jsp").forward(request, response);
+                request.setAttribute("check1", "Current password incorrect!!!");
+                request.getRequestDispatcher("cusChangePass.jsp").forward(request, response);
             }
         }
     }
@@ -80,7 +89,9 @@ public class CusEditProfileController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(CusEditProfileController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CusChangePasswordController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(CusChangePasswordController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -98,7 +109,9 @@ public class CusEditProfileController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(CusEditProfileController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CusChangePasswordController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(CusChangePasswordController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -111,4 +124,5 @@ public class CusEditProfileController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }
