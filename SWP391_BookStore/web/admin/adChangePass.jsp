@@ -107,7 +107,8 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">Home</li>
                             <li class="breadcrumb-item ">My Account</li>
-                            <li class="breadcrumb-item active">Profile</li>
+                            <li class="breadcrumb-item ">Profile</li>
+                            <li class="breadcrumb-item active">Change Password</li>
                         </ol>
                     </div>
                 </div>
@@ -118,40 +119,53 @@
                             <div class="card">
                                 <div class="card-body">
 
-                                    <h4 class="card-title">Profile</h4>
+                                    <h4 class="card-title">Change Password</h4>
+                                    <c:if test='${check == "Password update success!"}'>
+                                        <h6 style="color: green">${check}</h6>
+                                    </c:if>
+                                    <c:if test='${check == "Confirm password do not match!!!"}'>
+                                        <h6 style="color: red">${check}</h6>
+                                    </c:if>
+                                    <c:if test='${check == "Current password incorrect!!!"}'>
+                                        <h6 style="color: red">${check}</h6>
+                                    </c:if>
+
+
 
                                     <div class="basic-form">
+                                        <form action="adChangePass" method="POST">
                                             <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label">Email</label>
+                                                <label class="col-sm-2 col-form-label">Current Password:</label>
                                                 <div class="col-sm-10">
-                                                    <input type="email" name="email" class="form-control" placeholder="Email" value="${acc.getEmail()}" readonly="">
+                                                    <input type="password" name="txtCurrentPassword" class="form-control" placeholder="Current Password"  required>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label">Username</label>
+                                                <label class="col-sm-2 col-form-label">New Password:</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="username" class="form-control" placeholder="Username" value="${acc.getUsername()}" readonly="">
+                                                    <input type="password" name="txtNewPassword" class="form-control" placeholder="New Password"  required>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label">Phone</label>
+                                                <label class="col-sm-2 col-form-label">Confirm Password:</label>
                                                 <div class="col-sm-10">
-                                                    <input type="number" name="phone" class="form-control" placeholder="Phone" value="${acc.getPhone()}" readonly="">
+                                                    <input type="password" name="txtComfirmPassword" class="form-control" placeholder="Confirm Password" required>
                                                 </div>
                                             </div>
+
+                                            <input type="hidden" name="accID" class="form-control" value="${acc.getAccID()}" required>
+
                                             <div class="form-group row">
                                                 <div class="col-sm-10">
                                                     <div class="basic-form">
-                                                        <button type="button" class="btn mb-1 btn-rounded btn-outline-warning"><a style="margin-left: 23px;margin-right: 22px" href="editProfileNav">Edit Profile</a></button>
-                                                       
+                                                        <button type="submit" class="btn mb-1 btn-warning" ><span style="margin-left: 23px;margin-right: 22px">Save Change</span></button>
                                                     </div>
-                                                    <div class="basic-form">
-                                                        <button type="button" class="btn mb-1 btn-rounded btn-outline-warning"><a href="changenav">Change Password</a></button>
-                                                        
-                                                    </div>
+
                                                 </div>
                                             </div>
-                                        
+
+                                        </form>
+
                                     </div>
                                 </div>
                             </div>

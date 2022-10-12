@@ -3,27 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bookstore.Customer;
+package com.bookstore.Admin;
 
-import com.bookstore.Account.Account;
 import com.bookstore.Account.AccountDAO;
-import com.bookstore.Category.Category;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Admin
+ * @author tramy
  */
-public class CusEditProfileController extends HttpServlet {
+public class RestoreBlacklistController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,32 +29,18 @@ public class CusEditProfileController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String username = request.getParameter("txtUserName");
-            String phone = request.getParameter("txtPhoneNumber");
-            HttpSession session = request.getSession();
-            Account dto = (Account) session.getAttribute("acc");
+            /* TODO output your page here. You may use following sample code. */
+            String page=request.getParameter("page");
+            String id=request.getParameter("id");
+            
             AccountDAO dao = new AccountDAO();
-            int accID = dto.getAccID();
-            String email = dto.getEmail();
-            if (dao.existUsername(username) == null || username.equals(dto.getUsername())) {
-                if (dao.existPhoneNumber(phone) == null || phone.equals(dto.getPhone()) ) {
-                    dto.setUsername(username);
-                    dto.setPhone(phone);
-                    dao.updateAccountDetails(username, email, phone, accID);
-                    session.setAttribute("acc", dto);
-                    request.setAttribute("check", "UPDATE SUCCESS");
-                    request.getRequestDispatcher("cusEditProfile.jsp").forward(request, response);
-                } else {
-                    request.setAttribute("check","The phone numer is already used!!!");
-                    request.getRequestDispatcher("cusEditProfile.jsp").forward(request, response);
-                }
-            } else {
-                request.setAttribute("check","The user name is already used!!!");
-                request.getRequestDispatcher("cusEditProfile.jsp").forward(request, response);
-            }
+            dao.restoreToBlacklist(id);
+            
+            request.getRequestDispatcher("blacklist").forward(request, response);
+     
         }
     }
 
@@ -76,11 +56,7 @@ public class CusEditProfileController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(CusEditProfileController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -94,11 +70,7 @@ public class CusEditProfileController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(CusEditProfileController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -110,4 +82,5 @@ public class CusEditProfileController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }

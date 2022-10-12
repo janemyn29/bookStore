@@ -139,7 +139,7 @@
                                                             <td style="color: red">${o.getEmail()}</td>
                                                             <td style="color: red">${o.getCanceled()}</td>
                                                             <td style="color: red">
-                                                                <a style="margin-left: 35px ;" href="addBlacklist?page=customer&id=${o.getAccID()}" class="fa fa-minus-circle"></a>
+                                                                <a onclick='showMess(${o.getAccID()})' style="margin-left: 35px ;" class="fa fa-minus-circle"></a>
                                                             </td>
                                                         </c:if>
                                                         <c:if test="${o.getCanceled()<3}">
@@ -188,6 +188,38 @@
         <script src="./plugins/tables/js/jquery.dataTables.min.js"></script>
         <script src="./plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
         <script src="./plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                // Activate tooltip
+                $('[data-toggle="tooltip"]').tooltip();
+
+                // Select/Deselect checkboxes
+                var checkbox = $('table tbody input[type="checkbox"]');
+                $("#selectAll").click(function () {
+                    if (this.checked) {
+                        checkbox.each(function () {
+                            this.checked = true;
+                        });
+                    } else {
+                        checkbox.each(function () {
+                            this.checked = false;
+                        });
+                    }
+                });
+                checkbox.click(function () {
+                    if (!this.checked) {
+                        $("#selectAll").prop("checked", false);
+                    }
+                });
+            });
+            
+            function showMess(id){
+                var option=confirm("Are you sure to add Customer have id = "+id+" to BlackList ?");
+                if (option===true){
+                    window.location.href="addBlacklist?page=customer&id="+id;
+                }
+            }
+        </script>
 
     </body>
 

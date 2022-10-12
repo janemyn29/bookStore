@@ -115,8 +115,6 @@
                         <div class="card">
                             <div class="card-body">
                                 <span class="card-title">Blacklist Management</span>
-                            
-                                <button style="margin-left: 625px" type="button" class="btn mb-1 btn-rounded btn-outline-warning"><a style="padding-left: 10px;padding-right: 10px"  class="fa fa-plus" href="addsellernav"></a></button>
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered zero-configuration">
                                         <thead>
@@ -125,6 +123,7 @@
                                                 <th>Usermame</th>
                                                 <th>Phone</th>
                                                 <th>Email</th>
+                                                <th>Role</th>
                                                 <th>Restore</th>
                                                
                                             </tr>
@@ -136,7 +135,11 @@
                                                 <td>${o.getUsername()}</td>
                                                 <td>${o.getPhone()}</td>
                                                 <td>${o.getEmail()}</td>
-                                                <td></td>
+                                                <td>${o.getRoleName()}</td>
+                                                
+                                                <td>
+                                                    <a onclick='showMess(${o.getAccID()})' style="margin-left: 43px ;" href="#" class="fa fa-arrow-circle-o-up"></a>
+                                                </td>
                                                 
                                             </tr>
                                             </c:forEach>
@@ -173,6 +176,38 @@
     <script src="./plugins/tables/js/jquery.dataTables.min.js"></script>
     <script src="./plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
     <script src="./plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
+    <script>
+            $(document).ready(function () {
+                // Activate tooltip
+                $('[data-toggle="tooltip"]').tooltip();
+
+                // Select/Deselect checkboxes
+                var checkbox = $('table tbody input[type="checkbox"]');
+                $("#selectAll").click(function () {
+                    if (this.checked) {
+                        checkbox.each(function () {
+                            this.checked = true;
+                        });
+                    } else {
+                        checkbox.each(function () {
+                            this.checked = false;
+                        });
+                    }
+                });
+                checkbox.click(function () {
+                    if (!this.checked) {
+                        $("#selectAll").prop("checked", false);
+                    }
+                });
+            });
+            
+            function showMess(id){
+                var option=confirm("Are you sure to restore Account have id = "+id+" in BlackList ?");
+                if (option===true){
+                    window.location.href="restore?id="+id;
+                }
+            }
+        </script>
 
 </body>
 

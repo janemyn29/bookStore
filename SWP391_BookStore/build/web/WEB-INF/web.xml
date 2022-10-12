@@ -232,6 +232,18 @@
         <servlet-name>CusHomeNavController</servlet-name>
         <servlet-class>com.bookstore.Customer.CusHomeNavController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdChangePassNavController</servlet-name>
+        <servlet-class>com.bookstore.Admin.AdChangePassNavController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdChangePassController</servlet-name>
+        <servlet-class>com.bookstore.Admin.AdChangePassController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RestoreBlacklistController</servlet-name>
+        <servlet-class>com.bookstore.Admin.RestoreBlacklistController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -375,6 +387,18 @@
     <servlet-mapping>
         <servlet-name>CusHomeNavController</servlet-name>
         <url-pattern>/customer/cushomenav</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdChangePassNavController</servlet-name>
+        <url-pattern>/admin/changenav</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdChangePassController</servlet-name>
+        <url-pattern>/admin/adChangePass</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RestoreBlacklistController</servlet-name>
+        <url-pattern>/admin/restore</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -445,6 +445,26 @@ public class AccountDAO {
         }
         return check;
     }
+    public boolean restoreToBlacklist(String id) {
+
+        String sql = " UPDATE tblAccount\n"
+                + "set actionID=1\n"
+                + "where accountID=? ";
+        boolean check = false;
+        try {
+
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setString(1, id);
+
+            check = ps.executeUpdate() > 0;
+
+        } catch (SQLException ex) {
+            System.out.println("Update Student error!" + ex.getMessage());
+        }
+        return check;
+    }
     
     public Account getAccountByID(int accID) throws NoSuchAlgorithmException {
         

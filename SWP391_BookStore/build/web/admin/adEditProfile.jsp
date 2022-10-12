@@ -119,7 +119,7 @@
                             <div class="card">
                                 <div class="card-body">
 
-                                    <h4 class="card-title">Profile</h4>
+                                    <h4 class="card-title">Edit Profile</h4>
                                     <c:if test='${check == "This username already existed! Please input another username."}'>
                                         <h6 style="color: red">${check}</h6>
                                     </c:if>

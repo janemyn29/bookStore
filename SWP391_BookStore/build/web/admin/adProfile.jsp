@@ -142,10 +142,12 @@
                                             <div class="form-group row">
                                                 <div class="col-sm-10">
                                                     <div class="basic-form">
-                                                        <button type="submit" class="btn mb-1 btn-warning" style="color: white"><a href="editProfileNav"><span style="margin-left: 23px;margin-right: 22px">Edit Profile</span></a></button>
+                                                        <button type="button" class="btn mb-1 btn-rounded btn-outline-warning"><a style="margin-left: 23px;margin-right: 22px" href="editProfileNav">Edit Profile</a></button>
+                                                       
                                                     </div>
                                                     <div class="basic-form">
-                                                        <button type="submit" class="btn mb-1 btn-warning">Change Password</button>
+                                                        <button type="button" class="btn mb-1 btn-rounded btn-outline-warning"><a href="changenav">Change Password</a></button>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>

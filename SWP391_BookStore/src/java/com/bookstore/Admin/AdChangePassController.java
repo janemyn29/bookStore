@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bookstore.Customer;
+package com.bookstore.Admin;
 
 import com.bookstore.Account.Account;
 import com.bookstore.Account.AccountDAO;
-import com.bookstore.Category.Category;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,12 +19,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.xml.bind.DatatypeConverter;
 
 /**
  *
- * @author Admin
+ * @author tramy
  */
-public class CusEditProfileController extends HttpServlet {
+public class AdChangePassController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,31 +37,41 @@ public class CusEditProfileController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException, NoSuchAlgorithmException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String username = request.getParameter("txtUserName");
-            String phone = request.getParameter("txtPhoneNumber");
+            /* TODO output your page here. You may use following sample code. */
+           String password = request.getParameter("txtCurrentPassword");
+            String newpass = request.getParameter("txtNewPassword");
+            String confimpass = request.getParameter("txtComfirmPassword");
+
+            //depass
+            String depassword = password;
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(depassword.getBytes());
+            byte[] digest = md.digest();
+            String dePass = DatatypeConverter.printHexBinary(digest).toLowerCase();
+
             HttpSession session = request.getSession();
             Account dto = (Account) session.getAttribute("acc");
             AccountDAO dao = new AccountDAO();
             int accID = dto.getAccID();
-            String email = dto.getEmail();
-            if (dao.existUsername(username) == null || username.equals(dto.getUsername())) {
-                if (dao.existPhoneNumber(phone) == null || phone.equals(dto.getPhone()) ) {
-                    dto.setUsername(username);
-                    dto.setPhone(phone);
-                    dao.updateAccountDetails(username, email, phone, accID);
-                    session.setAttribute("acc", dto);
-                    request.setAttribute("check", "UPDATE SUCCESS");
-                    request.getRequestDispatcher("cusEditProfile.jsp").forward(request, response);
+
+            if (dePass.equals(dto.getPassword())) {
+                if (newpass.equals(confimpass)) {
+                    
+                    dao.updatePassword(newpass, accID);
+                    Account account=dao.getAccountByID(accID);
+                    session.setAttribute("acc", account);
+                    request.setAttribute("check", "Password update success!");
+                    request.getRequestDispatcher("adChangePass.jsp").forward(request, response);
                 } else {
-                    request.setAttribute("check","The phone numer is already used!!!");
-                    request.getRequestDispatcher("cusEditProfile.jsp").forward(request, response);
+                    request.setAttribute("check", "Confirm password do not match!!!");
+                    request.getRequestDispatcher("adChangePass.jsp").forward(request, response);
                 }
             } else {
-                request.setAttribute("check","The user name is already used!!!");
-                request.getRequestDispatcher("cusEditProfile.jsp").forward(request, response);
+                request.setAttribute("check", "Current password incorrect!!!");
+                request.getRequestDispatcher("adChangePass.jsp").forward(request, response);
             }
         }
     }
@@ -78,8 +90,10 @@ public class CusEditProfileController extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(AdChangePassController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(CusEditProfileController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdChangePassController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -96,8 +110,10 @@ public class CusEditProfileController extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(AdChangePassController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(CusEditProfileController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdChangePassController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -110,4 +126,5 @@ public class CusEditProfileController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }
