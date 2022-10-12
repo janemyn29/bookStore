@@ -34,7 +34,8 @@ public class ImpHomeController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-                request.getRequestDispatcher("impHome.jsp").forward(request, response);
+                response.sendRedirect("importer/impHome.jsp");
+        
         }
     }
 

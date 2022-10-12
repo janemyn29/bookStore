@@ -20,7 +20,7 @@ public class Receipt {
     private int companyID;
     private String companyName;
     private int RdetailID;
-    private long bookcode;
+    private long bookCode;
     private int importQty;
     private int importPrice;
     private  String bookName;
@@ -39,24 +39,15 @@ public class Receipt {
         this.companyID = companyID;
     }
 
-    public Receipt(Date orderDate, int totalImportPrice, String companyName, long bookcode, int importQty, String bookName, int quantity) {
+    public Receipt(Date orderDate, int totalImportPrice, String companyName, long bookCode, int importQty, String bookName,int receiptID, int quantity) {
         this.orderDate = orderDate;
         this.totalImportPrice = totalImportPrice;
         this.companyName = companyName;
-        this.bookcode = bookcode;
+        this.bookCode = bookCode;
         this.importQty = importQty;
         this.bookName = bookName;
-         this.quantity = quantity;
-    }
-
-    public Receipt( long bookcode, String bookName,int totalImportPrice,int quantity,int receiptID) {
-       
-        
-        this.bookcode = bookcode;
-        this.bookName = bookName;
-        this.totalImportPrice = totalImportPrice;
+        this.receiptID = receiptID;
         this.quantity = quantity;
-         this.receiptID = receiptID;
     }
 
     public int getQuantity() {
@@ -97,12 +88,12 @@ public class Receipt {
         this.RdetailID = RdetailID;
     }
 
-    public long getBookcode() {
-        return bookcode;
+    public long getBookCode() {
+        return bookCode;
     }
 
-    public void setBookcode(long bookcode) {
-        this.bookcode = bookcode;
+    public void setBookCode(long bookcode) {
+        this.bookCode = bookcode;
     }
 
     public int getImportQty() {
@@ -166,12 +157,13 @@ public class Receipt {
         this.companyID = companyID;
     }
 
-
     @Override
     public String toString() {
-        return "Receipt{" + "receiptID=" + receiptID + ", accountID=" + accountID + ", orderDate=" + orderDate + ", totalImportPrice=" + totalImportPrice + ", companyID=" + companyID + ", companyName=" + companyName + ", RdetailID=" + RdetailID + ", bookcode=" + bookcode + ", importQty=" + importQty + ", importPrice=" + importPrice + '}';
+        return "Receipt{" + "orderDate=" + orderDate+ ", totalImportPrice=" + totalImportPrice + ", companyName=" + companyName + ", bookCode=" + bookCode + ", importQty=" + importQty +" bookName=" + bookName + ", quantity=" + quantity +   ", receiptID=" + receiptID  +  "," + '}';
     }
 
+
+  
 
     
     

@@ -41,10 +41,10 @@ public class ImpReceiptController extends HttpServlet {
             String receiptID = request.getParameter("breceiptID");
             ReceiptDAO dao = new ReceiptDAO();
             List<Receipt> list = dao.getListReceipt();
-            List<Receipt> r = dao.getReceiptByReceiptID(receiptID);
+            
 
             request.setAttribute("listR", list);
-            request.setAttribute("detailReceipt", r);
+           
             request.getRequestDispatcher("/importer/impListReceipt.jsp").forward(request, response);
         }
     }

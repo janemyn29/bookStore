@@ -1,0 +1,23 @@
+SMAP
+impDetailReceipt_jsp.java
+JSP
+*S JSP
+*F
++ 0 impDetailReceipt.jsp
+importer/impDetailReceipt.jsp
+*L
+5,7:54
+12:61,10
+13,153:71
+166:224,3
+167,6:227
+173:233,3
+174,6:236
+180:242,3
+181,16:245
+196:335,11
+197,2:346
+199,5:348,3
+204,2:363
+205,55:263
+*E

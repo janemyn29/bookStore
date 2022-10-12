@@ -163,21 +163,21 @@
                                                 <label class="col-lg-4 col-form-label" for="val-password">RECEIPT DATE <span class="text-danger">*</span>                                                    
                                                 </label>
                                                 <div class="col-lg-6">
-                                                    <input type="date" class="form-control" id="val-password" name="val-password" value="${detailReceipt.getOrderDate()}">
+                                                    <input type="date" class="form-control" id="val-password" name="val-password" value="${detailReceipt.orderDate}">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <lable class="col-lg-4 col-form-label" for="val-password">PUBLISH COMPANY <span class="text-danger">*</span>
                                                 </lable>
                                                 <div class="col-lg-6">
-                                                    <input type="Text" class="form-control" id="val-currency" name="val-currency" placeholder="Company" value="${detailReceipt.getCompanyName()}"> 
+                                                    <input type="Text" class="form-control" id="val-currency" name="val-currency"value="${detailReceipt.companyName}"> 
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-lg-4 col-form-label" for="val-currency">TOTAL PRICE<span class="text-danger">*</span>
                                                 </label>
                                                 <div class="col-lg-6">
-                                                    <input type="Text" class="form-control" id="val-currency" name="val-currency" placeholder="$21.60"> ${totalImportPrice}
+                                                    <input type="Text" class="form-control" id="val-currency" name="val-currency"  value="${detailReceipt.totalImportPrice}"> 
                                                 </div>
                                             </div>
                     
@@ -193,19 +193,16 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <c:forEach items="${rd.getReceiptByReceiptID(receiptID)}" var="rd">
+                                                        <c:forEach items="${detailReceipt.getReceiptByReceiptID(receiptID)}" var="detailReceipt">
                                                         <tr>
                                                       
-                                                            <td>${rd.bookCode}</td>
-                                                            <td>${rd.bookName}</td>
-                                                            <td>${rd.totalImportPrice}</td>
-                                                            <td>${rd.quantity}</td>
-                                                            <td>${rd.receiptID}</td>
+                                                            <td>${detailReceipt.bookCode}</td>
+                                                            <td>${detailReceipt.bookName}</td>
+                                                            <td>${detailReceipt.totalImportPrice}</td>
+                                                            <td>${detailReceipt.quantity}</td>
+                                                            <td>${detailReceipt.receiptID}</td>
                                                         </tr>
-                                                       
-                                                        
-
-                                                    </c:forEach>
+                                                        </c:forEach>
                                                     </tbody>
 
                                                     

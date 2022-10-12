@@ -9,8 +9,10 @@ import com.bookstore.Receipt.Receipt;
 import com.bookstore.Receipt.ReceiptDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,6 +22,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Admin
  */
+//@WebServlet(name = "ImpDetailReceipt", urlPatterns = {"/ImpReceiptController"})
 public class ImpDetailReceipt extends HttpServlet {
 
     /**
@@ -35,20 +38,22 @@ public class ImpDetailReceipt extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession();
-            Receipt receipt = null;
-
-                    
+//            HttpSession session = request.getSession();
+            
             String receiptID = request.getParameter("breceiptID");
             ReceiptDAO dao = new ReceiptDAO();
-            List<Receipt> r = dao.getReceiptByReceiptID(receiptID);
+            Receipt rd = dao.getReceiptByReceiptID(receiptID).get(0);
             
-            request.setAttribute("detailReceipt", r);
-            request.getRequestDispatcher("/importer/impDetailReceipt.jsp").forward(request, response);
+            HttpSession session = request.getSession();
+            session.setAttribute("detailReceipt", rd);
+            Receipt tRD = (Receipt) session.getAttribute("detailReceipt");
+            Date d = tRD.getOrderDate();
+//            request.getRequestDispatcher("/importer/impDetailReceipt.jsp").forward(request, response);
+            response.sendRedirect(request.getContextPath()+ "/importer/impDetailReceipt.jsp");
         }
- 
+        
     }
-         
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

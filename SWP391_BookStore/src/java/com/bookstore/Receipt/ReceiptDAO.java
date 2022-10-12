@@ -47,35 +47,35 @@ public class ReceiptDAO {
         return null;
     }
 
-    public List<Receipt> getReceiptByReceiptID(String receiptID) {
-                 List<Receipt> list = new ArrayList<>();
-             
+   public List<Receipt> getReceiptByReceiptID(String receiptID) {
+        List<Receipt> list = new ArrayList<>();
         try {
-            String query = "select  b.bookCode, b.bookName, b.importPrice,b.quantity,pc.companyName, r.receiptID, r.orderDate\n"
-                    + "from tblBook b  inner join tblPublishCompany pc on pc.companyName=b.companyName\n"
-                    + "inner join tblReceiptDetail rd on rd.bookcode = b.bookCode\n"
+            String query = "select  r.orderDate, b.importPrice,pc.companyName,b.bookCode,rd.importQty, b.bookName, r.receiptID,b.quantity\n"
+                    + "from tblBook b  inner join tblPublishCompany pc on pc.companyID=b.companyID\n"
+                    + " inner join tblReceiptDetail rd on rd.bookcode = b.bookCode\n"
                     + "inner join tblReceipt r on rd.receiptID = r.receiptID\n"
                     + "where r.receiptID = ? ";
-                      conn = new DBUtils().getConnection();
-                        stm = conn.prepareStatement(query);
-                        rs = stm.executeQuery();
-           
+
+            conn = new DBUtils().getConnection();
+            stm = conn.prepareStatement(query);
+            stm.setString(1, receiptID);
+            rs = stm.executeQuery();
             while (rs.next()) {
-              list.add(new Receipt(rs.getDate(1),
+                list.add(new Receipt(rs.getDate(1),
                                         rs.getInt(2),
-                                         rs.getString(3),
+                                        rs.getString(3),
                                         rs.getLong(4),
                                         rs.getInt(5),
                                         rs.getString(6),
-                                        rs.getInt(7)));
-                            
+                                        rs.getInt(7),
+                                        rs.getInt(8)));
             }
-        
+
         } catch (Exception e) {
 
         }
         return list;
-  
+
     }
     public void insertReceipt(int receiptID, int accountID, Date orderDate, int totalImportPrice, int companyID) throws SQLException {
         try {
@@ -124,19 +124,7 @@ public class ReceiptDAO {
 
     public static void main(String[] args) {
         ReceiptDAO receiptDAO = new ReceiptDAO();
-
-        List<Receipt> list = receiptDAO.getListReceipt();
-//        for (Receipt r : list) {
-//            System.out.println("ReceiptID: " + r.getReceiptID()
-//                    + "AccountID:" + r.getAccountID()
-//                    + "orderDate: " + r.getOrderDate()
-//                    + "TotalImportPrice: " + r.getTotalImportPrice()
-//                    + "CompanyID: " + r.getCompanyID());
-//        }
-       
-       
-         Receipt receipt = (Receipt) receiptDAO.getReceiptByReceiptID("2");
-         System.out.println(receipt);
+        System.out.println(receiptDAO.getReceiptByReceiptID("3"));
             }
             
         

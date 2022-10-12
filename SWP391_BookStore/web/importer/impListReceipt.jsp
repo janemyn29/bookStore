@@ -176,7 +176,7 @@
                                                     <td>${r.orderDate}</td>
                                                     <td>${r.totalImportPrice}đ</td>
                                                     <td>${r.companyID}</td>
-                                                    <td><a href="../importer/impDetailReceipt.jsp/Detail=${r.receiptID}"><i class="icon-eye menu-icon"></i></a></td>
+                                                    <td><a href="ImpDetailReceipt?breceiptID=${r.receiptID}"><i class="icon-eye menu-icon"></i></a></td>
                                                 </tr>
                                                    </c:forEach>
                                             </tbody>
