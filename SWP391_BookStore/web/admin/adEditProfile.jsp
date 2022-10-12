@@ -57,7 +57,7 @@
 
                         </li>
                         <li class="mega-menu mega-menu-sm">
-                            <a href="widgets.html" aria-expanded="false">
+                            <a href="adcustomer" aria-expanded="false">
                                 <i class="fa fa-user menu-icon"></i><span class="nav-text">Customer Management</span>
                             </a>
 
@@ -78,7 +78,7 @@
 
 
                         <li>
-                            <a href="widgets.html" aria-expanded="false">
+                            <a href="blacklist" aria-expanded="false">
                                 <i class="fa fa-minus-circle menu-icon"></i> <span class="nav-text">Blacklist Management</span>
                             </a>
 
@@ -120,35 +120,47 @@
                                 <div class="card-body">
 
                                     <h4 class="card-title">Profile</h4>
+                                    <c:if test='${check == "This username already existed! Please input another username."}'>
+                                        <h6 style="color: red">${check}</h6>
+                                    </c:if>
+                                    <c:if test='${check == "This phone already used! Please input another phone number."}'>
+                                        <h6 style="color: red">${check}</h6>
+                                    </c:if>
+
+
 
                                     <div class="basic-form">
                                         <form action="adEditProfile" method="POST">
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Email</label>
                                                 <div class="col-sm-10">
-                                                    <input type="email" name="email" class="form-control" placeholder="Email" value="${acc.getEmail()}">
+                                                    <input type="email" name="email" class="form-control" placeholder="Email" value="${acc.getEmail()}" readonly>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Username</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="username" class="form-control" placeholder="Username" value="${acc.getUsername()}">
+                                                    <input type="text" name="username" class="form-control" placeholder="Username" value="${acc.getUsername()}" required>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Phone</label>
                                                 <div class="col-sm-10">
-                                                    <input type="number" name="phone" class="form-control" placeholder="Phone" value="${acc.getPhone()}">
+                                                    <input type="number" name="phone" class="form-control" placeholder="Phone" value="${acc.getPhone()}" required>
                                                 </div>
                                             </div>
+
+                                            <input type="hidden" name="accID" class="form-control" placeholder="Phone" value="${acc.getAccID()}" required>
+
                                             <div class="form-group row">
                                                 <div class="col-sm-10">
                                                     <div class="basic-form">
-                                                        <button type="submit" class="btn mb-1 btn-warning" ><span style="margin-left: 23px;margin-right: 22px">Edit Profile</span></button>
+                                                        <button type="submit" class="btn mb-1 btn-warning" ><span style="margin-left: 23px;margin-right: 22px">Save Change</span></button>
                                                     </div>
 
                                                 </div>
                                             </div>
+
                                         </form>
 
                                     </div>

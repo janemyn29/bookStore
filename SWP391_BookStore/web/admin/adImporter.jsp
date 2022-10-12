@@ -60,7 +60,7 @@
                         
                     </li>
                     <li class="mega-menu mega-menu-sm">
-                        <a href="widgets.html" aria-expanded="false">
+                        <a href="adcustomer" aria-expanded="false">
                             <i class="fa fa-cart-plus menu-icon"></i><span class="nav-text">Customer Management</span>
                         </a>
                         
@@ -78,7 +78,7 @@
                         
                     </li>
                     <li>
-                        <a href="widgets.html" aria-expanded="false">
+                        <a href="blacklist" aria-expanded="false">
                             <i class="fa fa-minus-circle menu-icon"></i> <span class="nav-text">Blacklist Management</span>
                         </a>
                         
@@ -135,7 +135,7 @@
                                                 <td>${o.getPhone()}</td>
                                                 <td>${o.getEmail()}</td>
                                                 <td>
-                                                    <a style="margin-left: 43px ;" href="" class="fa fa-minus-circle"></a>
+                                                    <a style="margin-left: 43px ;" href="addBlacklist?page=importer&id=${o.getAccID()}" class="fa fa-minus-circle"></a>
                                                 </td>
                                             </tr>
                                             </c:forEach>

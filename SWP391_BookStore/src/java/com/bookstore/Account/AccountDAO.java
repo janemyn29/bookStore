@@ -14,6 +14,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.xml.bind.DatatypeConverter;
 
 /**
@@ -54,7 +56,7 @@ public class AccountDAO {
                 String roleName = rs.getString(7).trim();
                 int actionID = rs.getInt(8);
                 String actName = rs.getString(9).trim();
-                return new Account(accID, username, phone, email, password, roleId, roleName, actionID, actName);
+                return new Account(accID, username, phone, email, userpass, roleId, roleName, actionID, actName);
             }
         } catch (Exception e) {
         }
@@ -63,7 +65,7 @@ public class AccountDAO {
     }
 
     public Account existMail(String tempemail) {
-        String email=tempemail.toLowerCase().trim();
+        String email = tempemail.toLowerCase().trim();
 
         String sql = " select * from tblAccount\n"
                 + "where email=? ";
@@ -97,6 +99,33 @@ public class AccountDAO {
             conn = new DBUtils().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, username);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                int accID = rs.getInt(1);
+                String tempusername = rs.getString(2).trim();
+                String phone = rs.getString(3).trim();
+                String accEmail = rs.getString(4).trim().toLowerCase();
+                String userpass = rs.getString(5).trim();
+                int roleId = rs.getInt(6);
+                int actionID = rs.getInt(7);
+
+                return new Account(accID, tempusername, phone, accEmail, userpass, roleId, actionID);
+            }
+        } catch (Exception e) {
+        }
+
+        return null;
+    }
+
+    public Account existUsernameForChange(String username, String id) {
+
+        String sql = "select * from tblAccount\n"
+                + "where userName=? and accountID!=? ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, username);
+            ps.setString(2, id);
             rs = ps.executeQuery();
             while (rs.next()) {
                 int accID = rs.getInt(1);
@@ -193,17 +222,20 @@ public class AccountDAO {
         }
         return check;
     }
-    public List<Account> getListImporterAccountsByRole(String id) {
-        
+
+    public List<Account> getListAccountsByRole(String id, String action) {
+
         List<Account> list = new ArrayList<>();
         String sql = "  select  a.accountID,a.userName,a.phoneNumber,a.email,a.userPass,a.roleID,r.roleName,a.actionID,act.actionName\n"
                 + "from  ((tblAccount a inner join tblRole r on  a.roleID=r.roleID)\n"
                 + "inner join tblAction act on act.actionID=a.actionID)\n"
-                + "where a.roleID=?  ";
+                + "where a.roleID=? and a.actionID=? ";
         try {
             conn = new DBUtils().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, id);
+            ps.setString(2, action);
+
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -222,8 +254,37 @@ public class AccountDAO {
         }
         return list;
     }
-    
-    public void addNewAccount(String username, String phone, String email,String rid) throws NoSuchAlgorithmException {
+
+    public List<Account> getBlackList() {
+
+        List<Account> list = new ArrayList<>();
+        String sql = "  select  a.accountID,a.userName,a.phoneNumber,a.email,a.userPass,a.roleID,r.roleName,a.actionID,act.actionName\n"
+                + "from  ((tblAccount a inner join tblRole r on  a.roleID=r.roleID)\n"
+                + "inner join tblAction act on act.actionID=a.actionID)\n"
+                + "where a.actionID=2 ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int accID = rs.getInt(1);
+                String username = rs.getString(2).trim();
+                String phone = rs.getString(3).trim();
+                String accEmail = rs.getString(4).trim().toLowerCase();
+                String userpass = rs.getString(5).trim();
+                int roleId = rs.getInt(6);
+                String roleName = rs.getString(7).trim();
+                int actionID = rs.getInt(8);
+                String actName = rs.getString(9).trim();
+                list.add(new Account(accID, username, phone, accEmail, roleId, roleName, actionID, actName));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public void addNewAccount(String username, String phone, String email, String rid) throws NoSuchAlgorithmException {
         AccountDAO dao = new AccountDAO();
         List<Account> list = dao.listUser();
         int lastUID;
@@ -231,7 +292,7 @@ public class AccountDAO {
         lastUID = list.get(sizeList).getAccID() + 1;
 
         //dePass
-        String pass="000000";
+        String pass = "000000";
         String password = pass;
         MessageDigest md = MessageDigest.getInstance("MD5");
         md.update(password.getBytes());
@@ -254,13 +315,174 @@ public class AccountDAO {
         }
 
     }
+
+    public Account existPhoneForChange(String phone, String id) {
+
+        String sql = " Select * from tblAccount\n"
+                + "where phoneNumber=? and accountID!=? ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, phone);
+            ps.setString(2, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                int accID = rs.getInt(1);
+                String tempusername = rs.getString(2).trim();
+                String tempphone = rs.getString(3).trim();
+                String accEmail = rs.getString(4).trim().toLowerCase();
+                String userpass = rs.getString(5).trim();
+                int roleId = rs.getInt(6);
+                int actionID = rs.getInt(7);
+
+                return new Account(accID, tempusername, tempphone, accEmail, userpass, roleId, actionID);
+            }
+        } catch (Exception e) {
+        }
+
+        return null;
+    }
+
+    public Account existPhoneNumber(String phone) {
+
+        String sql = " select * from tblAccount\n"
+                + "where phoneNumber=? ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, phone);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                int accID = rs.getInt(1);
+                String tempusername = rs.getString(2).trim();
+                String tempPhone = rs.getString(3).trim();
+                String accEmail = rs.getString(4).trim().toLowerCase();
+                String userpass = rs.getString(5).trim();
+                int roleId = rs.getInt(6);
+                int actionID = rs.getInt(7);
+
+                return new Account(accID, tempusername, tempPhone, accEmail, userpass, roleId, actionID);
+            }
+        } catch (Exception e) {
+        }
+
+        return null;
+    }
+
+    public boolean updateAccountDetails(String username, String email, String phone, int accID) throws SQLException {
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = "Update tblAccount "
+                        + "Set userName = ?, email = ?, phoneNumber = ? "
+                        + "where accountID= ?";
+                ps = conn.prepareStatement(sql);
+                ps.setString(1, username);
+                ps.setString(2, email);
+                ps.setString(3, phone);
+                ps.setInt(4, accID);
+
+                int row = ps.executeUpdate();
+
+                if (row > 0) {
+                    return true;
+                }
+            }
+        } finally {
+            if (ps != null) {
+                ps.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return false;
+    }
+
+    public boolean updatePassword(String pass, int accID) throws SQLException, NoSuchAlgorithmException {
+        String password = pass;
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        md.update(password.getBytes());
+        byte[] digest = md.digest();
+        String dePass = DatatypeConverter.printHexBinary(digest).toLowerCase();
+        String sql = " UPDATE tblAccount\n"
+                + "set userPass=?\n"
+                + "where accountID= ? ";
+        boolean check = false;
+        try {
+
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setInt(2, accID);
+            ps.setString(1, dePass);
+
+            check = ps.executeUpdate() > 0;
+
+        } catch (SQLException ex) {
+            System.out.println("Update Student error!" + ex.getMessage());
+        }
+        return check;
+    }
+
+    public boolean addToBlacklist(String id) {
+
+        String sql = " UPDATE tblAccount\n"
+                + "set actionID=2\n"
+                + "where accountID=? ";
+        boolean check = false;
+        try {
+
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setString(1, id);
+
+            check = ps.executeUpdate() > 0;
+
+        } catch (SQLException ex) {
+            System.out.println("Update Student error!" + ex.getMessage());
+        }
+        return check;
+    }
     
+    public Account getAccountByID(int accID) throws NoSuchAlgorithmException {
+        
+
+        String sql = " select  a.accountID,a.userName,a.phoneNumber,a.email,a.userPass,a.roleID,r.roleName,a.actionID,act.actionName\n"
+                + "from  ((tblAccount a inner join tblRole r on  a.roleID=r.roleID)\n"
+                + "inner join tblAction act on act.actionID=a.actionID)\n"
+                + "where a.accountID=? ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, accID);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                String username = rs.getString(2).trim();
+                String phone = rs.getString(3).trim();
+                String accEmail = rs.getString(4).trim().toLowerCase();
+                String userpass = rs.getString(5).trim();
+                int roleId = rs.getInt(6);
+                String roleName = rs.getString(7).trim();
+                int actionID = rs.getInt(8);
+                String actName = rs.getString(9).trim();
+                return new Account(id, username, phone, accEmail, userpass, roleId, roleName, actionID, actName);
+            }
+        } catch (Exception e) {
+        }
+
+        return null;
+    }
 
     public static void main(String[] args) throws NoSuchAlgorithmException {
         AccountDAO dao = new AccountDAO();
-        dao.addNewAccount("home", "0371423776", "home@gmail.com", "2");
-
-
+        try {
+            dao.updatePassword("hahaaaa", 1);
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 }

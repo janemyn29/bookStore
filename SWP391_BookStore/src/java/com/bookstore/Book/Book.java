@@ -33,6 +33,13 @@ public class Book {
     public Book() {
     }
 
+    public Book(String bookName) {
+        this.bookName = bookName;
+    }
+
+    
+    
+
     public Book(long bookCode, String bookName, String image, int importPrice, int buyPrice, String description, int qty, int cateID, String cateName, int postID, String postName, int companyID, String companyName) {
         this.bookCode = bookCode;
         this.bookName = bookName;

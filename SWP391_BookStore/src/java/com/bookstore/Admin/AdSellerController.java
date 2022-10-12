@@ -36,7 +36,7 @@ public class AdSellerController extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             AccountDAO dao = new AccountDAO();
-        List<Account> list=dao.getListImporterAccountsByRole("2");
+        List<Account> list=dao.getListAccountsByRole("2","1");
         request.setAttribute("listSeller", list);
 //        response.sendRedirect("admin/adImporter.jsp");
         request.getRequestDispatcher("adSeller.jsp").forward(request, response);

@@ -49,6 +49,7 @@ public class ConfirmFilter implements Filter {
         AccountDAO dAO = new AccountDAO();
         Account account = dAO.existMail(email);
         Account account2 = dAO.existUsername(username);
+        Account account3= dAO.existPhoneNumber(phone);
         if (account!=null) {
             request.setAttribute("email", email);
             request.setAttribute("username", username);
@@ -67,7 +68,17 @@ public class ConfirmFilter implements Filter {
             request.setAttribute("pass", password);
             request.setAttribute("confirm", confirmPass);
             
-            request.setAttribute("mess", "Username was existed!");
+            request.setAttribute("mess", "Username alreadly existed!");
+            request.getRequestDispatcher("register.jsp").forward(request, response);
+        }else if (account3!=null) {
+            request.setAttribute("email", email);
+            request.setAttribute("username", username);
+            request.setAttribute("phone", phone);
+            
+            request.setAttribute("pass", password);
+            request.setAttribute("confirm", confirmPass);
+            
+            request.setAttribute("mess", "Phone Number alreadly used!");
             request.getRequestDispatcher("register.jsp").forward(request, response);
         }
         else if (!password.equals(confirmPass)) {

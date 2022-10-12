@@ -19,6 +19,8 @@ public class Account {
     private String roleName;
     private int actionID;
     private String actionName;
+    
+    private int canceled;
 
     public Account() {
     }
@@ -55,6 +57,20 @@ public class Account {
         this.actionID = actionID;
         this.actionName = actionName;
     }
+
+    public Account(int accID, String username, String phone, String email, String password, int roleID, String roleName, int actionID, String actionName, int canceled) {
+        this.accID = accID;
+        this.username = username;
+        this.phone = phone;
+        this.email = email;
+        this.password = password;
+        this.roleID = roleID;
+        this.roleName = roleName;
+        this.actionID = actionID;
+        this.actionName = actionName;
+        this.canceled = canceled;
+    }
+    
     
 
     public int getAccID() {
@@ -128,6 +144,15 @@ public class Account {
     public void setActionName(String actionName) {
         this.actionName = actionName;
     }
+
+    public int getCanceled() {
+        return canceled;
+    }
+
+    public void setCanceled(int canceled) {
+        this.canceled = canceled;
+    }
+    
 
     @Override
     public String toString() {

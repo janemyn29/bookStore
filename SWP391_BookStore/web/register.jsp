@@ -16,7 +16,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Molla - Bootstrap eCommerce Template</title>
+        <title>THE5 BookStore</title>
         <meta name="keywords" content="HTML5 Template">
         <meta name="description" content="Molla - Bootstrap eCommerce Template">
         <meta name="author" content="p-themes">
@@ -75,10 +75,10 @@
 
                                             <div class="form-group">
                                                 <label for="register-email-2">Your email address *</label>
-                                                <c:if test='${mess == "Username was existed!"}'>
+                                                <c:if test='${mess == "Username alreadly existed!"}'>
                                                     <input type="email" class="form-control" id="register-email-2" name="email" value='${email}' required>
                                                 </c:if>
-                                                 <c:if test='${mess == null}'>
+                                                <c:if test='${mess == null}'>
                                                     <input type="email" class="form-control" id="register-email-2" name="email" required>
                                                 </c:if>
                                                 <c:if test='${mess == "Confirmation password is incorrect!"}'>
@@ -87,15 +87,19 @@
                                                 <c:if test='${mess == "Email was registered!"}'>
                                                     <input type="email" class="form-control" id="register-email-2" name="email" required>
                                                 </c:if>
-                                                
+                                                <c:if test='${mess == "Phone Number alreadly used!"}'>
+                                                    <input type="email" class="form-control" id="register-email-2" name="email" value='${email}' required>
+
+                                                </c:if>
+
                                             </div><!-- End .form-group -->
 
                                             <div class="form-group">
                                                 <label for="register-password-2">Username *</label>
-                                                <c:if test='${mess == "Username was existed!"}'>
+                                                <c:if test='${mess == "Username alreadly existed!"}'>
                                                     <input type="text" class="form-control" id="register-password-2" name="username" required>
                                                 </c:if>
-                                                 <c:if test='${mess == null}'>
+                                                <c:if test='${mess == null}'>
                                                     <input type="text" class="form-control" id="register-password-2" name="username" required>
                                                 </c:if>
                                                 <c:if test='${mess == "Confirmation password is incorrect!"}'>
@@ -104,17 +108,34 @@
                                                 <c:if test='${mess == "Email was registered!"}'>
                                                     <input type="text" class="form-control" id="register-password-2" name="username" value='${username}' required>
                                                 </c:if>
-                                                
+
+                                                <c:if test='${mess == "Phone Number alreadly used!"}'>
+                                                    <input type="text" class="form-control" id="register-password-2" name="username" value='${username}' required>
+                                                </c:if>
+
                                             </div><!-- End .form-group -->
                                             <div class="form-group">
                                                 <label for="register-password-2">Phone Number *</label>
                                                 <c:if test='${mess == null}'>
                                                     <input type="number" class="form-control" id="register-password-2" name="phone" required>
                                                 </c:if>
-                                                    <c:if test='${mess != null}'>
-                                                        <input type="number" class="form-control" id="register-password-2" name="phone" value='${phone}' required>
+                                                <c:if test='${mess == "Username alreadly existed!"}'>
+                                                    <input type="number" class="form-control" id="register-password-2" name="phone" value='${phone}' required>
                                                 </c:if>
-                                                
+
+                                                <c:if test='${mess == "Confirmation password is incorrect!"}'>
+                                                    <input type="number" class="form-control" id="register-password-2" name="phone" value='${phone}' required>
+                                                </c:if>
+                                                <c:if test='${mess == "Email was registered!"}'>
+                                                    <input type="number" class="form-control" id="register-password-2" name="phone" value='${phone}' required>
+                                                </c:if>
+
+                                                <c:if test='${mess == "Phone Number alreadly used!"}'>
+                                                    <input type="number" class="form-control" id="register-password-2" name="phone" required>
+                                                </c:if>
+
+
+
                                             </div><!-- End .form-group -->
 
                                             <div class="form-group">
@@ -122,17 +143,17 @@
                                                 <c:if test='${mess == null}'>
                                                     <input type="password" class="form-control" id="register-password-2" name="password" required>
                                                 </c:if>
-                                                    <c:if test='${mess != null}'>
-                                                        <input type="password" class="form-control" id="register-password-2" name="password" value='${pass}' required>
+                                                <c:if test='${mess != null}'>
+                                                    <input type="password" class="form-control" id="register-password-2" name="password" value='${pass}' required>
                                                 </c:if>
-                                                
+
                                             </div><!-- End .form-group -->
                                             <div class="form-group">
                                                 <label for="register-password-2">Confirm Password *</label>
-                                                <c:if test='${mess == "Username was existed!"}'>
+                                                <c:if test='${mess == "Username alreadly existed!"}'>
                                                     <input type="password" class="form-control" id="register-password-2" name="confirm-password" value='${confirm}' required>
                                                 </c:if>
-                                                 <c:if test='${mess == null}'>
+                                                <c:if test='${mess == null}'>
                                                     <input type="password" class="form-control" id="register-password-2" name="confirm-password" required>                                                </c:if>
                                                 <c:if test='${mess == "Confirmation password is incorrect!"}'>
                                                     <input type="password" class="form-control" id="register-password-2" name="confirm-password" required>
@@ -140,7 +161,14 @@
                                                 <c:if test='${mess == "Email was registered!"}'>
                                                     <input type="password" class="form-control" id="register-password-2" name="confirm-password" value='${confirm}' required>
                                                 </c:if>
-                                                
+                                                <c:if test='${mess == "Username was existed!"}'>
+                                                    <input type="password" class="form-control" id="register-password-2" name="confirm-password" value='${confirm}' required>
+                                                </c:if>
+                                                <c:if test='${mess == "Phone Number alreadly used!"}'>
+                                                    <input type="password" class="form-control" id="register-password-2" name="confirm-password" value='${confirm}' required>
+
+                                                </c:if>
+
                                             </div><!-- End .form-group -->
 
                                             <div class="form-footer">

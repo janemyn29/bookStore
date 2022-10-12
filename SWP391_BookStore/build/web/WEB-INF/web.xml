@@ -24,6 +24,14 @@
         <filter-name>CheckActionFilter</filter-name>
         <filter-class>com.bookstore.Filter.CheckActionFilter</filter-class>
     </filter>
+    <filter>
+        <filter-name>CheckExistFilter</filter-name>
+        <filter-class>com.bookstore.Admin.CheckExistFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CheckExistFilter</filter-name>
+        <servlet-name>AdEditProfileController</servlet-name>
+    </filter-mapping>
     <filter-mapping>
         <filter-name>AdminFilter</filter-name>
         <servlet-name>AdHomeController</servlet-name>
@@ -184,6 +192,46 @@
         <servlet-name>AdEditProfileController</servlet-name>
         <servlet-class>com.bookstore.Admin.AdEditProfileController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CusHomeController</servlet-name>
+        <servlet-class>com.bookstore.Customer.CusHomeController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CusViewProfileController</servlet-name>
+        <servlet-class>com.bookstore.Customer.CusViewProfileController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CusChangePasswordController</servlet-name>
+        <servlet-class>com.bookstore.Customer.CusChangePasswordController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CusEditProfileController</servlet-name>
+        <servlet-class>com.bookstore.Customer.CusEditProfileController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CusEditProfileNavController</servlet-name>
+        <servlet-class>com.bookstore.Customer.CusEditProfileNavController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdCustomerController</servlet-name>
+        <servlet-class>com.bookstore.Admin.AdCustomerController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdBlacklistController</servlet-name>
+        <servlet-class>com.bookstore.Admin.AdBlacklistController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddBlacklistController</servlet-name>
+        <servlet-class>com.bookstore.Admin.AddBlacklistController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CartController</servlet-name>
+        <servlet-class>com.bookstore.Cart.CartController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CusHomeNavController</servlet-name>
+        <servlet-class>com.bookstore.Customer.CusHomeNavController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -268,7 +316,6 @@
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>ShoppingController</servlet-name>
         <url-pattern>/shopping</url-pattern>
@@ -288,6 +335,46 @@
     <servlet-mapping>
         <servlet-name>AdEditProfileController</servlet-name>
         <url-pattern>/admin/adEditProfile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CusHomeController</servlet-name>
+        <url-pattern>/customer/cushome</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CusViewProfileController</servlet-name>
+        <url-pattern>/customer/cusview</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CusChangePasswordController</servlet-name>
+        <url-pattern>/customer/cuschangepass</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CusEditProfileController</servlet-name>
+        <url-pattern>/customer/cuseditprofile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CusEditProfileNavController</servlet-name>
+        <url-pattern>/customer/editprofile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdCustomerController</servlet-name>
+        <url-pattern>/admin/adcustomer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdBlacklistController</servlet-name>
+        <url-pattern>/admin/blacklist</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddBlacklistController</servlet-name>
+        <url-pattern>/admin/addBlacklist</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CartController</servlet-name>
+        <url-pattern>/cart/cartcontroller</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CusHomeNavController</servlet-name>
+        <url-pattern>/customer/cushomenav</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
