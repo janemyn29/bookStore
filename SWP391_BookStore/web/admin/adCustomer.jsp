@@ -139,7 +139,7 @@
                                                             <td style="color: red">${o.getEmail()}</td>
                                                             <td style="color: red">${o.getCanceled()}</td>
                                                             <td style="color: red">
-                                                                <a onclick='showMess(${o.getAccID()})' style="margin-left: 35px ;" class="fa fa-minus-circle"></a>
+                                                                <a onclick='showMess(${o.getAccID()})' style="margin-left: 31px ;" class="fa fa-minus-circle"></a>
                                                             </td>
                                                         </c:if>
                                                         <c:if test="${o.getCanceled()<3}">

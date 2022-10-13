@@ -155,19 +155,19 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-2 col-form-label">Email</label>
                                                     <div class="col-sm-10">
-                                                        <input type="email" name="email" class="form-control" placeholder="Email">
+                                                        <input type="email" name="email" class="form-control" placeholder="Email" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-sm-2 col-form-label">Username</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" name="username" class="form-control" placeholder="Username">
+                                                        <input type="text" name="username" class="form-control" placeholder="Username" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-sm-2 col-form-label">Phone</label>
                                                     <div class="col-sm-10">
-                                                        <input type="number" name="phone" class="form-control" placeholder="Phone">
+                                                        <input type="number" name="phone" class="form-control" placeholder="Phone" required>
                                                     </div>
                                                 </div>
 

@@ -6,6 +6,7 @@
 package com.bookstore.Book;
 
 import com.bookstore.Utils.DBUtils;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -213,6 +214,129 @@ public class BookDAO {
         } catch (Exception e) {
         }
         return list;
+    }
+        
+        public List<Book> getBookManage() {
+        List<Book> list = new ArrayList<>();
+        String sql = " select b.bookCode, b.bookName, b.img, a.authorName,pc.companyName,b.quantity,b.description, b.importPrice, b.buyPrice,p.postName \n"
+                + "from (((((tblBook b inner join tblCategory c on b.cateID=c.cateID)\n"
+                + "inner join tblPostHistory p on p.postID=b.postID)\n"
+                + "inner join tblPublishCompany pc on pc.companyID=b.companyID ) \n"
+                + "inner join tblCompose com on com.bookCode = b.bookCode )\n"
+                + "inner join tblAuthor a on com.authorID = a.authorID )";
+
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                list.add(new Book(rs.getLong(1), //Code
+                        rs.getString(2).trim(), //bName
+                        rs.getString(3), //img
+                        rs.getString(4).trim(),//author
+                        rs.getString(5).trim(),//company
+                        rs.getInt(6), //quantity
+                        rs.getString(7).trim(),//description
+                        rs.getInt(8),//iprice
+                        rs.getInt(9),//buyprice
+                        rs.getString(10)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+   
+
+    public Book getAuthorByBookCode(String bookCode) {
+        String sql = " select a.authorName \n"
+                + "from (((((tblBook b inner join tblCategory c on b.cateID=c.cateID)\n"
+                + "inner join tblPostHistory p on p.postID=b.postID)\n"
+                + "inner join tblPublishCompany pc on pc.companyID=b.companyID ) \n"
+                + "inner join tblCompose com on com.bookCode = b.bookCode )\n"
+                + "inner join tblAuthor a on com.authorID = a.authorID )"
+                + "where b.bookCode = ?";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, bookCode);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                return new Book(rs.getLong(1),
+                        rs.getString(2));
+            }
+        } catch (Exception e) {
+        }
+        return null;
+
+    }
+
+    public Book existBook(String tempbook) {
+        String bookName = tempbook.toLowerCase().trim();
+
+        String sql = "select * from tblBook\n"
+                + "where bookCode=?";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, bookName);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                long bookCode = rs.getLong(1);
+                String author = rs.getString(2).trim();//author
+                String companyName = rs.getString(5).trim();//company
+                int quantity = rs.getInt(6); //quantity
+                String description = rs.getString(7).trim();//description
+                int importPrice = rs.getInt(8);//iprice
+                int buyPrice = rs.getInt(9);//buyprice
+                String postName = rs.getString(10);
+
+                return new Book(bookCode, bookName, companyName, author, postName, quantity, description, importPrice, buyPrice, postName);
+
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
+    public void addNewBook(String bookName, String image, String author, String description, String buyPrice, String postName) throws NoSuchAlgorithmException {
+        BookDAO dao = new BookDAO();
+        List<Book> list = dao.getBookManage();
+        int lastbookUID;
+        int sizeList = list.size() - 1;
+        lastbookUID = (int) (list.get(sizeList).getBookCode() + 1);
+
+        String sql = "insert into tblBook \n"
+                + "value(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, lastbookUID);
+            ps.setString(2, bookName);
+            ps.setString(3, image);
+            ps.setString(4, author);
+            ps.setString(6, description);
+            ps.setString(7, buyPrice);
+            ps.setString(8, postName);
+        } catch (Exception e) {
+
+        }
+    }
+
+    public int getTotalBook() {
+        String sql = "select count(*) from tblBook";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+        }
+        return 0;
     }
 
 }

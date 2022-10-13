@@ -138,7 +138,7 @@
                                                 <td>${o.getRoleName()}</td>
                                                 
                                                 <td>
-                                                    <a onclick='showMess(${o.getAccID()})' style="margin-left: 43px ;" href="#" class="fa fa-arrow-circle-o-up"></a>
+                                                    <a onclick='showMess(${o.getAccID()})' style="margin-left: 39px ;" href="#" class="fa fa-recycle"></a>
                                                 </td>
                                                 
                                             </tr>

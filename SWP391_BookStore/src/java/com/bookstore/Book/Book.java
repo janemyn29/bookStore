@@ -28,7 +28,7 @@ public class Book {
     private String companyName;
     private Date postDate;
     private int discountPercent;
-    
+    private String author;
 
     public Book() {
     }
@@ -37,9 +37,24 @@ public class Book {
         this.bookName = bookName;
     }
 
-    
-    
+    public Book(long bookCode, String author) {
+        this.bookCode = bookCode;
+        this.author = author;
+    }
 
+    public Book(long bookCode, String bookName, String image, String author, String companyName, int qty, String description, int importPrice, int buyPrice, String postName) {
+        this.bookCode = bookCode;
+        this.bookName = bookName;
+        this.image = image;
+        this.importPrice = importPrice;
+        this.buyPrice = buyPrice;
+        this.description = description;
+        this.qty = qty;
+        this.companyName = companyName;
+        this.author = author;
+        this.postName = postName;
+    }
+    
     public Book(long bookCode, String bookName, String image, int importPrice, int buyPrice, String description, int qty, int cateID, String cateName, int postID, String postName, int companyID, String companyName) {
         this.bookCode = bookCode;
         this.bookName = bookName;
@@ -91,12 +106,6 @@ public class Book {
         this.discountPercent = discountPercent;
     }
 
-
-    
-
-
-    
-    
     public long getBookCode() {
         return bookCode;
     }
@@ -217,11 +226,9 @@ public class Book {
     /**
      * @return the checkActive
      */
-
     /**
      * @param checkActive the checkActive to set
      */
-
     /**
      * @return the discountPercent
      */
@@ -232,7 +239,6 @@ public class Book {
     /**
      * @param discountPercent the discountPercent to set
      */
-
     /**
      * @param discountPercent the discountPercent to set
      */
