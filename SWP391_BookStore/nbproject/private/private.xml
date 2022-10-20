@@ -3,28 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP391/bookStore/SWP391_BookStore/web/Seller/sellerhome.jsp</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP391/bookStore/SWP391_BookStore/web/importer/impCreateNewReceipt.jsp</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP391/bookStore/SWP391_BookStore/web/admin/adChangePass.jsp</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP391/bookStore/SWP391_BookStore/src/java/com/bookstore/Importer/ImpCompanyController.java</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP391/bookStore/SWP391_BookStore/src/java/com/bookstore/Seller/ListBook.java</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP391/bookStore/SWP391_BookStore/web/importer/impEditProfile.jsp</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP391/bookStore/SWP391_BookStore/web/importer/impDetailReceipt.jsp</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP391/bookStore/SWP391_BookStore/src/java/com/bookstore/Importer/ImpCreateCompanyController.java</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP391/bookStore/SWP391_BookStore/web/admin/adSeller.jsp</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP391/bookStore/SWP391_BookStore/web/admin/adHome.jsp</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP391/bookStore/SWP391_BookStore/web/admin/adImporter.jsp</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP391/bookStore/SWP391_BookStore/src/java/com/bookstore/Seller/SellerhomeController.java</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP391/bookStore/SWP391_BookStore/src/java/com/bookstore/Seller/SellerController.java</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP391/bookStore/SWP391_BookStore/src/java/com/bookstore/Seller/SellerDisplayBookController.java</file>
+            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP391/bookStore/SWP391_BookStore/web/Seller/display_books.jsp</file>
             <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP391/bookStore/SWP391_BookStore/src/java/com/bookstore/Book/BookDAO.java</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP391/bookStore/SWP391_BookStore/web/customer/cusShopping.jsp</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP391/bookStore/SWP391_BookStore/web/admin/adHeader.jsp</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP391/bookStore/SWP391_BookStore/web/importer/impHome.jsp</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP391/bookStore/SWP391_BookStore/src/java/com/bookstore/Seller/SellerAddBookController.java</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP391/bookStore/SWP391_BookStore/web/importer/impListReceipt.jsp</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP391/bookStore/SWP391_BookStore/web/admin/adEditProfile.jsp</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP391/bookStore/SWP391_BookStore/web/importer/impListCompany.jsp</file>
+            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP391/bookStore/SWP391_BookStore/src/java/com/bookstore/Book/Book.java</file>
         </group>
     </open-files>
 </project-private>

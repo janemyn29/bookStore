@@ -255,30 +255,12 @@
                                                             <a style="margin-left: 43px ;" href="" class="fa fa-minus-circle"></a>
 
                                                         </td>
+                                                        
+                                                       
                                                     </tr>
                                                 </tbody>
+                                                
                                             </c:forEach>
-                                            <tfoot>
-                                                <tr>
-                                                    <th>Book Code</th>
-                                                    <th>Book Name</th>
-                                                    <th>Image</th>
-                                                    <th>Author</th>
-                                                    <th>Publish Company</th>
-                                                    <th>Quantity</th>
-                                                    <th>Description</th>
-                                                    <th>Imported Price</th>
-                                                    <th>Sale Price</th>
-                                                    <th>Post Status</th>
-                                                    <th>Action</th>
-
-                                                </tr>
-                                            </tfoot>
-                                        </table>
-                                        <c:forEach begin ="1" end="${endP}" var = "i">
-                                            <a href="#">${i}</a>
-                                            
-                                        </c:forEach>
                                     </div>
                                 </div>
                             </div>

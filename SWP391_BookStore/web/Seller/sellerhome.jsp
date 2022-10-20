@@ -137,7 +137,7 @@
                     </li>
                     
                     <li>
-                        <a  href="/SWP391_BookStore/logout" aria-expanded="false">
+                        <a  href="javascript:void()" aria-expanded="false">
                             <i class="icon-logout menu-icon"></i><span class="nav-text">LogOut</span>
                         </a>
                         

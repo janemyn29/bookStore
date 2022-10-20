@@ -55,6 +55,8 @@ public class Book {
         this.postName = postName;
     }
     
+    
+    
     public Book(long bookCode, String bookName, String image, int importPrice, int buyPrice, String description, int qty, int cateID, String cateName, int postID, String postName, int companyID, String companyName) {
         this.bookCode = bookCode;
         this.bookName = bookName;
@@ -104,6 +106,10 @@ public class Book {
         this.companyName = companyName;
         this.postDate = postDate;
         this.discountPercent = discountPercent;
+    }
+    
+    Book(long aLong, String string, String string0, String string1, String string2, String string3, int aInt, String string4, int aInt0, int aInt1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public long getBookCode() {
@@ -217,6 +223,15 @@ public class Book {
     public void setPostDate(Date postDate) {
         this.postDate = postDate;
     }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+    
 
     @Override
     public String toString() {

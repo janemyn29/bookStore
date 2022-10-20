@@ -339,6 +339,11 @@ public class BookDAO {
         return 0;
     }
 
+    public static void main(String[] args) {
+        BookDAO dAO=new BookDAO();
+        List<Book> list=dAO.getBookManage();
+        System.out.println(list);
+    }
 }
 
 
