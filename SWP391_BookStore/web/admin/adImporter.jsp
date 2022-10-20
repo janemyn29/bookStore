@@ -141,15 +141,7 @@
                                             </c:forEach>
                                             
                                         </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>AccountID</th>
-                                                <th>Usermame</th>
-                                                <th>Phone</th>
-                                                <th>Email</th>
-                                                <th>Action</th>                                            
-                                            </tr>
-                                        </tfoot>
+                                        
                                     </table>
                                 </div>
                             </div>

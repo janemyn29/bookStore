@@ -127,7 +127,7 @@
                                 <i class="icon-user menu-icon"></i><span class="nav-text">My Account</span>
                             </a>
                         <li>
-                            <a  href="page-login.html" aria-expanded="false">
+                            <a  href="/SWP391_BookStore/logout" aria-expanded="false">
                                 <i class="icon-logout menu-icon"></i><span class="nav-text">LogOut</span>
                             </a>
 

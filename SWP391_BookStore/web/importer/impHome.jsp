@@ -138,6 +138,12 @@
                             <!-- <li><a href="./table-datatable.html" aria-expanded="false">Data Table</a></li> -->
                         </ul>
                     </li>
+                    <li>
+                        <a  href="/SWP391_BookStore/logout" aria-expanded="false">
+                            <i class="icon-logout menu-icon"></i><span class="nav-text">LogOut</span>
+                        </a>
+
+                    </li>
 
                    
                 </ul>
