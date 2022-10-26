@@ -106,23 +106,24 @@
             Content body start
         ***********************************-->
         <div class="content-body">
-             <div class="row page-titles mx-0">
+
+                           <div class="row page-titles mx-0">
                     <div class="col p-md-0">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">Home</li>
-                            <li class="breadcrumb-item active">Importer Management</li>
+                            <li class="breadcrumb-item ">My Account</li>
+                            <li class="breadcrumb-item active">Profile</li>
                         </ol>
                     </div>
                 </div>
-           
 
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <span class="card-title">Importer Management</span>
-                                <button style="margin-left: 600px" type="button" class="btn mb-1 btn-rounded btn-outline-warning"><a style="padding-left: 10px;padding-right: 10px"  class="fa fa-plus" href="addimpnav"></a></button>
+                                <span class="card-title">FeedBack Management</span>
+                                <button style="margin-left: 600px" type="button" class="btn mb-1 btn-rounded btn-outline-warning"><a style="padding-left: 10px;padding-right: 10px"  class="fa fa-plus" href="addimpnav">ALL</a></button>
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered zero-configuration">
                                         <thead>

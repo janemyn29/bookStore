@@ -39,17 +39,17 @@ public class CategoryDAO {
         }
         return list;
     }
-    public List<Book> getBookByCategory(String Cid) {
+    public List<Book> getBookByCategory(String CName) {
         List<Book> list = new ArrayList<>();
         String sql = "select b.bookCode, b.bookName, b.img, b.importPrice, b.buyPrice, b.description, b.quantity,c.cateID,c.cateName,p.postID,p.postName,pc.companyID,pc.companyName,b.postDate\n" +
-            "from (((tblBook b inner join tblCategory c on b.cateID=c.cateID)\n" +
-            "inner join tblPostHistory p on p.postID=b.postID)\n" +
-            "inner join tblPublishCompany pc on pc.companyID=b.companyID )\n" +
-            "where c.cateID= ? ";
+                "from (((tblBook b inner join tblCategory c on b.cateID=c.cateID)\n" +
+                "inner join tblPostHistory p on p.postID=b.postID)\n" +
+                "inner join tblPublishCompany pc on pc.companyID=b.companyID )\n" +
+                "where c.cateName= ? ";
         try {
             conn = new DBUtils().getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, Cid);
+            ps.setString(1, CName);
             rs = ps.executeQuery();
 
             while (rs.next()) {

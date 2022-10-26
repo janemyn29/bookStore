@@ -120,7 +120,13 @@
             Content body start
         ***********************************-->
         <div class="content-body">
-
+            <div class="row page-titles mx-0">
+                    <div class="col p-md-0">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">Home</li>
+                        </ol>
+                    </div>
+                </div>
             <div class="container-fluid mt-3">
                 <div class="row">
                     <div class="col-lg-3 col-sm-6">
