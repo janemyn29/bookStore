@@ -52,6 +52,46 @@ public class BookDAO {
         }
         return list;
     }
+    
+    public List<Book> getAllBook(int index, int size) {
+        List<Book> list = new ArrayList<>();
+        String sql = "with x as (select ROW_NUMBER() over (order by postDate desc)as r, b.bookCode, b.bookName, b.img, b.importPrice, b.buyPrice, b.description, b.quantity,p.postID,ca.cateID,ca.cateName,p.postName,pc.companyID,pc.companyName,b.postDate,a.authorName\n"
+                + "  from (((((tblBook b inner join tblCompose c on b.bookCode=c.bookCode)\n"
+                + "  inner join tblCategory ca on b.cateID=ca.cateID)\n"
+                + "  inner join tblAuthor a on c.authorID=a.authorID)\n"
+                + "  inner join tblPostHistory p on p.postID=b.postID)\n"
+                + "  inner join tblPublishCompany pc on pc.companyID=b.companyID ))\n"
+                + "  select *from x where r between ?*8-7 and ?*8";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, index);
+            ps.setInt(2, index);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+
+                list.add(new Book(
+                        rs.getLong("bookCode"),//bookcode
+                        rs.getString("bookName"),//bookname 
+                        rs.getString("img"),//image
+                        rs.getInt("importPrice"),//importprice
+                        rs.getInt("buyPrice"),//buyprice
+                        rs.getString("description"),//description
+                        rs.getInt("quantity"),//qty
+                        rs.getInt("cateID"),//cateID
+                        rs.getString("cateName"),//catename
+                        rs.getInt("postID"),//postID 
+                        rs.getString("postName"),//postName
+                        rs.getInt("companyID"),//companyID 
+                        rs.getString("companyName"),//companyName 
+                        rs.getDate("postDate"),//postdate
+                        rs.getString("authorName")//author
+                ));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
 
     public Book getBookBybookCode(String bookCode) {
         String sql = "select b.bookCode, b.bookName, b.img, b.importPrice, b.buyPrice, b.description, b.quantity,c.cateID,c.cateName,p.postID,p.postName,pc.companyID,pc.companyName,b.postDate\n"
@@ -338,10 +378,99 @@ public class BookDAO {
         }
         return 0;
     }
+    
+    
+    public int count(String searchKey) {
+        List<Book> list = new ArrayList<>();
+        String sql = " select count(*)\n"
+                + "from (((((tblBook b inner join tblCompose c on b.bookCode=c.bookCode)\n"
+                + "inner join tblCategory ca on b.cateID=ca.cateID)\n"
+                + "inner join tblAuthor a on c.authorID=a.authorID)\n"
+                + " inner join tblPostHistory p on p.postID=b.postID)\n"
+                + " inner join tblPublishCompany pc on pc.companyID=b.companyID )\n"
+                + "where  a.authorName like ? or b.bookName like  ? ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, "%" + searchKey + "%");
+            ps.setString(2, "%" + searchKey + "%");
+            rs = ps.executeQuery();
 
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+        }
+        return 0;
+    }
+
+    public int countAllBook() {
+        List<Book> list = new ArrayList<>();
+        String sql = "select count(*)\n"
+                + " from (((((tblBook b inner join tblCompose c on b.bookCode=c.bookCode)\n"
+                + " inner join tblCategory ca on b.cateID=ca.cateID)\n"
+                + " inner join tblAuthor a on c.authorID=a.authorID)\n"
+                + " inner join tblPostHistory p on p.postID=b.postID)\n"
+                + " inner join tblPublishCompany pc on pc.companyID=b.companyID )";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+        }
+        return 0;
+    }
+    
+    public List<Book> SearchBook(String searchKey, int index, int size) {
+        List<Book> list = new ArrayList<>();
+        String sql = "with x as (select ROW_NUMBER() over (order by postDate desc)as r,b.bookCode, b.bookName, b.img, b.importPrice, b.buyPrice, b.description, b.quantity,p.postID,ca.cateID,ca.cateName,p.postName,pc.companyID,pc.companyName,b.postDate,a.authorName\n"
+                + " from (((((tblBook b inner join tblCompose c on b.bookCode=c.bookCode)\n"
+                + " inner join tblCategory ca on b.cateID=ca.cateID)\n"
+                + " inner join tblAuthor a on c.authorID=a.authorID)\n"
+                + " inner join tblPostHistory p on p.postID=b.postID)\n"
+                + " inner join tblPublishCompany pc on pc.companyID=b.companyID )\n"
+                + " where  a.authorName like ? or b.bookName like ? )\n"
+                + "select *from x where r between ?*8-7 and ?*8 ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, "%" + searchKey + "%");
+            ps.setString(2, "%" + searchKey + "%");
+            ps.setInt(3, index);
+            ps.setInt(4, index);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                list.add(new Book(
+                        rs.getLong("bookCode"),//bookcode
+                        rs.getString("bookName"),//bookname 
+                        rs.getString("img"),//image
+                        rs.getInt("importPrice"),//importprice
+                        rs.getInt("buyPrice"),//buyprice
+                        rs.getString("description"),//description
+                        rs.getInt("quantity"),//qty
+                        rs.getInt("cateID"),//cateID
+                        rs.getString("cateName"),//catename
+                        rs.getInt("postID"),//postID 
+                        rs.getString("postName"),//postName
+                        rs.getInt("companyID"),//companyID 
+                        rs.getString("companyName"),//companyName 
+                        rs.getDate("postDate"),//postdate
+                        rs.getString("authorName")//author
+                ));
+
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
     public static void main(String[] args) {
         BookDAO dAO=new BookDAO();
-        List<Book> list=dAO.getBookManage();
+        List<Book> list = dAO.SearchBook("t", 1, 8);
         System.out.println(list);
     }
 }

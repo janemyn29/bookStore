@@ -6,11 +6,14 @@
 package com.bookstore.controller;
 
 import com.bookstore.Book.Book;
+import com.bookstore.Book.BookDAO;
 import com.bookstore.Category.Category;
 import com.bookstore.Category.CategoryDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Admin
  */
-public class CategoryController extends HttpServlet {
+public class SearchController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,26 +37,36 @@ public class CategoryController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) { 
-            String categoryName=request.getParameter("categoryName");
-            CategoryDAO daoC=new CategoryDAO();
-            
-            
-            
-            List<Book> list=daoC.getBookByCategory(categoryName);
-            List<Category> listC=daoC.getCategoryBook();
-            
-            
-            
+        String searchKey = request.getParameter("searchKey");
+        String indexString=request.getParameter("index");
+        int index=Integer.parseInt(indexString);
+        
+        CategoryDAO daoC=new CategoryDAO();
+        BookDAO daoB = new BookDAO();
+        
+        int count = daoB.count(searchKey);
+        int pageSize = 8;
+        int endPage = 0;
+        endPage = count / pageSize;
+        if (count % pageSize != 0) {
+            endPage++;
+        }
+
+        List<Category> listC=daoC.getCategoryBook();
+        List<Book> list = daoB.SearchBook(searchKey,index,pageSize);
+        if (list != null) {
             request.setAttribute("listAll", list);
+            request.setAttribute("endPage", endPage);
+            request.setAttribute("searchKey", searchKey);
             request.setAttribute("listC", listC);
-            // listAll vì sort bằng category ở trong shopping
             request.getRequestDispatcher("shopping.jsp").forward(request, response);
             
-            
-            
-            
+        }else{
+
+        request.setAttribute("nullProduct", list);
+        request.getRequestDispatcher("shopping.jsp").forward(request, response);
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

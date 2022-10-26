@@ -296,6 +296,10 @@
         <servlet-name>ListBook</servlet-name>
         <servlet-class>com.bookstore.Seller.ListBook</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchController</servlet-name>
+        <servlet-class>com.bookstore.controller.SearchController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -503,6 +507,10 @@
     <servlet-mapping>
         <servlet-name>ListBook</servlet-name>
         <url-pattern>/Seller/listbook</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchController</servlet-name>
+        <url-pattern>/SearchController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

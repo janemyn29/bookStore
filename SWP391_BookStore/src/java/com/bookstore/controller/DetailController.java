@@ -7,8 +7,11 @@ package com.bookstore.controller;
 
 import com.bookstore.Book.Book;
 import com.bookstore.Book.BookDAO;
+import com.bookstore.Category.Category;
+import com.bookstore.Category.CategoryDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,13 +35,24 @@ public class DetailController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-             try (PrintWriter out = response.getWriter()) {
-            
-            
-            String bookcode = request.getParameter("pbookCode");
-            BookDAO dao = new BookDAO();
-            Book b = dao.getBookBybookCode(bookcode);
+        try (PrintWriter out = response.getWriter()) {
 
+            String bookcode = request.getParameter("pbookCode");
+            String categoryBook = request.getParameter("categoryBook");
+
+            BookDAO daoB = new BookDAO();
+            CategoryDAO daoC = new CategoryDAO();
+
+            Book b = daoB.getBookBybookCode(bookcode);
+            
+            
+            List<Book> RelatedBook=daoC.getBookByCategory(categoryBook);
+            List<Category> listC = daoC.getCategoryBook();
+            List<Book> listRecentArrival = daoB.getRecentBook();
+
+            request.setAttribute("listRecentArrival", listRecentArrival);
+            request.setAttribute("RelatedBook", RelatedBook);
+            request.setAttribute("listC", listC);
             request.setAttribute("detailProduct", b);
             request.getRequestDispatcher("product.jsp").forward(request, response);
         }

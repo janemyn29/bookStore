@@ -29,6 +29,17 @@ public class Book {
     private Date postDate;
     private int discountPercent;
     private String author;
+    private String authorName;
+
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
+    }
+    
+    
 
     public Book() {
     }
@@ -107,7 +118,23 @@ public class Book {
         this.postDate = postDate;
         this.discountPercent = discountPercent;
     }
-    
+        public Book(long bookCode, String bookName, String image, int importPrice, int buyPrice, String description, int qty, int cateID, String cateName, int postID, String postName, int companyID, String companyName, Date postDate, String authorName) {
+        this.bookCode = bookCode;
+        this.bookName = bookName;
+        this.image = image;
+        this.importPrice = importPrice;
+        this.buyPrice = buyPrice;
+        this.description = description;
+        this.qty = qty;
+        this.cateID = cateID;
+        this.cateName = cateName;
+        this.postID = postID;
+        this.postName = postName;
+        this.companyID = companyID;
+        this.companyName = companyName;
+        this.postDate = postDate;
+        this.authorName = authorName;
+    }
     Book(long aLong, String string, String string0, String string1, String string2, String string3, int aInt, String string4, int aInt0, int aInt1) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

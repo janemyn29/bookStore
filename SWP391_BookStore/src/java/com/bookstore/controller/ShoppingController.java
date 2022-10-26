@@ -35,21 +35,29 @@ public class ShoppingController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            //url: shopping
-            BookDAO daoB = new BookDAO();
-            CategoryDAO daoC = new CategoryDAO();
-            List<Book> listAll = daoB.getAllBook();
-            List<Category> listC=daoC.getCategoryBook();
-            
-            
-            request.setAttribute("listAll", listAll);
-            request.setAttribute("listC", listC);
-            
-            request.getRequestDispatcher("shopping.jsp").forward(request, response);
-
+        /* TODO output your page here. You may use following sample code. */
+        //url: shopping
+        String indexString = request.getParameter("index");
+        int index = Integer.parseInt(indexString);
+        BookDAO daoB = new BookDAO();
+        int count = daoB.countAllBook();
+        int pageSize = 8;
+        int endPage = 0;
+        endPage = count / pageSize;
+        if (count % pageSize != 0) {
+            endPage++;
         }
+        CategoryDAO daoC = new CategoryDAO();
+        List<Book> listAll = daoB.getAllBook(index, pageSize);
+        List<Category> listC = daoC.getCategoryBook();
+        
+        
+        request.setAttribute("listAll", listAll);
+        request.setAttribute("listC", listC);
+        request.setAttribute("endPage", endPage);
+
+        request.getRequestDispatcher("shopping.jsp").forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
