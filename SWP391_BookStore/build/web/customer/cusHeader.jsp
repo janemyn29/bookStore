@@ -53,10 +53,10 @@
                 <nav class="main-nav">
                     <ul class="menu sf-arrows">
                         <li class="megamenu-container active">
-                            <a href="home" class="sf-with-ul">Home</a>
+                            <a href="cushome" class="sf-with-ul">Home</a>
                         </li>
                         <li>
-                            <a href="shopping" class="sf-with-ul">Shopping</a>
+                            <a href="cusShop?index=1" class="sf-with-ul">Shopping</a>
 
                         </li>
                         <li>
@@ -68,7 +68,7 @@
                                         <div class="menu-col">
                                             <ul>
                                                 <c:forEach items="${listC}" var="o">
-                                                    <li><a href="category?categoryIDBook=${o.id}">${o.name}</a></li>
+                                                    <li><a href="cusCate?categoryName=${o.name}">${o.name}</a></li>
                                                     <!--href giúp truyền đường dẫn--> 
                                                 </c:forEach>
                                             </ul>
@@ -76,6 +76,61 @@
                                     </div><!-- End .col-md-6 -->
                                 </div><!-- End .row -->
                             </div><!-- End .megamenu megamenu-sm -->
+                            <script>
+                                                    const navList = document.querySelectorAll('.navigation-item');
+                                                    const path = window.location.href.replace("http://localhost:8084/SWP391_BookStore/", "");
+                                                    switch(path) {
+                                                        case "home": {
+                                                                navList[0].classList.toggle("active")
+                                                                break;
+                                                        }
+                                                        case "shopping": {
+                                                                navList[1].classList.toggle("active")
+                                                                break;
+                                                        }
+                                                        case "detail": {
+                                                                navList[2].classList.toggle("")
+                                                                break;
+                                                        }
+                                                        case "cusCate?categoryName=Art%20-%20Literary": {
+                                                                navList[3].classList.toggle("active")
+                                                                break;
+                                                        }
+                                                        case "cusCate?categoryName=Comics": {
+                                                                navList[4].classList.toggle("active")
+                                                                break;
+                                                        }
+                                                        case "cusCate?categoryName=Textbook%20-%20Syllabus": {
+                                                                navList[5].classList.toggle("active")
+                                                                break;
+                                                        }
+                                                        case "cusCate?categoryName=Novel": {
+                                                                navList[6].classList.toggle("active")
+                                                                break;
+                                                        }
+                                                        case "cusCate?categoryName=Foreign%20language": {
+                                                                navList[7].classList.toggle("active")
+                                                                break;
+                                                        }
+                                                        case "cusCate?categoryName=Science": {
+                                                                navList[8].classList.toggle("active")
+                                                                break;
+                                                        }
+                                                        case "cusCate?categoryName=Horror": {
+                                                                navList[9].classList.toggle("active")
+                                                                break;
+                                                        }
+                                                        case "": {
+                                                                navList[10].classList.toggle("")
+                                                                break;
+                                                        }
+                                                        default: {
+                                                                navList[11].classList.toggle("")
+                                                                break;
+                                                        }
+                                                    }
+                                                    
+                                                </script>
                         </li>
                     </ul><!-- End .menu -->
                 </nav><!-- End .main-nav -->

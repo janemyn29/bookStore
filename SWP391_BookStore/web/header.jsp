@@ -31,7 +31,7 @@
                                         Account acc = (Account) request.getSession().getAttribute("acc");
                                     if (acc == null) {
                                 %>
-                            <li><a href="login.jsp">Login</li>
+                            <li><a href="loginnav">Login</li>
                                 <%
                                 } else {%>
                             <li><a href="editprofile">Hello ${acc.getUsername()}</a></li>
@@ -135,18 +135,6 @@
                                                     }
                                                     
                                                 </script>
-<!--                        <script>
-                            // Add active class to the current button (highlight it)
-                            var header = document.getElementById("menu-active-Class");
-                            var btns = header.getElementsByClassName("navigation-item");
-                            for (var i = 0; i < btns.length; i++) {
-                                btns[i].addEventListener("click", function () {
-                                    var current = document.getElementsByClassName("active");
-                                    current[0].className = current[0].className.replace(" active", "");
-                                    this.className += " active";
-                                });
-                            }
-                        </script>-->
                     </ul><!-- End .menu -->
                 </nav><!-- End .main-nav -->
             </div><!-- End .header-left -->

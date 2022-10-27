@@ -379,7 +379,7 @@ public class BookDAO {
         return 0;
     }
     
-<<<<<<< Updated upstream
+
     
     public int count(String searchKey) {
         List<Book> list = new ArrayList<>();
@@ -405,8 +405,6 @@ public class BookDAO {
         return 0;
     }
 
-=======
-<<<<<<< HEAD
     public Book getBookBybookCodeV2(String bookCode) {
         String sql = "select b.bookCode, b.bookName, b.img, b.importPrice, b.buyPrice, b.description, b.quantity,c.cateID,c.cateName,p.postID,p.postName,pc.companyID,pc.companyName,b.postDate,d.discountPercent\n"
                 + "from ((((tblBook b inner join tblCategory c on b.cateID=c.cateID)\n"
@@ -449,34 +447,7 @@ public class BookDAO {
         }
         return 0;
     }
-=======
-    
-    public int count(String searchKey) {
-        List<Book> list = new ArrayList<>();
-        String sql = " select count(*)\n"
-                + "from (((((tblBook b inner join tblCompose c on b.bookCode=c.bookCode)\n"
-                + "inner join tblCategory ca on b.cateID=ca.cateID)\n"
-                + "inner join tblAuthor a on c.authorID=a.authorID)\n"
-                + " inner join tblPostHistory p on p.postID=b.postID)\n"
-                + " inner join tblPublishCompany pc on pc.companyID=b.companyID )\n"
-                + "where  a.authorName like ? or b.bookName like  ? ";
-        try {
-            conn = new DBUtils().getConnection();
-            ps = conn.prepareStatement(sql);
-            ps.setString(1, "%" + searchKey + "%");
-            ps.setString(2, "%" + searchKey + "%");
-            rs = ps.executeQuery();
->>>>>>> 060fd2cce2311b9a5535fd6d77f24fd92655c595
 
-            while (rs.next()) {
-                return rs.getInt(1);
-            }
-        } catch (Exception e) {
-        }
-        return 0;
-    }
-
->>>>>>> Stashed changes
     public int countAllBook() {
         List<Book> list = new ArrayList<>();
         String sql = "select count(*)\n"

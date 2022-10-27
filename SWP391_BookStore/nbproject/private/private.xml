@@ -3,16 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Project_BookStore_SWP/bookStore/SWP391_BookStore/web/customer/cusHome.jsp</file>
-            <file>file:/D:/Project_BookStore_SWP/bookStore/SWP391_BookStore/src/java/com/bookstore/Order/OrderDAO.java</file>
-            <file>file:/D:/Project_BookStore_SWP/bookStore/SWP391_BookStore/web/importer/impListReceipt.jsp</file>
-            <file>file:/D:/Project_BookStore_SWP/bookStore/SWP391_BookStore/web/customer/cusEditProfile.jsp</file>
-            <file>file:/D:/Project_BookStore_SWP/bookStore/SWP391_BookStore/src/java/com/bookstore/Customer/CusOrderHome.java</file>
-            <file>file:/D:/Project_BookStore_SWP/bookStore/SWP391_BookStore/src/java/com/bookstore/Order/Order.java</file>
-            <file>file:/D:/Project_BookStore_SWP/bookStore/SWP391_BookStore/web/WEB-INF/web.xml</file>
-            <file>file:/D:/Project_BookStore_SWP/bookStore/SWP391_BookStore/src/java/com/bookstore/Customer/CusHomeController.java</file>
-            <file>file:/D:/Project_BookStore_SWP/bookStore/SWP391_BookStore/src/java/com/bookstore/Receipt/ReceiptDAO.java</file>
-            <file>file:/D:/Project_BookStore_SWP/bookStore/SWP391_BookStore/web/customer/cusOrders.jsp</file>
+            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP391/bookStore/SWP391_BookStore/web/customer/cusEditProfile.jsp</file>
+            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP391/bookStore/SWP391_BookStore/src/java/com/bookstore/Cart/CheckOutController.java</file>
+            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP391/bookStore/SWP391_BookStore/web/customer/cusCheckOut.jsp</file>
+            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP391/bookStore/SWP391_BookStore/src/java/com/bookstore/Cart/CartController.java</file>
+            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP391/bookStore/SWP391_BookStore/web/customer/cusHome.jsp</file>
+            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP391/bookStore/SWP391_BookStore/web/home.jsp</file>
+            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP391/bookStore/SWP391_BookStore/src/java/com/bookstore/Cart/UpdateDetailOrder.java</file>
         </group>
     </open-files>
 </project-private>

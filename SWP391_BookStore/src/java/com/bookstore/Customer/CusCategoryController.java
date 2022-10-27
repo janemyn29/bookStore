@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bookstore.controller;
+package com.bookstore.Customer;
 
+import com.bookstore.Book.Book;
 import com.bookstore.Category.Category;
 import com.bookstore.Category.CategoryDAO;
 import java.io.IOException;
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author tramy
  */
-public class LoginNavController extends HttpServlet {
+public class CusCategoryController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,10 +36,20 @@ public class LoginNavController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-        CategoryDAO dao= new CategoryDAO();
-        List<Category> listC=dao.getCategoryBook();
-        request.setAttribute("listC", listC);
-        request.getRequestDispatcher("login.jsp").forward(request, response);
+            String categoryName=request.getParameter("categoryName");
+            CategoryDAO daoC=new CategoryDAO();
+            
+            
+            
+            List<Book> list=daoC.getBookByCategory(categoryName);
+            List<Category> listC=daoC.getCategoryBook();
+            
+            
+            
+            request.setAttribute("listAll", list);
+            request.setAttribute("listC", listC);
+            // listAll vì sort bằng category ở trong shopping
+            request.getRequestDispatcher("cusShopping.jsp").forward(request, response);
         }
     }
 

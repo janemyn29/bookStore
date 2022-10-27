@@ -157,7 +157,7 @@
                                                             </div>
                                                         </div><!-- End .product-body -->
                                                         <div class="product-action">
-                                                            <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                                            <a href="${pageContext.request.contextPath }/cart?&action=addToCart&bookCode=${o.bookCode}" class="btn-product btn-cart"><span>add to cart</span></a>
                                                         </div><!-- End .product-action -->
                                                     </div><!-- End .product -->
                                                 </div><!-- End .col-sm-6 col-md-4 col-lg-3 -->
@@ -314,8 +314,8 @@
                         </div><!-- End .product-details-quantity -->
 
                         <div class="product-details-action">
-                            <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                            <a href="#" class="btn-product btn-wishlist" title="Wishlist"><span>Add to Wishlist</span></a>
+                            <a href="${pageContext.request.contextPath }/cart?&action=addToCart&bookCode=${detailProduct.bookCode}" class="btn-product btn-cart"><span>add to cart</span></a>
+                            
                         </div><!-- End .product-details-action -->
                     </div><!-- End .col-6 -->
                 </div><!-- End .row -->
