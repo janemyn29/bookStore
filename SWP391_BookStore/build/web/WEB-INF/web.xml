@@ -300,6 +300,18 @@
         <servlet-name>CategoryController</servlet-name>
         <servlet-class>com.bookstore.controller.CategoryController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>adFeedbackController</servlet-name>
+        <servlet-class>com.bookstore.Admin.adFeedbackController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdFeedCateController</servlet-name>
+        <servlet-class>com.bookstore.Admin.AdFeedCateController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdFeedbackDetail</servlet-name>
+        <servlet-class>com.bookstore.Admin.AdFeedbackDetail</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -511,6 +523,18 @@
     <servlet-mapping>
         <servlet-name>CategoryController</servlet-name>
         <url-pattern>/category</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>adFeedbackController</servlet-name>
+        <url-pattern>/admin/feedback</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdFeedCateController</servlet-name>
+        <url-pattern>/admin/feedbackCate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdFeedbackDetail</servlet-name>
+        <url-pattern>/admin/feedbackDetail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

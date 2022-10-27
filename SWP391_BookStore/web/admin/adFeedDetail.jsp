@@ -60,14 +60,14 @@
 
                         </li>
                         <li class="mega-menu mega-menu-sm">
-                            <a class="active" href="adcustomer" aria-expanded="false">
-                                <i class="fa fa-user menu-icon"></i><span class="nav-text">Customer Management</span>
+                            <a href="adcustomer" aria-expanded="false">
+                                <i class="fa fa-cart-plus menu-icon"></i><span class="nav-text">Customer Management</span>
                             </a>
 
                         </li>
                         <li>
                             <a href="adseller" aria-expanded="false">
-                                <i class="fa fa-cart-plus menu-icon"></i> <span class="nav-text">Seller Management</span>
+                                <i class="fa fa-user menu-icon"></i> <span class="nav-text">Seller Management</span>
                             </a>
 
                         </li>
@@ -84,7 +84,7 @@
 
                         </li>
                         <li>
-                            <a href="feedback" aria-expanded="false">
+                            <a class="active" href="feedback" aria-expanded="false">
                                 <i class="icon-envelope menu-icon"></i><span class="nav-text">Feedback Management</span>
                             </a>
 
@@ -111,7 +111,10 @@
                     <div class="col p-md-0">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">Home</li>
-                            <li class="breadcrumb-item active">Customer Management</li>
+
+                            <li class="breadcrumb-item "><a href="feedback">Feedback Management</a></li>
+                            <li class="breadcrumb-item active">Feedback Detail</li>
+
                         </ol>
                     </div>
                 </div>
@@ -121,44 +124,57 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <span class="card-title">Customer Management</span>
-
+                                    <span class="card-title">Feedback Detail</span>
+ 
+                                    <div class="form-group row" style="margin-top: 10px">
+                                        <label class="col-sm-2 col-form-label">Bookcode</label>
+                                        <div class="col-sm-10">
+                                            <input type="email" name="email" class="form-control" value='${ListB.get(0).getBookcode()}' readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">BookName</label>
+                                        <div class="col-sm-10">
+                                            <input type="email" name="email" class="form-control" value='${ListB.get(0).getBookName()}'  readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Category</label>
+                                        <div class="col-sm-10">
+                                            <input type="email" name="email" class="form-control" value='${ListB.get(0).getCateName()}'  readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Total Feedback</label>
+                                        <div class="col-sm-10">
+                                            <input type="email" name="email" class="form-control"  value='${ListB.get(0).getTotalFeed()}' readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                                    <label class="col-sm-2 col-form-label">Average Star</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="email" name="email" class="form-control" value='${ListB.get(0).getAveStar()}'  readonly>
+                                                    </div>
+                                                </div>
                                     <div class="table-responsive">
                                         <table class="table table-striped table-bordered zero-configuration">
                                             <thead>
                                                 <tr>
-                                                    <th>AccountID</th>
-                                                    <th>Usermame</th>
-                                                    <th>Phone</th>
-                                                    <th>Email</th>
-                                                    <th>Canceled</th>
-                                                    <th>Action</th>
+                                                    <th>Feedback ID</th>
+                                                    <th>Account Name</th>
+                                                    <th>Feedback</th>
+                                                    <th>Rate Star</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <c:forEach items="${listCustomer}" var="o">
+
+                                                <c:forEach items="${List}" var="o">
+
                                                     <tr>
-
-                                                        <c:if test="${o.getCanceled()>=3}">
-                                                            <td style="color: red">${o.getAccID()}</td>
-                                                            <td style="color: red">${o.getUsername()}</td>
-                                                            <td style="color: red">${o.getPhone()}</td>
-                                                            <td style="color: red">${o.getEmail()}</td>
-                                                            <td style="color: red">${o.getCanceled()}</td>
-                                                            <td style="color: red">
-                                                                <a onclick='showMess(${o.getAccID()})' style="margin-left: 31px ;" class="fa fa-minus-circle"></a>
-                                                            </td>
-                                                        </c:if>
-                                                        <c:if test="${o.getCanceled()<3}">
-                                                            <td>${o.getAccID()}</td>
-                                                            <td>${o.getUsername()}</td>
-                                                            <td>${o.getPhone()}</td>
-                                                            <td>${o.getEmail()}</td>
-                                                            <td>${o.getCanceled()}</td>
-                                                            <td>
-
-                                                            </td>
-                                                        </c:if>
+                                                        <td>${o.getFeedID()}</td>
+                                                        <td>${o.getAccName()}</td>
+                                                        <td>${o.getDetail()}</td>
+                                                        <td>${o.getStarID()}  <a style="color: #f4c01e;" class="fa fa-star"></a></td>
 
                                                     </tr>
                                                 </c:forEach>
@@ -178,6 +194,18 @@
                 Content body end
             ***********************************-->
 
+
+            <!--**********************************
+                Footer start
+            ***********************************-->
+            <div class="footer">
+                <div class="copyright">
+                    <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Quixlab</a> 2018</p>
+                </div>
+            </div>
+            <!--**********************************
+                Footer end
+            ***********************************-->
         </div>
         <!--**********************************
             Main wrapper end
@@ -195,38 +223,6 @@
         <script src="./plugins/tables/js/jquery.dataTables.min.js"></script>
         <script src="./plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
         <script src="./plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
-        <script>
-            $(document).ready(function () {
-                // Activate tooltip
-                $('[data-toggle="tooltip"]').tooltip();
-
-                // Select/Deselect checkboxes
-                var checkbox = $('table tbody input[type="checkbox"]');
-                $("#selectAll").click(function () {
-                    if (this.checked) {
-                        checkbox.each(function () {
-                            this.checked = true;
-                        });
-                    } else {
-                        checkbox.each(function () {
-                            this.checked = false;
-                        });
-                    }
-                });
-                checkbox.click(function () {
-                    if (!this.checked) {
-                        $("#selectAll").prop("checked", false);
-                    }
-                });
-            });
-            
-            function showMess(id){
-                var option=confirm("Are you sure to add Customer have id = "+id+" to BlackList ?");
-                if (option===true){
-                    window.location.href="addBlacklist?page=customer&id="+id;
-                }
-            }
-        </script>
 
     </body>
 

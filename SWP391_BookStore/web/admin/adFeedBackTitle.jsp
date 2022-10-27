@@ -61,13 +61,13 @@
                     </li>
                     <li class="mega-menu mega-menu-sm">
                         <a href="adcustomer" aria-expanded="false">
-                            <i class="fa fa-user menu-icon"></i><span class="nav-text">Customer Management</span>
+                            <i class="fa fa-cart-plus menu-icon"></i><span class="nav-text">Customer Management</span>
                         </a>
                         
                     </li>
                     <li>
                         <a href="adseller" aria-expanded="false">
-                            <i class="fa fa-cart-plus menu-icon"></i> <span class="nav-text">Seller Management</span>
+                            <i class="fa fa-user menu-icon"></i> <span class="nav-text">Seller Management</span>
                         </a>
                         
                     </li>
@@ -78,13 +78,13 @@
                         
                     </li>
                     <li>
-                        <a class="active" href="blacklist" aria-expanded="false">
+                        <a href="blacklist" aria-expanded="false">
                             <i class="fa fa-minus-circle menu-icon"></i> <span class="nav-text">Blacklist Management</span>
                         </a>
                         
                     </li>
                     <li>
-                        <a href="feedback" aria-expanded="false">
+                        <a class="active" href="feedback" aria-expanded="false">
                             <i class="icon-envelope menu-icon"></i><span class="nav-text">Feedback Management</span>
                         </a>
                        
@@ -106,12 +106,13 @@
             Content body start
         ***********************************-->
         <div class="content-body">
-            
-            <div class="row page-titles mx-0">
+
+           <div class="row page-titles mx-0">
                     <div class="col p-md-0">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">Home</li>
-                            <li class="breadcrumb-item active">Blacklist Management</li>
+                            
+                                        <li class="breadcrumb-item active"><a href="feedback">Feedback Management</a></li></li>
                         </ol>
                     </div>
                 </div>
@@ -121,33 +122,51 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <span class="card-title">Blacklist Management</span>
+                                <span class="card-title">Feedback Management</span>
+                                
+                           
+                                <form action="feedbackCate" style="margin-top:15px ">
+                                    <label>Choose Category:</label>
+                                        <div class="input-group">
+                                            <select name='cate' class="custom-select">
+                                                <option value="All">All Book</option>
+                                                <c:forEach items="${listC}" var="o">
+                                                <option value="${o.getId()}">${o.getName()}</option>
+                                                </c:forEach>
+                                            </select>
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-dark" type="submit">Filter
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                
+                                
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered zero-configuration">
                                         <thead>
                                             <tr>
-                                                <th>AccountID</th>
-                                                <th>Usermame</th>
-                                                <th>Phone</th>
-                                                <th>Email</th>
-                                                <th>Role</th>
-                                                <th>Restore</th>
-                                               
+                                                <th>Bookcode</th>
+                                                <th>Bookname</th>
+                                                <th>Category</th>
+                                                <th>Total Feedback</th>
+                                                <th>Average Star</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <c:forEach items="${blacklist}" var="o">
+                                        <c:forEach items="${listFeedback}" var="o">
                                             <tr>
-                                                <td>${o.getAccID()}</td>
-                                                <td>${o.getUsername()}</td>
-                                                <td>${o.getPhone()}</td>
-                                                <td>${o.getEmail()}</td>
-                                                <td>${o.getRoleName()}</td>
-                                                
+                                                <td>${o.getBookcode()}</td>
+                                                <td>${o.getBookName()}</td>
+                                                <td>${o.getCateName()}</td>
+                                                <td>${o.getTotalFeed()}</td>
+                                                <td>${o.getAveStar()}  <a style="color: #f4c01e;" class="fa fa-star"></a></td>
                                                 <td>
-                                                    <a onclick='showMess(${o.getAccID()})' style="margin-left: 39px ;" href="#" class="fa fa-recycle"></a>
-                                                </td>
-                                                
+                                                    <c:if test="${o.getTotalFeed()!=0}">
+                                                    <a href='feedbackDetail?code=${o.getBookcode()}'  style="margin-left: 20px ;" class="fa fa-eye"></a>
+                                                    </c:if>
+                                                    </td>
                                             </tr>
                                             </c:forEach>
                                             
@@ -166,6 +185,18 @@
             Content body end
         ***********************************-->
         
+        
+        <!--**********************************
+            Footer start
+        ***********************************-->
+        <div class="footer">
+            <div class="copyright">
+                <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Quixlab</a> 2018</p>
+            </div>
+        </div>
+        <!--**********************************
+            Footer end
+        ***********************************-->
     </div>
     <!--**********************************
         Main wrapper end
@@ -183,38 +214,6 @@
     <script src="./plugins/tables/js/jquery.dataTables.min.js"></script>
     <script src="./plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
     <script src="./plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
-    <script>
-            $(document).ready(function () {
-                // Activate tooltip
-                $('[data-toggle="tooltip"]').tooltip();
-
-                // Select/Deselect checkboxes
-                var checkbox = $('table tbody input[type="checkbox"]');
-                $("#selectAll").click(function () {
-                    if (this.checked) {
-                        checkbox.each(function () {
-                            this.checked = true;
-                        });
-                    } else {
-                        checkbox.each(function () {
-                            this.checked = false;
-                        });
-                    }
-                });
-                checkbox.click(function () {
-                    if (!this.checked) {
-                        $("#selectAll").prop("checked", false);
-                    }
-                });
-            });
-            
-            function showMess(id){
-                var option=confirm("Are you sure to restore Account have id = "+id+" in BlackList ?");
-                if (option===true){
-                    window.location.href="restore?id="+id;
-                }
-            }
-        </script>
 
 </body>
 

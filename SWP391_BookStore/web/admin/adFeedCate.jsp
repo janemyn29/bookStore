@@ -72,7 +72,7 @@
                         
                     </li>
                     <li>
-                        <a class="active" href="adimporter" aria-expanded="false">
+                        <a  href="adimporter" aria-expanded="false">
                             <i class="fa fa-arrow-circle-right menu-icon"></i><span class="nav-text">Importer Management</span>
                         </a>
                         
@@ -84,7 +84,7 @@
                         
                     </li>
                     <li>
-                        <a href="widgets.html" aria-expanded="false">
+                        <a class="active" href="feedback" aria-expanded="false">
                             <i class="icon-envelope menu-icon"></i><span class="nav-text">Feedback Management</span>
                         </a>
                        
@@ -107,12 +107,13 @@
         ***********************************-->
         <div class="content-body">
 
-                           <div class="row page-titles mx-0">
+           <div class="row page-titles mx-0">
                     <div class="col p-md-0">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">Home</li>
-                            <li class="breadcrumb-item ">My Account</li>
-                            <li class="breadcrumb-item active">Profile</li>
+                            
+                                        <li class="breadcrumb-item"><a href="feedback">Feedback Management</a></li></li>
+                                        <li class="breadcrumb-item active"><a href="feedback">Feedback Management By Category</a></li></li>
                         </ol>
                     </div>
                 </div>
@@ -122,29 +123,55 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <span class="card-title">FeedBack Management</span>
-                                <button style="margin-left: 600px" type="button" class="btn mb-1 btn-rounded btn-outline-warning"><a style="padding-left: 10px;padding-right: 10px"  class="fa fa-plus" href="addimpnav">ALL</a></button>
+                                <span class="card-title">Feedback Management By Category</span>
+                               <form  style="margin-top:15px ">
+                                    <label>Choose Category:</label>
+                                        <div class="input-group">
+                                            <select name='cate' class="custom-select">
+                                                <option value="All">All Book</option>
+                                                <c:forEach items="${listC}" var="o">
+                                                    <c:if test="${select==o.getId()}">
+                                                        <option selected="selected" value="${o.getId()}">${o.getName()}</option>
+                                                    </c:if>
+                                                    <c:if test="${!select.equals(o.getId())}">
+                                                        <option  value="${o.getId()}">${o.getName()}</option>
+                                                    </c:if>
+                                                </c:forEach>
+                                            </select>
+                                            <input type="hidden" value="feedbackCate">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-dark" type="submit">Filter
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                
+                                
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered zero-configuration">
                                         <thead>
                                             <tr>
-                                                <th>AccountID</th>
-                                                <th>Usermame</th>
-                                                <th>Phone</th>
-                                                <th>Email</th>
+                                                <th>Bookcode</th>
+                                                <th>Bookname</th>
+                                                <th>Category</th>
+                                                <th>Total Feedback</th>
+                                                <th>Average Star</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <c:forEach items="${listImp}" var="o">
+                                        <c:forEach items="${listFeedback}" var="o">
                                             <tr>
-                                                <td>${o.getAccID()}</td>
-                                                <td>${o.getUsername()}</td>
-                                                <td>${o.getPhone()}</td>
-                                                <td>${o.getEmail()}</td>
+                                                <td>${o.getBookcode()}</td>
+                                                <td>${o.getBookName()}</td>
+                                                <td>${o.getCateName()}</td>
+                                                <td>${o.getTotalFeed()}</td>
+                                                <td>${o.getAveStar()}  <a style="color: #f4c01e;" class="fa fa-star"></a></td>
                                                 <td>
-                                                    <a onclick='showMess(${o.getAccID()})' style="margin-left: 43px ;" class="fa fa-minus-circle"></a>
-                                                </td>
+                                                    <c:if test="${o.getTotalFeed()!=0}">
+                                                    <a href='feedbackDetail?code=${o.getBookcode()}'  style="margin-left: 20px ;" class="fa fa-eye"></a>
+                                                    </c:if>
+                                                    </td>
                                             </tr>
                                             </c:forEach>
                                             
@@ -192,38 +219,6 @@
     <script src="./plugins/tables/js/jquery.dataTables.min.js"></script>
     <script src="./plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
     <script src="./plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
-    <script>
-            $(document).ready(function () {
-                // Activate tooltip
-                $('[data-toggle="tooltip"]').tooltip();
-
-                // Select/Deselect checkboxes
-                var checkbox = $('table tbody input[type="checkbox"]');
-                $("#selectAll").click(function () {
-                    if (this.checked) {
-                        checkbox.each(function () {
-                            this.checked = true;
-                        });
-                    } else {
-                        checkbox.each(function () {
-                            this.checked = false;
-                        });
-                    }
-                });
-                checkbox.click(function () {
-                    if (!this.checked) {
-                        $("#selectAll").prop("checked", false);
-                    }
-                });
-            });
-            
-            function showMess(id){
-                var option=confirm("Are you sure to add Import Manager have id = "+id+" to BlackList ?");
-                if (option===true){
-                    window.location.href="addBlacklist?page=importer&id="+id;
-                }
-            }
-        </script>
 
 </body>
 
