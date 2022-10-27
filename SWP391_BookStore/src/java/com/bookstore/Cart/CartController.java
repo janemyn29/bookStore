@@ -6,13 +6,20 @@
 package com.bookstore.Cart;
 
 import com.bookstore.Book.Book;
+import com.bookstore.Book.BookDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.Iterator;
+import java.util.ListIterator;
 
 /**
  *
@@ -20,56 +27,176 @@ import javax.servlet.http.HttpSession;
  */
 public class CartController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String action = request.getParameter("action");
-            if(action.equals("Add to Cart")){
-                HttpSession session = request.getSession(true);
-                CartBean shop = (CartBean) session.getAttribute("SHOP");
-                if(shop==null){
-                    shop = new CartBean();
+            String action = request.getParameter("action"); //lay action
+            HttpSession session = request.getSession(); // new session
+            List<Cart> cart = new ArrayList<Cart>();    // goi list cart
+            BookDAO b = new BookDAO();  // goi dao
+            String bookCode = request.getParameter("bookCode"); // lay ma sach
+            long ibookCode = Long.parseLong(bookCode);
+            //List<Book> list = new ArrayList<Book>();
+            if (action == null) { // sai action
+                request.getRequestDispatcher("home").forward(request, response);
+            } else {
+                if (action.equals("addToCart")) { // them sach vao cart
+                    if (session.getAttribute("cart") == null) { // cart rong
+                        cart.add(new Cart(b.getBookBybookCode(request.getParameter("bookCode")), 1));
+
+                    } else { // add cung 1 cuon sach
+                        cart = (List<Cart>) session.getAttribute("cart");
+                        int index = isExisting(ibookCode, cart);
+                        if (index == -1) {
+                            cart.add(new Cart(b.getBookBybookCode(request.getParameter("bookCode")), 1));
+                        } else {
+                            int quantity = cart.get(index).getQty() + 1;
+                            cart.get(index).setQty(quantity);
+                        }
+                    }
+                    //tinh discount sach
+                    for (int i = 0; i < cart.size(); i++) {
+                        int discountPercent = b.getDisCountByBookCode(request.getParameter("bookCode"));
+                        Book book = b.getBookBybookCode(request.getParameter("bookCode"));
+                        Book book2 = b.getBookBybookCodeV2(request.getParameter("bookCode"));
+                        if (discountPercent > 0) {// sach co discount
+                            for (Cart c : cart) {
+                                if (book.getBookCode() == (book2.getBookCode())) {
+                                    int tmp = c.getBook().getBuyPrice();
+                                    int tmp2 = c.getBook().getBuyPrice() * discountPercent / 100;
+                                    int ibuyPrice = tmp - tmp2;
+                                    c.setBuyPrice(ibuyPrice);
+                                    ibuyPrice = +ibuyPrice;
+                                    session.setAttribute("ibuyPrice", ibuyPrice);
+                                }
+                            }
+                        } else if (discountPercent == 0) { // sach ko discount
+                            bookCode = request.getParameter("bookCode");
+                            for (Cart c : cart) {
+                                if (String.valueOf(c.getBook().getBookCode()).equals(String.valueOf(bookCode))) {
+                                    int ibuyPrice = c.getBook().getBuyPrice();
+                                    c.setBuyPrice(ibuyPrice);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    int totalPrice = totalPrice(cart);
+                    session.setAttribute("totalPrice", totalPrice);// set tong tien
+
+                    session.setAttribute("cart", cart);
+                    request.getRequestDispatcher("home").forward(request, response);
+
+                } else if (action.equals("remove")) { // xoa sach trong cart
+                    cart = (List<Cart>) session.getAttribute("cart");
+                    bookCode = request.getParameter("bookCode");
+                    for (Cart c : cart) {
+                        if (String.valueOf(c.getBook().getBookCode()).equals(String.valueOf(bookCode))) {
+                            cart.remove(c);
+                            break;
+                        }
+                    }
+                    for (int i = 0; i < cart.size(); i++) {
+                        if (cart.get(i).getBook().getDiscountPercent() > 0) {
+                            int ibuyPrice = cart.get(i).getBook().getBuyPrice() * cart.get(i).getBook().getDiscountPercent() % 100;
+                            cart.get(i).setBuyPrice(ibuyPrice);
+                        }
+                    }
+                    session.setAttribute("cart", cart);
+                    request.getRequestDispatcher("cart.jsp").forward(request, response);
+
+                } else if (action.equals("removeHome")) { // xoa sach trong minicart trang home
+                    bookCode = request.getParameter("bookCode");
+                    cart = (List<Cart>) request.getSession().getAttribute("cart");
+                    if (cart != null) {
+                        for (Cart c : cart) {
+                            if (String.valueOf(c.getBook().getBookCode()).equals(String.valueOf(bookCode))) {
+                                cart.remove(c);
+                                break;
+                            }
+                        }
+                    }
+                    session.setAttribute("cart", cart);
+                    request.getRequestDispatcher("home").forward(request, response);
+
+                } else if (action.equals("decre")) { // giam quantity
+                    cart = (List<Cart>) session.getAttribute("cart");
+                    int index = isExisting(ibookCode, cart);
+                    int quantity = cart.get(index).getQty() - 1;
+                    cart.get(index).setQty(quantity);
+                    if (cart.get(index).getQty() <= 0) { // neu qty = 0 xoa sach
+                        cart = (List<Cart>) request.getSession().getAttribute("cart");
+                        if (cart != null) {
+                            for (Cart c : cart) {
+                                if (String.valueOf(c.getBook().getBookCode()).equals(String.valueOf(bookCode))) {
+                                    cart.remove(c);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    session.setAttribute("cart", cart);
+                    request.getRequestDispatcher("cart.jsp").forward(request, response);
+
+                } else if (action.equals("incre")) { // tang quantity
+                    cart = (List<Cart>) session.getAttribute("cart");
+                    int index = isExisting(ibookCode, cart);
+                    int quantity = cart.get(index).getQty() + 1;
+                    cart.get(index).setQty(quantity);
+                    session.setAttribute("cart", cart);
+                    request.getRequestDispatcher("cart.jsp").forward(request, response);
+                    
+                } else if(action.equals("checkout")){
+                    if(session.getAttribute("cart") == null){
+                        session.setAttribute("check", "checkcart");
+                        request.getRequestDispatcher("cusCart.jsp").forward(request, response);
+                    }else{
+                        request.getRequestDispatcher("cusCheckOut.jsp").forward(request, response);
+                    }
                 }
-                String bookName = request.getParameter("cboBook");
-                Book book = new Book(bookName);
-                shop.addBook(book);
-                session.setAttribute("SHOP", shop);
-                request.getRequestDispatcher("#").forward(request, response);
-            }else if(action.equals("View Cart")){
-                request.getRequestDispatcher("#").forward(request, response);
-            }else if(action.equals("Add More")){
-                request.getRequestDispatcher("#").forward(request, response);
-            }else if(action.endsWith("Remove")){
-                String[] list = request.getParameterValues("rmv");
-                if(list!=null){
-                    HttpSession session = request.getSession();
-                    if(session!=null){
-                        CartBean shop = (CartBean) session.getAttribute("SHOP");
-                        if(shop!=null){
-                            for(int i = 0; i<list.length ; i++){
-                                shop.removeBook(list[i]);
-                            }//end for
-                            session.setAttribute("SHOP", shop);
-                        }//end if shop
-                    }//end if session
-                }//end if list
-                String url = "CartController?action=View Cart";
-                request.getRequestDispatcher(url).forward(request, response);
+                
+                session.setAttribute("cart", cart);
+                request.getRequestDispatcher("home").forward(request, response);
             }
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    private int isExisting(long bookCode, List<Cart> cart) { // kiem tra sach exist
+        for (int i = 0; i < cart.size(); i++) {
+            if (cart.get(i).getBook().getBookCode() == bookCode) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    private int totalPrice(List<Cart> cart) { // tinh tong tien
+        int totalPrice = 0;
+        for (Cart c : cart) {
+            totalPrice += c.getBuyPrice() * c.getQty();
+        }
+        return totalPrice;
+    }
+
+//    public int totalBill(long bookCode, List<Cart> cart) {
+//        for (int i = 0; i < cart.size(); i++) {
+//            int total = cart.get(i).getBuyPrice() * cart.get(i).getQty();
+//            int totalAll = +total;
+//            return totalAll;
+//        }
+//        return 0;
+//    }
+//    public int totalAll() {
+//        int totalAll = 0;
+//        for (int i = 0; i < cart.size() ; i++) {
+//
+//        }
+//
+//        return 0;
+//    }
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

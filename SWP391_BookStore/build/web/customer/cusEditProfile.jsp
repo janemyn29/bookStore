@@ -63,7 +63,7 @@
                                                 <a class="nav-link active" id="tab-account-link" data-toggle="tab" href="#tab-account" role="tab" aria-controls="tab-account" aria-selected="true">Profile</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" id="tab-orders-link" data-toggle="tab" href="#tab-orders" role="tab" aria-controls="tab-orders" aria-selected="false">My Orders</a>
+                                                <a class="nav-link" href="cusorderhome">My Orders</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" href="cusChangePass.jsp">Change Password</a>
@@ -76,11 +76,6 @@
 
                                     <div class="col-md-8 col-lg-9">
                                         <div class="tab-content">
-
-                                            <div class="tab-pane fade show" id="tab-orders" role="tabpanel" aria-labelledby="tab-orders-link">
-                                                <p>No order has been made yet.</p>
-                                                <a href="cusShopping.jsp" class="btn btn-outline-primary-2"><span>GO SHOP</span><i class="icon-long-arrow-right"></i></a>
-                                            </div><!-- .End .tab-pane -->
 
                                             <div class="tab-pane fade show active" id="tab-account" role="tabpanel" aria-labelledby="tab-account-link">
 

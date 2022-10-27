@@ -1,3 +1,5 @@
+<%@page import="com.bookstore.Account.Account"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,38 +37,25 @@
                 <div class="header-top">
                     <div class="container">
                         <div class="header-left">
-                            <div class="header-dropdown">
-                                <a href="#">Usd</a>
-                                <div class="header-menu">
-                                    <ul>
-                                        <li><a href="#">Eur</a></li>
-                                        <li><a href="#">Usd</a></li>
-                                    </ul>
-                                </div><!-- End .header-menu -->
-                            </div><!-- End .header-dropdown -->
 
-                            <div class="header-dropdown">
-                                <a href="#">Eng</a>
-                                <div class="header-menu">
-                                    <ul>
-                                        <li><a href="#">English</a></li>
-                                        <li><a href="#">French</a></li>
-                                        <li><a href="#">Spanish</a></li>
-                                    </ul>
-                                </div><!-- End .header-menu -->
-                            </div><!-- End .header-dropdown -->
                         </div><!-- End .header-left -->
 
                         <div class="header-right">
                             <ul class="top-menu">
                                 <li>
-                                    <a href="#">Links</a>
                                     <ul>
-                                        <li><a href="tel:#"><i class="icon-phone"></i>Call: +0123 456 789</a></li>
-                                        <li><a href="wishlist.html"><i class="icon-heart-o"></i>Wishlist <span>(3)</span></a></li>
+                                        <li><a href="/SWP391_BookStore/logout">Logout</a></li>
                                         <li><a href="about.html">About Us</a></li>
                                         <li><a href="contact.html">Contact Us</a></li>
-                                        <li><a href="#signin-modal" data-toggle="modal"><i class="icon-user"></i>Login</a></li>
+                                            <%
+                                                Account acc = (Account) request.getSession().getAttribute("acc");
+                                                if (acc == null) {
+                                            %>
+                                        <li><a href="login.jsp">Login</li>
+                                            <%
+                                } else {%>
+                                        <li><a href="customer/editprofile">Hello ${acc.getUsername()}</a></li>
+                                            <%}%>
                                     </ul>
                                 </li>
                             </ul><!-- End .top-menu -->
@@ -490,67 +479,68 @@
                                 </div><!-- End .dropdown-menu -->
                             </div><!-- End .compare-dropdown -->
 
-                            <div class="dropdown cart-dropdown">
-                                <a href="customer/cusCart.jsp" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
-                                    <i class="icon-shopping-cart"></i>
-                                    <span class="cart-count">2</span>
-                                </a>
+                            <%
 
+                                if (session.getAttribute("cart") == null) {
+                            %>
+                            <div class="dropdown cart-dropdown">
+                                <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                                    <i class="icon-shopping-cart"></i>
+                                    <span class="cart-count">${cart.size()}</span>
+                                </a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <div class="dropdown-cart-products">
-                                        <div class="product">
-                                            <div class="product-cart-details">
-                                                <h4 class="product-title">
-                                                    <a href="product.html">Beige knitted elastic runner shoes</a>
-                                                </h4>
-
-                                                <span class="cart-product-info">
-                                                    <span class="cart-product-qty">1</span>
-                                                    x $84.00
-                                                </span>
-                                            </div><!-- End .product-cart-details -->
-
-                                            <figure class="product-image-container">
-                                                <a href="product.html" class="product-image">
-                                                    <img src="assets/images/products/cart/product-1.jpg" alt="product">
-                                                </a>
-                                            </figure>
-                                            <a href="#" class="btn-remove" title="Remove Product"><i class="icon-close"></i></a>
-                                        </div><!-- End .product -->
-
-                                        <div class="product">
-                                            <div class="product-cart-details">
-                                                <h4 class="product-title">
-                                                    <a href="product.html">Blue utility pinafore denim dress</a>
-                                                </h4>
-
-                                                <span class="cart-product-info">
-                                                    <span class="cart-product-qty">1</span>
-                                                    x $76.00
-                                                </span>
-                                            </div><!-- End .product-cart-details -->
-
-                                            <figure class="product-image-container">
-                                                <a href="product.html" class="product-image">
-                                                    <img src="assets/images/products/cart/product-2.jpg" alt="product">
-                                                </a>
-                                            </figure>
-                                            <a href="#" class="btn-remove" title="Remove Product"><i class="icon-close"></i></a>
-                                        </div><!-- End .product -->
-                                    </div><!-- End .cart-product -->
-
-                                    <div class="dropdown-cart-total">
-                                        <span>Total</span>
-
-                                        <span class="cart-total-price">$160.00</span>
-                                    </div><!-- End .dropdown-cart-total -->
-
+                                        <label  style="color: black;">Your cart is empty</label>
+                                    </div>
                                     <div class="dropdown-cart-action">
-                                        <a href="cusCart.jsp" class="btn btn-primary">View Cart</a>
+                                        <a href="cusCart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span></a>
                                         <a href="cusCheckOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
                                     </div><!-- End .dropdown-cart-total -->
                                 </div><!-- End .dropdown-menu -->
                             </div><!-- End .cart-dropdown -->
+                            <%} else {%>
+                            <div class="dropdown cart-dropdown">
+                                <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                                    <i class="icon-shopping-cart"></i>
+                                    <span class="cart-count">${cart.size()}</span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <c:forEach items="${cart}" var="cart">
+                                        <div class="dropdown-cart-products">
+                                            <div class="product">
+                                                <div class="product-cart-details">
+                                                    <h4 class="product-title">
+                                                        <a href="product.html">${cart.book.bookName}</a>
+                                                    </h4>
+
+                                                    <span class="cart-product-info">
+                                                        <span class="cart-product-qty">${cart.qty}</span>
+                                                        x ${cart.book.buyPrice}
+                                                    </span>
+                                                </div><!-- End .product-cart-details -->
+
+                                                <figure class="product-image-container">
+                                                    <a href="product.html" class="product-image">
+                                                        <img src="${cart.book.image}" alt="product">
+                                                    </a>
+                                                </figure>
+                                                <a href="${pageContext.request.contextPath }/cart?action=removeHome&bookCode=${cart.book.bookCode}" class="btn-remove"><i class="icon-close"></i></a>
+                                            </div><!-- End .product -->
+
+                                        </div><!-- End .cart-product -->    
+                                        <div class="dropdown-cart-total">
+                                            <span>Total:</span><br>
+                                            <span class="cart-total-price">  ${cart.book.buyPrice * cart.qty}</span>
+                                        </div><!-- End .dropdown-cart-total -->
+                                    </c:forEach>
+
+                                    <div class="dropdown-cart-action">
+                                        <a href="cusCart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span></a>
+                                        <a href="cusCheckOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
+                                    </div><!-- End .dropdown-cart-total -->
+                                </div><!-- End .dropdown-menu -->
+                            </div><!-- End .cart-dropdown -->
+                            <%}%>
                         </div><!-- End .header-right -->
                     </div><!-- End .container -->
                 </div><!-- End .header-middle -->
@@ -575,202 +565,110 @@
                 <div class="page-content">
                     <div class="checkout">
                         <div class="container">
-                            <div class="checkout-discount">
-                                <form action="#">
-                                    <input type="text" class="form-control" required id="checkout-discount-input">
-                                    <label for="checkout-discount-input" class="text-truncate">Have a coupon? <span>Click here to enter your code</span></label>
-                                </form>
-                            </div><!-- End .checkout-discount -->
-                            <form action="#">
+
+                            <form action="checkout" method="post">
+
                                 <div class="row">
                                     <div class="col-lg-9">
                                         <h2 class="checkout-title">Billing Details</h2><!-- End .checkout-title -->
                                         <div class="row">
                                             <div class="col-sm-6">
-                                                <label>First Name *</label>
-                                                <input type="text" class="form-control" required>
+                                                <label>User Name *</label>
+                                                <input type="text" value="${acc.getUsername()}" class="form-control" readonly>
                                             </div><!-- End .col-sm-6 -->
 
                                             <div class="col-sm-6">
-                                                <label>Last Name *</label>
-                                                <input type="text" class="form-control" required>
+                                                <label>Email *</label>
+                                                <input type="email" value="${acc.getEmail()}" class="form-control" readonly>
                                             </div><!-- End .col-sm-6 -->
                                         </div><!-- End .row -->
 
-                                        <label>Company Name (Optional)</label>
-                                        <input type="text" class="form-control">
-
-                                        <label>Country *</label>
-                                        <input type="text" class="form-control" required>
-
-                                        <label>Street address *</label>
-                                        <input type="text" class="form-control" placeholder="House number and Street name" required>
-                                        <input type="text" class="form-control" placeholder="Appartments, suite, unit etc ..." required>
+                                        <label>Your Address</label>
+                                        <input type="text" class="form-control" name="txtAddress" placeholder="Enter your shipping address here" required="">
 
                                         <div class="row">
-                                            <div class="col-sm-6">
-                                                <label>Town / City *</label>
-                                                <input type="text" class="form-control" required>
-                                            </div><!-- End .col-sm-6 -->
-
-                                            <div class="col-sm-6">
-                                                <label>State / County *</label>
-                                                <input type="text" class="form-control" required>
-                                            </div><!-- End .col-sm-6 -->
-                                        </div><!-- End .row -->
-
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <label>Postcode / ZIP *</label>
-                                                <input type="text" class="form-control" required>
-                                            </div><!-- End .col-sm-6 -->
 
                                             <div class="col-sm-6">
                                                 <label>Phone *</label>
-                                                <input type="tel" class="form-control" required>
+                                                <input type="tel" class="form-control" value="${acc.getPhone()}" readonly>
                                             </div><!-- End .col-sm-6 -->
                                         </div><!-- End .row -->
 
-                                        <label>Email address *</label>
-                                        <input type="email" class="form-control" required>
-
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="checkout-create-acc">
-                                            <label class="custom-control-label" for="checkout-create-acc">Create an account?</label>
-                                        </div><!-- End .custom-checkbox -->
-
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="checkout-diff-address">
-                                            <label class="custom-control-label" for="checkout-diff-address">Ship to a different address?</label>
-                                        </div><!-- End .custom-checkbox -->
-
                                         <label>Order notes (optional)</label>
-                                        <textarea class="form-control" cols="30" rows="4" placeholder="Notes about your order, e.g. special notes for delivery"></textarea>
+                                        <textarea class="form-control" name="txtNote" cols="30" rows="4" placeholder="Notes about your order, e.g. special notes for delivery"></textarea>
+
+                                        <a href="cusCart.jsp" class="btn btn-outline-primary-2">
+                                            <span>BACK</span>
+                                            <i class="icon-arrow-left"></i>
+                                        </a>
                                     </div><!-- End .col-lg-9 -->
+
+
                                     <aside class="col-lg-3">
-                                        <div class="summary">
-                                            <h3 class="summary-title">Your Order</h3><!-- End .summary-title -->
+                                        <div class="summary summary-cart">
+
+                                            <a class="logo" style="color: orange">
+                                                <img src="assets/images/logo.png" alt="Molla Logo" width="105" height="25">
+                                                <h9 class="right-parent"><i class="icon-phone"></i>Call: +0123 456 789</h9>
+                                                <h9>(Tra My)</h9>
+                                            </a>
+
+                                            <h5 class="center-parent">BILL</h5>
+                                            <h7>Guess name: <span style="color: orange">${acc.getUsername()}</span></h7><br>
+                                            <h7>Guess Phone Number: <span style="color: orange">${acc.getPhone()}</span></h7>
+                                            <h1 class="summary-title"></h1>
 
                                             <table class="table table-summary">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Product</th>
-                                                        <th>Total</th>
-                                                    </tr>
-                                                </thead>
 
-                                                <tbody>
-                                                    <tr>
-                                                        <td><a href="#">Beige knitted elastic runner shoes</a></td>
-                                                        <td>$84.00</td>
-                                                    </tr>
+                                                <tbody> 
 
-                                                    <tr>
-                                                        <td><a href="#">Blue utility pinafore denimdress</a></td>
-                                                        <td>$76,00</td>
-                                                    </tr>
                                                     <tr class="summary-subtotal">
-                                                        <td>Subtotal:</td>
-                                                        <td>$160.00</td>
+                                                        <td>Quantity</td>
+                                                        <td class="center-parent">Name</td>
+                                                        <td>SubTotal</td>
                                                     </tr><!-- End .summary-subtotal -->
-                                                    <tr>
-                                                        <td>Shipping:</td>
-                                                        <td>Free shipping</td>
-                                                    </tr>
-                                                    <tr class="summary-total">
-                                                        <td>Total:</td>
-                                                        <td>$160.00</td>
-                                                    </tr><!-- End .summary-total -->
+
+                                                    <c:forEach items="${cart}" var="cart">
+                                                        <tr class="summary-subtotal">
+                                                            <td>X ${cart.qty}</td>
+                                                            <td>${cart.book.bookName}</td>
+                                                            <td>${cart.buyPrice * cart.qty}vnd</td>
+                                                        </tr><!-- End .summary-subtotal -->
+                                                    </c:forEach>
+
                                                 </tbody>
+
+                                                <tr>
+                                                    <td class="total-col">Total:</td>
+                                                    <c:forEach items="${cart}" var="cart">
+                                                    <script>
+                                                        int total += ${cart.buyPrice * cart.qty};
+                                                    </script>
+                                                </c:forEach>
+                                                <td class="total-col">${totalPrice} vnd</td>
+                                                </tr><!-- End .summary-total -->
+
                                             </table><!-- End .table table-summary -->
 
-                                            <div class="accordion-summary" id="accordion-payment">
-                                                <div class="card">
-                                                    <div class="card-header" id="heading-1">
-                                                        <h2 class="card-title">
-                                                            <a role="button" data-toggle="collapse" href="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
-                                                                Direct bank transfer
-                                                            </a>
-                                                        </h2>
-                                                    </div><!-- End .card-header -->
-                                                    <div id="collapse-1" class="collapse show" aria-labelledby="heading-1" data-parent="#accordion-payment">
-                                                        <div class="card-body">
-                                                            Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.
-                                                        </div><!-- End .card-body -->
-                                                    </div><!-- End .collapse -->
-                                                </div><!-- End .card -->
 
-                                                <div class="card">
-                                                    <div class="card-header" id="heading-2">
-                                                        <h2 class="card-title">
-                                                            <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
-                                                                Check payments
-                                                            </a>
-                                                        </h2>
-                                                    </div><!-- End .card-header -->
-                                                    <div id="collapse-2" class="collapse" aria-labelledby="heading-2" data-parent="#accordion-payment">
-                                                        <div class="card-body">
-                                                            Ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. 
-                                                        </div><!-- End .card-body -->
-                                                    </div><!-- End .collapse -->
-                                                </div><!-- End .card -->
-
-                                                <div class="card">
-                                                    <div class="card-header" id="heading-3">
-                                                        <h2 class="card-title">
-                                                            <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-3" aria-expanded="false" aria-controls="collapse-3">
-                                                                Cash on delivery
-                                                            </a>
-                                                        </h2>
-                                                    </div><!-- End .card-header -->
-                                                    <div id="collapse-3" class="collapse" aria-labelledby="heading-3" data-parent="#accordion-payment">
-                                                        <div class="card-body">Quisque volutpat mattis eros. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. 
-                                                        </div><!-- End .card-body -->
-                                                    </div><!-- End .collapse -->
-                                                </div><!-- End .card -->
-
-                                                <div class="card">
-                                                    <div class="card-header" id="heading-4">
-                                                        <h2 class="card-title">
-                                                            <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4">
-                                                                PayPal <small class="float-right paypal-link">What is PayPal?</small>
-                                                            </a>
-                                                        </h2>
-                                                    </div><!-- End .card-header -->
-                                                    <div id="collapse-4" class="collapse" aria-labelledby="heading-4" data-parent="#accordion-payment">
-                                                        <div class="card-body">
-                                                            Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede. Donec nec justo eget felis facilisis fermentum.
-                                                        </div><!-- End .card-body -->
-                                                    </div><!-- End .collapse -->
-                                                </div><!-- End .card -->
-
-                                                <div class="card">
-                                                    <div class="card-header" id="heading-5">
-                                                        <h2 class="card-title">
-                                                            <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-5" aria-expanded="false" aria-controls="collapse-5">
-                                                                Credit Card (Stripe)
-                                                                <img src="assets/images/payments-summary.png" alt="payments cards">
-                                                            </a>
-                                                        </h2>
-                                                    </div><!-- End .card-header -->
-                                                    <div id="collapse-5" class="collapse" aria-labelledby="heading-5" data-parent="#accordion-payment">
-                                                        <div class="card-body"> Donec nec justo eget felis facilisis fermentum.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Lorem ipsum dolor sit ame.
-                                                        </div><!-- End .card-body -->
-                                                    </div><!-- End .collapse -->
-                                                </div><!-- End .card -->
-                                            </div><!-- End .accordion -->
-
-                                            <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">
-                                                <span class="btn-text">Place Order</span>
-                                                <span class="btn-hover-text">Proceed to Checkout</span>
-                                            </button>
+                                            <c:if test='${acc == null}'>
+                                                <small>You need sign in first before checkout!</small><br>
+                                                <small>Click the button below to sign in.</small>
+                                                <a href="login.jsp" class="btn btn-outline-primary-2 btn-order btn-block">Loggin to checkout</a>
+                                            </c:if>
+                                            <c:if test='${acc != null}'>
+                                                <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">Place Order</button>
+                                            </c:if>
                                         </div><!-- End .summary -->
                                     </aside><!-- End .col-lg-3 -->
                                 </div><!-- End .row -->
                             </form>
+
                         </div><!-- End .container -->
                     </div><!-- End .checkout -->
                 </div><!-- End .page-content -->
+
+
             </main><!-- End .main -->
 
             <footer class="footer">
@@ -827,7 +725,7 @@
 
                                     <ul class="widget-list">
                                         <li><a href="#">Sign In</a></li>
-                                        <li><a href="cart.html">View Cart</a></li>
+                                        <li><a href="cusCart.jsp">View Cart</a></li>
                                         <li><a href="#">My Wishlist</a></li>
                                         <li><a href="#">Track My Order</a></li>
                                         <li><a href="#">Help</a></li>
@@ -906,7 +804,7 @@
                                 <li><a href="category-fullwidth.html">Shop Fullwidth No Sidebar</a></li>
                                 <li><a href="product-category-boxed.html">Product Category Boxed</a></li>
                                 <li><a href="product-category-fullwidth.html"><span>Product Category Fullwidth<span class="tip tip-new">New</span></span></a></li>
-                                <li><a href="cart.html">Cart</a></li>
+                                <li><a href="cusCart.jsp">Cart</a></li>
                                 <li><a href="cusCheckOut.jsp">Checkout</a></li>
                                 <li><a href="wishlist.html">Wishlist</a></li>
                                 <li><a href="#">Lookbook</a></li>

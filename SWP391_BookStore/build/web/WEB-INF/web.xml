@@ -221,10 +221,6 @@
         <servlet-class>com.bookstore.Admin.AddBlacklistController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CartController</servlet-name>
-        <servlet-class>com.bookstore.Cart.CartController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>CusHomeNavController</servlet-name>
         <servlet-class>com.bookstore.Customer.CusHomeNavController</servlet-class>
     </servlet>
@@ -293,6 +289,25 @@
         <servlet-class>com.bookstore.Seller.ListBook</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+        <servlet-name>CartController</servlet-name>
+        <servlet-class>com.bookstore.Cart.CartController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckOutController</servlet-name>
+        <servlet-class>com.bookstore.Cart.CheckOutController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateDetailOrder</servlet-name>
+        <servlet-class>com.bookstore.Cart.UpdateDetailOrder</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CusOrderHome</servlet-name>
+        <servlet-class>com.bookstore.Customer.CusOrderHome</servlet-class>
+=======
+>>>>>>> Stashed changes
         <servlet-name>SearchController</servlet-name>
         <servlet-class>com.bookstore.controller.SearchController</servlet-class>
     </servlet>
@@ -311,6 +326,10 @@
     <servlet>
         <servlet-name>AdFeedbackDetail</servlet-name>
         <servlet-class>com.bookstore.Admin.AdFeedbackDetail</servlet-class>
+<<<<<<< Updated upstream
+=======
+>>>>>>> 060fd2cce2311b9a5535fd6d77f24fd92655c595
+>>>>>>> Stashed changes
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -445,10 +464,6 @@
         <url-pattern>/admin/addBlacklist</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CartController</servlet-name>
-        <url-pattern>/cart/cartcontroller</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>CusHomeNavController</servlet-name>
         <url-pattern>/customer/cushomenav</url-pattern>
     </servlet-mapping>
@@ -517,6 +532,25 @@
         <url-pattern>/Seller/listbook</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+        <servlet-name>CartController</servlet-name>
+        <url-pattern>/cart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckOutController</servlet-name>
+        <url-pattern>/customer/checkout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateDetailOrder</servlet-name>
+        <url-pattern>/customer/updatedetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CusOrderHome</servlet-name>
+        <url-pattern>/customer/cusorderhome</url-pattern>
+=======
+>>>>>>> Stashed changes
         <servlet-name>SearchController</servlet-name>
         <url-pattern>/SearchController</url-pattern>
     </servlet-mapping>
@@ -535,6 +569,10 @@
     <servlet-mapping>
         <servlet-name>AdFeedbackDetail</servlet-name>
         <url-pattern>/admin/feedbackDetail</url-pattern>
+<<<<<<< Updated upstream
+=======
+>>>>>>> 060fd2cce2311b9a5535fd6d77f24fd92655c595
+>>>>>>> Stashed changes
     </servlet-mapping>
     <session-config>
         <session-timeout>

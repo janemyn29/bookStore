@@ -27,7 +27,8 @@ public class ReceiptDAO {
 
     public List<Receipt> getListReceipt() {
         try {
-            String query = " Select receiptID, accountID, orderDate, totalImportPrice, companyID from tblReceipt";
+            String query = "Select r.receiptID, r.orderDate, r.totalImportPrice, pc.companyName, pc.companyID\n"
+                    + "from tblReceipt r  join tblPublishCompany pc on r.companyID = pc.companyID\n";
 
             conn = new DBUtils().getConnection();
             stm = conn.prepareStatement(query);
@@ -36,7 +37,7 @@ public class ReceiptDAO {
             List<Receipt> list = new ArrayList<>();
             while (rs.next()) {
 
-                Receipt r = new Receipt(rs.getInt(1), rs.getInt(2), rs.getDate(3), rs.getInt(4), rs.getInt(5));
+                Receipt r = new Receipt(rs.getInt(1), rs.getDate(2), rs.getInt(3), rs.getString(4));
                 list.add(r);
             }
             return list;
@@ -47,7 +48,7 @@ public class ReceiptDAO {
         return null;
     }
 
-   public List<Receipt> getReceiptByReceiptID(String receiptID) {
+    public List<Receipt> getReceiptByReceiptID(String receiptID) {
         List<Receipt> list = new ArrayList<>();
         try {
             String query = "select  r.orderDate, b.importPrice,pc.companyName,b.bookCode,rd.importQty, b.bookName, r.receiptID,b.quantity\n"
@@ -62,13 +63,13 @@ public class ReceiptDAO {
             rs = stm.executeQuery();
             while (rs.next()) {
                 list.add(new Receipt(rs.getDate(1),
-                                        rs.getInt(2),
-                                        rs.getString(3),
-                                        rs.getLong(4),
-                                        rs.getInt(5),
-                                        rs.getString(6),
-                                        rs.getInt(7),
-                                        rs.getInt(8)));
+                        rs.getInt(2),
+                        rs.getString(3),
+                        rs.getLong(4),
+                        rs.getInt(5),
+                        rs.getString(6),
+                        rs.getInt(7),
+                        rs.getInt(8)));
             }
 
         } catch (Exception e) {
@@ -77,6 +78,7 @@ public class ReceiptDAO {
         return list;
 
     }
+
     public void insertReceipt(int receiptID, int accountID, Date orderDate, int totalImportPrice, int companyID) throws SQLException {
         try {
             String query = " Insert into tblReceipt values (?, ?, ?, ?, ?)";
@@ -102,7 +104,6 @@ public class ReceiptDAO {
 
     }
 
-
     //dem so luong trong db
     public int getToTalReceipt() throws ClassNotFoundException, SQLException {
 
@@ -120,16 +121,11 @@ public class ReceiptDAO {
 
         return 0;
     }
-    
 
     public static void main(String[] args) {
         ReceiptDAO receiptDAO = new ReceiptDAO();
 //        System.out.println(receiptDAO.getReceiptByReceiptID("3"));
         System.out.println(receiptDAO.getListReceipt());
-            }
-            
-        
-        
-    
-     
+    }
+
 }

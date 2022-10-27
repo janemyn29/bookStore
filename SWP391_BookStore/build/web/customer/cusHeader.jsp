@@ -6,7 +6,7 @@
 
 <%@page import="com.bookstore.Account.Account"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib  prefix ="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <header class="header">
     <div class="header-top">
@@ -46,7 +46,7 @@
                     <i class="icon-bars"></i>
                 </button>
 
-                <a href="cusHome.jsp" class="logo">
+                <a href="home" class="logo">
                     <img src="assets/images/logo.png" alt="Molla Logo" width="105" height="25">
                 </a>
 
@@ -91,18 +91,64 @@
                         </div><!-- End .header-search-wrapper -->
                     </form>
                 </div><!-- End .header-search -->
+                <%
 
+                    if (session.getAttribute("cart") == null) {
+                %>
                 <div class="dropdown cart-dropdown">
                     <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
                         <i class="icon-shopping-cart"></i>
+                        <span class="cart-count">${cart.size()}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
+                        <div class="dropdown-cart-products">
+                            <label  style="color: black;">Your cart is empty</label>
+                        </div>
                         <div class="dropdown-cart-action">
-                            <a href="cart.html" class="btn btn-primary">View Cart</a>
-                            <a href="checkout.html" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
+                            <a href="cusCart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span></a>
+                            <a href="cusCheckOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
                         </div><!-- End .dropdown-cart-total -->
                     </div><!-- End .dropdown-menu -->
                 </div><!-- End .cart-dropdown -->
+                <%} else {%>
+                <div class="dropdown cart-dropdown">
+                    <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                        <i class="icon-shopping-cart"></i>
+                        <span class="cart-count">${cart.size()}</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <c:forEach items="${cart}" var="cart">
+                            <div class="dropdown-cart-products">
+                                <div class="product">
+                                    <div class="product-cart-details">
+                                        <h4 class="product-title">
+                                            <a href="product.html">${cart.book.bookName}</a>
+                                        </h4>
+
+                                        <span class="cart-product-info">
+                                            <span class="cart-product-qty">${cart.qty}</span>
+                                            x ${cart.book.buyPrice} vnd
+                                        </span>
+                                    </div><!-- End .product-cart-details -->
+
+                                    <figure class="product-image-container">
+                                        <a href="product.html" class="product-image">
+                                            <img src="${cart.book.image}" alt="product">
+                                        </a>
+                                    </figure>
+                                    <a href="${pageContext.request.contextPath }/cart?action=removeHome&bookCode=${cart.book.bookCode}" class="btn-remove"><i class="icon-close"></i></a>
+                                </div><!-- End .product -->
+
+                            </div><!-- End .cart-product -->    
+                        </c:forEach>
+
+                        <div class="dropdown-cart-action">
+                            <a href="cusCart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span></a>
+                            <a href="cusCheckOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
+                        </div><!-- End .dropdown-cart-total -->
+                    </div><!-- End .dropdown-menu -->
+                </div><!-- End .cart-dropdown -->
+                <%}%>
             </div><!-- End .header-right -->
         </div><!-- End .container -->
     </div><!-- End .header-middle -->

@@ -6,7 +6,6 @@
 package com.bookstore.Receipt;
 
 import java.sql.Date;
-import java.util.List;
 
 /**
  *
@@ -31,6 +30,15 @@ public class Receipt {
     public Receipt() {
     }
 
+    public Receipt(int receiptID, Date orderDate, int totalImportPrice, String companyName) {
+        this.receiptID = receiptID;
+        this.orderDate = orderDate;
+        this.totalImportPrice = totalImportPrice;
+        this.companyName = companyName;
+    }
+    
+    
+    
     public Receipt(int receiptID, int accountID, Date orderDate, int totalImportPrice, int companyID) {
         this.receiptID = receiptID;
         this.accountID = accountID;
@@ -49,6 +57,21 @@ public class Receipt {
         this.receiptID = receiptID;
         this.quantity = quantity;
     }
+
+    public Receipt(Date orderDate, int totalImportPrice, String companyName, long bookCode, int importQty, int importPrice, String bookName, int quantity) {
+        this.orderDate = orderDate;
+        this.totalImportPrice = totalImportPrice;
+        this.companyName = companyName;
+        this.bookCode = bookCode;
+        this.importQty = importQty;
+        this.importPrice = importPrice;
+        this.bookName = bookName;
+        this.quantity = quantity;
+    }
+
+    
+    
+    
 
     public int getQuantity() {
         return quantity;

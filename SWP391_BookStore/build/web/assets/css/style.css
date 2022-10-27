@@ -19898,4 +19898,20 @@ button:focus {
     content: '\f7e3'
 }
 
+.center-parent {
+    text-align: center;
+}
+
+
+.line-through {
+    width: 100px;
+    color: gray;
+    font-weight: 400;
+    text-decoration: line-through;
+}
+
+.right-parent {
+    text-align: right;
+}
+
 /*# sourceMappingURL=style.css.map */
