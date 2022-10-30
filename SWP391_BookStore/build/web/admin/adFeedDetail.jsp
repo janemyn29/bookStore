@@ -59,27 +59,41 @@
                             </a>
 
                         </li>
+
+                        <li>
+                            <a href="adbook" aria-expanded="false">
+                                <i class="icon-book-open"></i><span class="nav-text">Book Management</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="widgets.html" aria-expanded="false">
+                                <i class="icon-pencil"></i><span class="nav-text">Author Management</span>
+                            </a>
+                        </li>
                         <li class="mega-menu mega-menu-sm">
                             <a href="adcustomer" aria-expanded="false">
-                                <i class="fa fa-cart-plus menu-icon"></i><span class="nav-text">Customer Management</span>
+                                <i class="icon-user"></i><span class="nav-text">Customer Management</span>
+                            </a>
+
+                        </li>
+
+                        <li>
+                            <a  href="adseller" aria-expanded="false">
+                                <i class="fa fa-cart-plus menu-icon"></i> <span class="nav-text">Seller Management</span>
                             </a>
 
                         </li>
                         <li>
-                            <a href="adseller" aria-expanded="false">
-                                <i class="fa fa-user menu-icon"></i> <span class="nav-text">Seller Management</span>
-                            </a>
-
-                        </li>
-                        <li>
-                            <a  href="adimporter" aria-expanded="false">
+                            <a class="" href="adimporter" aria-expanded="false">
                                 <i class="fa fa-arrow-circle-right menu-icon"></i><span class="nav-text">Importer Management</span>
                             </a>
 
                         </li>
+
+
                         <li>
                             <a href="blacklist" aria-expanded="false">
-                                <i class="fa fa-minus-circle menu-icon"></i> <span class="nav-text">Blacklist Management</span>
+                                <i class="icon-close"></i> <span class="nav-text">Blacklist Management</span>
                             </a>
 
                         </li>
@@ -125,37 +139,37 @@
                             <div class="card">
                                 <div class="card-body">
                                     <span class="card-title">Feedback Detail</span>
- 
+
                                     <div class="form-group row" style="margin-top: 10px">
                                         <label class="col-sm-2 col-form-label">Bookcode</label>
                                         <div class="col-sm-10">
-                                            <input type="email" name="email" class="form-control" value='${ListB.get(0).getBookcode()}' readonly>
+                                            <input type="text" name="email" class="form-control" value='${ListB.get(0).getBookcode()}' readonly>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">BookName</label>
                                         <div class="col-sm-10">
-                                            <input type="email" name="email" class="form-control" value='${ListB.get(0).getBookName()}'  readonly>
+                                            <input type="text" name="email" class="form-control" value='${ListB.get(0).getBookName()}'  readonly>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Category</label>
                                         <div class="col-sm-10">
-                                            <input type="email" name="email" class="form-control" value='${ListB.get(0).getCateName()}'  readonly>
+                                            <input type="text" name="email" class="form-control" value='${ListB.get(0).getCateName()}'  readonly>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Total Feedback</label>
                                         <div class="col-sm-10">
-                                            <input type="email" name="email" class="form-control"  value='${ListB.get(0).getTotalFeed()}' readonly>
+                                            <input type="text" name="email" class="form-control"  value='${ListB.get(0).getTotalFeed()}' readonly>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                                    <label class="col-sm-2 col-form-label">Average Star</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="email" name="email" class="form-control" value='${ListB.get(0).getAveStar()}'  readonly>
-                                                    </div>
-                                                </div>
+                                        <label class="col-sm-2 col-form-label">Average Star</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="email" class="form-control" value='${ListB.get(0).getAveStar()}'  readonly>
+                                        </div>
+                                    </div>
                                     <div class="table-responsive">
                                         <table class="table table-striped table-bordered zero-configuration">
                                             <thead>

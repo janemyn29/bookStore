@@ -59,30 +59,43 @@
                         </a>
                         
                     </li>
-                    <li class="mega-menu mega-menu-sm">
-                        <a href="adcustomer" aria-expanded="false">
-                            <i class="fa fa-cart-plus menu-icon"></i><span class="nav-text">Customer Management</span>
-                        </a>
-                        
-                    </li>
                     <li>
-                        <a href="adseller" aria-expanded="false">
-                            <i class="fa fa-user menu-icon"></i> <span class="nav-text">Seller Management</span>
-                        </a>
-                        
-                    </li>
-                    <li>
-                        <a  href="adimporter" aria-expanded="false">
-                            <i class="fa fa-arrow-circle-right menu-icon"></i><span class="nav-text">Importer Management</span>
-                        </a>
-                        
-                    </li>
-                    <li>
-                        <a href="blacklist" aria-expanded="false">
-                            <i class="fa fa-minus-circle menu-icon"></i> <span class="nav-text">Blacklist Management</span>
-                        </a>
-                        
-                    </li>
+                            <a href="adbook" aria-expanded="false">
+                                <i class="icon-book-open"></i><span class="nav-text">Book Management</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="widgets.html" aria-expanded="false">
+                                <i class="icon-pencil"></i><span class="nav-text">Author Management</span>
+                            </a>
+                        </li>
+                        <li class="mega-menu mega-menu-sm">
+                            <a href="adcustomer" aria-expanded="false">
+                                <i class="icon-user"></i><span class="nav-text">Customer Management</span>
+                            </a>
+
+                        </li>
+
+                        <li>
+                            <a  href="adseller" aria-expanded="false">
+                                <i class="fa fa-cart-plus menu-icon"></i> <span class="nav-text">Seller Management</span>
+                            </a>
+
+                        </li>
+                        <li>
+                            <a class="" href="adimporter" aria-expanded="false">
+                                <i class="fa fa-arrow-circle-right menu-icon"></i><span class="nav-text">Importer Management</span>
+                            </a>
+
+                        </li>
+
+
+                        <li>
+                            <a href="blacklist" aria-expanded="false">
+                                <i class="icon-close"></i> <span class="nav-text">Blacklist Management</span>
+                            </a>
+
+                        </li>
                     <li>
                         <a class="active" href="feedback" aria-expanded="false">
                             <i class="icon-envelope menu-icon"></i><span class="nav-text">Feedback Management</span>
@@ -169,7 +182,7 @@
                                                 <td>${o.getAveStar()}  <a style="color: #f4c01e;" class="fa fa-star"></a></td>
                                                 <td>
                                                     <c:if test="${o.getTotalFeed()!=0}">
-                                                    <a href='feedbackDetail?code=${o.getBookcode()}'  style="margin-left: 20px ;" class="fa fa-eye"></a>
+                                                    <a href='feedbackDetail?code=${o.getBookcode()}' data-toggle="tooltip" data-placement="bottum" title="View Feedback Detail"><i style="margin-left: 20px" class="icon-eye"></i></a>
                                                     </c:if>
                                                     </td>
                                             </tr>

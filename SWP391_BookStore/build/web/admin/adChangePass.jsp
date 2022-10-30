@@ -1,4 +1,4 @@
-<%-- 
+x<%-- 
     Document   : addNewSeller
     Created on : Sep 27, 2022, 12:10:56 AM
     Author     : tramy
@@ -56,9 +56,19 @@
                             </a>
 
                         </li>
+                        <li>
+                            <a href="adbook" aria-expanded="false">
+                                <i class="icon-book-open"></i><span class="nav-text">Book Management</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="widgets.html" aria-expanded="false">
+                                <i class="icon-pencil"></i><span class="nav-text">Author Management</span>
+                            </a>
+                        </li>
                         <li class="mega-menu mega-menu-sm">
                             <a href="adcustomer" aria-expanded="false">
-                                <i class="fa fa-user menu-icon"></i><span class="nav-text">Customer Management</span>
+                                <i class="icon-user"></i><span class="nav-text">Customer Management</span>
                             </a>
 
                         </li>
@@ -79,7 +89,7 @@
 
                         <li>
                             <a href="blacklist" aria-expanded="false">
-                                <i class="fa fa-minus-circle menu-icon"></i> <span class="nav-text">Blacklist Management</span>
+                                <i class="icon-close"></i> <span class="nav-text">Blacklist Management</span>
                             </a>
 
                         </li>
@@ -121,13 +131,14 @@
 
                                     <h4 class="card-title">Change Password</h4>
                                     <c:if test='${check == "Password update success!"}'>
-                                        <h6 style="color: green">${check}</h6>
+                                        <div class="alert alert-success">${check}</div>
+                                        
                                     </c:if>
                                     <c:if test='${check == "Confirm password do not match!!!"}'>
-                                        <h6 style="color: red">${check}</h6>
+                                        <div class="alert alert-danger">${check}</div>
                                     </c:if>
                                     <c:if test='${check == "Current password incorrect!!!"}'>
-                                        <h6 style="color: red">${check}</h6>
+                                        <div class="alert alert-danger">${check}</div>
                                     </c:if>
 
 

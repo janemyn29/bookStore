@@ -59,30 +59,43 @@
                         </a>
                         
                     </li>
-                    <li class="mega-menu mega-menu-sm">
-                        <a href="adcustomer" aria-expanded="false">
-                            <i class="fa fa-cart-plus menu-icon"></i><span class="nav-text">Customer Management</span>
-                        </a>
-                        
-                    </li>
                     <li>
-                        <a href="adseller" aria-expanded="false">
-                            <i class="fa fa-user menu-icon"></i> <span class="nav-text">Seller Management</span>
-                        </a>
-                        
-                    </li>
-                    <li>
-                        <a class="active" href="adimporter" aria-expanded="false">
-                            <i class="fa fa-arrow-circle-right menu-icon"></i><span class="nav-text">Importer Management</span>
-                        </a>
-                        
-                    </li>
-                    <li>
-                        <a href="blacklist" aria-expanded="false">
-                            <i class="fa fa-minus-circle menu-icon"></i> <span class="nav-text">Blacklist Management</span>
-                        </a>
-                        
-                    </li>
+                            <a href="adbook" aria-expanded="false">
+                                <i class="icon-book-open"></i><span class="nav-text">Book Management</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="widgets.html" aria-expanded="false">
+                                <i class="icon-pencil"></i><span class="nav-text">Author Management</span>
+                            </a>
+                        </li>
+                        <li class="mega-menu mega-menu-sm">
+                            <a href="adcustomer" aria-expanded="false">
+                                <i class="icon-user"></i><span class="nav-text">Customer Management</span>
+                            </a>
+
+                        </li>
+
+                        <li>
+                            <a  href="adseller" aria-expanded="false">
+                                <i class="fa fa-cart-plus menu-icon"></i> <span class="nav-text">Seller Management</span>
+                            </a>
+
+                        </li>
+                        <li>
+                            <a class="active" class="" href="adimporter" aria-expanded="false">
+                                <i class="fa fa-arrow-circle-right menu-icon"></i><span class="nav-text">Importer Management</span>
+                            </a>
+
+                        </li>
+
+
+                        <li>
+                            <a href="blacklist" aria-expanded="false">
+                                <i class="icon-close"></i> <span class="nav-text">Blacklist Management</span>
+                            </a>
+
+                        </li>
                     <li>
                         <a href="feedback" aria-expanded="false">
                             <i class="icon-envelope menu-icon"></i><span class="nav-text">Feedback Management</span>
@@ -122,7 +135,9 @@
                         <div class="card">
                             <div class="card-body">
                                 <span class="card-title">Importer Management</span>
-                                <button style="margin-left: 600px" type="button" class="btn mb-1 btn-rounded btn-outline-warning"><a style="padding-left: 10px;padding-right: 10px"  class="fa fa-plus" href="addimpnav"></a></button>
+                                <br>
+                               
+                                <a href="addimpnav" style="margin-top: 10px"><button  class="btn btn-outline-dark" >Add New Importer Account</button></a>
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered zero-configuration">
                                         <thead>
@@ -142,7 +157,8 @@
                                                 <td>${o.getPhone()}</td>
                                                 <td>${o.getEmail()}</td>
                                                 <td>
-                                                    <a onclick='showMess(${o.getAccID()})' style="margin-left: 43px ;" class="fa fa-minus-circle"></a>
+                                                   <a onclick='showMess(${o.getAccID()})' style="margin-left: 40px"  data-toggle="tooltip" data-placement="bottom" title="Remove to BlackList"><i   class="icon-close"></i></a>
+                                                    
                                                 </td>
                                             </tr>
                                             </c:forEach>
@@ -166,11 +182,7 @@
         <!--**********************************
             Footer start
         ***********************************-->
-        <div class="footer">
-            <div class="copyright">
-                <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Quixlab</a> 2018</p>
-            </div>
-        </div>
+        
         <!--**********************************
             Footer end
         ***********************************-->

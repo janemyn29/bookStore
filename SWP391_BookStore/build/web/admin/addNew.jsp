@@ -56,9 +56,19 @@
                             </a>
 
                         </li>
+                        <li>
+                            <a href="adbook" aria-expanded="false">
+                                <i class="icon-book-open"></i><span class="nav-text">Book Management</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="widgets.html" aria-expanded="false">
+                                <i class="icon-pencil"></i><span class="nav-text">Author Management</span>
+                            </a>
+                        </li>
                         <li class="mega-menu mega-menu-sm">
                             <a href="adcustomer" aria-expanded="false">
-                                <i class="fa fa-user menu-icon"></i><span class="nav-text">Customer Management</span>
+                                <i class="icon-user"></i><span class="nav-text">Customer Management</span>
                             </a>
 
                         </li>
@@ -94,7 +104,7 @@
 
                         <li>
                             <a href="blacklist" aria-expanded="false">
-                                <i class="fa fa-minus-circle menu-icon"></i> <span class="nav-text">Blacklist Management</span>
+                                <i class="icon-close"></i> <span class="nav-text">Blacklist Management</span>
                             </a>
 
                         </li>

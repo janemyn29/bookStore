@@ -19,6 +19,10 @@ public class Order {
     private int total;
     private String Note;
     private String status;
+    private String accName;
+    private String email;
+    private String phone;
+    
 
     public Order() {
     }
@@ -32,6 +36,20 @@ public class Order {
         this.Note = Note;
         this.status = status;
     }
+
+    public Order(int orderID, int accountID, Date orderDate, String address, int total, String Note, String status, String accName, String email, String phone) {
+        this.orderID = orderID;
+        this.accountID = accountID;
+        this.orderDate = orderDate;
+        this.address = address;
+        this.total = total;
+        this.Note = Note;
+        this.status = status;
+        this.accName = accName;
+        this.email = email;
+        this.phone = phone;
+    }
+    
 
     public int getOrderID() {
         return orderID;
@@ -89,11 +107,37 @@ public class Order {
         this.status = status;
     }
 
-    @Override
-    public String toString() {
-        return "Order{" + "orderID=" + orderID + ", accountID=" + accountID + ", orderDate=" + orderDate + ", address=" + address + ", total=" + total + ", Note=" + Note + ", status=" + status + '}';
+    public String getAccName() {
+        return accName;
     }
 
+    public void setAccName(String accName) {
+        this.accName = accName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" + "orderID=" + orderID + ", accountID=" + accountID + ", orderDate=" + orderDate + ", address=" + address + ", total=" + total + ", Note=" + Note + ", status=" + status + ", accName=" + accName + ", email=" + email + ", phone=" + phone + '}';
+    }
+
+    
+    
     
     
   

@@ -56,6 +56,16 @@
                             </a>
 
                         </li>
+                        <li>
+                            <a href="adbook" aria-expanded="false">
+                                <i class="fa fa-money menu-icon"></i><span class="nav-text">Book Management</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="widgets.html" aria-expanded="false">
+                                <i class="fa fa-money menu-icon"></i><span class="nav-text">Author Management</span>
+                            </a>
+                        </li>
                         <li class="mega-menu mega-menu-sm">
                             <a href="adcustomer" aria-expanded="false">
                                 <i class="fa fa-user menu-icon"></i><span class="nav-text">Customer Management</span>
@@ -142,11 +152,11 @@
                                             <div class="form-group row">
                                                 <div class="col-sm-10">
                                                     <div class="basic-form">
-                                                        <button type="button" class="btn mb-1 btn-rounded btn-outline-warning"><a style="margin-left: 23px;margin-right: 22px" href="editProfileNav">Edit Profile</a></button>
-                                                       
+                                                        <a href="editProfileNav" ><button class="btn mb-1 btn-warning" ><span style="margin-left: 23px;margin-right: 22px">Edit Profile</span></button></a>
+
                                                     </div>
                                                     <div class="basic-form">
-                                                        <button type="button" class="btn mb-1 btn-rounded btn-outline-warning"><a href="changenav">Change Password</a></button>
+                                                        <a href="changenav"><button  class="btn mb-1 btn-warning" >Change Password</button></a>
                                                         
                                                     </div>
                                                 </div>
