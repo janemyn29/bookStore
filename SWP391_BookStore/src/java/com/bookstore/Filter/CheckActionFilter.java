@@ -61,16 +61,6 @@ public class CheckActionFilter implements Filter {
                      request.setAttribute("temp", "Your Account has been blocked !");
                     request.getRequestDispatcher("login.jsp").forward(request, response);
                 }
-//                else {
-//                    int uid = account.getuID();
-//                    CustomerDAO dAO = new CustomerDAO();
-//                    CustomerDTO customer = dAO.getCustomerByID(uid);
-//                    HttpSession session = request.getSession();
-//                    session.setAttribute("acc", account);
-//                    session.setAttribute("cus", customer);
-//
-////                request.setAttribute("check", "fail");
-//                    request.getRequestDispatcher("home").forward(request, response);
 
             } catch (NoSuchAlgorithmException ex) {
 //                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);

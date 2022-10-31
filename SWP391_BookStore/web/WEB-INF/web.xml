@@ -32,6 +32,8 @@
         <filter-name>CheckSellerExistFilter</filter-name>
         <filter-class>com.bookstore.Seller.CheckSellerExistFilter</filter-class>
     </filter>
+    
+    
     <filter-mapping>
         <filter-name>CheckSellerExistFilter</filter-name>
         <servlet-name>SellerEditProfileController</servlet-name>
@@ -92,10 +94,16 @@
         <filter-name>ValidateFilter</filter-name>
         <servlet-name>LoginController</servlet-name>
     </filter-mapping>
+    
+    
     <filter-mapping>
         <filter-name>CheckActionFilter</filter-name>
         <servlet-name>LoginController</servlet-name>
     </filter-mapping>
+    
+    
+    
+    
     <servlet>
         <servlet-name>LoginController</servlet-name>
         <servlet-class>com.bookstore.controller.LoginController</servlet-class>

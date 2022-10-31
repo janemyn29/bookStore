@@ -4,6 +4,9 @@
     Author     : tramy
 --%>
 
+<%@page import="com.bookstore.Format.MoneyFormat"%>
+<%@page import="com.bookstore.OrderDetail.OrderDetail"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib  prefix ="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -188,16 +191,22 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <c:forEach items="${detail}" var="o">
-                                                    <tr>
-                                                        <td>${o.getDetailID()}</td>
-                                                        <td>${o.getBookcode()}</td>
-                                                        <td>${o.getbName()}</td>
-                                                        <td><img width="80px" src="${o.getImg()}"></td>
-                                                        <td>${o.getQuantity()}</td>
-                                                        <td>${o.getPrice()}</td>
-                                                    </tr>
-                                                </c:forEach>
+                                                <%
+                                                    List<OrderDetail> detail= (List<OrderDetail>)request.getAttribute("detail");
+                                                    for (OrderDetail o : detail) {
+                                                        MoneyFormat fm = new MoneyFormat();
+                                                        String foString = fm.formatMoney(o.getPrice());
+                                                            out.print("<tr>"
+                                                        +"<td>"+o.getDetailID()+"</td>"
+                                                        +"<td>"+o.getBookcode()+"</td>"
+                                                        +"<td>"+o.getbName()+"</td>"
+                                                        +"<td><img width='80px' src='"+o.getImg()+"'></td>"
+                                                       +" <td>"+o.getQuantity()+"</td>"
+                                                        +"<td>"+foString+"</td>"
+                                                    +"</tr>");
+                                                        }
+                                                %>
+                                               
                                             </tbody>
                                         </table>
                                     </div>

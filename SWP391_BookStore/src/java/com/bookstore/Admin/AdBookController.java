@@ -5,6 +5,8 @@
  */
 package com.bookstore.Admin;
 
+import com.bookstore.Author.Author;
+import com.bookstore.Author.AuthorDAO;
 import com.bookstore.Book.Book;
 import com.bookstore.Book.BookDAO;
 import java.io.IOException;
@@ -36,8 +38,29 @@ public class AdBookController extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             BookDAO dao = new BookDAO();
-            List<Book> list= dao.getBookManage();
+            List<Book> list = dao.getBookManage();
+            AuthorDAO authordAO = new AuthorDAO();
+
+            for (Book b : list) {
+
+                String code = String.valueOf(b.getBookCode());
+                List<Author> listA = authordAO.getListAuthorByBookcode(code);
+                String plusString = "";
+                if (listA==null) {
+                    
+                }else if (listA.size() == 1) {
+                    b.setAuthorName(listA.get(0).getName());
+
+                } else if (listA.size() > 1) {
+                    plusString = "";
+                    for (Author a : listA) {
+                        plusString = plusString  + a.getName()+ ",";
+                    }
+                    b.setAuthorName(plusString);
+                }
+            }
             request.setAttribute("listB", list);
+
             request.getRequestDispatcher("adBook.jsp").forward(request, response);
         }
     }

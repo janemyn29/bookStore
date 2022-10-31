@@ -61,7 +61,7 @@
 
                         </li>
                         <li>
-                            <a class="active" href="adbook" aria-expanded="false">
+                            <a href="adbook" aria-expanded="false">
                                 <i class="icon-book-open"></i><span class="nav-text">Book Management</span>
                             </a>
                         </li>
@@ -72,25 +72,22 @@
                         </li>
                         <li class="mega-menu mega-menu-sm">
                             <a href="adcustomer" aria-expanded="false">
-                                <i class="icon-user"></i><span class="nav-text">Customer Management</span>
+                                <i class="icon-user "></i><span class="nav-text">Customer Management</span>
                             </a>
 
                         </li>
-
                         <li>
-                            <a  href="adseller" aria-expanded="false">
+                            <a href="adseller" aria-expanded="false">
                                 <i class="fa fa-cart-plus menu-icon"></i> <span class="nav-text">Seller Management</span>
                             </a>
 
                         </li>
                         <li>
-                            <a  class="" href="adimporter" aria-expanded="false">
+                            <a href="adimporter" aria-expanded="false">
                                 <i class="fa fa-arrow-circle-right menu-icon"></i><span class="nav-text">Importer Management</span>
                             </a>
 
                         </li>
-
-
                         <li>
                             <a href="blacklist" aria-expanded="false">
                                 <i class="icon-close"></i> <span class="nav-text">Blacklist Management</span>
@@ -124,7 +121,7 @@
                     <div class="col p-md-0">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">Home</li>
-                            <li class="breadcrumb-item active">Book Management</li>
+                            <li class="breadcrumb-item active">Importer Management</li>
                         </ol>
                     </div>
                 </div>
@@ -135,10 +132,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <span class="card-title">Book Management</span>
-                                    <br>
-
-
+                                    <h4 class="card-title">Data Table</h4>
                                     <div class="table-responsive">
                                         <table class="table table-striped table-bordered zero-configuration">
                                             <thead>
@@ -146,26 +140,22 @@
                                                     <th>Book Code</th>
                                                     <th>Book Name</th>
                                                     <th>Image</th>
-                                                    <th>Category</th>
-                                                    
                                                     <th>Author</th>
                                                     <th>Publish Company</th>
-                                                    <th>Qty</th>
+                                                    <th>Quantity</th>
                                                     <th>Description</th>
-                                                    <th>Import Price</th>
+                                                    <th>Imported Price</th>
                                                     <th>Sale Price</th>
-                                                    <th>Status</th>
+                                                    <th>Post Status</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
                                             <c:forEach items="${listB}" var="b">
-                                                
+                                                <tbody>
                                                     <tr>
                                                         <td>${b.bookCode}</td>
                                                         <td>${b.bookName}</td>
-                                                        <td><img width="30px" class="card-img-top" src="${b.image}" alt="Card image cap"></td>
-                                                        <td>${b.cateName}</td>
+                                                        <td><img class="card-img-top" src="${b.image}" alt="Card image cap"></td>
                                                         <td>
                                                             <c:forTokens var="token" items="${b.authorName}" delims=",">
                                                     <li><span style="color : #c96;">- </span><c:out value="${token}"/><li>
@@ -215,34 +205,22 @@
 
 
                                                     </tr>
-                                                
+                                                </tbody>
 
                                             </c:forEach>
-                                                  
-
-                                            </tbody>
-
-                                        </table>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <!-- #/ container -->
             </div>
             <!--**********************************
                 Content body end
             ***********************************-->
 
-
-            <!--**********************************
-                Footer start
-            ***********************************-->
-
-            <!--**********************************
-                Footer end
-            ***********************************-->
         </div>
         <!--**********************************
             Main wrapper end
@@ -260,7 +238,38 @@
         <script src="./plugins/tables/js/jquery.dataTables.min.js"></script>
         <script src="./plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
         <script src="./plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
+        <script>
+                                                                     $(document).ready(function () {
+                                                                         // Activate tooltip
+                                                                         $('[data-toggle="tooltip"]').tooltip();
 
+                                                                         // Select/Deselect checkboxes
+                                                                         var checkbox = $('table tbody input[type="checkbox"]');
+                                                                         $("#selectAll").click(function () {
+                                                                             if (this.checked) {
+                                                                                 checkbox.each(function () {
+                                                                                     this.checked = true;
+                                                                                 });
+                                                                             } else {
+                                                                                 checkbox.each(function () {
+                                                                                     this.checked = false;
+                                                                                 });
+                                                                             }
+                                                                         });
+                                                                         checkbox.click(function () {
+                                                                             if (!this.checked) {
+                                                                                 $("#selectAll").prop("checked", false);
+                                                                             }
+                                                                         });
+                                                                     });
+
+                                                                     function showMess(id) {
+                                                                         var option = confirm("Are you sure to add Import Manager have id = " + id + " to BlackList ?");
+                                                                         if (option === true) {
+                                                                             window.location.href = "addBlacklist?page=importer&id=" + id;
+                                                                         }
+                                                                     }
+        </script>
 
     </body>
 

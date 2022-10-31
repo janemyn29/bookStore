@@ -56,8 +56,9 @@ public class OrderDAO {
         try {
             conn = new DBUtils().getConnection();
             ps = conn.prepareStatement(sql);
-            rs = ps.executeQuery();
             ps.setInt(1, accID);
+            rs = ps.executeQuery();
+            
 
             while (rs.next()) {
 
