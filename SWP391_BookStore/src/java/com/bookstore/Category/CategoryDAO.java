@@ -41,11 +41,14 @@ public class CategoryDAO {
     }
     public List<Book> getBookByCategory(String CName) {
         List<Book> list = new ArrayList<>();
-        String sql = "select b.bookCode, b.bookName, b.img, b.importPrice, b.buyPrice, b.description, b.quantity,c.cateID,c.cateName,p.postID,p.postName,pc.companyID,pc.companyName,b.postDate\n" +
-                "from (((tblBook b inner join tblCategory c on b.cateID=c.cateID)\n" +
-                "inner join tblPostHistory p on p.postID=b.postID)\n" +
-                "inner join tblPublishCompany pc on pc.companyID=b.companyID )\n" +
-                "where c.cateName= ? ";
+        String sql = "			select b.bookCode, b.bookName, b.img, b.importPrice, b.buyPrice, b.description, b.quantity,p.postID,ca.cateID,ca.cateName,p.postName,pc.companyID,pc.companyName,b.postDate,d.discountPercent,a.authorName\n" +
+"         from ((((((tblBook b left join tblDiscount d on b.bookCode=d.bookCode)\n" +
+"				inner join tblCompose c on b.bookCode=c.bookCode)\n" +
+"                  inner join tblCategory ca on b.cateID=ca.cateID)\n" +
+"                  inner join tblAuthor a on c.authorID=a.authorID)\n" +
+"                  inner join tblPostHistory p on p.postID=b.postID)\n" +
+"                inner join tblPublishCompany pc on pc.companyID=b.companyID )\n" +
+"                where ca.cateName= ? ";
         try {
             conn = new DBUtils().getConnection();
             ps = conn.prepareStatement(sql);
@@ -53,12 +56,24 @@ public class CategoryDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                list.add(new Book(rs.getLong(1),//bookcode
-                        rs.getString(2), //bookname
-                        rs.getString(3), //img
-                        rs.getInt(4),//impPrice
-                        rs.getInt(5), //buyPrice
-                        rs.getString(6), rs.getInt(7), rs.getInt(8), rs.getString(9), rs.getInt(10), rs.getString(11), rs.getInt(12), rs.getString(13),rs.getDate(14)));
+                list.add(new Book(
+                        rs.getLong("bookCode"),//bookcode
+                        rs.getString("bookName"),//bookname 
+                        rs.getString("img"),//image
+                        rs.getInt("importPrice"),//importprice
+                        rs.getInt("buyPrice"),//buyprice
+                        rs.getString("description"),//description
+                        rs.getInt("quantity"),//qty
+                        rs.getInt("cateID"),//cateID
+                        rs.getString("cateName"),//catename
+                        rs.getInt("postID"),//postID 
+                        rs.getString("postName"),//postName
+                        rs.getInt("companyID"),//companyID 
+                        rs.getString("companyName"),//companyName 
+                        rs.getDate("postDate"),//postdate
+                        rs.getInt("discountPercent"),
+                        rs.getString("authorName")//author
+                ));
             }
         } catch (Exception e) {
         }

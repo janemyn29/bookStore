@@ -106,11 +106,11 @@
                                                 </div><!-- End .product-cat -->
                                                 <h3 class="product-title"><a href="detail?pbookCode=${listAll.bookCode}&categoryBook=${listAll.cateName}">${listAll.bookName}</a></h3><!-- End .product-title -->
                                                 <div class="product-price">
-                                                    Price: ${listAll.buyPrice}đ
+                                                    Price: ${listAll.buyPrice-((listAll.discountPercent*listAll.buyPrice)/100)}đ
                                                 </div><!-- End .product-price -->
                                                 <div class="product-author">
                                                     <div class="product">
-                                                        Author:<div class="" style="width: 0%;"></div><!-- End .ratings-val -->
+                                                        Author: ${listAll.authorName}
                                                     </div><!-- End .ratings -->
                                                 </div><!-- End .rating-container -->
                                             </div><!-- End .product-body -->

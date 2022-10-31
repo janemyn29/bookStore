@@ -241,7 +241,7 @@
                                                     <div class="product-body">
                                                         <h3 class="product-title">${{o.bookName}}<a href="detail?pbookCode=${o.bookCode}&categoryBook=${o.cateName}"</a></h3><!-- End .product-title -->
                                                         <div class="product-price">
-                                                            Price: ${o.buyPrice}đ
+                                                            Price: ${o.buyPrice-((o.discountPercent*o.buyPrice)/100)}đ
                                                         </div><!-- End .product-price -->
 
 

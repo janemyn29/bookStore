@@ -97,7 +97,7 @@
                                     <div class="product-details">
                                         <h1 class="product-title">${detailProduct.bookName}</h1><!-- End .product-title -->
                                         <div class="product-price">
-                                            ${detailProduct.buyPrice}đ
+                                            Price: ${detailProduct.buyPrice-((detailProduct.discountPercent*detailProduct.buyPrice)/100)}đ
                                         </div><!-- End .product-price -->
                                         <div class="product-content">
                                             <p id="product-content-desc" class="product-content-desc">${detailProduct.description}</p>
@@ -137,7 +137,7 @@
                                 <div class="tab-pane p-0 fade show active" id="top-all-tab" role="tabpanel" aria-labelledby="top-all-link">
                                     <div class="products">
                                         <div class="row justify-content-center">
-                                            <c:forEach items="${RelatedBook}" var="o">
+                                            <c:forEach items="${listRecentArrival}" var="o">
                                                 <div class="col-6 col-md-4 col-lg-3">
                                                     <div class="product product-11 mt-v3 text-center">
                                                         <figure class="product-media">
@@ -153,7 +153,7 @@
                                                         <div class="product-body">
                                                             <h3 class="product-title">${o.bookName}<a href="detail?pbookCode=${o.bookCode}&categoryBook=${o.cateName}"</a></h3><!-- End .product-title -->
                                                             <div class="product-price">
-                                                                Price: ${o.buyPrice}đ
+                                                                Price: ${o.buyPrice-((o.discountPercent*o.buyPrice)/100)}đ
                                                             </div>
                                                         </div><!-- End .product-body -->
                                                         <div class="product-action">
