@@ -114,14 +114,14 @@ public class BookDAO {
     }
 
     public Book getBookBybookCode(String bookCode) {
-        String sql = "select b.bookCode, b.bookName, b.img, b.importPrice, b.buyPrice, b.description, b.quantity,p.postID,ca.cateID,ca.cateName,p.postName,pc.companyID,pc.companyName,b.postDate,d.discountPercent,a.authorName\n" +
-"                         from ((((((tblBook b left join tblDiscount d on b.bookCode=d.bookCode)\n" +
-"               		inner join tblCompose c on b.bookCode=c.bookCode)\n" +
-"                              inner join tblCategory ca on b.cateID=ca.cateID)\n" +
-"                               inner join tblAuthor a on c.authorID=a.authorID)\n" +
-"                              inner join tblPostHistory p on p.postID=b.postID)\n" +
-"                         inner join tblPublishCompany pc on pc.companyID=b.companyID )\n" +
-"                where b.bookCode= ? ";
+        String sql = "select b.bookCode, b.bookName, b.img, b.importPrice, b.buyPrice, b.description, b.quantity,p.postID,ca.cateID,ca.cateName,p.postName,pc.companyID,pc.companyName,b.postDate,d.discountPercent,a.authorName\n"
+                + "                         from ((((((tblBook b left join tblDiscount d on b.bookCode=d.bookCode)\n"
+                + "               		inner join tblCompose c on b.bookCode=c.bookCode)\n"
+                + "                              inner join tblCategory ca on b.cateID=ca.cateID)\n"
+                + "                               inner join tblAuthor a on c.authorID=a.authorID)\n"
+                + "                              inner join tblPostHistory p on p.postID=b.postID)\n"
+                + "                         inner join tblPublishCompany pc on pc.companyID=b.companyID )\n"
+                + "                where b.bookCode= ? ";
         try {
             conn = new DBUtils().getConnection();
             ps = conn.prepareStatement(sql);
@@ -189,97 +189,95 @@ public class BookDAO {
 
     //recent arrival so sánh sản phẩm.getDate với sản phẩm có ngày gần nhất
     // sử dụng sql select top(10)
-    public List<Book> getRecentBook() {
-        List<Book> list = new ArrayList<>();
-        String sql = " select top 10  b.bookCode, b.bookName, b.img, b.importPrice, b.buyPrice, b.description, b.quantity,p.postID,ca.cateID,ca.cateName,p.postName,pc.companyID,pc.companyName,b.postDate,d.discountPercent,a.authorName\n" +
-"                from ((((((tblBook b left join tblDiscount d on b.bookCode=d.bookCode)\n" +
-"				inner join tblCompose c on b.bookCode=c.bookCode)\n" +
-"                  inner join tblCategory ca on b.cateID=ca.cateID)\n" +
-"                  inner join tblAuthor a on c.authorID=a.authorID)\n" +
-"                  inner join tblPostHistory p on p.postID=b.postID)\n" +
-"                inner join tblPublishCompany pc on pc.companyID=b.companyID ) \n" +
-"                where b.postID='1'\n" +
-"                order by b.postDate";
-        try {
-            conn = new DBUtils().getConnection();
-            ps = conn.prepareStatement(sql);
-            rs = ps.executeQuery();
+//    public List<Book> getRecentBook() {
+//        List<Book> list = new ArrayList<>();
+//        String sql = " select top 10  b.bookCode, b.bookName, b.img, b.importPrice, b.buyPrice, b.description, b.quantity,ca.cateID,ca.cateName,p.postName,p.postID,b.postDate\n"
+//                + "from (((tblBook b \n"
+//                + " inner join tblCategory ca on b.cateID=ca.cateID)\n"
+//                + "inner join tblPostHistory p on p.postID=b.postID)\n"
+//                + "inner join tblPublishCompany pc on pc.companyID=b.companyID )\n"
+//                + "where b.postID='1'\n"
+//                + "order by b.postDate";
+//        try {
+//            conn = new DBUtils().getConnection();
+//            ps = conn.prepareStatement(sql);
+//            rs = ps.executeQuery();
+//
+//            while (rs.next()) {
+//                list.add(new Book(
+//                        rs.getLong("bookCode"),//bookcode
+//                        rs.getString("bookName"),//bookname 
+//                        rs.getString("img"),//image
+//                        rs.getInt("importPrice"),//importprice
+//                        rs.getInt("buyPrice"),//buyprice
+//                        rs.getString("description"),//description
+//                        rs.getInt("quantity"),//qty
+//                        rs.getInt("cateID"),//cateID
+//                        rs.getString("cateName"),//catename
+//                        rs.getInt("postID"),//postID 
+//                        rs.getString("postName"),//postName
+//                        rs.getInt("companyID"),//companyID 
+//                        rs.getString("companyName"),//companyName 
+//                        rs.getDate("postDate"),//postdate
+//                        rs.getInt("discountPercent"),
+//                        rs.getString("authorName")//author
+//                ));
+//            }
+//        } catch (Exception e) {
+//        }
+//        return list;
+//    }
 
-            while (rs.next()) {
-                list.add(new Book(
-                        rs.getLong("bookCode"),//bookcode
-                        rs.getString("bookName"),//bookname 
-                        rs.getString("img"),//image
-                        rs.getInt("importPrice"),//importprice
-                        rs.getInt("buyPrice"),//buyprice
-                        rs.getString("description"),//description
-                        rs.getInt("quantity"),//qty
-                        rs.getInt("cateID"),//cateID
-                        rs.getString("cateName"),//catename
-                        rs.getInt("postID"),//postID 
-                        rs.getString("postName"),//postName
-                        rs.getInt("companyID"),//companyID 
-                        rs.getString("companyName"),//companyName 
-                        rs.getDate("postDate"),//postdate
-                        rs.getInt("discountPercent"),
-                        rs.getString("authorName")//author
-                ));
-            }
-        } catch (Exception e) {
-        }
-        return list;
-    }
-
-    public List<Book> getDiscountBook() {
-        List<Book> list = new ArrayList<>();
-        String sql = "			select b.bookCode, b.bookName, b.img, b.importPrice, b.buyPrice, b.description, b.quantity,p.postID,ca.cateID,ca.cateName,p.postName,pc.companyID,pc.companyName,b.postDate,d.discountPercent,a.authorName\n" +
-"                from ((((((tblBook b left join tblDiscount d on b.bookCode=d.bookCode)\n" +
-"				inner join tblCompose c on b.bookCode=c.bookCode)\n" +
-"                  inner join tblCategory ca on b.cateID=ca.cateID)\n" +
-"                  inner join tblAuthor a on c.authorID=a.authorID)\n" +
-"                  inner join tblPostHistory p on p.postID=b.postID)\n" +
-"                inner join tblPublishCompany pc on pc.companyID=b.companyID )\n" +
-"            where (select GETDATE()) between d.startDate and d.endDate and b.postID='1'";
-        try {
-            conn = new DBUtils().getConnection();
-            ps = conn.prepareStatement(sql);
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-                list.add(new Book(
-                        rs.getLong("bookCode"),//bookcode
-                        rs.getString("bookName"),//bookname 
-                        rs.getString("img"),//image
-                        rs.getInt("importPrice"),//importprice
-                        rs.getInt("buyPrice"),//buyprice
-                        rs.getString("description"),//description
-                        rs.getInt("quantity"),//qty
-                        rs.getInt("cateID"),//cateID
-                        rs.getString("cateName"),//catename
-                        rs.getInt("postID"),//postID 
-                        rs.getString("postName"),//postName
-                        rs.getInt("companyID"),//companyID 
-                        rs.getString("companyName"),//companyName 
-                        rs.getDate("postDate"),//postdate
-                        rs.getInt("discountPercent"),
-                        rs.getString("authorName")//author
-                ));
-            }
-        } catch (Exception e) {
-        }
-        return list;
-    }
+//    public List<Book> getDiscountBook() {
+//        List<Book> list = new ArrayList<>();
+//        String sql = "			select b.bookCode, b.bookName, b.img, b.importPrice, b.buyPrice, b.description, b.quantity,p.postID,ca.cateID,ca.cateName,p.postName,pc.companyID,pc.companyName,b.postDate,d.discountPercent,a.authorName\n"
+//                + "                from ((((((tblBook b left join tblDiscount d on b.bookCode=d.bookCode)\n"
+//                + "				inner join tblCompose c on b.bookCode=c.bookCode)\n"
+//                + "                  inner join tblCategory ca on b.cateID=ca.cateID)\n"
+//                + "                  inner join tblAuthor a on c.authorID=a.authorID)\n"
+//                + "                  inner join tblPostHistory p on p.postID=b.postID)\n"
+//                + "                inner join tblPublishCompany pc on pc.companyID=b.companyID )\n"
+//                + "            where (select GETDATE()) between d.startDate and d.endDate and b.postID='1'";
+//        try {
+//            conn = new DBUtils().getConnection();
+//            ps = conn.prepareStatement(sql);
+//            rs = ps.executeQuery();
+//
+//            while (rs.next()) {
+//                list.add(new Book(
+//                        rs.getLong("bookCode"),//bookcode
+//                        rs.getString("bookName"),//bookname 
+//                        rs.getString("img"),//image
+//                        rs.getInt("importPrice"),//importprice
+//                        rs.getInt("buyPrice"),//buyprice
+//                        rs.getString("description"),//description
+//                        rs.getInt("quantity"),//qty
+//                        rs.getInt("cateID"),//cateID
+//                        rs.getString("cateName"),//catename
+//                        rs.getInt("postID"),//postID 
+//                        rs.getString("postName"),//postName
+//                        rs.getInt("companyID"),//companyID 
+//                        rs.getString("companyName"),//companyName 
+//                        rs.getDate("postDate"),//postdate
+//                        rs.getInt("discountPercent"),
+//                        rs.getString("authorName")//author
+//                ));
+//            }
+//        } catch (Exception e) {
+//        }
+//        return list;
+//    }
 
     public List<Book> SearchBook() {
         List<Book> list = new ArrayList<>();
-        String sql = "			select b.bookCode, b.bookName, b.img, b.importPrice, b.buyPrice, b.description, b.quantity,p.postID,ca.cateID,ca.cateName,p.postName,pc.companyID,pc.companyName,b.postDate,d.discountPercent,a.authorName\n" +
-"                from ((((((tblBook b left join tblDiscount d on b.bookCode=d.bookCode)\n" +
-"				inner join tblCompose c on b.bookCode=c.bookCode)\n" +
-"                  inner join tblCategory ca on b.cateID=ca.cateID)\n" +
-"                  inner join tblAuthor a on c.authorID=a.authorID)\n" +
-"                  inner join tblPostHistory p on p.postID=b.postID)\n" +
-"                inner join tblPublishCompany pc on pc.companyID=b.companyID )\n" +
-"            where b.bookName like ? or b.bookCode like ? and b.postID=1 ";
+        String sql = "			select b.bookCode, b.bookName, b.img, b.importPrice, b.buyPrice, b.description, b.quantity,p.postID,ca.cateID,ca.cateName,p.postName,pc.companyID,pc.companyName,b.postDate,d.discountPercent,a.authorName\n"
+                + "                from ((((((tblBook b left join tblDiscount d on b.bookCode=d.bookCode)\n"
+                + "				inner join tblCompose c on b.bookCode=c.bookCode)\n"
+                + "                  inner join tblCategory ca on b.cateID=ca.cateID)\n"
+                + "                  inner join tblAuthor a on c.authorID=a.authorID)\n"
+                + "                  inner join tblPostHistory p on p.postID=b.postID)\n"
+                + "                inner join tblPublishCompany pc on pc.companyID=b.companyID )\n"
+                + "            where b.bookName like ? or b.bookCode like ? and b.postID=1 ";
         try {
             conn = new DBUtils().getConnection();
             ps = conn.prepareStatement(sql);
@@ -424,18 +422,17 @@ public class BookDAO {
 
     public int count(String searchKey) {
         List<Book> list = new ArrayList<>();
-        String sql = "select count(*)\n" +
-"                from (((((tblBook b inner join tblCompose c on b.bookCode=c.bookCode)\n" +
-"                inner join tblCategory ca on b.cateID=ca.cateID)\n" +
-"                inner join tblAuthor a on c.authorID=a.authorID)\n" +
-"                 inner join tblPostHistory p on p.postID=b.postID)\n" +
-"                 inner join tblPublishCompany pc on pc.companyID=b.companyID )\n" +
-"				 where b.postID='1' and  a.authorName like ?  or b.bookName like ? ";
+        String sql = " select count(*)\n"
+                + "from (((tblBook b\n"
+                + "inner join tblCategory ca on b.cateID=ca.cateID)\n"
+                + "inner join tblPostHistory p on p.postID=b.postID)\n"
+                + " inner join tblPublishCompany pc on pc.companyID=b.companyID )\n"
+                + "where b.postID='1' and b.bookName like ? ";
         try {
             conn = new DBUtils().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, "%" + searchKey + "%");
-            ps.setString(2, "%" + searchKey + "%");
+
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -444,18 +441,17 @@ public class BookDAO {
         } catch (Exception e) {
         }
         return 0;
+
     }
 
     public int countAllBook() {
         List<Book> list = new ArrayList<>();
-        String sql = "select count(*)\n" +
-"                  from ((((((tblBook b left join tblDiscount d on b.bookCode=d.bookCode)\n" +
-"				inner join tblCompose c on b.bookCode=c.bookCode)\n" +
-"                  inner join tblCategory ca on b.cateID=ca.cateID)\n" +
-"                  inner join tblAuthor a on c.authorID=a.authorID)\n" +
-"                  inner join tblPostHistory p on p.postID=b.postID)\n" +
-"                inner join tblPublishCompany pc on pc.companyID=b.companyID )\n" +
-"                 where b.postID=1";
+        String sql = " select count(*)\n"
+                + "from (((tblBook b\n"
+                + "inner join tblCategory ca on b.cateID=ca.cateID)\n"
+                + "inner join tblPostHistory p on p.postID=b.postID)\n"
+                + " inner join tblPublishCompany pc on pc.companyID=b.companyID )\n"
+                + "where b.postID='1' ";
         try {
             conn = new DBUtils().getConnection();
             ps = conn.prepareStatement(sql);
@@ -471,15 +467,15 @@ public class BookDAO {
 
     public List<Book> SearchBook(String searchKey, int index, int size) {
         List<Book> list = new ArrayList<>();
-        String sql = "with x as (select ROW_NUMBER() over (order by postDate desc)as r,b.bookCode, b.bookName, b.img, b.importPrice, b.buyPrice, b.description, b.quantity,p.postID,ca.cateID,ca.cateName,p.postName,pc.companyID,pc.companyName,b.postDate,d.discountPercent,a.authorName\n" +
-"                 from ((((((tblBook b left join tblDiscount d on b.bookCode=d.bookCode)\n" +
-"				inner join tblCompose c on b.bookCode=c.bookCode)\n" +
-"                  inner join tblCategory ca on b.cateID=ca.cateID)\n" +
-"                  inner join tblAuthor a on c.authorID=a.authorID)\n" +
-"                  inner join tblPostHistory p on p.postID=b.postID)\n" +
-"                inner join tblPublishCompany pc on pc.companyID=b.companyID )\n" +
-"                 where  a.authorName like ? or b.bookName like ? and b.postID=1)\n" +
-"                select *from x where r between ?*8-7 and ?*8 ";
+        String sql = "with x as (select ROW_NUMBER() over (order by postDate desc)as r,b.bookCode, b.bookName, b.img, b.importPrice, b.buyPrice, b.description, b.quantity,p.postID,ca.cateID,ca.cateName,p.postName,pc.companyID,pc.companyName,b.postDate,d.discountPercent,a.authorName\n"
+                + "                 from ((((((tblBook b left join tblDiscount d on b.bookCode=d.bookCode)\n"
+                + "				inner join tblCompose c on b.bookCode=c.bookCode)\n"
+                + "                  inner join tblCategory ca on b.cateID=ca.cateID)\n"
+                + "                  inner join tblAuthor a on c.authorID=a.authorID)\n"
+                + "                  inner join tblPostHistory p on p.postID=b.postID)\n"
+                + "                inner join tblPublishCompany pc on pc.companyID=b.companyID )\n"
+                + "                 where  a.authorName like ? or b.bookName like ? and b.postID=1)\n"
+                + "                select *from x where r between ?*8-7 and ?*8 ";
         try {
             conn = new DBUtils().getConnection();
             ps = conn.prepareStatement(sql);

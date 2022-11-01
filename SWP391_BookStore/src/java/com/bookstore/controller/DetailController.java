@@ -5,8 +5,12 @@
  */
 package com.bookstore.controller;
 
+import com.bookstore.Author.Author;
+import com.bookstore.Author.AuthorDAO;
 import com.bookstore.Book.Book;
 import com.bookstore.Book.BookDAO;
+import com.bookstore.Book.BookShop;
+import com.bookstore.Book.BookShopDAO;
 import com.bookstore.Category.Category;
 import com.bookstore.Category.CategoryDAO;
 import java.io.IOException;
@@ -40,18 +44,52 @@ public class DetailController extends HttpServlet {
             String bookcode = request.getParameter("pbookCode");
             String categoryBook = request.getParameter("categoryBook");
 
-            BookDAO daoB = new BookDAO();
+            BookShopDAO daoB = new BookShopDAO();
             CategoryDAO daoC = new CategoryDAO();
+             AuthorDAO authordAO = new AuthorDAO();
 
-            Book b = daoB.getBookBybookCode(bookcode);
+            BookShop b = daoB.getBookBybookCode(bookcode);
+            
+            String code = String.valueOf(b.getBookCode());
+            List<Author> listA = authordAO.getListAuthorByBookcode(code);
+            
+            String plusString = "";
+                for (Author a : listA) {
+                    plusString = plusString + a.getName() + ",";
+                }
+                b.setAuthor(plusString);
+                
             
             
-            List<Book> RelatedBook=daoC.getBookByCategory(categoryBook);
+            List<BookShop> RelatedBook=daoB.getBookByCategoryTop(categoryBook);
+            for (BookShop a : RelatedBook) {
+
+            String codeA = String.valueOf(a.getBookCode());
+            List<Author> listAA = authordAO.getListAuthorByBookcode(codeA);
+            int countNumA = 0;
+            String plusStringA = "";
+            if (listAA == null) {
+
+            } else if (listAA.size() == 1) {
+                a.setAuthor(listAA.get(0).getName());
+                countNumA = 1;
+                a.setAuthorNum(countNumA);
+
+            } else if (listAA.size() > 1) {
+                plusStringA = "";
+                for (Author c : listAA) {
+                    plusStringA = plusStringA + c.getName() + ",";
+                }
+
+                a.setAuthor(plusStringA);
+            }
+            }
+            
             List<Category> listC = daoC.getCategoryBook();
-            List<Book> listRecentArrival = daoB.getRecentBook();
-
-            request.setAttribute("listRecentArrival", listRecentArrival);
-            request.setAttribute("RelatedBook", RelatedBook);
+//            List<Book> listRecentArrival = daoB.getRecentBook();
+//
+//            request.setAttribute("listRecentArrival", listRecentArrival);
+            request.setAttribute("listRecentArrival", RelatedBook);
             request.setAttribute("listC", listC);
             request.setAttribute("detailProduct", b);
             request.getRequestDispatcher("product.jsp").forward(request, response);

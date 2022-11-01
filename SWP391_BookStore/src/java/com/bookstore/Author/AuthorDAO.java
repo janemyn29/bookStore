@@ -45,31 +45,30 @@ public class AuthorDAO {
         }
         return list;
     }
+    public List<Author> getListAuthor() {
+        List<Author> list = new ArrayList<>();
+
+        String sql = " select c.composeID, c.bookCode, a.authorID,a.authorName\n"
+                + "from [dbo].[tblAuthor] a inner join [dbo].[tblCompose] c on a.authorID = c.authorID\n";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                list.add(new Author(rs.getInt(1), rs.getLong(2), rs.getInt(3), rs.getString(4)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
 
     public static void main(String[] args) {
 
-        BookDAO dao = new BookDAO();
-            List<Book> list = dao.getBookManage();
             AuthorDAO authordAO = new AuthorDAO();
             
-            for (Book b : list) {
-                
-                String code= String.valueOf(b.getBookCode());
-                List<Author> listA=authordAO.getListAuthorByBookcode(code);
-                String plusString="";
-                if (listA.size()==0) {
-                    
-                }else if(listA.size()==1){
-                    b.setAuthorName(listA.get(0).getName());
-                    
-                }else if (listA.size()>1) {
-                    plusString="";
-                    for (Author a : listA) {
-                        plusString=plusString+","+a.getName();
-                    }
-                    b.setAuthorName(plusString);
-                }
-}
+            List<Author> list= authordAO.getListAuthor();
 
         System.out.println(list);
     }

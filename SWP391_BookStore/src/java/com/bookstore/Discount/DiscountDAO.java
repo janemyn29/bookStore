@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.apache.tomcat.jni.Time;
 
-
 /**
  *
  * @author tramy
@@ -30,7 +29,7 @@ public class DiscountDAO {
         String code = String.valueOf(bookcode);
         List<Discount> list = new ArrayList<>();
         String sql = " select * from tblDiscount\n"
-                + "where bookCode=? ";
+                + "where bookCode=? and (select Getdate()) between startDate and endDate ";
         try {
             conn = new DBUtils().getConnection();
             ps = conn.prepareStatement(sql);
@@ -44,15 +43,11 @@ public class DiscountDAO {
         }
         return list;
     }
-    
+
     public static void main(String[] args) {
-        DiscountDAO dAO=new DiscountDAO();
-        List<Discount> list=dAO.getDiscountByBookCode("9789814962131");
+        DiscountDAO dAO = new DiscountDAO();
+        List<Discount> list = dAO.getDiscountByBookCode("8935244867312");
         System.out.println(list);
-        long now=System.currentTimeMillis();
-        long tru=now-list.get(0).getEndDate().getTime();
-        System.out.println(tru);
+
     }
 }
-
-

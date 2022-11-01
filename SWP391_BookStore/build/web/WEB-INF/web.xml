@@ -32,8 +32,6 @@
         <filter-name>CheckSellerExistFilter</filter-name>
         <filter-class>com.bookstore.Seller.CheckSellerExistFilter</filter-class>
     </filter>
-    
-    
     <filter-mapping>
         <filter-name>CheckSellerExistFilter</filter-name>
         <servlet-name>SellerEditProfileController</servlet-name>
@@ -94,16 +92,10 @@
         <filter-name>ValidateFilter</filter-name>
         <servlet-name>LoginController</servlet-name>
     </filter-mapping>
-    
-    
     <filter-mapping>
         <filter-name>CheckActionFilter</filter-name>
         <servlet-name>LoginController</servlet-name>
     </filter-mapping>
-    
-    
-    
-    
     <servlet>
         <servlet-name>LoginController</servlet-name>
         <servlet-class>com.bookstore.controller.LoginController</servlet-class>
@@ -364,6 +356,22 @@
         <servlet-name>SellerChangePassController</servlet-name>
         <servlet-class>com.bookstore.Seller.SellerChangePassController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CusDetailController</servlet-name>
+        <servlet-class>com.bookstore.Customer.CusDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CusShoppingController</servlet-name>
+        <servlet-class>com.bookstore.Customer.CusShoppingController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CusSearchController</servlet-name>
+        <servlet-class>com.bookstore.Customer.CusSearchController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CusCategoryController</servlet-name>
+        <servlet-class>com.bookstore.Customer.CusCategoryController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -623,6 +631,22 @@
     <servlet-mapping>
         <servlet-name>SellerChangePassController</servlet-name>
         <url-pattern>/Seller/sellerChangePass</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CusDetailController</servlet-name>
+        <url-pattern>/customer/cusdetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CusShoppingController</servlet-name>
+        <url-pattern>/customer/cusshopping</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CusSearchController</servlet-name>
+        <url-pattern>/customer/cusSearchController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CusCategoryController</servlet-name>
+        <url-pattern>/customer/cuscategory</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

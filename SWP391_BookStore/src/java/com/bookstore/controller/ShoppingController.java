@@ -5,10 +5,16 @@
  */
 package com.bookstore.controller;
 
+import com.bookstore.Author.Author;
+import com.bookstore.Author.AuthorDAO;
 import com.bookstore.Book.Book;
 import com.bookstore.Book.BookDAO;
+import com.bookstore.Book.BookShop;
+import com.bookstore.Book.BookShopDAO;
 import com.bookstore.Category.Category;
 import com.bookstore.Category.CategoryDAO;
+import com.bookstore.Discount.Discount;
+import com.bookstore.Discount.DiscountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -39,6 +45,7 @@ public class ShoppingController extends HttpServlet {
         //url: shopping
         String indexString = request.getParameter("index");
         int index = Integer.parseInt(indexString);
+        BookShopDAO dao = new BookShopDAO();
         BookDAO daoB = new BookDAO();
         int count = daoB.countAllBook();
         int pageSize = 8;
@@ -47,12 +54,47 @@ public class ShoppingController extends HttpServlet {
         if (count % pageSize != 0) {
             endPage++;
         }
+
+        AuthorDAO authordAO = new AuthorDAO();
+//        List<Author> listA = authordAO.getListAuthor();
+
         CategoryDAO daoC = new CategoryDAO();
-        List<Book> listAll = daoB.getAllBook(index, pageSize);
+        List<BookShop> listAll = dao.getAllBook(index, pageSize);
+        for (BookShop b : listAll) {
+
+            String code = String.valueOf(b.getBookCode());
+            List<Author> listA = authordAO.getListAuthorByBookcode(code);
+            int countNum = 0;
+            String plusString = "";
+            if (listA == null) {
+
+            } else if (listA.size() == 1) {
+                b.setAuthor(listA.get(0).getName());
+                countNum = 1;
+                b.setAuthorNum(countNum);
+
+            } else if (listA.size() > 1) {
+                plusString = "";
+                for (Author a : listA) {
+                    plusString = plusString + a.getName() + ",";
+                }
+
+                b.setAuthor(plusString);
+            }
+            
+            
+            String codeB= String.valueOf(b.getBookCode());
+            DiscountDAO dAO = new DiscountDAO();
+            List<Discount> list = dAO.getDiscountByBookCode(codeB);
+            if (list.size()>0) {
+                b.setDiscountPercent(list.get(0).getPercent());
+            }
+        }
+
         List<Category> listC = daoC.getCategoryBook();
-        
-        
+
         request.setAttribute("listAll", listAll);
+//        request.setAttribute("listAuthor", listA);
         request.setAttribute("listC", listC);
         request.setAttribute("endPage", endPage);
 

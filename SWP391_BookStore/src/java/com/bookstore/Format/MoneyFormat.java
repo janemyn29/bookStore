@@ -32,6 +32,21 @@ public class MoneyFormat {
         String afterString= format.format(price);
         return afterString;
     }
+    public String formatMoney2(double price) {
+
+        Locale locale = new Locale("vi", "VN");
+
+        DecimalFormat format= (DecimalFormat) DecimalFormat.getCurrencyInstance(locale);
+
+        DecimalFormatSymbols formatSymbols= new DecimalFormatSymbols();
+        
+        formatSymbols.setGroupingSeparator('.');
+        formatSymbols.setCurrencySymbol("VND");
+        format.setDecimalFormatSymbols(formatSymbols);
+        
+        String afterString= format.format(price);
+        return afterString;
+    }
 
     public static void main(String[] args) {
         MoneyFormat fm = new MoneyFormat();

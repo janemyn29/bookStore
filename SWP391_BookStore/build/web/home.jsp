@@ -5,6 +5,7 @@
 --%>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -87,7 +88,7 @@
                                         <div class="product product-11 text-center">
                                             <figure class="product-media">
                                                 <a href="detail?pbookCode=${discount.bookCode}&categoryBook=${discount.cateName}">
-                                                    <img src="${discount.image}" alt="Product image" class="product-image">
+                                                    <img style="width: 	277px; height: 	375px;" src="${discount.image}" alt="Product image" class="product-image">
                                                     <!--<img src="assets/images/demos/demo-2/products/product-1-2.jpg" alt="Product image" class="product-image-hover">-->
                                                 </a>
 
@@ -97,10 +98,10 @@
                                                 <h3 class="product-title"><a href="detail?pbookCode=${discount.bookCode}
                                                                              &categoryBook=${discount.cateName}">${discount.bookName}</a></h3><!-- End .product-title -->
                                                 <div class="product-price"  style="text-decoration: line-through"  >
-                                                    Old Price: ${discount.buyPrice}đ
+                                                    Old Price: <fmt:formatNumber value="${discount.buyPrice}" pattern=" #,##0 VND" />
                                                 </div><!-- End .product-price -->
-                                                <div class="discount-price">
-                                                    New Price: ${discount.buyPrice-((discount.discountPercent*discount.buyPrice)/100)}đ
+                                                <div class="product-price">
+                                                    Sale Price: <fmt:formatNumber value="${discount.buyPrice-((discount.discountPercent*discount.buyPrice)/100)}" pattern=" #,##0 VND" />
                                                 </div>
 
                                             </div><!-- End .product-body -->
@@ -230,7 +231,7 @@
                                                 <div class="product product-11 mt-v3 text-center">
                                                     <figure class="product-media">
                                                         <a href="detail?pbookCode=${o.bookCode}&categoryBook=${o.cateName}">
-                                                            <img src="${o.image}" alt="Product image" class="product-image">
+                                                            <img style="width: 	277px; height: 	375px;" src="${o.image}" alt="Product image" class="product-image">
                                                         </a>
                                                         <!--
                                                                                                     <div class="product-action-vertical">
@@ -239,10 +240,21 @@
                                                     </figure><!-- End .product-media -->
 
                                                     <div class="product-body">
-                                                        <h3 class="product-title">${{o.bookName}}<a href="detail?pbookCode=${o.bookCode}&categoryBook=${o.cateName}"</a></h3><!-- End .product-title -->
-                                                        <div class="product-price">
-                                                            Price: ${o.buyPrice-((o.discountPercent*o.buyPrice)/100)}đ
-                                                        </div><!-- End .product-price -->
+                                                        <h3 class="product-title">${o.bookName}<a href="detail?pbookCode=${o.bookCode}&categoryBook=${o.cateName}"</a></h3><!-- End .product-title -->
+                                                        <c:if test="${o.discountPercent == 0}">
+                                                            <div class="product-price">
+                                                                Price <fmt:formatNumber value="${o.buyPrice}" pattern=" #,##0 VND" />
+
+                                                            </div><!-- End .product-price -->
+                                                        </c:if>
+                                                        <c:if test="${o.discountPercent > 0}">
+                                                            <div class="product-price" style="text-decoration: line-through">
+                                                                Old Price: <fmt:formatNumber value="${o.buyPrice}" pattern=" #,##0 VND" />
+                                                            </div><!-- End .product-price -->
+                                                            <div class="product-price">
+                                                                Sale Price: <fmt:formatNumber value="${o.buyPrice- (o.discountPercent *o.buyPrice/100)}" pattern=" #,##0 VND" />
+                                                            </div><!-- End .product-price -->
+                                                        </c:if>
 
 
                                                         <!--                                            <div class="product-nav product-nav-dots">
