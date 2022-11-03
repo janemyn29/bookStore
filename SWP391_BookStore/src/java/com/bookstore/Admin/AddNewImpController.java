@@ -62,6 +62,7 @@ public class AddNewImpController extends HttpServlet {
             } catch (NoSuchAlgorithmException ex) {
                 Logger.getLogger(AddNewImpController.class.getName()).log(Level.SEVERE, null, ex);
             }
+                request.setAttribute("check", "Add New Importer sucessful!");
                 request.getRequestDispatcher("adimporter").forward(request, response);
             }
             

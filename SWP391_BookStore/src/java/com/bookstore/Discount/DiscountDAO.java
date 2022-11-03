@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.apache.tomcat.jni.Time;
 
@@ -44,10 +45,97 @@ public class DiscountDAO {
         return list;
     }
 
+    public List<Discount> getAllDiscount() {
+        List<Discount> list = new ArrayList<>();
+        String sql = " select d.discountID, b.bookCode, b.bookName, d.discountPercent,d.startDate,d.endDate,b.img\n"
+                + "from [dbo].[tblBook] b inner join [dbo].[tblDiscount] d on b.bookCode=d.bookCode ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                list.add(new Discount(rs.getInt(1), rs.getLong(2), rs.getString(3), rs.getDate(5), rs.getDate(6), rs.getInt(4), "", rs.getString(7)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public List<Discount> getDiscountBycode(String code) {
+        List<Discount> list = new ArrayList<>();
+        String sql = " Select * from [dbo].[tblDiscount]\n"
+                + "where bookCode= ? ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, code);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                list.add(new Discount(rs.getInt(1), rs.getLong(2), rs.getDate(3), rs.getDate(4), rs.getInt(5)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public List<Discount> getStatus(List<Discount> list) {
+        for (Discount d : list) {
+            java.util.Date date = new java.util.Date();
+            Long now = date.getTime();
+            long start = now - d.getStartDate().getTime();
+            long end = d.getEndDate().getTime() - now;
+
+            if (start > 0 && end > 0) {
+                d.setStatus("Still due");
+            } else if (start <= 0) {
+                d.setStatus("Not yet");
+            } else if (end <= 0) {
+                d.setStatus("Expired");
+            }
+        }
+        return list;
+    }
+
+    public void addNewDis(String bookcode, String percent, String start, String end) {
+
+        DiscountDAO dAO = new DiscountDAO();
+        List<Discount> list = dAO.getAllDiscount();
+        int lastUID;
+        int sizeList = list.size() - 1;
+        lastUID = list.get(sizeList).getDiscountID() + 1;
+        String sql = " insert into tblDiscount\n"
+                + "values (?,?,?,?,?) ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, lastUID);
+            ps.setString(2, bookcode);
+            ps.setString(3, percent);
+            ps.setString(4, start);
+            ps.setString(5, end);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+
+    }
+
+    public void deleteDiscount(String id) {
+        String sql = " delete from tblDiscount\n"
+                + "where discountID= ? ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+
     public static void main(String[] args) {
         DiscountDAO dAO = new DiscountDAO();
-        List<Discount> list = dAO.getDiscountByBookCode("8935244867312");
-        System.out.println(list);
+        dAO.addNewDis("9780194801850", "1/1/2023", "3/1/2023", "12");
 
     }
 }

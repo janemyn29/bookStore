@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib  prefix ="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="en">
@@ -66,8 +67,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="widgets.html" aria-expanded="false">
-                                <i class="icon-pencil"></i><span class="nav-text">Author Management</span>
+                            <a href="addiscount" aria-expanded="false">
+                                <i class="fa fa-percent"></i><span class="nav-text">Discount Management</span>
                             </a>
                         </li>
                         <li class="mega-menu mega-menu-sm">
@@ -136,10 +137,10 @@
                             <div class="card">
                                 <div class="card-body">
                                     <span class="card-title">Book Management</span>
-                                    <br>
-
-
-                                    <div class="table-responsive">
+                                    <c:if test='${check != null}'>
+                                        <div class="alert alert-success">${check}</div>
+                                    </c:if>
+                                        <div class="table-responsive">
                                         <table class="table table-striped table-bordered zero-configuration">
                                             <thead>
                                                 <tr>
@@ -198,8 +199,8 @@
                                                                 </script> 
                                                             </div> 
                                                         </td>
-                                                        <td>${b.importPrice}</td>
-                                                        <td>${b.buyPrice}</td>
+                                                        <td><fmt:formatNumber value="${b.importPrice}" pattern=" #,##0 VND" /></td>
+                                                        <td><fmt:formatNumber value="${b.buyPrice}" pattern=" #,##0 VND" /></td>
                                                         <td>
                                                             <c:if test="${b.postName == 'posted'}">
                                                                 <span class="badge badge-success px-2">Posted</span>
@@ -209,8 +210,18 @@
                                                             </c:if>
                                                         </td>
                                                         <td>
-                                                            <a style="margin-left: 43px ;" href="" class="fa fa-minus-circle"></a>
-
+                                                            <c:if test="${b.postName == 'new'}">
+                                                                <a href="adUpload?id=${b.bookCode}" data-toggle="tooltip" data-placement="bottom" title="Edit"><i   class="fa fa-upload"></i></a>
+                                                            </c:if>
+                                                            <c:if test="${b.postName == 'posted'}">
+                                                            <a href="adEditBook?id=${b.bookCode}" data-toggle="tooltip" data-placement="bottom" title="Edit"><i   class="icon-pencil"></i></a>
+                                                            </c:if>
+                                                            <c:if test="${b.postName == 'posted'}">
+                                                                <a onclick='showMess2(${b.bookCode})'   data-toggle="tooltip" data-placement="bottom" title="Un post"><i   class="fa fa-undo"></i></a>
+                                                            </c:if>
+                                                            
+                                                            <a onclick='showMess1(${b.bookCode})'   data-toggle="tooltip" data-placement="bottom" title="Delete"><i   class="icon-close"></i></a>
+                                                            
                                                         </td>
 
 
@@ -260,6 +271,45 @@
         <script src="./plugins/tables/js/jquery.dataTables.min.js"></script>
         <script src="./plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
         <script src="./plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
+        
+        <script>
+            $(document).ready(function () {
+                // Activate tooltip
+                $('[data-toggle="tooltip"]').tooltip();
+
+                // Select/Deselect checkboxes
+                var checkbox = $('table tbody input[type="checkbox"]');
+                $("#selectAll").click(function () {
+                    if (this.checked) {
+                        checkbox.each(function () {
+                            this.checked = true;
+                        });
+                    } else {
+                        checkbox.each(function () {
+                            this.checked = false;
+                        });
+                    }
+                });
+                checkbox.click(function () {
+                    if (!this.checked) {
+                        $("#selectAll").prop("checked", false);
+                    }
+                });
+            });
+            
+            function showMess1(id){
+                var option=confirm("Are you sure to delete book have id = "+id+" ?");
+                if (option===true){
+                    window.location.href="addeleteBook?id="+id;
+                }
+            }
+            function showMess2(id){
+                var option=confirm("Are you sure to unpost book have id = "+id+"?");
+                if (option===true){
+                    window.location.href="adUnpost?id="+id;
+                }
+            }
+        </script>
 
 
     </body>

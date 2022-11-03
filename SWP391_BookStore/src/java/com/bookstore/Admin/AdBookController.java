@@ -37,6 +37,9 @@ public class AdBookController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            
+            String check = null;
+            check = (String) request.getAttribute("check");
             BookDAO dao = new BookDAO();
             List<Book> list = dao.getBookManage();
             AuthorDAO authordAO = new AuthorDAO();
@@ -60,6 +63,7 @@ public class AdBookController extends HttpServlet {
                 }
             }
             request.setAttribute("listB", list);
+            request.setAttribute("check", check);
 
             request.getRequestDispatcher("adBook.jsp").forward(request, response);
         }

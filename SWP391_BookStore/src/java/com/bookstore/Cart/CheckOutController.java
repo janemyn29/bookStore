@@ -72,7 +72,7 @@ public class CheckOutController extends HttpServlet {
                  note = "(empty)";
             }
 
-            String status = "comfirming";
+            String status = "confirming";
 
             odao.addNewOrder(orderID, accountID, orderDate, address, total, note, status);
 

@@ -33,7 +33,7 @@ public class SendEmail {
 
         String toEmail = user.getEmail();
         String fromEmail = "myntthe163364@fpt.edu.vn";
-        String password = "Mynguyen290402";
+        String password = "TramyMynguyen290402";
 
         try {
 
@@ -83,7 +83,7 @@ public class SendEmail {
 
         String toEmail = user.getEmail();
         String fromEmail = "myntthe163364@fpt.edu.vn";
-        String password = "Tramy090602";
+        String password = "TramyMynguyen290402";
 
         try {
 

@@ -14,9 +14,12 @@ import java.sql.Date;
 public class Discount {
     private int discountID;
     private long bookCode;
+    private String bName;
     private Date startDate;
     private Date endDate;
     private int percent;
+    private String status;
+    private String img;
 
     public Discount() {
     }
@@ -28,6 +31,28 @@ public class Discount {
         this.endDate = endDate;
         this.percent = percent;
     }
+
+    public Discount(int discountID, long bookCode, String bName, Date startDate, Date endDate, int percent, String status, String img) {
+        this.discountID = discountID;
+        this.bookCode = bookCode;
+        this.bName = bName;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.percent = percent;
+        this.status = status;
+        this.img = img;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    
+    
 
     public int getDiscountID() {
         return discountID;
@@ -69,10 +94,29 @@ public class Discount {
         this.percent = percent;
     }
 
+    public String getbName() {
+        return bName;
+    }
+
+    public void setbName(String bName) {
+        this.bName = bName;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
-        return "Discount{" + "discountID=" + discountID + ", bookCode=" + bookCode + ", startDate=" + startDate + ", endDate=" + endDate + ", percent=" + percent + '}';
+        return "Discount{" + "discountID=" + discountID + ", bookCode=" + bookCode + ", bName=" + bName + ", startDate=" + startDate + ", endDate=" + endDate + ", percent=" + percent + ", status=" + status + '}';
     }
+
+    
+    
     
     
 }

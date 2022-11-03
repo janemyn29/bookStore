@@ -35,11 +35,14 @@ public class AdImporterController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-        AccountDAO dao = new AccountDAO();
-        List<Account> list=dao.getListAccountsByRole("3","1");
-        request.setAttribute("listImp", list);
+            String check = null;
+            check = (String) request.getAttribute("check");
+            AccountDAO dao = new AccountDAO();
+            List<Account> list = dao.getListAccountsByRole("3", "2");
+            request.setAttribute("listImp", list);
 //        response.sendRedirect("admin/adImporter.jsp");
-        request.getRequestDispatcher("adImporter.jsp").forward(request, response);
+            request.setAttribute("check", check);
+            request.getRequestDispatcher("adImporter.jsp").forward(request, response);
         }
     }
 

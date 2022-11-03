@@ -553,6 +553,18 @@ public class BookDAO {
         }
         return 0;
     }
+    public void deleteDiscount(String id) {
+        String sql = " update tblBook\n"
+                + "set postID=3\n"
+                + "where bookCode=? ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
 
     public static void main(String[] args) {
         BookDAO dAO = new BookDAO();

@@ -249,6 +249,7 @@ public class BookShopDAO {
         }
         return list;
     }
+
     public List<BookShop> getBookByCategory(String CName) {
         List<BookShop> list = new ArrayList<>();
         String sql = "	 select b.bookCode, b.bookName, b.img, b.importPrice, b.buyPrice, b.description, b.quantity,ca.cateID,ca.cateName,p.postName,p.postID,b.postDate\n"
@@ -286,9 +287,26 @@ public class BookShopDAO {
         return list;
     }
 
+    public List<BookShop> getAllBook() {
+        List<BookShop> list = new ArrayList<>();
+        String sql = " select * from tblBook\n"
+                + "where postID=1; ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                list.add(new BookShop(rs.getLong("bookCode"), rs.getString("bookName")));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
     public static void main(String[] args) {
         BookShopDAO dao = new BookShopDAO();
-        List<BookShop> book = dao.getBookByCategory("Horror");
+        List<BookShop> book = dao.getAllBook();
         System.out.println(book);
     }
 }

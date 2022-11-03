@@ -229,7 +229,7 @@ public class AccountDAO {
         String sql = "  select  a.accountID,a.userName,a.phoneNumber,a.email,a.userPass,a.roleID,r.roleName,a.actionID,act.actionName\n"
                 + "from  ((tblAccount a inner join tblRole r on  a.roleID=r.roleID)\n"
                 + "inner join tblAction act on act.actionID=a.actionID)\n"
-                + "where a.roleID=? and a.actionID=? ";
+                + "where a.roleID=? and a.actionID!=? ";
         try {
             conn = new DBUtils().getConnection();
             ps = conn.prepareStatement(sql);
@@ -300,7 +300,7 @@ public class AccountDAO {
         String dePass = DatatypeConverter.printHexBinary(digest).toLowerCase();
 
         String sql = " insert into tblAccount\n"
-                + "values(?,?,?,?,?,?,1) ";
+                + "values(?,?,?,?,?,?,3) ";
         try {
             conn = new DBUtils().getConnection();
             ps = conn.prepareStatement(sql);
@@ -445,6 +445,7 @@ public class AccountDAO {
         }
         return check;
     }
+
     public boolean restoreToBlacklist(String id) {
 
         String sql = " UPDATE tblAccount\n"
@@ -465,9 +466,8 @@ public class AccountDAO {
         }
         return check;
     }
-    
+
     public Account getAccountByID(int accID) throws NoSuchAlgorithmException {
-        
 
         String sql = " select  a.accountID,a.userName,a.phoneNumber,a.email,a.userPass,a.roleID,r.roleName,a.actionID,act.actionName\n"
                 + "from  ((tblAccount a inner join tblRole r on  a.roleID=r.roleID)\n"
@@ -495,8 +495,7 @@ public class AccountDAO {
 
         return null;
     }
-    
-    
+
     public boolean updatePasswordImporter(String pass, int accID) throws SQLException, NoSuchAlgorithmException {
         String password = pass;
         MessageDigest md = MessageDigest.getInstance("MD5");
@@ -527,6 +526,7 @@ public class AccountDAO {
         }
         return false;
     }
+
     public boolean updateAccountImporter(String username, String email, String phone, int accID) throws SQLException {
         try {
             conn = DBUtils.getConnection();
@@ -634,13 +634,25 @@ public class AccountDAO {
         return null;
     }
 
+    public void updateAction(String accountID) {
+
+        String sql = " update tblAccount \n"
+                + "set actionID=1\n"
+                + "where email=?  ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, accountID);
+            rs = ps.executeQuery();
+
+        } catch (Exception e) {
+        }
+    }
+
     public static void main(String[] args) throws NoSuchAlgorithmException {
         AccountDAO dao = new AccountDAO();
-        try {
-            dao.updatePassword("hahaaaa", 1);
-        } catch (SQLException ex) {
-            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        List<Account> list= dao.getListAccountsByRole("2", "2");
+        System.out.println(list);
 
     }
 }

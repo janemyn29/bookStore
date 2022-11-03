@@ -62,8 +62,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="widgets.html" aria-expanded="false">
-                                <i class="fa fa-money menu-icon"></i><span class="nav-text">Author Management</span>
+                            <a href="addiscount" aria-expanded="false">
+                                <i class="fa fa-percent"></i><span class="nav-text">Discount Management</span>
                             </a>
                         </li>
                         <li class="mega-menu mega-menu-sm">

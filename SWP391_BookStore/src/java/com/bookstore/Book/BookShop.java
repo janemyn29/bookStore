@@ -48,6 +48,12 @@ public class BookShop {
         this.author = author;
     }
 
+    public BookShop(long bookCode, String bookName) {
+        this.bookCode = bookCode;
+        this.bookName = bookName;
+    }
+    
+
     public long getBookCode() {
         return bookCode;
     }

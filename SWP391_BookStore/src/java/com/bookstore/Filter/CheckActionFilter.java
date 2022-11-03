@@ -7,6 +7,7 @@ package com.bookstore.Filter;
 
 import com.bookstore.Account.Account;
 import com.bookstore.Account.AccountDAO;
+import com.bookstore.VerifyLogin.UserVerifyLogin;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -60,6 +61,10 @@ public class CheckActionFilter implements Filter {
                 }else if(account != null && account.getRoleName().equalsIgnoreCase("manager") && account.getActionName().equalsIgnoreCase("block")){
                      request.setAttribute("temp", "Your Account has been blocked !");
                     request.getRequestDispatcher("login.jsp").forward(request, response);
+                }else if (account != null && account.getActionName().equalsIgnoreCase("verify")) {
+                    UserVerifyLogin user = new UserVerifyLogin(email, password);
+                    request.setAttribute("user", user);
+                    request.getRequestDispatcher("sendlogin").forward(request, response);
                 }
 
             } catch (NoSuchAlgorithmException ex) {
