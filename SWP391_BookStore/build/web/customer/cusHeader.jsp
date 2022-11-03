@@ -7,6 +7,7 @@
 <%@page import="com.bookstore.Account.Account"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style>
     .navigation-item.active {
         color:red
@@ -80,73 +81,85 @@
                                 </div><!-- End .row -->
                             </div><!-- End .megamenu megamenu-sm -->
                         </li>
-                                                <script>
-                                                    const navList = document.querySelectorAll('.navigation-item');
-                                                    const path = window.location.href.replace("http://localhost:8084/SWP391_BookStore/", "");
-                                                    switch(path) {
-                                                        case "cushome": {
-                                                                navList[0].classList.toggle("active")
-                                                                break;
-                                                        }
-                                                        case "cusshopping": {
-                                                                navList[1].classList.toggle("active")
-                                                                break;
-                                                        }
-                                                        case "cusdetail": {
-                                                                navList[2].classList.toggle("")
-                                                                break;
-                                                        }
-                                                        case "cuscategory?categoryName=Art%20-%20Literary": {
-                                                                navList[3].classList.toggle("active")
-                                                                break;
-                                                        }
-                                                        case "cuscategory?categoryName=Comics": {
-                                                                navList[4].classList.toggle("active")
-                                                                break;
-                                                        }
-                                                        case "cuscategory?categoryName=Textbook%20-%20Syllabus": {
-                                                                navList[5].classList.toggle("active")
-                                                                break;
-                                                        }
-                                                        case "cuscategory?categoryName=Novel": {
-                                                                navList[6].classList.toggle("active")
-                                                                break;
-                                                        }
-                                                        case "cuscategory?categoryName=Foreign%20language": {
-                                                                navList[7].classList.toggle("active")
-                                                                break;
-                                                        }
-                                                        case "cuscategory?categoryName=Science": {
-                                                                navList[8].classList.toggle("active")
-                                                                break;
-                                                        }
-                                                        case "cuscategory?categoryName=Horror": {
-                                                                navList[9].classList.toggle("active")
-                                                                break;
-                                                        }
-                                                        case "": {
-                                                                navList[10].classList.toggle("")
-                                                                break;
-                                                        }
-                                                        default: {
-                                                                navList[11].classList.toggle("")
-                                                                break;
-                                                        }
-                                                    }
-                                                    
-                                                </script>
-<!--                        <script>
-                            // Add active class to the current button (highlight it)
-                            var header = document.getElementById("menu-active-Class");
-                            var btns = header.getElementsByClassName("navigation-item");
-                            for (var i = 0; i < btns.length; i++) {
-                                btns[i].addEventListener("click", function () {
-                                    var current = document.getElementsByClassName("active");
-                                    current[0].className = current[0].className.replace(" active", "");
-                                    this.className += " active";
-                                });
+                        <script>
+                            const navList = document.querySelectorAll('.navigation-item');
+                            const path = window.location.href.replace("http://localhost:8084/SWP391_BookStore/", "");
+                            switch (path) {
+                                case "cushome":
+                                {
+                                    navList[0].classList.toggle("active")
+                                    break;
+                                }
+                                case "cusshopping":
+                                {
+                                    navList[1].classList.toggle("active")
+                                    break;
+                                }
+                                case "cusdetail":
+                                {
+                                    navList[2].classList.toggle("")
+                                    break;
+                                }
+                                case "cuscategory?categoryName=Art%20-%20Literary":
+                                {
+                                    navList[3].classList.toggle("active")
+                                    break;
+                                }
+                                case "cuscategory?categoryName=Comics":
+                                {
+                                    navList[4].classList.toggle("active")
+                                    break;
+                                }
+                                case "cuscategory?categoryName=Textbook%20-%20Syllabus":
+                                {
+                                    navList[5].classList.toggle("active")
+                                    break;
+                                }
+                                case "cuscategory?categoryName=Novel":
+                                {
+                                    navList[6].classList.toggle("active")
+                                    break;
+                                }
+                                case "cuscategory?categoryName=Foreign%20language":
+                                {
+                                    navList[7].classList.toggle("active")
+                                    break;
+                                }
+                                case "cuscategory?categoryName=Science":
+                                {
+                                    navList[8].classList.toggle("active")
+                                    break;
+                                }
+                                case "cuscategory?categoryName=Horror":
+                                {
+                                    navList[9].classList.toggle("active")
+                                    break;
+                                }
+                                case "":
+                                {
+                                    navList[10].classList.toggle("")
+                                    break;
+                                }
+                                default:
+                                {
+                                    navList[11].classList.toggle("")
+                                    break;
+                                }
                             }
-                        </script>-->
+
+                        </script>
+                        <!--                        <script>
+                                                    // Add active class to the current button (highlight it)
+                                                    var header = document.getElementById("menu-active-Class");
+                                                    var btns = header.getElementsByClassName("navigation-item");
+                                                    for (var i = 0; i < btns.length; i++) {
+                                                        btns[i].addEventListener("click", function () {
+                                                            var current = document.getElementsByClassName("active");
+                                                            current[0].className = current[0].className.replace(" active", "");
+                                                            this.className += " active";
+                                                        });
+                                                    }
+                                                </script>-->
                     </ul><!-- End .menu -->
                 </nav><!-- End .main-nav -->
             </div><!-- End .header-left -->
@@ -165,17 +178,65 @@
                     </form>
                 </div><!-- End .header-search -->
 
+                <%
+
+                    if (session.getAttribute("cart") == null) {
+                %>
                 <div class="dropdown cart-dropdown">
                     <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
                         <i class="icon-shopping-cart"></i>
+                        <span class="cart-count">${cart.size()}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
+                        <div class="dropdown-cart-products">
+                            <label  style="color: black;">Your cart is empty</label>
+                        </div>
                         <div class="dropdown-cart-action">
-                            <a href="cart.html" class="btn btn-primary">View Cart</a>
-                            <a href="checkout.html" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
+                            <a href="cusCart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span></a>
+                            <a href="cusCheckOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
                         </div><!-- End .dropdown-cart-total -->
                     </div><!-- End .dropdown-menu -->
                 </div><!-- End .cart-dropdown -->
+                <%} else {%>
+                <div class="dropdown cart-dropdown">
+                    <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                        <i class="icon-shopping-cart"></i>
+                        <span class="cart-count">${cart.size()}</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <c:forEach items="${cart}" var="cart">
+                            <div class="dropdown-cart-products">
+                                <div class="product">
+                                    <div class="product-cart-details">
+                                        <h4 class="product-title">
+                                            <a href="product.html">${cart.book.bookName}</a>
+                                        </h4>
+
+                                        <span class="cart-product-info">
+                                            <span class="cart-product-qty">${cart.qty} x
+                                            <fmt:formatNumber value="${cart.book.buyPrice}" pattern=" #,##0 VND" />   
+                                            </span>
+                                        </span>
+                                    </div><!-- End .product-cart-details -->
+
+                                    <figure class="product-image-container">
+                                        <a href="product.html" class="product-image">
+                                            <img src="${cart.book.image}" alt="product">
+                                        </a>
+                                    </figure>
+                                    <a href="${pageContext.request.contextPath }/customer/cuscart?action=removeHome&bookCode=${cart.book.bookCode}" class="btn-remove"><i class="icon-close"></i></a>
+                                </div><!-- End .product -->
+
+                            </div><!-- End .cart-product -->    
+                        </c:forEach>
+
+                        <div class="dropdown-cart-action">
+                            <a href="cusCart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span></a>
+                            <a href="cusCheckOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
+                        </div><!-- End .dropdown-cart-total -->
+                    </div><!-- End .dropdown-menu -->
+                </div><!-- End .cart-dropdown -->
+                <%}%>
             </div><!-- End .header-right -->
         </div><!-- End .container -->
     </div><!-- End .header-middle -->

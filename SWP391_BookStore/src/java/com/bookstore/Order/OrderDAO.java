@@ -10,6 +10,7 @@ import com.bookstore.Book.BookDAO;
 import com.bookstore.OrderDetail.OrderDetail;
 import com.bookstore.OrderDetail.OrderDetailDAO;
 import com.bookstore.Utils.DBUtils;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -218,6 +219,93 @@ public class OrderDAO {
         }
         return false;
     }
+    
+    public List<Order> getOrderManage() {
+        List<Order> list = new ArrayList<>();
+        String sql = "select o.orderID, ac.accountID,o.orderDate, o.userAddress, o.totalPrice,o.orderNote,o.status\n"
+                + "from ((tblOrder o inner join tblOrderDetail od on o.orderID=od.orderID)\n"
+                + "inner join tblAccount ac on ac.accountID=o.accountID)";
+
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                list.add(new Order(rs.getInt(1), //orderID
+                        rs.getInt(2), //accountID
+                        rs.getDate(3), //orderDate
+                        rs.getString(4).trim(),//userAddress
+                        rs.getInt(5),//totalPrice
+                        rs.getString(6).trim(), //orderNote
+                        rs.getString(7).trim()));//status
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public void addNewOrder(int orderID, int accountID, String orderDate, String address, int total, String Note, String status) throws NoSuchAlgorithmException {
+        String sql = "insert into tblOrder\n"
+                + "values(?, ?, ?, ?, ?, ?, ?)";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, orderID);
+            ps.setInt(2, accountID);
+            ps.setString(3, orderDate);
+            ps.setString(4, address);
+            ps.setInt(5, total);
+            ps.setString(6, Note);
+            ps.setString(7, status);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+
+    public List<Order> getOrderDetailManage() {
+        List<Order> list = new ArrayList<>();
+        String sql = "select od.OdetailID, b.bookCode, od.oDetailQty, b.buyPrice, o.orderID\n"
+                + "from ((tblOrderDetail od inner join tblOrder o on od.orderID=o.orderID)\n"
+                + "inner join tblBook b on b.bookCode = od.bookCode)";
+
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                list.add(new Order(rs.getInt(1), //orderID
+                        rs.getLong(2), //oDetailID
+                        rs.getInt(3), //bookCode
+                        rs.getInt(4),//oDetailQty
+                        rs.getInt(5)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public void addNewOrderDetail(int oDetailID, long bookCode, int oDetailQty, int buyPrice, int orderID) throws NoSuchAlgorithmException {
+
+        String sql = "insert into tblOrderDetail\n"
+                + "values(?, ?, ?, ?, ?)";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, oDetailID);
+            ps.setLong(2, bookCode);
+            ps.setInt(3, oDetailQty);
+            ps.setInt(4, buyPrice);
+            ps.setInt(5, orderID);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+
+
 
     public static void main(String[] args) {
         OrderDAO dAO = new OrderDAO();

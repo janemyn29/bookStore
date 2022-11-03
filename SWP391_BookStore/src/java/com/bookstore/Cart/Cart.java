@@ -6,6 +6,8 @@
 package com.bookstore.Cart;
 
 import com.bookstore.Book.Book;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -14,16 +16,23 @@ import com.bookstore.Book.Book;
 public class Cart {
 
     private Book book;
-    private int quantity;
+    private int qty;
+    private int buyPrice;
 
     public Cart() {
     }
 
-    public Cart(Book book, int quantity) {
+    public Cart(Book book, int qty) {
         this.book = book;
-        this.quantity = quantity;
+        this.qty = qty;
     }
 
+    public Cart(Book book, int qty, int buyPrice) {
+        this.book = book;
+        this.qty = qty;
+        this.buyPrice =buyPrice;
+    }
+    
     public Book getBook() {
         return book;
     }
@@ -32,12 +41,24 @@ public class Cart {
         this.book = book;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getQty() {
+        return qty;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setQty(int qty) {
+        this.qty = qty;
+    }  
+
+    public int getBuyPrice() {
+        return buyPrice;
     }
 
+    public void setBuyPrice(int buyPrice) {
+        this.buyPrice = buyPrice;
+    }
+
+    @Override
+    public String toString() {
+        return "Cart{" + "book=" + book + ", qty=" + qty + ", buyPrice=" + buyPrice + '}';
+    }   
 }

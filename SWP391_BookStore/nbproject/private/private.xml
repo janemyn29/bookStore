@@ -2,26 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP-Final/bookStore/SWP391_BookStore/web/header.jsp</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP-Final/bookStore/SWP391_BookStore/src/java/com/bookstore/Customer/CusHomeController.java</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP-Final/bookStore/SWP391_BookStore/src/java/com/bookstore/Customer/CusSearchController.java</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP-Final/bookStore/SWP391_BookStore/web/customer/cusHome.jsp</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP-Final/bookStore/SWP391_BookStore/web/customer/cusView.jsp</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP-Final/bookStore/SWP391_BookStore/web/customer/cusShopping.jsp</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP-Final/bookStore/SWP391_BookStore/src/java/com/bookstore/controller/SearchController.java</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP-Final/bookStore/SWP391_BookStore/src/java/com/bookstore/controller/CategoryController.java</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP-Final/bookStore/SWP391_BookStore/src/java/com/bookstore/controller/HomeController.java</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP-Final/bookStore/SWP391_BookStore/src/java/com/bookstore/Customer/CusShoppingController.java</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP-Final/bookStore/SWP391_BookStore/src/java/com/bookstore/Customer/CusCategoryController.java</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP-Final/bookStore/SWP391_BookStore/src/java/com/bookstore/Book/BookShopDAO.java</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP-Final/bookStore/SWP391_BookStore/web/customer/cusproduct.jsp</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP-Final/bookStore/SWP391_BookStore/src/java/com/bookstore/Book/BookShop.java</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP-Final/bookStore/SWP391_BookStore/src/java/com/bookstore/Customer/CusDetailController.java</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP-Final/bookStore/SWP391_BookStore/src/java/com/bookstore/controller/DetailController.java</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP-Final/bookStore/SWP391_BookStore/web/customer/cusHeader.jsp</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP-Final/bookStore/SWP391_BookStore/src/java/com/bookstore/controller/ShoppingController.java</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP-Final/bookStore/SWP391_BookStore/src/java/com/bookstore/Category/CategoryDAO.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

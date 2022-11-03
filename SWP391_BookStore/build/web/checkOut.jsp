@@ -1,5 +1,5 @@
 <%@page import="com.bookstore.Account.Account"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>\
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,8 +54,8 @@
                                             %>
                                         <li><a href="login.jsp">Login</li>
                                             <%
-                                            } else {%>
-                                        <li><a href="editprofile">Hello ${acc.getUsername()}</a></li>
+                                } else {%>
+                                        <li><a href="customer/editprofile">Hello ${acc.getUsername()}</a></li>
                                             <%}%>
                                     </ul>
                                 </li>
@@ -494,8 +494,8 @@
                                         <label  style="color: black;">Your cart is empty</label>
                                     </div>
                                     <div class="dropdown-cart-action">
-                                        <a href="cusCart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span></a>
-                                        <a href="cusCheckOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
+                                        <a href="cart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span></a>
+                                        <a href="checkOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
                                     </div><!-- End .dropdown-cart-total -->
                                 </div><!-- End .dropdown-menu -->
                             </div><!-- End .cart-dropdown -->
@@ -515,9 +515,8 @@
                                                     </h4>
 
                                                     <span class="cart-product-info">
-                                                        <span class="cart-product-qty">${cart.qty} x
-                                                            <fmt:formatNumber value="${cart.book.buyPrice}" pattern=" #,##0 VND" />  
-                                                        </span>
+                                                        <span class="cart-product-qty">${cart.qty}</span> x
+                                                        <fmt:formatNumber value="${cart.book.buyPrice}" pattern=" #,##0 VND" />   
                                                     </span>
                                                 </div><!-- End .product-cart-details -->
 
@@ -530,11 +529,17 @@
                                             </div><!-- End .product -->
 
                                         </div><!-- End .cart-product -->    
+<!--                                        <div class="dropdown-cart-total">
+                                            <span>Total:</span><br>
+                                            <span class="cart-total-price">
+                                            <fmt:formatNumber value="${cart.buyPrice * cart.qty}" pattern=" #,##0 VND" />   
+                                            </span>
+                                        </div> End .dropdown-cart-total -->
                                     </c:forEach>
 
                                     <div class="dropdown-cart-action">
-                                        <a href="cusCart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span></a>
-                                        <a href="cusCheckOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
+                                        <a href="cart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span></a>
+                                        <a href="checkOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
                                     </div><!-- End .dropdown-cart-total -->
                                 </div><!-- End .dropdown-menu -->
                             </div><!-- End .cart-dropdown -->
@@ -564,7 +569,7 @@
                     <div class="checkout">
                         <div class="container">
 
-                            <form action="checkout" method="post">
+                            <form action="customer/checkout" method="post">
 
                                 <div class="row">
                                     <div class="col-lg-9">
@@ -595,7 +600,7 @@
                                         <label>Order notes (optional)</label>
                                         <textarea class="form-control" name="txtNote" cols="30" rows="4" placeholder="Notes about your order, e.g. special notes for delivery"></textarea>
 
-                                        <a href="cusCart.jsp" class="btn btn-outline-primary-2">
+                                        <a href="cart.jsp" class="btn btn-outline-primary-2">
                                             <span>BACK</span>
                                             <i class="icon-arrow-left"></i>
                                         </a>
@@ -612,8 +617,8 @@
                                             </a>
 
                                             <h5 class="center-parent">BILL</h5>
-                                            <h7>Guess name: <span style="color: orange">${acc.getUsername()}</span></h7><br>
-                                            <h7>Guess Phone Number: <span style="color: orange">${acc.getPhone()}</span></h7>
+                                            <h7>Guess Name: ${acc.getUsername()}</h7><br>
+                                            <h7>Guess Phone Number: ${acc.getPhone()}</h7>
                                             <h1 class="summary-title"></h1>
 
                                             <table class="table table-summary">
@@ -630,9 +635,7 @@
                                                         <tr class="summary-subtotal">
                                                             <td>X ${cart.qty}</td>
                                                             <td>${cart.book.bookName}</td>
-                                                            <td>
-                                                                <fmt:formatNumber value="${cart.buyPrice * cart.qty}" pattern=" #,##0 VND" />
-                                                            </td>
+                                                            <td>${cart.buyPrice * cart.qty}vnd</td>
                                                         </tr><!-- End .summary-subtotal -->
                                                     </c:forEach>
 
@@ -640,9 +643,12 @@
 
                                                 <tr>
                                                     <td class="total-col">Total:</td>
-                                                    <td class="total-col">
-                                                        <fmt:formatNumber value="${totalPrice}" pattern=" #,##0 VND" />  
-                                                    </td>
+                                                    <c:forEach items="${cart}" var="cart">
+                                                    <script>
+                                                        int total += ${cart.buyPrice * cart.qty};
+                                                    </script>
+                                                </c:forEach>
+                                                <td class="total-col">${totalPrice} vnd</td>
                                                 </tr><!-- End .summary-total -->
 
                                             </table><!-- End .table table-summary -->
@@ -722,7 +728,7 @@
 
                                     <ul class="widget-list">
                                         <li><a href="#">Sign In</a></li>
-                                        <li><a href="cusCart.jsp">View Cart</a></li>
+                                        <li><a href="cart.html">View Cart</a></li>
                                         <li><a href="#">My Wishlist</a></li>
                                         <li><a href="#">Track My Order</a></li>
                                         <li><a href="#">Help</a></li>
@@ -801,7 +807,7 @@
                                 <li><a href="category-fullwidth.html">Shop Fullwidth No Sidebar</a></li>
                                 <li><a href="product-category-boxed.html">Product Category Boxed</a></li>
                                 <li><a href="product-category-fullwidth.html"><span>Product Category Fullwidth<span class="tip tip-new">New</span></span></a></li>
-                                <li><a href="cusCart.jsp">Cart</a></li>
+                                <li><a href="cart.html">Cart</a></li>
                                 <li><a href="cusCheckOut.jsp">Checkout</a></li>
                                 <li><a href="wishlist.html">Wishlist</a></li>
                                 <li><a href="#">Lookbook</a></li>

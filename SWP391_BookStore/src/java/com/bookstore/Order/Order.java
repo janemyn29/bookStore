@@ -22,6 +22,10 @@ public class Order {
     private String accName;
     private String email;
     private String phone;
+    private int oDetailQty;
+    private int buyPrice;
+    private int oDetailID;
+    private long bookCode;
     
 
     public Order() {
@@ -49,6 +53,47 @@ public class Order {
         this.email = email;
         this.phone = phone;
     }
+    
+    public Order(int oDetailID, long bookCode, int oDetailQty, int buyPrice, int orderID) {
+        this.oDetailID = oDetailID;
+        this.bookCode = bookCode;
+        this.oDetailQty = oDetailQty;
+        this.buyPrice = buyPrice;
+        this.orderID = orderID;
+    }
+
+    public int getoDetailQty() {
+        return oDetailQty;
+    }
+
+    public void setoDetailQty(int oDetailQty) {
+        this.oDetailQty = oDetailQty;
+    }
+
+    public int getBuyPrice() {
+        return buyPrice;
+    }
+
+    public void setBuyPrice(int buyPrice) {
+        this.buyPrice = buyPrice;
+    }
+
+    public int getoDetailID() {
+        return oDetailID;
+    }
+
+    public void setoDetailID(int oDetailID) {
+        this.oDetailID = oDetailID;
+    }
+
+    public long getBookCode() {
+        return bookCode;
+    }
+
+    public void setBookCode(long bookCode) {
+        this.bookCode = bookCode;
+    }
+    
     
 
     public int getOrderID() {

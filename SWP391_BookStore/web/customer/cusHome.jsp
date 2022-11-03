@@ -105,8 +105,8 @@
                                                 </div>
 
                                             </div><!-- End .product-body -->
-                                            <div class="product-action">
-                                                <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                            <div class="product-action action-icon-top">
+                                                <a href="${pageContext.request.contextPath }/customer/cuscart?&action=addToCart&bookCode=${discount.bookCode}" class="btn-product btn-cart"><span>add to cart</span></a>
                                             </div><!-- End .product-action -->
                                         </div><!-- End .product -->
                                     </c:forEach>
@@ -262,28 +262,16 @@
                                                                                                         <a href="#" style="background: #e8e8e8;"><span class="sr-only">Color name</span></a>
                                                                                                     </div> End .product-nav -->
                                                     </div><!-- End .product-body -->
-                                                    <div class="product-action">
-                                                        <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                                    <div class="product-action action-icon-top">
+                                                        <a href="${pageContext.request.contextPath }/customer/cuscart?&action=addToCart&bookCode=${discount.bookCode}" class="btn-product btn-cart"><span>add to cart</span></a>
                                                     </div><!-- End .product-action -->
                                                 </div><!-- End .product -->
                                             </div><!-- End .col-sm-6 col-md-4 col-lg-3 -->
                                         </c:forEach>
 
-
-
-
-
-
-
-
-
-
                                     </div><!-- End .row -->
                                 </div><!-- End .products -->
                             </div><!-- .End .tab-pane -->
-
-
-
                         </div><!-- End .row -->
                     </div><!-- End .products -->
                 </div><!-- .End .tab-pane -->

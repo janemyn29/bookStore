@@ -63,11 +63,15 @@
                                                 <a class="nav-link active" id="tab-account-link" data-toggle="tab" href="#tab-account" role="tab" aria-controls="tab-account" aria-selected="true">Profile</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" id="tab-orders-link" data-toggle="tab" href="#tab-orders" role="tab" aria-controls="tab-orders" aria-selected="false">My Orders</a>
+                                                <a class="nav-link" href="cusorderhome">My Orders</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#">My History</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" href="cusChangePass.jsp">Change Password</a>
                                             </li>
+                                            
                                             <li class="nav-item">
                                                 <a class="nav-link" href="cusHome.jsp">Sign Out</a>
                                             </li>

@@ -510,6 +510,49 @@ public class BookDAO {
         }
         return list;
     }
+    
+    public Book getBookBybookCodeV2(String bookCode) {
+        String sql = "select b.bookCode, b.bookName, b.img, b.importPrice, b.buyPrice, b.description, b.quantity,c.cateID,c.cateName,p.postID,p.postName,pc.companyID,pc.companyName,b.postDate,d.discountPercent\n"
+                + "from ((((tblBook b inner join tblCategory c on b.cateID=c.cateID)\n"
+                + "inner join tblPostHistory p on p.postID=b.postID)\n"
+                + "inner join tblPublishCompany pc on pc.companyID=b.companyID)\n"
+                + "inner join tblDiscount d on d.bookCode=b.bookCode )\n"
+                + " where b.bookCode= ? ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, bookCode);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                return new Book(rs.getLong(1),//bookcode
+                        rs.getString(2), //bookname
+                        rs.getString(3), //img
+                        rs.getInt(4),//impPrice
+                        rs.getInt(5), //buyPrice
+                        rs.getString(6), rs.getInt(7), rs.getInt(8), rs.getString(9), rs.getInt(10), rs.getString(11), rs.getInt(12), rs.getString(13), rs.getDate(14), rs.getInt(15));
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+    
+    public int getDisCountByBookCode(String bookCode) {
+        String sql = "select discountPercent from tblDiscount\n"
+                + "where bookCode = ? ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, bookCode);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                int discountPercent = rs.getInt(1);
+                return discountPercent;
+            }
+        } catch (Exception e) {
+        }
+        return 0;
+    }
 
     public static void main(String[] args) {
         BookDAO dAO = new BookDAO();

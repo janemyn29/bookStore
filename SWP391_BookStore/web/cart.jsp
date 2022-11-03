@@ -1,11 +1,15 @@
 <%@page import="com.bookstore.Account.Account"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>\
+<%@page import="com.bookstore.Book.BookDAO"%>
+<%@page import="com.bookstore.Book.Book"%>
+<%@page import="com.bookstore.Cart.Cart"%>
+<%@page import="java.util.List"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
 
-    <!-- molla/checkout.html  22 Nov 2019 09:55:06 GMT -->
+    <!-- molla/cart.html  22 Nov 2019 09:55:06 GMT -->
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -72,14 +76,14 @@
                                 <i class="icon-bars"></i>
                             </button>
 
-                            <a href="index.html" class="logo">
+                            <a href="home.jsp" class="logo">
                                 <img src="assets/images/logo.png" alt="Molla Logo" width="105" height="25">
                             </a>
 
                             <nav class="main-nav">
                                 <ul class="menu sf-arrows">
                                     <li class="megamenu-container active">
-                                        <a href="index.html" class="sf-with-ul">Home</a>
+                                        <a href="home.jsp" class="sf-with-ul">Home</a>
 
                                         <div class="megamenu demo">
                                             <div class="menu-col">
@@ -263,7 +267,7 @@
                                         </div><!-- End .megamenu -->
                                     </li>
                                     <li>
-                                        <a href="category.html" class="sf-with-ul">Shop</a>
+                                        <a href="shopping.jsp" class="sf-with-ul">Shop</a>
 
                                         <div class="megamenu megamenu-md">
                                             <div class="row no-gutters">
@@ -295,7 +299,7 @@
                                                                 </ul>
                                                                 <div class="menu-title">Shop Pages</div><!-- End .menu-title -->
                                                                 <ul>
-                                                                    <li><a href="cart.html">Cart</a></li>
+                                                                    <li><a href="cuscart.jsp">Cart</a></li>
                                                                     <li><a href="cusCheckOut.jsp">Checkout</a></li>
                                                                     <li><a href="wishlist.html">Wishlist</a></li>
                                                                     <li><a href="dashboard.html">My Account</a></li>
@@ -375,9 +379,9 @@
                                                     <li><a href="contact-2.html">Contact 02</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="login.html">Login</a></li>
+                                            <li><a href="login.jsp">Login</a></li>
                                             <li><a href="faq.html">FAQs</a></li>
-                                            <li><a href="404.html">Error 404</a></li>
+                                            <li><a href="404.jsp">Error 404</a></li>
                                             <li><a href="coming-soon.html">Coming Soon</a></li>
                                         </ul>
                                     </li>
@@ -456,29 +460,7 @@
                                     </div><!-- End .header-search-wrapper -->
                                 </form>
                             </div><!-- End .header-search -->
-                            <div class="dropdown compare-dropdown">
-                                <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static" title="Compare Products" aria-label="Compare Products">
-                                    <i class="icon-random"></i>
-                                </a>
 
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <ul class="compare-products">
-                                        <li class="compare-product">
-                                            <a href="#" class="btn-remove" title="Remove Product"><i class="icon-close"></i></a>
-                                            <h4 class="compare-product-title"><a href="product.html">Blue Night Dress</a></h4>
-                                        </li>
-                                        <li class="compare-product">
-                                            <a href="#" class="btn-remove" title="Remove Product"><i class="icon-close"></i></a>
-                                            <h4 class="compare-product-title"><a href="product.html">White Long Skirt</a></h4>
-                                        </li>
-                                    </ul>
-
-                                    <div class="compare-actions">
-                                        <a href="#" class="action-link">Clear All</a>
-                                        <a href="#" class="btn btn-outline-primary-2"><span>Compare</span><i class="icon-long-arrow-right"></i></a>
-                                    </div>
-                                </div><!-- End .dropdown-menu -->
-                            </div><!-- End .compare-dropdown -->
 
                             <%
 
@@ -516,7 +498,7 @@
 
                                                     <span class="cart-product-info">
                                                         <span class="cart-product-qty">${cart.qty} x
-                                                            <fmt:formatNumber value="${cart.book.buyPrice}" pattern=" #,##0 VND" />  
+                                                        <fmt:formatNumber value="${cart.book.buyPrice}" pattern=" #,##0 VND" />   
                                                         </span>
                                                     </span>
                                                 </div><!-- End .product-cart-details -->
@@ -526,15 +508,15 @@
                                                         <img src="${cart.book.image}" alt="product">
                                                     </a>
                                                 </figure>
-                                                <a href="${pageContext.request.contextPath }/cart?action=removeHome&bookCode=${cart.book.bookCode}" class="btn-remove"><i class="icon-close"></i></a>
+                                                <a href="${pageContext.request.contextPath }/cart?action=remove&bookCode=${cart.book.bookCode}" class="btn-remove"><i class="icon-close"></i></a>
                                             </div><!-- End .product -->
 
                                         </div><!-- End .cart-product -->    
                                     </c:forEach>
 
                                     <div class="dropdown-cart-action">
-                                        <a href="cusCart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span></a>
-                                        <a href="cusCheckOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
+                                        <a href="cart.jsp" class="btn btn-primary">View Cart</a>
+                                        <a href="checkOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
                                     </div><!-- End .dropdown-cart-total -->
                                 </div><!-- End .dropdown-menu -->
                             </div><!-- End .cart-dropdown -->
@@ -547,125 +529,159 @@
             <main class="main">
                 <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
                     <div class="container">
-                        <h1 class="page-title">Checkout<span>Shop</span></h1>
+                        <h1 class="page-title">Shopping Cart<span>Shop</span></h1>
                     </div><!-- End .container -->
                 </div><!-- End .page-header -->
                 <nav aria-label="breadcrumb" class="breadcrumb-nav">
                     <div class="container">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Shop</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+                            <li class="breadcrumb-item"><a href="home">Home</a></li>
+                            <li class="breadcrumb-item"><a href="shopping">Shop</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Shopping Cart</li>
                         </ol>
                     </div><!-- End .container -->
                 </nav><!-- End .breadcrumb-nav -->
 
                 <div class="page-content">
-                    <div class="checkout">
+                    <div class="cart">
                         <div class="container">
+                            <div class="row">
+                                <div class="col-lg-9">
+                                    <table class="table table-cart table-mobile">
+                                        <thead>
+                                            <tr>
+                                                <th>Product</th>
+                                                <th>Price</th>
+                                                <th></th>
+                                                <th>Quantity</th>
+                                                <th>Total</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
 
-                            <form action="checkout" method="post">
-
-                                <div class="row">
-                                    <div class="col-lg-9">
-                                        <h2 class="checkout-title">Billing Details</h2><!-- End .checkout-title -->
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <label>User Name *</label>
-                                                <input type="text" value="${acc.getUsername()}" class="form-control" readonly>
-                                            </div><!-- End .col-sm-6 -->
-
-                                            <div class="col-sm-6">
-                                                <label>Email *</label>
-                                                <input type="email" value="${acc.getEmail()}" class="form-control" readonly>
-                                            </div><!-- End .col-sm-6 -->
-                                        </div><!-- End .row -->
-
-                                        <label>Your Address</label>
-                                        <input type="text" class="form-control" name="txtAddress" placeholder="Enter your shipping address here" required="">
-
-                                        <div class="row">
-
-                                            <div class="col-sm-6">
-                                                <label>Phone *</label>
-                                                <input type="tel" class="form-control" value="${acc.getPhone()}" readonly>
-                                            </div><!-- End .col-sm-6 -->
-                                        </div><!-- End .row -->
-
-                                        <label>Order notes (optional)</label>
-                                        <textarea class="form-control" name="txtNote" cols="30" rows="4" placeholder="Notes about your order, e.g. special notes for delivery"></textarea>
-
-                                        <a href="cusCart.jsp" class="btn btn-outline-primary-2">
-                                            <span>BACK</span>
-                                            <i class="icon-arrow-left"></i>
-                                        </a>
-                                    </div><!-- End .col-lg-9 -->
-
-
-                                    <aside class="col-lg-3">
-                                        <div class="summary summary-cart">
-
-                                            <a class="logo" style="color: orange">
-                                                <img src="assets/images/logo.png" alt="Molla Logo" width="105" height="25">
-                                                <h9 class="right-parent"><i class="icon-phone"></i>Call: +0123 456 789</h9>
-                                                <h9>(Tra My)</h9>
-                                            </a>
-
-                                            <h5 class="center-parent">BILL</h5>
-                                            <h7>Guess name: <span style="color: orange">${acc.getUsername()}</span></h7><br>
-                                            <h7>Guess Phone Number: <span style="color: orange">${acc.getPhone()}</span></h7>
-                                            <h1 class="summary-title"></h1>
-
-                                            <table class="table table-summary">
-
-                                                <tbody> 
-
-                                                    <tr class="summary-subtotal">
-                                                        <td>Quantity</td>
-                                                        <td class="center-parent">Name</td>
-                                                        <td>SubTotal</td>
-                                                    </tr><!-- End .summary-subtotal -->
-
-                                                    <c:forEach items="${cart}" var="cart">
-                                                        <tr class="summary-subtotal">
-                                                            <td>X ${cart.qty}</td>
-                                                            <td>${cart.book.bookName}</td>
-                                                            <td>
-                                                                <fmt:formatNumber value="${cart.buyPrice * cart.qty}" pattern=" #,##0 VND" />
-                                                            </td>
-                                                        </tr><!-- End .summary-subtotal -->
-                                                    </c:forEach>
-
-                                                </tbody>
-
+                                        <tbody>
+                                            <c:forEach items="${cart}" var="cart">
                                                 <tr>
-                                                    <td class="total-col">Total:</td>
-                                                    <td class="total-col">
-                                                        <fmt:formatNumber value="${totalPrice}" pattern=" #,##0 VND" />  
+                                                    <td class="product-col">
+                                                        <div class="product">
+                                                            <figure class="product-media">
+                                                                <img src="${cart.book.image}" alt="Product image" class="product-image">
+                                                            </figure>
+                                                            <h3 class="product-title">
+                                                                <a href="product.jsp">${cart.book.bookName}</a>
+                                                            </h3> 
+                                                        </div> 
                                                     </td>
-                                                </tr><!-- End .summary-total -->
 
-                                            </table><!-- End .table table-summary -->
+                                                    <c:if test='${cart.book.buyPrice == cart.buyPrice}'>
+                                                        <td class="price-col">
+                                                            <fmt:formatNumber value="${cart.book.buyPrice}" pattern=" #,##0 VND" /> 
+                                                        </td>
+                                                        <td></td>
+                                                    </c:if>
+
+                                                    <c:if test='${cart.book.buyPrice != cart.buyPrice}'>
+                                                        <td class="price-col">
+                                                            <fmt:formatNumber value="${cart.buyPrice}" pattern=" #,##0 VND" />
+                                                        </td>
+                                                        <td class="line-through">
+                                                            <fmt:formatNumber value="${cart.book.buyPrice}" pattern=" #,##0 VND" />  
+                                                        </td>
+                                                    </c:if>
 
 
-                                            <c:if test='${acc == null}'>
-                                                <small>You need sign in first before checkout!</small><br>
-                                                <small>Click the button below to sign in.</small>
-                                                <a href="login.jsp" class="btn btn-outline-primary-2 btn-order btn-block">Loggin to checkout</a>
+                                                    <td class="quantity-col">
+                                                        <div class="cart-product-quantity">
+                                                            <a href="${pageContext.request.contextPath }/cart?action=decre&bookCode=${cart.book.bookCode}">-</a>
+                                                            <a class="alert">
+                                                                ${cart.qty}                                                     
+                                                            </a>
+                                                            <a href="${pageContext.request.contextPath }/cart?action=incre&bookCode=${cart.book.bookCode}">+</a>
+                                                        </div>
+                                                    </td>
+
+                                                    <td class="total-col">
+                                                        <fmt:formatNumber value="${cart.buyPrice * cart.qty}" pattern=" #,##0 VND" /> 
+                                                    </td>
+
+
+                                                    <td class="remove-col">
+                                                        <a href="${pageContext.request.contextPath }/cart?action=remove&bookCode=${cart.book.bookCode}" class="btn-remove">
+                                                            <i class="icon-close"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+                                        </tbody>
+
+                                    </table><!-- End .table table-wishlist -->
+                                </div><!-- End .col-lg-9 -->
+                                <aside class="col-lg-3">
+
+
+                                    <div class="summary summary-cart">
+                                        <a class="logo" style="color: orange">
+                                            <img src="assets/images/logo.png" alt="Molla Logo" width="105" height="25">
+                                            <h9 class="right-parent"><i class="icon-phone"></i>Call: +0123 456 789</h9>
+                                            <h9>(Tra My)</h9>
+                                        </a>
+
+                                        <h5 class="center-parent">BILL</h5><!-- End .summary-title -->
+                                        <h7>Guess Name: ${acc.getUsername()}</h7><br>
+                                        <h7>Guess Phone Number: ${acc.getPhone()}</h7>
+                                        <h1 class="summary-title"></h1>
+
+                                        <table class="table table-summary">
+
+                                            <tbody>                                              
+                                                <tr class="summary-subtotal">
+                                                    <td>Quantity</td>
+                                                    <td class="center-parent">Name</td>
+                                                    <td>Price</td>
+                                                </tr><!-- End .summary-subtotal -->
+                                                <c:forEach items="${cart}" var="cart">
+                                                    <tr class="summary-subtotal">
+                                                        <td>X ${cart.qty}</td>
+                                                        <td>${cart.book.bookName}</td>
+                                                        <td>
+                                                            <fmt:formatNumber value="${cart.buyPrice * cart.qty}" pattern=" #,##0 VND" />  
+                                                        </td>
+                                                    </tr><!-- End .summary-subtotal -->
+                                                </c:forEach>
+                                            </tbody>
+                                            <tr>
+
+                                                <td class="total-col">Total:</td>
+                                                <c:forEach items="${cart}" var="cart">
+                                                <script>
+                                                    int total += ${cart.buyPrice * cart.qty};
+                                                </script>
+                                            </c:forEach>
+                                            <c:set value="${total}" var="totalAll"></c:set>
+
+                                                <td class="total-col">
+                                                <fmt:formatNumber value="${totalPrice}" pattern=" #,##0 VND" />                                       
+                                               </td>
+
+
+                                            </tr><!-- End .summary-total -->
+                                        </table><!-- End .table table-summary -->
+
+                                        <c:if test='${cart == null}'>
+                                            <label  style="color: red;">You have no item in cart!<br>Pls continue to shopping</label>
                                             </c:if>
-                                            <c:if test='${acc != null}'>
-                                                <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">Place Order</button>
-                                            </c:if>
-                                        </div><!-- End .summary -->
-                                    </aside><!-- End .col-lg-3 -->
-                                </div><!-- End .row -->
-                            </form>
+                                            <c:if test='${cart != null}'>
+                                            <a href="checkOut.jsp" class="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO CHECKOUT</a>
+                                        </c:if>
 
+                                    </div><!-- End .summary -->
+
+                                    <a href="cushome" class="btn btn-outline-dark-2 btn-block mb-3"><span>CONTINUE SHOPPING</span><i class="icon-refresh"></i></a>
+                                </aside><!-- End .col-lg-3 -->
+                            </div><!-- End .row -->
                         </div><!-- End .container -->
-                    </div><!-- End .checkout -->
+                    </div><!-- End .cart -->
                 </div><!-- End .page-content -->
-
-
             </main><!-- End .main -->
 
             <footer class="footer">
@@ -722,7 +738,7 @@
 
                                     <ul class="widget-list">
                                         <li><a href="#">Sign In</a></li>
-                                        <li><a href="cusCart.jsp">View Cart</a></li>
+                                        <li><a href="cart.jsp">View Cart</a></li>
                                         <li><a href="#">My Wishlist</a></li>
                                         <li><a href="#">Track My Order</a></li>
                                         <li><a href="#">Help</a></li>
@@ -801,8 +817,8 @@
                                 <li><a href="category-fullwidth.html">Shop Fullwidth No Sidebar</a></li>
                                 <li><a href="product-category-boxed.html">Product Category Boxed</a></li>
                                 <li><a href="product-category-fullwidth.html"><span>Product Category Fullwidth<span class="tip tip-new">New</span></span></a></li>
-                                <li><a href="cusCart.jsp">Cart</a></li>
-                                <li><a href="cusCheckOut.jsp">Checkout</a></li>
+                                <li><a href="cart.jsp">Cart</a></li>
+                                <li><a href="checkOut.jsp">Checkout</a></li>
                                 <li><a href="wishlist.html">Wishlist</a></li>
                                 <li><a href="#">Lookbook</a></li>
                             </ul>
@@ -1038,10 +1054,10 @@
         <script src="assets/js/jquery.waypoints.min.js"></script>
         <script src="assets/js/superfish.min.js"></script>
         <script src="assets/js/owl.carousel.min.js"></script>
+        <script src="assets/js/bootstrap-input-spinner.js"></script>
         <!-- Main JS File -->
         <script src="assets/js/main.js"></script>
     </body>
 
-
-    <!-- molla/checkout.html  22 Nov 2019 09:55:06 GMT -->
+    <!-- molla/cart.html  22 Nov 2019 09:55:06 GMT -->
 </html>

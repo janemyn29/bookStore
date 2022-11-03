@@ -229,10 +229,6 @@
         <servlet-class>com.bookstore.Admin.AddBlacklistController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CartController</servlet-name>
-        <servlet-class>com.bookstore.Cart.CartController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>CusHomeNavController</servlet-name>
         <servlet-class>com.bookstore.Customer.CusHomeNavController</servlet-class>
     </servlet>
@@ -372,6 +368,22 @@
         <servlet-name>CusCategoryController</servlet-name>
         <servlet-class>com.bookstore.Customer.CusCategoryController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CartController</servlet-name>
+        <servlet-class>com.bookstore.Cart.CartController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckOutController</servlet-name>
+        <servlet-class>com.bookstore.Cart.CheckOutController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CusOrderHome</servlet-name>
+        <servlet-class>com.bookstore.Customer.CusOrderHome</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CusCartController</servlet-name>
+        <servlet-class>com.bookstore.Cart.CusCartController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -503,10 +515,6 @@
     <servlet-mapping>
         <servlet-name>AddBlacklistController</servlet-name>
         <url-pattern>/admin/addBlacklist</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CartController</servlet-name>
-        <url-pattern>/cart/cartcontroller</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CusHomeNavController</servlet-name>
@@ -647,6 +655,22 @@
     <servlet-mapping>
         <servlet-name>CusCategoryController</servlet-name>
         <url-pattern>/customer/cuscategory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CartController</servlet-name>
+        <url-pattern>/cart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckOutController</servlet-name>
+        <url-pattern>/customer/checkout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CusOrderHome</servlet-name>
+        <url-pattern>/customer/cusorderhome</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CusCartController</servlet-name>
+        <url-pattern>/customer/cuscart</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

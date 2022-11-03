@@ -25,7 +25,7 @@ import java.util.ListIterator;
  *
  * @author Admin
  */
-public class CartController extends HttpServlet {
+public class CusCartController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -87,7 +87,7 @@ public class CartController extends HttpServlet {
                     session.setAttribute("totalPrice", totalPrice);// set tong tien
 
                     session.setAttribute("cart", cart);
-                    request.getRequestDispatcher("home").forward(request, response);
+                    request.getRequestDispatcher("cushome").forward(request, response);
 
                 } else if (action.equals("remove")) { // xoa sach trong cart
                     cart = (List<Cart>) session.getAttribute("cart");
@@ -119,7 +119,7 @@ public class CartController extends HttpServlet {
                         }
                     }
                     session.setAttribute("cart", cart);
-                    request.getRequestDispatcher("home").forward(request, response);
+                    request.getRequestDispatcher("cushome").forward(request, response);
 
                 } else if (action.equals("decre")) { // giam quantity
                     cart = (List<Cart>) session.getAttribute("cart");
