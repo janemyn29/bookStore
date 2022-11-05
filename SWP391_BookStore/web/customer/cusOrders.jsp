@@ -46,8 +46,8 @@
                     <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
                         <div class="container">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="home.jsp">Home</a></li>
-                                <li class="breadcrumb-item"><a href="shopping.jsp">Shop</a></li>
+                                <li class="breadcrumb-item"><a href="cushome">Home</a></li>
+<!--                                <li class="breadcrumb-item"><a href="shopping.jsp">Shop</a></li>-->
                                 <li class="breadcrumb-item active" aria-current="page">My Orders</li>
                             </ol>
                         </div><!-- End .container -->
@@ -60,10 +60,10 @@
                                     <aside class="col-md-4 col-lg-3">
                                         <ul class="nav nav-dashboard flex-column mb-3 mb-md-0" role="tablist">
                                             <li class="nav-item">
-                                                <a class="nav-link" id="tab-orders-link" data-toggle="tab" href="#tab-orders" role="tab" aria-controls="tab-orders" aria-selected="false">My Orders</a>
+                                                <a class="nav-link active" id="tab-orders-link" data-toggle="tab" href="#tab-orders" role="tab" aria-controls="tab-orders" aria-selected="false">My Orders</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="#">Sign Out</a>
+                                                <a class="nav-link" href="/SWP391_BookStore/logout">Sign Out</a>
                                             </li>
                                         </ul>
                                     </aside><!-- End .col-lg-3 -->
@@ -74,9 +74,8 @@
                                                 <div class="table-responsive">
                                                     <table class="table table-striped table-bordered zero-configuration">
                                                         <thead>
-                                                            <tr>
-                                                                <th>Numbers</th>
-                                                                <th>Order Note</th> 
+                                                            <tr class="center-parent">
+                                                                <th>Number</th>
                                                                 <th>Order Date</th>
                                                                 <th>Order Address</th>
                                                                 <th>Status</th>
@@ -85,19 +84,23 @@
                                                         </thead>
 
                                                         <tbody>
-                                                        <c:set value="0" var="${count}">
+                                                            <c:set var="count" value="0"></c:set>
                                                         <c:forEach items ="${listOrd}" var="ord">
-                                                            <tr>
-                                                                <td>${count+1}</td>
-                                                                <td>${ord}</td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>   
+                                                            <c:set var="count" value="${count=count+1}"></c:set>
+                                                            <tr class="center-parent">
+                                                                <td>${count}</td>
+                                                                <td>${ord.orderDate}</td>
+                                                                <td>${ord.address}</td>
+                                                                <td>${ord.status}</td>
+                                                                <td><a class="icon-eye" href="cusorderdetailhome?orderID=${ord.orderID}"></a></td>
                                                             </tr>
                                                         </c:forEach>
                                                     </tbody>                                        
                                                 </table>
+                                                    <a href="cusEditProfile.jsp" class="btn btn-outline-primary-2">
+                                                        <span>BACK</span>
+                                                        <i class="icon-arrow-left"></i>
+                                                    </a>
 
                                             </div>
                                         </div><!-- .End .tab-pane -->

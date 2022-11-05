@@ -29,6 +29,16 @@ public class Feedback {
         this.starID = starID;
     }
 
+    public Feedback(int feedID, long bookcode, int accID, String detail, int starID) {
+        this.feedID = feedID;
+        this.bookcode = bookcode;
+        this.accID = accID;
+        this.detail = detail;
+        this.starID = starID;
+    }
+    
+    
+
     public int getFeedID() {
         return feedID;
     }

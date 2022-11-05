@@ -17,6 +17,12 @@ public class OrderDetail {
     public String img;
     public int quantity;
     public int price;
+    
+    private int total;
+    private int oDetailQty;
+    private int buyPrice;
+    private String bookName; 
+    private String Note;
 
     public OrderDetail() {
     }
@@ -31,6 +37,57 @@ public class OrderDetail {
         this.price = price;
     }
 
+    public OrderDetail(int total, int oDetailQty, int buyPrice, String bookName, String Note) {
+        this.total = total;
+        this.oDetailQty = oDetailQty;
+        this.buyPrice = buyPrice;
+        this.bookName = bookName;
+        this.Note = Note;
+    }
+
+    public String getNote() {
+        return Note;
+    }
+
+    public void setNote(String Note) {
+        this.Note = Note;
+    }
+     
+    
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+    public int getoDetailQty() {
+        return oDetailQty;
+    }
+
+    public void setoDetailQty(int oDetailQty) {
+        this.oDetailQty = oDetailQty;
+    }
+
+    public int getBuyPrice() {
+        return buyPrice;
+    }
+
+    public void setBuyPrice(int buyPrice) {
+        this.buyPrice = buyPrice;
+    }
+
+    public String getBookName() {
+        return bookName;
+    }
+
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
+    }
+    
+    
+    
     public int getDetailID() {
         return detailID;
     }
@@ -89,8 +146,11 @@ public class OrderDetail {
 
     @Override
     public String toString() {
-        return "OrderDetail{" + "detailID=" + detailID + ", orderID=" + orderID + ", bookcode=" + bookcode + ", bName=" + bName + ", img=" + img + ", quantity=" + quantity + ", price=" + price + '}';
+        return "OrderDetail{" + "total=" + total + ", oDetailQty=" + oDetailQty + ", buyPrice=" + buyPrice + ", bookName=" + bookName + ", Note=" + Note + '}';
     }
+
+    
+    
     
     
 }

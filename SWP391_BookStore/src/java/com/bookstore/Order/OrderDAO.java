@@ -59,7 +59,6 @@ public class OrderDAO {
             ps = conn.prepareStatement(sql);
             ps.setInt(1, accID);
             rs = ps.executeQuery();
-            
 
             while (rs.next()) {
 
@@ -116,7 +115,7 @@ public class OrderDAO {
     }
 
     public boolean updateOrderStatusAndMinusQty(String orderid, String check) throws SQLException {
-        
+
         try {
             OrderDetailDAO dAO = new OrderDetailDAO();
             List<OrderDetail> list = dAO.getListDetailByOrder(orderid);
@@ -124,9 +123,9 @@ public class OrderDAO {
                 String code = String.valueOf(orderDetail.getBookcode());
                 BookDAO bDao = new BookDAO();
                 Book book = bDao.getBookBybookCode(code);
-                int qty=book.getQty()- orderDetail.getQuantity();
-                
-                OrderDAO orderDAO= new OrderDAO();
+                int qty = book.getQty() - orderDetail.getQuantity();
+
+                OrderDAO orderDAO = new OrderDAO();
                 orderDAO.updateQtyBook(code, qty);
             }
             conn = DBUtils.getConnection();
@@ -153,8 +152,9 @@ public class OrderDAO {
         }
         return false;
     }
+
     public boolean updateOrderStatusAndAddQty(String orderid, String check) throws SQLException {
-        
+
         try {
             OrderDetailDAO dAO = new OrderDetailDAO();
             List<OrderDetail> list = dAO.getListDetailByOrder(orderid);
@@ -162,9 +162,9 @@ public class OrderDAO {
                 String code = String.valueOf(orderDetail.getBookcode());
                 BookDAO bDao = new BookDAO();
                 Book book = bDao.getBookBybookCode(code);
-                int qty=book.getQty()+ orderDetail.getQuantity();
-                
-                OrderDAO orderDAO= new OrderDAO();
+                int qty = book.getQty() + orderDetail.getQuantity();
+
+                OrderDAO orderDAO = new OrderDAO();
                 orderDAO.updateQtyBook(code, qty);
             }
             conn = DBUtils.getConnection();
@@ -219,7 +219,7 @@ public class OrderDAO {
         }
         return false;
     }
-    
+
     public List<Order> getOrderManage() {
         List<Order> list = new ArrayList<>();
         String sql = "select o.orderID, ac.accountID,o.orderDate, o.userAddress, o.totalPrice,o.orderNote,o.status\n"
@@ -305,11 +305,99 @@ public class OrderDAO {
         }
     }
 
+    public List<Order> getOrderListByStatus(int accountID) {
+        List<Order> list = new ArrayList<>();
+        String sql = " select orderID, orderDate, userAddress, status\n"
+                + "from tblOrder\n"
+                + "where (status = 'confirming' or status = 'delivering') and accountID = ? ";
 
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, accountID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                list.add(new Order(rs.getInt(1), //orderID
+                        rs.getDate(2), //orderDate
+                        rs.getString(3).trim(), //address
+                        rs.getString(4).trim()));//status
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public List<Order> getOrderListByStatus2(int accountID) {
+        List<Order> list = new ArrayList<>();
+        String sql = " select orderID, orderDate, userAddress, status\n"
+                + "from tblOrder\n"
+                + "where status = 'recieved' and accountID = ? ";
+
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, accountID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                list.add(new Order(rs.getInt(1), //orderID
+                        rs.getDate(2), //orderDate
+                        rs.getString(3).trim(),//userAddress
+                        rs.getString(4).trim()));//status
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public List<Order> getOrderDetailByorderID(int orderID) {
+        List<Order> list = new ArrayList<>();
+        String sql = " select o.totalPrice, o.orderNote, od.oDetailQty, od.price, b.bookName, b.bookCode, o.orderID\n"
+                + "from ((tblOrderDetail od inner join tblBook b on od.bookcode = b.bookCode)\n"
+                + "inner join tblOrder o on o.orderID = od.orderID)\n"
+                + "where o.orderID = ? ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, orderID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                list.add(new Order(rs.getInt(1),
+                        rs.getString(2).trim(),
+                        rs.getInt(3),
+                        rs.getInt(4),
+                        rs.getString(5).trim(),
+                        rs.getLong(6),
+                        rs.getInt(7)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public void updateNoteByOrderID(String Note, int orderID) {
+
+        String sql = " update tblOrder\n"
+                + "set orderNote = ?\n"
+                + "where orderID = ? and status ='confirming' ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, Note);
+            ps.setInt(2, orderID);
+            rs = ps.executeQuery();
+
+        } catch (Exception e) {
+        }
+    }
 
     public static void main(String[] args) {
         OrderDAO dAO = new OrderDAO();
-        Order list = dAO.getOrderByID("1");
-        System.out.println(list);
+        //Order list = dAO.getOrderByID("1");
+        //dAO.updateNoteByOrderID("tao la chinh haha", 8);
     }
 }

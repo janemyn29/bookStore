@@ -96,7 +96,7 @@ public class CheckOutController extends HttpServlet {
 
             cart = null;
             session.setAttribute("cart", cart);
-            request.getRequestDispatcher("cusOrders.jsp").forward(request, response);
+            request.getRequestDispatcher("cusorderhome").forward(request, response);
         }
     }
 

@@ -26,6 +26,7 @@ public class Order {
     private int buyPrice;
     private int oDetailID;
     private long bookCode;
+    private String bookName;
     
 
     public Order() {
@@ -61,6 +62,34 @@ public class Order {
         this.buyPrice = buyPrice;
         this.orderID = orderID;
     }
+
+    public Order(int orderID, Date orderDate, String address, String status) {
+        this.orderID = orderID;
+        this.orderDate = orderDate;
+        this.address = address;
+        this.status = status;
+    }
+
+    public Order(int total, String Note, int oDetailQty, int buyPrice, String bookName, long bookCode, int orderID) {
+        this.total = total;
+        this.Note = Note;
+        this.oDetailQty = oDetailQty;
+        this.buyPrice = buyPrice;
+        this.bookName = bookName;
+        this.bookCode = bookCode;
+        this.orderID = orderID;
+    }
+    
+    
+   
+    public String getBookName() {
+        return bookName;
+    }
+
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
+    }
+    
 
     public int getoDetailQty() {
         return oDetailQty;
@@ -178,12 +207,11 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order{" + "orderID=" + orderID + ", accountID=" + accountID + ", orderDate=" + orderDate + ", address=" + address + ", total=" + total + ", Note=" + Note + ", status=" + status + ", accName=" + accName + ", email=" + email + ", phone=" + phone + '}';
+        return "Order{" + "orderID=" + orderID + ", accountID=" + accountID + ", orderDate=" + orderDate + ", address=" + address + ", total=" + total + ", Note=" + Note + ", status=" + status + ", accName=" + accName + ", email=" + email + ", phone=" + phone + ", oDetailQty=" + oDetailQty + ", buyPrice=" + buyPrice + ", oDetailID=" + oDetailID + ", bookCode=" + bookCode + ", bookName=" + bookName + '}';
     }
 
     
+
     
     
-    
-  
 }

@@ -6,7 +6,9 @@
 package com.bookstore.Feedback;
 
 import com.bookstore.Book.Book;
+import com.bookstore.Order.Order;
 import com.bookstore.Utils.DBUtils;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -96,6 +98,7 @@ public class FeedbackDAO {
         }
         return list;
     }
+
     public List<FeedbackTitle> getTitle(String code) {
         List<FeedbackTitle> list = new ArrayList<>();
         String sql = " select b.bookCode , b.bookName, c.cateID, c.cateName\n"
@@ -240,6 +243,7 @@ public class FeedbackDAO {
         }
         return listTitles;
     }
+
     public List<FeedbackTitle> addtotalAndStarOfTitle(String bcode) {
         FeedbackDAO dAO = new FeedbackDAO();
         List<FeedbackTitle> listTitles = dAO.getTitle(bcode);
@@ -280,10 +284,99 @@ public class FeedbackDAO {
         return listTitles;
     }
 
+    public List<Feedback> getFeedbackManage() {
+        List<Feedback> list = new ArrayList<>();
+        String sql = "select *\n"
+                + "from tblFeedback";
+
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                list.add(new Feedback(rs.getInt(1),
+                        rs.getLong(2),
+                        rs.getInt(3),
+                        rs.getString(4).trim(),
+                        rs.getInt(5)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public void addFeedback(int feedID, long bookcode, int accID, String detail, int starID) throws NoSuchAlgorithmException {
+        String sql = "insert into tblFeedback\n"
+                + "values(?, ?, ?, ?, ?)";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, feedID);
+            ps.setLong(2, bookcode);
+            ps.setInt(3, accID);
+            ps.setString(4, detail);
+            ps.setInt(5, starID);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+
+    public List<Feedback> getFeedbackManageByBookCode(String bookCode) {
+        List<Feedback> list = new ArrayList<>();
+        String sql = " select *\n"
+                + "from tblFeedback\n"
+                + "where bookCode = ? ";
+
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, bookCode);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                list.add(new Feedback(rs.getInt(1),
+                        rs.getLong(2),
+                        rs.getInt(3),
+                        rs.getString(4).trim(),
+                        rs.getInt(5)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public List<Feedback> getFeedbackManageByBookCodeAndOrder(String bookCode) {
+        List<Feedback> list = new ArrayList<>();
+        String sql = " select f.feedbackID, f.bookCode, f.accountID, f.feedbackDetail, f.starID\n"
+                + "from (tblFeedback f inner join tblOrderDetail od on od.bookcode = f.bookCode)\n"
+                + "where od.bookcode = ? ";
+
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, bookCode);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                list.add(new Feedback(rs.getInt(1),
+                        rs.getLong(2),
+                        rs.getInt(3),
+                        rs.getString(4).trim(),
+                        rs.getInt(5)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
     public static void main(String[] args) {
         FeedbackDAO dAO = new FeedbackDAO();
-        List<FeedbackTitle> list = dAO.addtotalAndStar();
-        System.out.println(list.size());
+        //List<FeedbackTitle> list = dAO.addtotalAndStar();
+        //System.out.println(dAO.getFeedbackManageByBookCodeAndOrder("9780062023131"));
     }
 
 }

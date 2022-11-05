@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP_end/bookStore/SWP391_BookStore/src/java/com/bookstore/Admin/AdSellerController.java</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP_end/bookStore/SWP391_BookStore/web/admin/adDiscount.jsp</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP_end/bookStore/SWP391_BookStore/web/admin/adSeller.jsp</file>
-            <file>file:/C:/Users/tramy/OneDrive/Máy%20tính/SWP_end/bookStore/SWP391_BookStore/web/admin/adImporter.jsp</file>
+            <file>file:/D:/Project_BookStore_SWP/bookStore/SWP391_BookStore/src/java/com/bookstore/Customer/CusFeedBackController.java</file>
+            <file>file:/D:/Project_BookStore_SWP/bookStore/SWP391_BookStore/web/customer/assets/css/style.css</file>
+            <file>file:/D:/Project_BookStore_SWP/bookStore/SWP391_BookStore/web/WEB-INF/web.xml</file>
+            <file>file:/D:/Project_BookStore_SWP/bookStore/SWP391_BookStore/web/customer/cusDetailHistory.jsp</file>
         </group>
     </open-files>
 </project-private>

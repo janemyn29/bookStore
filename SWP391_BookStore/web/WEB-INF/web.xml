@@ -386,7 +386,7 @@
     </servlet>
     <servlet>
         <servlet-name>CusOrderHome</servlet-name>
-        <servlet-class>com.bookstore.Customer.CusOrderHome</servlet-class>
+        <servlet-class>com.bookstore.Customer.CusOrderHomeController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CusCartController</servlet-name>
@@ -435,6 +435,30 @@
     <servlet>
         <servlet-name>AdUploadController</servlet-name>
         <servlet-class>com.bookstore.Admin.AdUploadController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CusOrderDetailHome</servlet-name>
+        <servlet-class>com.bookstore.Customer.CusOrderDetailHomeController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CusHistoryHome</servlet-name>
+        <servlet-class>com.bookstore.Customer.CusHistoryHomeController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CusFeedBackController</servlet-name>
+        <servlet-class>com.bookstore.Customer.CusFeedBackController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CusEditNoteController</servlet-name>
+        <servlet-class>com.bookstore.Customer.CusEditNoteController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CusHistoryOrderDetailHomeController</servlet-name>
+        <servlet-class>com.bookstore.Customer.CusHistoryOrderDetailHomeController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CusFeedHomeController</servlet-name>
+        <servlet-class>com.bookstore.Customer.CusFeedHomeController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -767,6 +791,30 @@
     <servlet-mapping>
         <servlet-name>AdUploadController</servlet-name>
         <url-pattern>/admin/adUpload</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CusOrderDetailHome</servlet-name>
+        <url-pattern>/customer/cusorderdetailhome</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CusHistoryHome</servlet-name>
+        <url-pattern>/customer/cushistoryhome</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CusFeedBackController</servlet-name>
+        <url-pattern>/customer/cusfeedback</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CusEditNoteController</servlet-name>
+        <url-pattern>/customer/cuseditnote</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CusHistoryOrderDetailHomeController</servlet-name>
+        <url-pattern>/customer/cushistoryorderdetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CusFeedHomeController</servlet-name>
+        <url-pattern>/customer/cusfeedhome</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

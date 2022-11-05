@@ -5,6 +5,7 @@
  */
 package com.bookstore.Customer;
 
+import com.bookstore.Account.Account;
 import com.bookstore.Order.Order;
 import com.bookstore.Order.OrderDAO;
 import java.io.IOException;
@@ -14,12 +15,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Admin
  */
-public class CusOrderHome extends HttpServlet {
+public class CusHistoryHomeController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,10 +36,14 @@ public class CusOrderHome extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
             OrderDAO odao = new OrderDAO();
-            List<Order> listOrd = odao.getOrderManage();
-            request.setAttribute("listOrd", listOrd);
-            request.getRequestDispatcher("cusOrders.jsp").forward(request, response);
+            HttpSession session = request.getSession();
+            Account acc = (Account) session.getAttribute("acc");
+            int accountID = acc.getAccID();
+            List<Order> listOrd2 = odao.getOrderListByStatus2(accountID);
+            request.setAttribute("listOrd2", listOrd2);
+            request.getRequestDispatcher("cusHistory.jsp").forward(request, response);
         }
     }
 

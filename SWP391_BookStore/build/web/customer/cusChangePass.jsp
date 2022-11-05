@@ -46,9 +46,9 @@
                 <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
                     <div class="container">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Shop</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">My Account</li>
+                            <li class="breadcrumb-item"><a href="cushome">Home</a></li>
+<!--                            <li class="breadcrumb-item"><a href="#">Shop</a></li>-->
+                            <li class="breadcrumb-item active" aria-current="page">Change Password</li>
                         </ol>
                     </div><!-- End .container -->
                 </nav><!-- End .breadcrumb-nav -->
@@ -63,7 +63,7 @@
                                             <a class="nav-link active" id="tab-password-link" data-toggle="tab" href="#tab-password" role="tab" aria-controls="tab-password" aria-selected="true">Change Password</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#">Sign Out</a>
+                                            <a class="nav-link" href="/SWP391_BookStore/logout">Sign Out</a>
                                         </li>
                                     </ul>
                                 </aside><!-- End .col-lg-3 -->
@@ -75,7 +75,7 @@
                                             <form  action="cuschangepass" method="post">
 
                                                 <div>
-                                                    <a href="" class="toolbox-right" style="color: red">Forgot password?</a>
+<!--                                                    <a href="" class="toolbox-right" style="color: red">Forgot password?</a>-->
                                                     <label>Current Password </label>
                                                     <input type="password" class="form-control" name="txtCurrentPassword" required >
                                                     <c:if test='${check1 == "Current password incorrect!!!"}'>

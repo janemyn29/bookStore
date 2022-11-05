@@ -263,7 +263,7 @@
                                                                                                     </div> End .product-nav -->
                                                     </div><!-- End .product-body -->
                                                     <div class="product-action action-icon-top">
-                                                        <a href="${pageContext.request.contextPath }/customer/cuscart?&action=addToCart&bookCode=${discount.bookCode}" class="btn-product btn-cart"><span>add to cart</span></a>
+                                                        <a href="${pageContext.request.contextPath }/customer/cuscart?&action=addToCart&bookCode=${o.bookCode}" class="btn-product btn-cart"><span>add to cart</span></a>
                                                     </div><!-- End .product-action -->
                                                 </div><!-- End .product -->
                                             </div><!-- End .col-sm-6 col-md-4 col-lg-3 -->

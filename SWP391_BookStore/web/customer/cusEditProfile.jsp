@@ -46,8 +46,8 @@
                     <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
                         <div class="container">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                                <li class="breadcrumb-item"><a href="cushome">Home</a></li>
+<!--                                <li class="breadcrumb-item"><a href="#">Shop</a></li>-->
                                 <li class="breadcrumb-item active" aria-current="page">My Account</li>
                             </ol>
                         </div><!-- End .container -->
@@ -60,31 +60,27 @@
                                     <aside class="col-md-4 col-lg-3">
                                         <ul class="nav nav-dashboard flex-column mb-3 mb-md-0" role="tablist">
                                             <li class="nav-item">
-                                                <a class="nav-link active" id="tab-account-link" data-toggle="tab" href="#tab-account" role="tab" aria-controls="tab-account" aria-selected="true">Profile</a>
+                                                <a class="nav-link active" id="tab-account-link" data-toggle="tab" href="#tab-account" role="tab" aria-controls="tab-account" aria-selected="true">My Profile</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" href="cusorderhome">My Orders</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="#">My History</a>
+                                                <a class="nav-link" href="cushistoryhome">My History</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" href="cusChangePass.jsp">Change Password</a>
                                             </li>
                                             
                                             <li class="nav-item">
-                                                <a class="nav-link" href="cusHome.jsp">Sign Out</a>
+                                                <a class="nav-link" href="/SWP391_BookStore/logout">Sign Out</a>
                                             </li>
                                         </ul>
                                     </aside><!-- End .col-lg-3 -->
 
                                     <div class="col-md-8 col-lg-9">
                                         <div class="tab-content">
-
-                                            <div class="tab-pane fade show" id="tab-orders" role="tabpanel" aria-labelledby="tab-orders-link">
-                                                <p>No order has been made yet.</p>
-                                                <a href="cusShopping.jsp" class="btn btn-outline-primary-2"><span>GO SHOP</span><i class="icon-long-arrow-right"></i></a>
-                                            </div><!-- .End .tab-pane -->
+                                            
 
                                             <div class="tab-pane fade show active" id="tab-account" role="tabpanel" aria-labelledby="tab-account-link">
 
