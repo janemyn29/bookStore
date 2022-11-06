@@ -40,33 +40,37 @@ public class CusFeedBackController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, NoSuchAlgorithmException {
         response.setContentType("text/html;charset=UTF-8");
-            try (PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             FeedbackDAO fdao = new FeedbackDAO();
             List<Feedback> list = fdao.getFeedbackManage();
             int lastFeedbackID;
             int sizeList = list.size() - 1;
-            lastFeedbackID = (int) (list.get(sizeList).getFeedID()+ 1);
+            lastFeedbackID = (int) (list.get(sizeList).getFeedID() + 1);
 
             int feedbackID = lastFeedbackID;
-            
+
             String bookid = request.getParameter("txtbookCode");
             long bookCode = Long.parseLong(bookid);
-            
+
             HttpSession session = request.getSession();
             Account acc = (Account) session.getAttribute("acc");
             int accountID = acc.getAccID();
-            
+
             String feedBack = request.getParameter("txtfeedback");
-            
+
             String star = request.getParameter("rate");
             int rateStar = Integer.parseInt(star);
-            
-            if(feedBack==null){
+
+            String iddetail = request.getParameter("txtOrderDetailID");
+
+            int oderDetailID = Integer.parseInt(iddetail);
+
+            if (feedBack == null) {
                 feedBack = "(empty)";
-                fdao.addFeedback(feedbackID, bookCode, accountID, feedBack, rateStar);
+                fdao.addFeedback(feedbackID, bookCode, accountID, feedBack, rateStar, oderDetailID);
             }
-            fdao.addFeedback(feedbackID, bookCode, accountID, feedBack, rateStar);
-            
+            fdao.addFeedback(feedbackID, bookCode, accountID, feedBack, rateStar, oderDetailID);
+
             String orderID = request.getParameter("txtorderID");
             //parse id sang kieu int
             int id = Integer.parseInt(orderID);

@@ -98,13 +98,14 @@
                                                             </tr>
                                                             <c:set var="orderID" value="${orde.orderID}"></c:set>
                                                             <c:set var="bookCode" value="${orde.bookCode}"></c:set>
+                                                            <c:set var="orderDetailID" value="${orde.oDetailID}"></c:set>
                                                         </c:forEach>
                                                     </tbody>  
                                                 </table>
 
                                                 <c:if test='${listFeedBack.size() != 0}'>
                                                     <h5>You aldready rate this book!Thank You</h5>
-                                                    <a href="#" class="btn btn-outline-primary-2">
+                                                    <a href="cushistoryorderdetail?orderID=${orderID}" class="btn btn-outline-primary-2">
                                                         <span>BACK</span>
                                                         <i class="icon-arrow-left"></i>
                                                     </a>
@@ -132,10 +133,12 @@
 
                                                                 <input type="" name="txtbookCode" value="${bookCode}" hidden>
                                                                 <input type="" name="txtorderID" value="${orderID}" hidden>
+                                                                <input type="" name="txtOrderDetailID" value="${orderDetailID}" hidden>
 
                                                             </div><!-- .End .star-widget -->
 
                                                         </div><!-- .End .my-container -->
+                                                        
                                                         <a href="cushistoryorderdetail?orderID=${orderID}" class="btn btn-outline-primary-2">
                                                             <i style="color: #cc9966 " class="icon-arrow-left"></i>
                                                             <span style="color: #cc9966">BACK</span>                                                    

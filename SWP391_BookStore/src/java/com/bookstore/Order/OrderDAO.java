@@ -5,6 +5,7 @@
  */
 package com.bookstore.Order;
 
+import com.bookstore.Account.Account;
 import com.bookstore.Book.Book;
 import com.bookstore.Book.BookDAO;
 import com.bookstore.OrderDetail.OrderDetail;
@@ -266,7 +267,7 @@ public class OrderDAO {
 
     public List<Order> getOrderDetailManage() {
         List<Order> list = new ArrayList<>();
-        String sql = "select od.OdetailID, b.bookCode, od.oDetailQty, b.buyPrice, o.orderID\n"
+        String sql = "select od.OdetailID, b.bookCode, od.oDetailQty, b.buyPrice, o.orderID, od.status\n"
                 + "from ((tblOrderDetail od inner join tblOrder o on od.orderID=o.orderID)\n"
                 + "inner join tblBook b on b.bookCode = od.bookCode)";
 
@@ -281,17 +282,18 @@ public class OrderDAO {
                         rs.getLong(2), //oDetailID
                         rs.getInt(3), //bookCode
                         rs.getInt(4),//oDetailQty
-                        rs.getInt(5)));
+                        rs.getInt(5),
+                        rs.getString(6)));
             }
         } catch (Exception e) {
         }
         return list;
     }
 
-    public void addNewOrderDetail(int oDetailID, long bookCode, int oDetailQty, int buyPrice, int orderID) throws NoSuchAlgorithmException {
+    public void addNewOrderDetail(int oDetailID, long bookCode, int oDetailQty, int buyPrice, int orderID, String status) throws NoSuchAlgorithmException {
 
         String sql = "insert into tblOrderDetail\n"
-                + "values(?, ?, ?, ?, ?)";
+                + "values(?, ?, ?, ?, ?, ?)";
         try {
             conn = new DBUtils().getConnection();
             ps = conn.prepareStatement(sql);
@@ -300,6 +302,7 @@ public class OrderDAO {
             ps.setInt(3, oDetailQty);
             ps.setInt(4, buyPrice);
             ps.setInt(5, orderID);
+            ps.setString(6, status);
             ps.executeUpdate();
         } catch (Exception e) {
         }
@@ -309,7 +312,7 @@ public class OrderDAO {
         List<Order> list = new ArrayList<>();
         String sql = " select orderID, orderDate, userAddress, status\n"
                 + "from tblOrder\n"
-                + "where (status = 'confirming' or status = 'delivering') and accountID = ? ";
+                + "where (status = 'confirming' or status = 'delivering' or status = 'wait to approve cancel confirming') and accountID = ? ";
 
         try {
             conn = new DBUtils().getConnection();
@@ -355,7 +358,7 @@ public class OrderDAO {
 
     public List<Order> getOrderDetailByorderID(int orderID) {
         List<Order> list = new ArrayList<>();
-        String sql = " select o.totalPrice, o.orderNote, od.oDetailQty, od.price, b.bookName, b.bookCode, o.orderID\n"
+        String sql = " select o.totalPrice, o.orderNote, od.oDetailQty, od.price, b.bookName, b.bookCode, o.orderID, od.OdetailID\n"
                 + "from ((tblOrderDetail od inner join tblBook b on od.bookcode = b.bookCode)\n"
                 + "inner join tblOrder o on o.orderID = od.orderID)\n"
                 + "where o.orderID = ? ";
@@ -372,7 +375,8 @@ public class OrderDAO {
                         rs.getInt(4),
                         rs.getString(5).trim(),
                         rs.getLong(6),
-                        rs.getInt(7)));
+                        rs.getInt(7),
+                        rs.getInt(8)));
             }
         } catch (Exception e) {
         }
@@ -393,6 +397,42 @@ public class OrderDAO {
 
         } catch (Exception e) {
         }
+    }
+
+    public void updateOrderStatusByID(int orderID) {
+
+        String sql = " update tblOrder\n"
+                + "set status = 'wait to approve cancel confirming'\n"
+                + "where orderID = ? ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, orderID);
+            rs = ps.executeQuery();
+
+        } catch (Exception e) {
+        }
+    }
+
+    public String checkOrderStatus(int orderID) {
+
+        String sql = " select status\n"
+                + "from tblOrder\n"
+                + "where orderID = ? ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, orderID);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String status = rs.getString(1);
+
+                return status;
+            }
+        } catch (Exception e) {
+        }
+
+        return null;
     }
 
     public static void main(String[] args) {

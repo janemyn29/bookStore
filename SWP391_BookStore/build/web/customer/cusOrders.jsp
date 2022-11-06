@@ -47,7 +47,7 @@
                         <div class="container">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="cushome">Home</a></li>
-<!--                                <li class="breadcrumb-item"><a href="shopping.jsp">Shop</a></li>-->
+                                <!--                                <li class="breadcrumb-item"><a href="shopping.jsp">Shop</a></li>-->
                                 <li class="breadcrumb-item active" aria-current="page">My Orders</li>
                             </ol>
                         </div><!-- End .container -->
@@ -80,27 +80,47 @@
                                                                 <th>Order Address</th>
                                                                 <th>Status</th>
                                                                 <th>Action</th>
+                                                                <th>Cancel</th>
                                                             </tr>
                                                         </thead>
 
+                                                        <script>
+                                                            function ConfirmDelete()
+                                                            {
+                                                                var x = confirm("Are you sure you want to cancel this order?");
+                                                                int y;
+                                                                if (x)
+                                                                    return y=1;
+                                                                else
+                                                                    return y=0;
+                                                            }
+                                                        </script>
+
+
                                                         <tbody>
-                                                            <c:set var="count" value="0"></c:set>
+                                                        <c:set var="count" value="0"></c:set>
                                                         <c:forEach items ="${listOrd}" var="ord">
                                                             <c:set var="count" value="${count=count+1}"></c:set>
-                                                            <tr class="center-parent">
-                                                                <td>${count}</td>
+                                                                <tr class="center-parent">
+                                                                    <td>${count}</td>
                                                                 <td>${ord.orderDate}</td>
                                                                 <td>${ord.address}</td>
                                                                 <td>${ord.status}</td>
                                                                 <td><a class="icon-eye" href="cusorderdetailhome?orderID=${ord.orderID}"></a></td>
+                                                                    <c:set var="cancelconfirm" value="cancelconfirm"></c:set>
+                                                                <td><a class="icon-close" href="cuscancelorder?action=${cancelconfirm}&orderID=${ord.orderID}&check=${confirm}" 
+                                                                       onClick="return confirm('Are you sure you want to cancel this oreder?')"></a></td>
+                                                                       
                                                             </tr>
                                                         </c:forEach>
                                                     </tbody>                                        
                                                 </table>
-                                                    <a href="cusEditProfile.jsp" class="btn btn-outline-primary-2">
-                                                        <span>BACK</span>
-                                                        <i class="icon-arrow-left"></i>
-                                                    </a>
+                                                <a href="cusEditProfile.jsp" class="btn btn-outline-primary-2">
+                                                    <span>BACK</span>
+                                                    <i class="icon-arrow-left"></i>
+                                                </a>
+
+
 
                                             </div>
                                         </div><!-- .End .tab-pane -->

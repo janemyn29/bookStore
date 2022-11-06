@@ -44,7 +44,7 @@ public class CheckOutController extends HttpServlet {
             throws ServletException, IOException, NoSuchAlgorithmException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
+
             OrderDAO odao = new OrderDAO();
             List<Order> list = odao.getOrderManage();
             int lastOrderID;
@@ -66,10 +66,10 @@ public class CheckOutController extends HttpServlet {
 
             List<Cart> cart = (List<Cart>) session.getAttribute("cart");
             int total = totalPrice(cart);
-            
+
             String note = request.getParameter("txtNote");
-            if(note.equals("")){
-                 note = "(empty)";
+            if (note.equals("")) {
+                note = "(empty)";
             }
 
             String status = "confirming";
@@ -91,7 +91,9 @@ public class CheckOutController extends HttpServlet {
 
                 int buyPrice = c.getBuyPrice();
 
-                odao.addNewOrderDetail(oDetailID, bookCode, oDetailQty, buyPrice, orderID);
+                String statusFeed = "not yet";
+
+                odao.addNewOrderDetail(oDetailID, bookCode, oDetailQty, buyPrice, orderID, statusFeed);
             }
 
             cart = null;

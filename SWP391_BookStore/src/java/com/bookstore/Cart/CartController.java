@@ -32,8 +32,8 @@ public class CartController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String action = request.getParameter("action"); //lay action
-            HttpSession session = request.getSession(); // new session
-            List<Cart> cart = new ArrayList<Cart>();    // goi list cart
+            HttpSession session = request.getSession(); // goi session
+            List<Cart> cart = new ArrayList<Cart>();    // new list cart
             BookDAO b = new BookDAO();  // goi dao
             String bookCode = request.getParameter("bookCode"); // lay ma sach
             long ibookCode = Long.parseLong(bookCode);
@@ -42,7 +42,7 @@ public class CartController extends HttpServlet {
                 request.getRequestDispatcher("home").forward(request, response);
             } else {
                 if (action.equals("addToCart")) { // them sach vao cart
-                    if (session.getAttribute("cart") == null) { // cart rong
+                    if (session.getAttribute("cart") == null) { // add cuon sach dau tien vao cart
                         cart.add(new Cart(b.getBookBybookCode(request.getParameter("bookCode")), 1));
 
                     } else { // add cung 1 cuon sach

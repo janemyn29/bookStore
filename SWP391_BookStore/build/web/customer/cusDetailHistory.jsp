@@ -122,7 +122,7 @@
                                                                 <td>${orde.oDetailQty}</td>
                                                                 <td>${orde.buyPrice}</td>
                                                                 <td>${orde.total}</td>
-                                                                <td><a class="underline" href="cusfeedhome?bookCode=${orde.bookCode}&orderID=${orde.orderID}">Click here</a></td>
+                                                                <td><a class="underline" href="cusfeedhome?bookCode=${orde.bookCode}&orderID=${orde.orderID}&oDetailID=${orde.oDetailID}">Click here</a></td>
                                                             </tr>
                                                         </c:forEach>
                                                     </tbody>  

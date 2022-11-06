@@ -5,13 +5,9 @@
  */
 package com.bookstore.Customer;
 
-import com.bookstore.Feedback.Feedback;
-import com.bookstore.Feedback.FeedbackDAO;
-import com.bookstore.Order.Order;
 import com.bookstore.Order.OrderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Admin
  */
-public class CusFeedHomeController extends HttpServlet {
+public class CusCancelOrderController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,23 +32,24 @@ public class CusFeedHomeController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String orderID = request.getParameter("orderID");
-            //parse id sang kieu int
-            int id = Integer.parseInt(orderID);
-            // goi dao
             OrderDAO odao = new OrderDAO();
-            // lay list detail tu ham lay list theo id
-            List<Order> listOrdetail = odao.getOrderDetailByorderID(id);
-            // set attribute len
-            FeedbackDAO fdao = new FeedbackDAO();
-            String bookid = request.getParameter("bookCode");
+            String action = request.getParameter("action");
+            String id = request.getParameter("orderID");
+            int orderID = Integer.parseInt(id);
 
-            List<Feedback> listFeedBack = fdao.getFeedbackManageByBookCodeAndOrder(bookid, id);
-            request.setAttribute("listFeedBack", listFeedBack);
-            request.setAttribute("listOrdetail", listOrdetail);
-            //day du lieu va chuyen trang
-            request.getRequestDispatcher("cusFeedBack.jsp").forward(request, response);
+            if (action == null) {
+                request.getRequestDispatcher("cusorderhome").forward(request, response);
+            } else if (action.equals("cancelconfirm")) {
+                String status = odao.checkOrderStatus(orderID);
+                if (status.equals("confirming")) {
+                    odao.updateOrderStatusByID(orderID);
+                    request.getRequestDispatcher("cusorderhome").forward(request, response);
+                }
+            }
+            request.getRequestDispatcher("cusorderhome").forward(request, response);
         }
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

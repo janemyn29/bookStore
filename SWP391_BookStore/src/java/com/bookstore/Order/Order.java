@@ -27,6 +27,7 @@ public class Order {
     private int oDetailID;
     private long bookCode;
     private String bookName;
+    private String statusFeed;
     
 
     public Order() {
@@ -55,12 +56,13 @@ public class Order {
         this.phone = phone;
     }
     
-    public Order(int oDetailID, long bookCode, int oDetailQty, int buyPrice, int orderID) {
+    public Order(int oDetailID, long bookCode, int oDetailQty, int buyPrice, int orderID, String statusFeed) {
         this.oDetailID = oDetailID;
         this.bookCode = bookCode;
         this.oDetailQty = oDetailQty;
         this.buyPrice = buyPrice;
         this.orderID = orderID;
+        this.statusFeed = statusFeed;
     }
 
     public Order(int orderID, Date orderDate, String address, String status) {
@@ -70,7 +72,7 @@ public class Order {
         this.status = status;
     }
 
-    public Order(int total, String Note, int oDetailQty, int buyPrice, String bookName, long bookCode, int orderID) {
+    public Order(int total, String Note, int oDetailQty, int buyPrice, String bookName, long bookCode, int orderID, int oDetailID) {
         this.total = total;
         this.Note = Note;
         this.oDetailQty = oDetailQty;
@@ -78,7 +80,23 @@ public class Order {
         this.bookName = bookName;
         this.bookCode = bookCode;
         this.orderID = orderID;
+        this.oDetailID = oDetailID;
     }
+
+    public Order(String status) {
+        this.status = status;
+    }
+    
+    
+
+    public String getStatusFeed() {
+        return statusFeed;
+    }
+
+    public void setStatusFeed(String statusFeed) {
+        this.statusFeed = statusFeed;
+    }
+    
     
     
    
