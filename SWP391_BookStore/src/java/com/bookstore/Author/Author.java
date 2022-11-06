@@ -17,6 +17,15 @@ public class Author {
 
     public Author() {
     }
+    
+    public Author(int auID, String name) {
+        this.auID = auID;
+        this.name = name;
+    }
+
+    public Author(int auID) {
+        this.auID = auID;
+    }
 
     public Author(int compid, long bookcode, int auID, String name) {
         this.compid = compid;

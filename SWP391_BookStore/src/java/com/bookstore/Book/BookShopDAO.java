@@ -9,6 +9,7 @@ import com.bookstore.Utils.DBUtils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -302,6 +303,67 @@ public class BookShopDAO {
         } catch (Exception e) {
         }
         return list;
+    }
+    
+    public BookShop getBookBybookCodeV2(String bookCode) {
+        String sql = " select b.bookCode, b.bookName, b.img, b.importPrice, b.buyPrice, b.description, b.quantity,ca.cateID,ca.cateName,p.postName,p.postID,b.postDate,d.discountPercent,pc.companyName\n"
+                + "from ((((tblBook b left join tblDiscount d on b.bookCode=d.bookCode)\n"
+                + "inner join tblCategory ca on b.cateID=ca.cateID)\n"
+                + "inner join tblPostHistory p on p.postID=b.postID)\n"
+                + "inner join tblPublishCompany pc on pc.companyID=b.companyID )\n"
+                + " where b.bookCode= ? ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, bookCode);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                return new BookShop(
+                        rs.getLong("bookCode"),//bookcode
+                        rs.getString("bookName"),//bookname 
+                        rs.getString("img"),//image
+                        rs.getInt("importPrice"),//importprice
+                        rs.getInt("buyPrice"),//buyprice
+                        rs.getString("description"),//description
+                        rs.getInt("quantity"),//qty
+                        rs.getInt("cateID"),//cateID
+                        rs.getString("cateName"),//catename
+                        rs.getInt("postID"),//postID 
+                        rs.getString("postName"),//postName
+                        rs.getDate("postDate"),//postdate
+                        rs.getInt("discountPercent"),
+                        "", rs.getString("companyName")//author
+                );
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+    
+    public boolean uploadBookInfor(String img, int price, String des, String cate, String code) {
+
+        String sql = " update tblBook\n"
+                + "set img=?, buyPrice= ?, description=?,cateID=?,postID='1'\n"
+                + "where bookCode=? ";
+        boolean check = false;
+        try {
+
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setString(1, img);
+            ps.setInt(2, price);
+            ps.setString(3, des);
+            ps.setString(4, cate);
+            ps.setString(5, code);
+
+            check = ps.executeUpdate() > 0;
+
+        } catch (SQLException ex) {
+            System.out.println("Update Student error!" + ex.getMessage());
+        }
+        return check;
     }
 
     public static void main(String[] args) {

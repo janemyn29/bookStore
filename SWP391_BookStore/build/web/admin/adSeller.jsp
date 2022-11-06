@@ -136,7 +136,7 @@
                                 <div class="card-body">
                                     <span class="card-title">Seller Management</span>
 
-                                    
+                                    <br>
                                     <c:if test='${check != null}'>
                                         <div class="alert alert-success">${check}</div>
                                     </c:if>

@@ -449,7 +449,7 @@ public class AccountDAO {
     public boolean restoreToBlacklist(String id) {
 
         String sql = " UPDATE tblAccount\n"
-                + "set actionID=1\n"
+                + "set actionID=2\n"
                 + "where accountID=? ";
         boolean check = false;
         try {

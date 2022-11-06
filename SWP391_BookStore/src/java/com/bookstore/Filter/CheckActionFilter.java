@@ -51,16 +51,16 @@ public class CheckActionFilter implements Filter {
 
                 if (account != null && account.getRoleName().equalsIgnoreCase("customer") && account.getActionName().equalsIgnoreCase("block")) {
                     request.setAttribute("temp", "Your Account has been blocked for violating the Ordering Regulations!");
-                    request.getRequestDispatcher("login.jsp").forward(request, response);
+                    request.getRequestDispatcher("loginnav").forward(request, response);
                 }else if(account != null && account.getRoleName().equalsIgnoreCase("seller") && account.getActionName().equalsIgnoreCase("block")){
                      request.setAttribute("temp", "Your Account has been blocked !");
-                    request.getRequestDispatcher("login.jsp").forward(request, response);
+                    request.getRequestDispatcher("loginnav").forward(request, response);
                 }else if(account != null && account.getRoleName().equalsIgnoreCase("import manager") && account.getActionName().equalsIgnoreCase("block")){
                      request.setAttribute("temp", "Your Account has been blocked !");
-                    request.getRequestDispatcher("login.jsp").forward(request, response);
+                    request.getRequestDispatcher("loginnav").forward(request, response);
                 }else if(account != null && account.getRoleName().equalsIgnoreCase("manager") && account.getActionName().equalsIgnoreCase("block")){
                      request.setAttribute("temp", "Your Account has been blocked !");
-                    request.getRequestDispatcher("login.jsp").forward(request, response);
+                    request.getRequestDispatcher("loginnav").forward(request, response);
                 }else if (account != null && account.getActionName().equalsIgnoreCase("verify")) {
                     UserVerifyLogin user = new UserVerifyLogin(email, password);
                     request.setAttribute("user", user);

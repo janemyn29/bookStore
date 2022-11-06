@@ -5,6 +5,7 @@
  */
 package com.bookstore.Admin;
 
+import com.bookstore.Book.BookDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -32,15 +33,12 @@ public class AdUnpostController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AdUnpostController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AdUnpostController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            String id=request.getParameter("id");
+            
+            BookDAO dAO = new BookDAO();
+            dAO.uploadStatusBook(id);
+            request.setAttribute("check", "Unpost book that have id="+id+" sucessful!");
+            request.getRequestDispatcher("adbook").forward(request, response);
         }
     }
 

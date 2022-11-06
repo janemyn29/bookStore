@@ -36,7 +36,7 @@ public class AdDeleteBookController extends HttpServlet {
             String id= request.getParameter("id");
             BookDAO dAO = new BookDAO();
             dAO.deleteDiscount(id);
-            request.setAttribute("check", "Delete book have id="+id+" sucessful!");
+            request.setAttribute("check", "Delete book have Bookcode ="+id+" sucessful!");
             request.getRequestDispatcher("adbook").forward(request, response);
         }
     }

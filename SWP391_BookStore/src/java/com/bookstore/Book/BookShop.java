@@ -27,6 +27,7 @@ public class BookShop {
     private int discountPercent;
     private String author;
     private int authorNum;
+    private String publish ;
 
     public BookShop() {
     }
@@ -46,6 +47,23 @@ public class BookShop {
         this.postDate = postDate;
         this.discountPercent = discountPercent;
         this.author = author;
+    }
+    public BookShop(long bookCode, String bookName, String image, int importPrice, int buyPrice, String description, int qty, int cateID, String cateName, int postID, String postName, Date postDate, int discountPercent, String author, String publish) {
+        this.bookCode = bookCode;
+        this.bookName = bookName;
+        this.image = image;
+        this.importPrice = importPrice;
+        this.buyPrice = buyPrice;
+        this.description = description;
+        this.qty = qty;
+        this.cateID = cateID;
+        this.cateName = cateName;
+        this.postID = postID;
+        this.postName = postName;
+        this.postDate = postDate;
+        this.discountPercent = discountPercent;
+        this.author = author;
+        this.publish = publish;
     }
 
     public BookShop(long bookCode, String bookName) {
@@ -174,6 +192,16 @@ public class BookShop {
     public void setAuthorNum(int authorNum) {
         this.authorNum = authorNum;
     }
+
+    public String getPublish() {
+        return publish;
+    }
+
+    public void setPublish(String publish) {
+        this.publish = publish;
+    }
+    
+    
 
     @Override
     public String toString() {

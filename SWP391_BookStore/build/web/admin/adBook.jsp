@@ -140,7 +140,7 @@
                                     <c:if test='${check != null}'>
                                         <div class="alert alert-success">${check}</div>
                                     </c:if>
-                                        <div class="table-responsive">
+                                    <div class="table-responsive">
                                         <table class="table table-striped table-bordered zero-configuration">
                                             <thead>
                                                 <tr>
@@ -148,7 +148,7 @@
                                                     <th>Book Name</th>
                                                     <th>Image</th>
                                                     <th>Category</th>
-                                                    
+
                                                     <th>Author</th>
                                                     <th>Publish Company</th>
                                                     <th>Qty</th>
@@ -160,8 +160,8 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            <c:forEach items="${listB}" var="b">
-                                                
+                                                <c:forEach items="${listB}" var="b">
+
                                                     <tr>
                                                         <td>${b.bookCode}</td>
                                                         <td>${b.bookName}</td>
@@ -170,66 +170,72 @@
                                                         <td>
                                                             <c:forTokens var="token" items="${b.authorName}" delims=",">
                                                     <li><span style="color : #c96;">- </span><c:out value="${token}"/><li>
-                                                            </c:forTokens>
-                                                            
-                                                        </td>
-                                                        <td>${b.companyName}</td>
-                                                        <td>${b.qty}</td>
-                                                        <td>
+                                                    </c:forTokens>
 
-                                                            ${fn:substring(b.description, 0, 20 )}... </br>
+                                                    </td>
+                                                <td>${b.companyName}</td>
+                                                <td>${b.qty}</td>
+                                                <td>
 
-                                                            <input type="button" id="btn1-${b.bookCode}" value="Hide"/>
-                                                            <input type="button" id="btn2-${b.bookCode}" value="Show All"/>
-                                                            <div id="b-${b.bookCode}" style="border: solid 1px; padding: 20px; background: #ddd;">
-                                                                ${b.description}
-                                                                <script>
-                                                                        document.getElementById("b-${b.bookCode}").style.display = 'none';
-                                                                </script>
-                                                                <br/>
+                                                    ${fn:substring(b.description, 0, 20 )}... </br>
 
-                                                                <script language="javascript">
-                                                                 document.getElementById("btn1-${b.bookCode}").onclick = function () {
-                                                                     document.getElementById("b-${b.bookCode}").style.display = 'none';
-                                                                 };
+                                                    <input type="button" id="btn1-${b.bookCode}" value="Hide"/>
+                                                    <input type="button" id="btn2-${b.bookCode}" value="Show All"/>
+                                                    <div id="b-${b.bookCode}" style="border: solid 1px; padding: 20px; background: #ddd;">
+                                                        ${b.description}
+                                                        <script>
+                                                            document.getElementById("b-${b.bookCode}").style.display = 'none';
+                                                        </script>
+                                                        <br/>
 
-                                                                 document.getElementById("btn2-${b.bookCode}").onclick = function () {
-                                                                     document.getElementById("b-${b.bookCode}").style.display = 'block';
-                                                                 };
-                                                                </script> 
-                                                            </div> 
-                                                        </td>
-                                                        <td><fmt:formatNumber value="${b.importPrice}" pattern=" #,##0 VND" /></td>
-                                                        <td><fmt:formatNumber value="${b.buyPrice}" pattern=" #,##0 VND" /></td>
-                                                        <td>
-                                                            <c:if test="${b.postName == 'posted'}">
-                                                                <span class="badge badge-success px-2">Posted</span>
-                                                            </c:if>
-                                                            <c:if test="${b.postName == 'new'}">
-                                                                <span class="badge badge-danger px-2">New</span>
-                                                            </c:if>
-                                                        </td>
-                                                        <td>
-                                                            <c:if test="${b.postName == 'new'}">
-                                                                <a href="adUpload?id=${b.bookCode}" data-toggle="tooltip" data-placement="bottom" title="Edit"><i   class="fa fa-upload"></i></a>
-                                                            </c:if>
-                                                            <c:if test="${b.postName == 'posted'}">
-                                                            <a href="adEditBook?id=${b.bookCode}" data-toggle="tooltip" data-placement="bottom" title="Edit"><i   class="icon-pencil"></i></a>
-                                                            </c:if>
-                                                            <c:if test="${b.postName == 'posted'}">
-                                                                <a onclick='showMess2(${b.bookCode})'   data-toggle="tooltip" data-placement="bottom" title="Un post"><i   class="fa fa-undo"></i></a>
-                                                            </c:if>
-                                                            
-                                                            <a onclick='showMess1(${b.bookCode})'   data-toggle="tooltip" data-placement="bottom" title="Delete"><i   class="icon-close"></i></a>
-                                                            
-                                                        </td>
+                                                        <script language="javascript">
+                                                            document.getElementById("btn1-${b.bookCode}").onclick = function () {
+                                                                document.getElementById("b-${b.bookCode}").style.display = 'none';
+                                                            };
+
+                                                            document.getElementById("btn2-${b.bookCode}").onclick = function () {
+                                                                document.getElementById("b-${b.bookCode}").style.display = 'block';
+                                                            };
+                                                        </script> 
+                                                    </div> 
+                                                </td>
+                                                <td><fmt:formatNumber value="${b.importPrice}" pattern=" #,##0 VND" /></td>
+                                                <td><fmt:formatNumber value="${b.buyPrice}" pattern=" #,##0 VND" /></td>
+                                                <td>
+                                                    <c:if test="${b.postName == 'posted'}">
+                                                        <span class="badge badge-success px-2">Posted</span>
+                                                    </c:if>
+                                                    <c:if test="${b.postName == 'new'}">
+                                                        <span class="badge badge-danger px-2">New</span>
+                                                    </c:if>
+                                                    <c:if test="${b.postName == 'unpost'}">
+                                                        <span class="badge badge-warning px-2">Unpost</span>
+                                                    </c:if>
+                                                </td>
+                                                <td>
+                                                    <c:if test="${b.postName == 'new'}">
+                                                        <a href="adUploadnav?id=${b.bookCode}" data-toggle="tooltip" data-placement="bottom" title="Upload"><i   class="fa fa-upload"></i></a>
+                                                        </c:if>
+                                                        <c:if test="${b.postName == 'posted'}">
+                                                        <a href="adEditBook?id=${b.bookCode}" data-toggle="tooltip" data-placement="bottom" title="Edit"><i   class="icon-pencil"></i></a>
+                                                        </c:if>
+                                                        <c:if test="${b.postName == 'posted'}">
+                                                        <a onclick='showMess2(${b.bookCode})'   data-toggle="tooltip" data-placement="bottom" title="Unpost"><i   class="fa fa-undo"></i></a>
+                                                        </c:if>
+                                                        <c:if test="${b.postName == 'unpost'}">
+                                                        <a onclick='showMess3(${b.bookCode})' data-toggle="tooltip" data-placement="bottom" title="Upload"><i   class="fa fa-upload"></i></a>
+                                                        </c:if>
+
+                                                    <a onclick='showMess1(${b.bookCode})'   data-toggle="tooltip" data-placement="bottom" title="Delete"><i   class="icon-close"></i></a>
+
+                                                </td>
 
 
-                                                    </tr>
-                                                
+                                                </tr>
+
 
                                             </c:forEach>
-                                                  
+
 
                                             </tbody>
 
@@ -271,44 +277,53 @@
         <script src="./plugins/tables/js/jquery.dataTables.min.js"></script>
         <script src="./plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
         <script src="./plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
-        
-        <script>
-            $(document).ready(function () {
-                // Activate tooltip
-                $('[data-toggle="tooltip"]').tooltip();
 
-                // Select/Deselect checkboxes
-                var checkbox = $('table tbody input[type="checkbox"]');
-                $("#selectAll").click(function () {
-                    if (this.checked) {
-                        checkbox.each(function () {
-                            this.checked = true;
-                        });
-                    } else {
-                        checkbox.each(function () {
-                            this.checked = false;
-                        });
-                    }
-                });
-                checkbox.click(function () {
-                    if (!this.checked) {
-                        $("#selectAll").prop("checked", false);
-                    }
-                });
-            });
-            
-            function showMess1(id){
-                var option=confirm("Are you sure to delete book have id = "+id+" ?");
-                if (option===true){
-                    window.location.href="addeleteBook?id="+id;
-                }
-            }
-            function showMess2(id){
-                var option=confirm("Are you sure to unpost book have id = "+id+"?");
-                if (option===true){
-                    window.location.href="adUnpost?id="+id;
-                }
-            }
+        <script>
+                                                        $(document).ready(function () {
+                                                            // Activate tooltip
+                                                            $('[data-toggle="tooltip"]').tooltip();
+
+                                                            // Select/Deselect checkboxes
+                                                            var checkbox = $('table tbody input[type="checkbox"]');
+                                                            $("#selectAll").click(function () {
+                                                                if (this.checked) {
+                                                                    checkbox.each(function () {
+                                                                        this.checked = true;
+                                                                    });
+                                                                } else {
+                                                                    checkbox.each(function () {
+                                                                        this.checked = false;
+                                                                    });
+                                                                }
+                                                            });
+                                                            checkbox.click(function () {
+                                                                if (!this.checked) {
+                                                                    $("#selectAll").prop("checked", false);
+                                                                }
+                                                            });
+                                                        });
+
+                                                        function showMess1(id) {
+                                                            var option = confirm("Are you sure to delete book have id = " + id + " ?");
+                                                            if (option === true) {
+                                                                window.location.href = "addeleteBook?id=" + id;
+                                                            }
+                                                        }
+                                                        function showMess2(id) {
+                                                            var option = confirm("Are you sure to unpost book have id = " + id + "?");
+                                                            if (option === true) {
+                                                                window.location.href = "adUnpost?id=" + id;
+                                                            }
+                                                        }
+                                                        function showMess3(id) {
+                                                            var option = confirm("Do you want to edit information of book befor upload?");
+                                                            if (option === true) {
+                                                                window.location.href = "adUploadnav?id=" + id;
+                                                            }
+                                                            if (option===false){
+                                                                window.location.href = "adUploadnav?id=" + id;
+                                                            }
+                                                        }
         </script>
 
 
