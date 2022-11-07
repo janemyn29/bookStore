@@ -3,9 +3,9 @@
     Created on : Sep 26, 2022, 11:51:04 AM
     Author     : tramy
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib  prefix ="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,14 +45,14 @@
         ***********************************-->
         <div id="main-wrapper">
 
-            <jsp:include page="imHeader.jsp"></jsp:include>
+<jsp:include page="imHeader.jsp"></jsp:include>
                 <!--**********************************
                     Sidebar start
                 ***********************************-->
                 <div class="nk-sidebar">           
                     <div class="nk-nav-scroll">
                         <ul class="metismenu" id="menu">
-                            <li class="nav-label" style="background-color: #c96;">Hello Importer ${acc.getUsername()}</li>
+                            <li class="nav-label" style="background-color: #c96;">Hello Seller ${acc.getUsername()}</li>
                         <li>
                             <a href="pcompany" aria-expanded="false">
                                 <i class="icon-speedometer menu-icon"></i><span class="nav-text">Publish Company</span>
@@ -65,6 +65,7 @@
                             </a>
                         </li>
 
+
                     </ul>
                 </div>
             </div>
@@ -76,62 +77,89 @@
                 Content body start
             ***********************************-->
             <div class="content-body">
+
                 <div class="row page-titles mx-0">
                     <div class="col p-md-0">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">Home</li>
-                            <li class="breadcrumb-item active">Publish Company Management</li>
+
+                            <li class="breadcrumb-item "><a href="sellerOrder">Receipt Management</a></li>
+                            <li class="breadcrumb-item active">Receipt Detail</li>
+
                         </ol>
                     </div>
                 </div>
-
 
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <span class="card-title">Publish Company Management</span>
-                                    <br>
-                                    <c:if test='${check!=null}'>
-                                        <div class="alert alert-success">${check}</div>
+                                    <span class="card-title">Receipt Detail</span>
+
+                                    <c:if test='${mess!=null}'>
+                                        <div class="alert alert-success">${mess}</div>
                                     </c:if>
 
-                                    <a href="imCreatCom" style="margin-top: 10px"><button  class="btn btn-outline-dark" >Add New Company</button></a>
+                                    <div class="form-group row" style="margin-top: 10px">
+                                        <label class="col-sm-2 col-form-label">Receipt ID:</label>
+                                        <div class="col-sm-10">
+                                            <input type="type" name="text" class="form-control" value='${receipt.receiptID}' readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Publish Company Name:</label>
+                                        <div class="col-sm-10">
+                                            <input type="type" name="text" class="form-control" value='${receipt.companyName}'  readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Importer Name:</label>
+                                        <div class="col-sm-10">
+                                            <input type="email" name="email" class="form-control" value='${receipt.accName}'  readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Receipted Date</label>
+                                        <div class="col-sm-10">
+                                            <input type="type" name="text" class="form-control"  value='${receipt.orderDate}' readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Total Imported Price</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="email" class="form-control" value='${receipt.totalImportPrice}'  readonly>
+                                        </div>
+                                    </div>
+
                                     <div class="table-responsive">
                                         <table class="table table-striped table-bordered zero-configuration">
                                             <thead>
                                                 <tr>
-                                                    <th>CompanyID</th>
-                                                    <th>Company Name</th>     
-                                                    <th>Company Address</th>
-                                                    <th>Company Phone</th>
-                                                    <th>Company Email</th>
-                                                    <th>Action</th>
+                                                    <th>Detail ID</th>
+                                                    <th>BookCode</th>
+                                                    <th>BookName</th>
+                                                    <th>Quantity</th>
+                                                    <th>Price</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <c:forEach items ="${listC}" var="c">
-                                                    <tr>
-                                                        <td>${c.companyID}</td>
-                                                        <td>${c.companyName}</td>
-                                                        <td>${c.comAddress}</td>
-                                                        <td>${c.phone}</td>
-                                                        <td>${c.comEmail}</td>
-                                                        <td>
-                                                            <c:if test="${c.title == 0}">
-                                                                <a onclick='showMess(${c.companyID})' ><i class="icon-close menu-icon"></i></a>
-                                                                </c:if>
-                                                            <a href="editCompNav?companyID=${c.companyID}""><i class="icon-pencil menu-icon"></i></a>
-
-                                                        </td>
-                                                    </tr>
+                                                <c:forEach items="${listD}" var="o">
+                                                <tr>
+                                                    <td>${o.rdID}</td>
+                                                    <td>${o.bookcode}</td>
+                                                    <td>${o.bookName}</td>
+                                                    <td>${o.qty}</td>
+                                                    <td>${o.price}</td>
+                                                </tr>
+                                                
                                                 </c:forEach>
-
                                             </tbody>
-
                                         </table>
                                     </div>
+
+                                        <a style="margin-left: 70px" href="listReceipt" class="btn mb-1 btn-warning">Close</a>
+
                                 </div>
                             </div>
                         </div>
@@ -168,38 +196,6 @@
         <script src="../admin/plugins/tables/js/jquery.dataTables.min.js"></script>
         <script src="../admin/plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
         <script src="../admin/plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
-        <script>
-                                                                    $(document).ready(function () {
-                                                                        // Activate tooltip
-                                                                        $('[data-toggle="tooltip"]').tooltip();
-
-                                                                        // Select/Deselect checkboxes
-                                                                        var checkbox = $('table tbody input[type="checkbox"]');
-                                                                        $("#selectAll").click(function () {
-                                                                            if (this.checked) {
-                                                                                checkbox.each(function () {
-                                                                                    this.checked = true;
-                                                                                });
-                                                                            } else {
-                                                                                checkbox.each(function () {
-                                                                                    this.checked = false;
-                                                                                });
-                                                                            }
-                                                                        });
-                                                                        checkbox.click(function () {
-                                                                            if (!this.checked) {
-                                                                                $("#selectAll").prop("checked", false);
-                                                                            }
-                                                                        });
-                                                                    });
-
-                                                                    function showMess(id) {
-                                                                        var option = confirm("Are you sure to remove the publish company have id = " + id + " to BlackList ?");
-                                                                        if (option === true) {
-                                                                            window.location.href = "removeComp?companyID=" + id;
-                                                                        }
-                                                                    }
-        </script>
 
     </body>
 

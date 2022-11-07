@@ -54,23 +54,16 @@
                         <ul class="metismenu" id="menu">
                             <li class="nav-label" style="background-color: #c96;">Hello Importer ${acc.getUsername()}</li>
                         <li>
-                            <a class="active" href="#" aria-expanded="false">
-                                <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
+                            <a href="pcompany" aria-expanded="false">
+                                <i class="icon-speedometer menu-icon"></i><span class="nav-text">Publish Company</span>
                             </a>
 
                         </li>
-                        <li >
-                        <a href="pcompany" aria-expanded="false">
-                            <i class="icon-list"></i><span class="nav-text">Publish Company Management</span>
-                        </a>
-                        
-                    </li>
-                    <li >
-                        <a href="" aria-expanded="false">
-                            <i class="icon-list"></i><span class="nav-text">Receipt Management</span>
-                        </a>
-                        
-                    </li>
+                        <li>
+                            <a href="listReceipt" aria-expanded="false">
+                                <i class="icon-book-open"></i><span class="nav-text">Receipt Management</span>
+                            </a>
+                        </li>
 
                     </ul>
                 </div>
@@ -103,7 +96,7 @@
                                     <c:if test='${check!=null}'>
                                         <div class="alert alert-success">${check}</div>
                                     </c:if>
-                                    
+
                                     <a href="imCreatCom" style="margin-top: 10px"><button  class="btn btn-outline-dark" >Add New Company</button></a>
                                     <div class="table-responsive">
                                         <table class="table table-striped table-bordered zero-configuration">
@@ -128,11 +121,11 @@
                                                         <td>
                                                             <c:if test="${c.title == 0}">
                                                                 <a onclick='showMess(${c.companyID})' ><i class="icon-close menu-icon"></i></a>
-                                                            </c:if>
-                                                                <a href="editCompNav?companyID=${c.companyID}""><i class="icon-pencil menu-icon"></i></a>
-                                                                
+                                                                </c:if>
+                                                            <a href="editCompNav?companyID=${c.companyID}""><i class="icon-pencil menu-icon"></i></a>
+
                                                         </td>
-                                                        </tr>
+                                                    </tr>
                                                 </c:forEach>
 
                                             </tbody>
@@ -176,36 +169,36 @@
         <script src="../admin/plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
         <script src="../admin/plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
         <script>
-                                                                $(document).ready(function () {
-                                                                    // Activate tooltip
-                                                                    $('[data-toggle="tooltip"]').tooltip();
+                                                                    $(document).ready(function () {
+                                                                        // Activate tooltip
+                                                                        $('[data-toggle="tooltip"]').tooltip();
 
-                                                                    // Select/Deselect checkboxes
-                                                                    var checkbox = $('table tbody input[type="checkbox"]');
-                                                                    $("#selectAll").click(function () {
-                                                                        if (this.checked) {
-                                                                            checkbox.each(function () {
-                                                                                this.checked = true;
-                                                                            });
-                                                                        } else {
-                                                                            checkbox.each(function () {
-                                                                                this.checked = false;
-                                                                            });
-                                                                        }
+                                                                        // Select/Deselect checkboxes
+                                                                        var checkbox = $('table tbody input[type="checkbox"]');
+                                                                        $("#selectAll").click(function () {
+                                                                            if (this.checked) {
+                                                                                checkbox.each(function () {
+                                                                                    this.checked = true;
+                                                                                });
+                                                                            } else {
+                                                                                checkbox.each(function () {
+                                                                                    this.checked = false;
+                                                                                });
+                                                                            }
+                                                                        });
+                                                                        checkbox.click(function () {
+                                                                            if (!this.checked) {
+                                                                                $("#selectAll").prop("checked", false);
+                                                                            }
+                                                                        });
                                                                     });
-                                                                    checkbox.click(function () {
-                                                                        if (!this.checked) {
-                                                                            $("#selectAll").prop("checked", false);
-                                                                        }
-                                                                    });
-                                                                });
 
-                                                                function showMess(id) {
-                                                                    var option = confirm("Are you sure to remove the publish company have id = " + id + " to BlackList ?");
-                                                                    if (option === true) {
-                                                                        window.location.href = "removeComp?companyID=" + id;
+                                                                    function showMess(id) {
+                                                                        var option = confirm("Are you sure to remove the publish company have id = " + id + " to BlackList ?");
+                                                                        if (option === true) {
+                                                                            window.location.href = "removeComp?companyID=" + id;
+                                                                        }
                                                                     }
-                                                                }
         </script>
 
     </body>

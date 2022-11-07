@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib  prefix ="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="en">
@@ -102,29 +103,25 @@
                                         <table class="table table-striped table-bordered zero-configuration">
                                             <thead>
                                                 <tr>
-                                                    <th>CompanyID</th>
-                                                    <th>Company Name</th>     
-                                                    <th>Company Address</th>
-                                                    <th>Company Phone</th>
-                                                    <th>Company Email</th>
+                                                    <th>Receipt ID</th>
+                                                    <th>Company Name</th>
+                                                    <th>Receipt Date</th>
+                                                    <th>Employee</th>
+                                                    <th>Total Imported Price</th> 
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <c:forEach items ="${listC}" var="c">
+                                                <c:forEach items ="${listR}" var="r">
                                                     <tr>
-                                                        <td>${c.companyID}</td>
-                                                        <td>${c.companyName}</td>
-                                                        <td>${c.comAddress}</td>
-                                                        <td>${c.phone}</td>
-                                                        <td>${c.comEmail}</td>
-                                                        <td>
-                                                            <c:if test="${c.title == 0}">
-                                                                <a onclick='showMess(${c.companyID})' ><i class="icon-close menu-icon"></i></a>
-                                                                </c:if>
-                                                            <a href="editCompNav?companyID=${c.companyID}""><i class="icon-pencil menu-icon"></i></a>
-
-                                                        </td>
+                                                        <td>${r.receiptID}</td>
+                                                        <td>${r.companyName}</td> 
+                                                        <td>${r.accName}</td> 
+                                                        <td>${r.orderDate}</td>
+                                                        
+                                                        <td><fmt:formatNumber value="${r.totalImportPrice}" pattern=" #,##0 VND" /></td>
+                                                        
+                                                        <td><a href="receiptDetail?id=${r.receiptID}"><i class="icon-eye menu-icon"></i></a></td>
                                                     </tr>
                                                 </c:forEach>
 

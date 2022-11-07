@@ -51,23 +51,16 @@
                         <ul class="metismenu" id="menu">
                             <li class="nav-label" style="background-color: #c96;">Hello Importer ${acc.getUsername()}</li>
                         <li>
-                            <a class="active" href="#" aria-expanded="false">
-                                <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
+                            <a href="pcompany" aria-expanded="false">
+                                <i class="icon-speedometer menu-icon"></i><span class="nav-text">Publish Company</span>
                             </a>
 
                         </li>
-                        <li >
-                        <a href="pcompany" aria-expanded="false">
-                            <i class="icon-list"></i><span class="nav-text">Publish Company Management</span>
-                        </a>
-                        
-                    </li>
-                    <li>
-                        <a href="" aria-expanded="false">
-                            <i class="icon-list"></i><span class="nav-text">Receipt Management</span>
-                        </a>
-                        
-                    </li>
+                        <li>
+                            <a href="listReceipt" aria-expanded="false">
+                                <i class="icon-book-open"></i><span class="nav-text">Receipt Management</span>
+                            </a>
+                        </li>
 
                     </ul>
                 </div>

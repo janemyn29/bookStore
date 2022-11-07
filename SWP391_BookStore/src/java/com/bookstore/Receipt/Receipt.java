@@ -15,108 +15,24 @@ import java.util.List;
 public class Receipt {
     private int receiptID;
     private int accountID;
+    private String accName;
     private Date orderDate;
     private int totalImportPrice;
     private int companyID;
     private String companyName;
-    private int RdetailID;
-    private long bookCode;
-    private int importQty;
-    private int importPrice;
-    private  String bookName;
-    private int quantity;
-
-    
 
     public Receipt() {
     }
 
-    public Receipt(int receiptID, int accountID, Date orderDate, int totalImportPrice, int companyID) {
+    public Receipt(int receiptID, int accountID, String accName, Date orderDate, int totalImportPrice, int companyID, String companyName) {
         this.receiptID = receiptID;
         this.accountID = accountID;
+        this.accName = accName;
         this.orderDate = orderDate;
         this.totalImportPrice = totalImportPrice;
         this.companyID = companyID;
-    }
-
-    public Receipt(Date orderDate, int totalImportPrice, String companyName, long bookCode, int importQty, String bookName,int receiptID, int quantity) {
-        this.orderDate = orderDate;
-        this.totalImportPrice = totalImportPrice;
-        this.companyName = companyName;
-        this.bookCode = bookCode;
-        this.importQty = importQty;
-        this.bookName = bookName;
-        this.receiptID = receiptID;
-        this.quantity = quantity;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-
-
-    public String getBookName() {
-        return bookName;
-    }
-
-    public void setBookName(String bookName) {
-        this.bookName = bookName;
-    }
-
- 
-
-  
-
-    public String getCompanyName() {
-        return companyName;
-    }
-
-    public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
-
-    public int getRdetailID() {
-        return RdetailID;
-    }
-
-    public void setRdetailID(int RdetailID) {
-        this.RdetailID = RdetailID;
-    }
-
-    public long getBookCode() {
-        return bookCode;
-    }
-
-    public void setBookCode(long bookcode) {
-        this.bookCode = bookcode;
-    }
-
-    public int getImportQty() {
-        return importQty;
-    }
-
-    public void setImportQty(int importQty) {
-        this.importQty = importQty;
-    }
-
-    public int getImportPrice() {
-        return importPrice;
-    }
-
-    public void setImportPrice(int importPrice) {
-        this.importPrice = importPrice;
-    }
-
- 
-
-
-
-
     public int getReceiptID() {
         return receiptID;
     }
@@ -157,17 +73,29 @@ public class Receipt {
         this.companyID = companyID;
     }
 
-    @Override
-    public String toString() {
-        return "Receipt{" + "orderDate=" + orderDate+ ", totalImportPrice=" + totalImportPrice + ", companyName=" + companyName + ", bookCode=" + bookCode + ", importQty=" + importQty +" bookName=" + bookName + ", quantity=" + quantity +   ", receiptID=" + receiptID  +  "," + '}';
+    public String getCompanyName() {
+        return companyName;
     }
 
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
 
-  
+    public String getAccName() {
+        return accName;
+    }
+
+    public void setAccName(String accName) {
+        this.accName = accName;
+    }
+
+    @Override
+    public String toString() {
+        return "Receipt{" + "receiptID=" + receiptID + ", accountID=" + accountID + ", accName=" + accName + ", orderDate=" + orderDate + ", totalImportPrice=" + totalImportPrice + ", companyID=" + companyID + ", companyName=" + companyName + '}';
+    }
 
     
     
-    
-    
+
     
 }

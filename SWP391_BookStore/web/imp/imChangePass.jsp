@@ -51,23 +51,16 @@
                         <ul class="metismenu" id="menu">
                             <li class="nav-label" style="background-color: #c96;">Hello Importer ${acc.getUsername()}</li>
                         <li>
-                            <a class="active" href="#" aria-expanded="false">
-                                <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
+                            <a href="pcompany" aria-expanded="false">
+                                <i class="icon-speedometer menu-icon"></i><span class="nav-text">Publish Company</span>
                             </a>
 
                         </li>
                         <li>
-                        <a href="pcompany" aria-expanded="false">
-                            <i class="icon-list"></i><span class="nav-text">Publish Company Management</span>
-                        </a>
-                        
-                    </li>
-                    <li>
-                        <a href="" aria-expanded="false">
-                            <i class="icon-list"></i><span class="nav-text">Receipt Management</span>
-                        </a>
-                        
-                    </li>
+                            <a href="listReceipt" aria-expanded="false">
+                                <i class="icon-book-open"></i><span class="nav-text">Receipt Management</span>
+                            </a>
+                        </li>
 
                     </ul>
                 </div>
@@ -96,7 +89,7 @@
                                     <h4 class="card-title">Change Password</h4>
                                     <c:if test='${check == "Password update success!"}'>
                                         <div class="alert alert-success">${check}</div>
-                                        
+
                                     </c:if>
                                     <c:if test='${check == "Confirm password do not match!!!"}'>
                                         <div class="alert alert-danger">${check}</div>

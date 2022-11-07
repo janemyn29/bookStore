@@ -51,23 +51,16 @@
                         <ul class="metismenu" id="menu">
                             <li class="nav-label" style="background-color: #c96;">Hello Importer ${acc.getUsername()}</li>
                         <li>
-                            <a class="active" href="#" aria-expanded="false">
-                                <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
+                            <a href="pcompany" aria-expanded="false">
+                                <i class="icon-speedometer menu-icon"></i><span class="nav-text">Publish Company</span>
                             </a>
 
                         </li>
-                        <li >
-                        <a href="pcompany" aria-expanded="false">
-                            <i class="icon-list"></i><span class="nav-text">Publish Company Management</span>
-                        </a>
-                        
-                    </li>
-                    <li >
-                        <a href="" aria-expanded="false">
-                            <i class="icon-list"></i><span class="nav-text">Receipt Management</span>
-                        </a>
-                        
-                    </li>
+                        <li>
+                            <a href="listReceipt" aria-expanded="false">
+                                <i class="icon-book-open"></i><span class="nav-text">Receipt Management</span>
+                            </a>
+                        </li>
 
                     </ul>
                 </div>
@@ -95,37 +88,37 @@
                                     <h4 class="card-title">Profile</h4>
 
                                     <div class="basic-form">
-                                            <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label">Email</label>
-                                                <div class="col-sm-10">
-                                                    <input type="email" name="email" class="form-control" placeholder="Email" value="${acc.getEmail()}" readonly="">
-                                                </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Email</label>
+                                            <div class="col-sm-10">
+                                                <input type="email" name="email" class="form-control" placeholder="Email" value="${acc.getEmail()}" readonly="">
                                             </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label">Username</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" name="username" class="form-control" placeholder="Username" value="${acc.getUsername()}" readonly="">
-                                                </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Username</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" name="username" class="form-control" placeholder="Username" value="${acc.getUsername()}" readonly="">
                                             </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label">Phone</label>
-                                                <div class="col-sm-10">
-                                                    <input type="number" name="phone" class="form-control" placeholder="Phone" value="${acc.getPhone()}" readonly="">
-                                                </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Phone</label>
+                                            <div class="col-sm-10">
+                                                <input type="number" name="phone" class="form-control" placeholder="Phone" value="${acc.getPhone()}" readonly="">
                                             </div>
-                                            <div class="form-group row">
-                                                <div class="col-sm-10">
-                                                    <div class="basic-form">
-                                                        <a href="imeditProfileNav" ><button class="btn mb-1 btn-warning" ><span style="margin-left: 23px;margin-right: 22px">Edit Profile</span></button></a>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-10">
+                                                <div class="basic-form">
+                                                    <a href="imeditProfileNav" ><button class="btn mb-1 btn-warning" ><span style="margin-left: 23px;margin-right: 22px">Edit Profile</span></button></a>
 
-                                                    </div>
-                                                    <div class="basic-form">
-                                                        <a href="imchangenav"><button  class="btn mb-1 btn-warning" >Change Password</button></a>
-                                                        
-                                                    </div>
+                                                </div>
+                                                <div class="basic-form">
+                                                    <a href="imchangenav"><button  class="btn mb-1 btn-warning" >Change Password</button></a>
+
                                                 </div>
                                             </div>
-                                        
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>

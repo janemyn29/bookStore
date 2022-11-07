@@ -51,23 +51,16 @@
                         <ul class="metismenu" id="menu">
                             <li class="nav-label" style="background-color: #c96;">Hello Importer ${acc.getUsername()}</li>
                         <li>
-                            <a class="active" href="#" aria-expanded="false">
-                                <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
+                            <a href="pcompany" aria-expanded="false">
+                                <i class="icon-speedometer menu-icon"></i><span class="nav-text">Publish Company</span>
                             </a>
 
                         </li>
-                        <li >
-                        <a href="pcompany" aria-expanded="false">
-                            <i class="icon-list"></i><span class="nav-text">Publish Company Management</span>
-                        </a>
-                        
-                    </li>
-                    <li>
-                        <a href="" aria-expanded="false">
-                            <i class="icon-list"></i><span class="nav-text">Receipt Management</span>
-                        </a>
-                        
-                    </li>
+                        <li>
+                            <a href="listReceipt" aria-expanded="false">
+                                <i class="icon-book-open"></i><span class="nav-text">Receipt Management</span>
+                            </a>
+                        </li>
 
                     </ul>
                 </div>
@@ -81,7 +74,7 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">Home</li>
                             <li class="breadcrumb-item ">Publish Company Management</li>
-                            
+
                             <li class="breadcrumb-item active">Create Publish Company</li>
                         </ol>
                     </div>
@@ -100,13 +93,13 @@
                                     <c:if test='${check=="Edit Publish Company successful!"}'>
                                         <div class="alert alert-success">${check}</div>
                                     </c:if>
-                                    
+
 
 
 
                                     <div class="basic-form">
                                         <form action="imAddCompany" method="POST">
-                                            
+
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Company Name</label>
                                                 <div class="col-sm-10">
