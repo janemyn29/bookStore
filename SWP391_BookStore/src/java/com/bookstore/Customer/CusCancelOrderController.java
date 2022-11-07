@@ -5,9 +5,12 @@
  */
 package com.bookstore.Customer;
 
+import com.bookstore.Book.BookDAO;
+import com.bookstore.Order.Order;
 import com.bookstore.Order.OrderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,26 +36,32 @@ public class CusCancelOrderController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             OrderDAO odao = new OrderDAO();
-            String action = request.getParameter("action");
             String id = request.getParameter("orderID");
             int orderID = Integer.parseInt(id);
+            String status = odao.checkOrderStatus(orderID);
+            List<Order> list = odao.getListOrderDetailByOrderID(orderID);
+            BookDAO b = new BookDAO();
 
-            if (action == null) {
-                request.getRequestDispatcher("cusorderhome").forward(request, response);
-            } else if (action.equals("cancelconfirm")) {
-                String status = odao.checkOrderStatus(orderID);
-                if (status.equals("confirming")) {
-                    odao.updateOrderStatusByID(orderID);
-                    request.getRequestDispatcher("cusorderhome").forward(request, response);
+            if (status.equals("confirming")) {
+                for (Order o : list) {
+                    int detailQuantity = o.getoDetailQty();
+                    long bookCode = o.getBookCode();
+                    int quanityBookInStore = b.getQuantityByBookCode(bookCode);
+                    int quanityBookInStoreAfter = quanityBookInStore + detailQuantity;
+                    b.updateQuantityBookByBookCode(quanityBookInStoreAfter, bookCode);
                 }
+                odao.updateOrderStatusByID(orderID);
+                request.getRequestDispatcher("cusorderhome").forward(request, response);
+            } else if (status.equals("delivering")) {
+                request.getRequestDispatcher("cusorderhome").forward(request, response);
+            } else if (status.equals("recieved")) {
+
             }
             request.getRequestDispatcher("cusorderhome").forward(request, response);
         }
-        
-        
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

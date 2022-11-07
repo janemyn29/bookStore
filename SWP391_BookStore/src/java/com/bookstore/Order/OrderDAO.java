@@ -312,7 +312,7 @@ public class OrderDAO {
         List<Order> list = new ArrayList<>();
         String sql = " select orderID, orderDate, userAddress, status\n"
                 + "from tblOrder\n"
-                + "where (status = 'confirming' or status = 'delivering' or status = 'wait to approve cancel confirming') and accountID = ? ";
+                + "where (status = 'confirming' or status = 'delivering' or status = 'wait to approve') and accountID = ? ";
 
         try {
             conn = new DBUtils().getConnection();
@@ -336,7 +336,7 @@ public class OrderDAO {
         List<Order> list = new ArrayList<>();
         String sql = " select orderID, orderDate, userAddress, status\n"
                 + "from tblOrder\n"
-                + "where status = 'recieved' and accountID = ? ";
+                + "where (status = 'recieved' or status = 'cancel') and accountID = ? ";
 
         try {
             conn = new DBUtils().getConnection();
@@ -402,7 +402,22 @@ public class OrderDAO {
     public void updateOrderStatusByID(int orderID) {
 
         String sql = " update tblOrder\n"
-                + "set status = 'wait to approve cancel confirming'\n"
+                + "set status = 'canceled'\n"
+                + "where orderID = ? ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, orderID);
+            rs = ps.executeQuery();
+
+        } catch (Exception e) {
+        }
+    }
+
+    public void updateOrderStatusByID2(int orderID) {
+
+        String sql = " update tblOrder\n"
+                + "set status = 'wait to approve'\n"
                 + "where orderID = ? ";
         try {
             conn = new DBUtils().getConnection();
@@ -435,9 +450,29 @@ public class OrderDAO {
         return null;
     }
 
+    public List<Order> getListOrderDetailByOrderID(int orderID) {
+        List<Order> list = new ArrayList<>();
+        String sql = " select oDetailQty, bookcode\n"
+                + "from tblOrderDetail\n"
+                + "where orderID = ? ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, orderID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                list.add(new Order(rs.getInt(1),
+                        rs.getLong(2)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
     public static void main(String[] args) {
         OrderDAO dAO = new OrderDAO();
         //Order list = dAO.getOrderByID("1");
-        //dAO.updateNoteByOrderID("tao la chinh haha", 8);
+        System.out.println(dAO.getListOrderDetailByOrderID(8));
     }
 }

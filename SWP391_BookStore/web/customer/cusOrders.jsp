@@ -84,19 +84,6 @@
                                                             </tr>
                                                         </thead>
 
-                                                        <script>
-                                                            function ConfirmDelete()
-                                                            {
-                                                                var x = confirm("Are you sure you want to cancel this order?");
-                                                                int y;
-                                                                if (x)
-                                                                    return y=1;
-                                                                else
-                                                                    return y=0;
-                                                            }
-                                                        </script>
-
-
                                                         <tbody>
                                                         <c:set var="count" value="0"></c:set>
                                                         <c:forEach items ="${listOrd}" var="ord">
@@ -106,22 +93,34 @@
                                                                 <td>${ord.orderDate}</td>
                                                                 <td>${ord.address}</td>
                                                                 <td>${ord.status}</td>
+
                                                                 <td><a class="icon-eye" href="cusorderdetailhome?orderID=${ord.orderID}"></a></td>
-                                                                    <c:set var="cancelconfirm" value="cancelconfirm"></c:set>
-                                                                <td><a class="icon-close" href="cuscancelorder?action=${cancelconfirm}&orderID=${ord.orderID}&check=${confirm}" 
-                                                                       onClick="return confirm('Are you sure you want to cancel this oreder?')"></a></td>
-                                                                       
+
+
+
+
+                                                                <td>
+                                                                    <a class="icon-close" onclick='showMess1(${ord.orderID})'></a>
+                                                                </td>
+
                                                             </tr>
                                                         </c:forEach>
+
+                                                    <script>
+                                                        function showMess1(id) {
+                                                            var option = confirm("Are you sure to cancel this order ?");
+                                                            if (option === true) {
+                                                                window.location.href = "cuscancelorder?orderID=" + id;
+                                                            }
+                                                        }
+                                                    </script>
                                                     </tbody>                                        
                                                 </table>
+
                                                 <a href="cusEditProfile.jsp" class="btn btn-outline-primary-2">
                                                     <span>BACK</span>
                                                     <i class="icon-arrow-left"></i>
                                                 </a>
-
-
-
                                             </div>
                                         </div><!-- .End .tab-pane -->
                                     </div><!-- End .container -->

@@ -6,6 +6,7 @@
 package com.bookstore.Cart;
 
 import com.bookstore.Account.Account;
+import com.bookstore.Book.BookDAO;
 import com.bookstore.Order.Order;
 import com.bookstore.Order.OrderDAO;
 import java.io.IOException;
@@ -77,26 +78,37 @@ public class CheckOutController extends HttpServlet {
             odao.addNewOrder(orderID, accountID, orderDate, address, total, note, status);
 
             for (Cart c : cart) {
-
+                // lay id tiep theo trong orderDetail
                 List<Order> list2 = odao.getOrderDetailManage();
                 int lastOrderDetailID;
                 int sizeList2 = list2.size() - 1;
                 lastOrderDetailID = (int) (list2.get(sizeList2).getoDetailID() + 1);
-
+                // gan id
                 int oDetailID = lastOrderDetailID;
-
+                // lay ma sach
                 long bookCode = c.getBook().getBookCode();
-
+                // lay quantity cua 1 quyen sach trong cart
                 int oDetailQty = c.getQty();
-
+                // lay gia sach
                 int buyPrice = c.getBuyPrice();
-
+                // sach chua dc danh gia
                 String statusFeed = "not yet";
-
+                //lay so luong 1 quyen sach trong cart
+                int quantityBookInCart = c.getQty();
+                //goi book dao
+                BookDAO bdao = new BookDAO();
+                //lay so luong sach co san trong kho
+                int quanityBookAvailable =  bdao.getQuantityByBookCode(bookCode);
+                //tinh so luong sach con lai trong kho sau khi thanh toan
+                int quanityBookAvailableAfter = quanityBookAvailable - quantityBookInCart;
+                //cap nhat so luong quyen sach do trong kho
+                bdao.updateQuantityBookByBookCode(quanityBookAvailableAfter, bookCode);
+                // in hoa don xuong database
                 odao.addNewOrderDetail(oDetailID, bookCode, oDetailQty, buyPrice, orderID, statusFeed);
             }
-
+            // lam rong cart
             cart = null;
+            // set cart lai
             session.setAttribute("cart", cart);
             request.getRequestDispatcher("cusorderhome").forward(request, response);
         }

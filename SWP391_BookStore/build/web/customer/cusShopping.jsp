@@ -92,13 +92,13 @@
                                                 <c:if test="${listAll.discountPercent > 0}">
                                                     <span class="product-label label-new">Discount</span>
                                                 </c:if>
-                                                    
+
                                                 <a href="cusdetail?pbookCode=${listAll.bookCode}&categoryBook=${listAll.cateName}">
                                                     <img style="width: 	277px; height: 	375px;" src="${listAll.image}" alt="Product image" class="product-image">
                                                 </a>
-                                                <div class="product-action">
-                                                    <a href="#" class="btn-product btn-cart"><span>Add to Cart</span></a>
-                                                </div>
+                                                <div class="product-action action-icon-top">
+                                                    <a href="${pageContext.request.contextPath }/cart?&action=addToCartShop&bookCode=${listAll.bookCode}" class="btn-product btn-cart"><span>add to cart</span></a>
+                                                </div><!-- End .product-action -->
                                             </figure><!-- End .product-media -->
 
                                             <div class="product-body">
@@ -109,7 +109,7 @@
                                                     <c:if test="${listAll.discountPercent == 0}">
                                                     <div class="product-price">
                                                         Price <fmt:formatNumber value="${listAll.buyPrice}" pattern=" #,##0 VND" />
-                                                        
+
                                                     </div><!-- End .product-price -->
                                                 </c:if>
                                                 <c:if test="${listAll.discountPercent > 0}">
@@ -140,8 +140,8 @@
                                         </div><!-- End .product -->
                                     </div><!-- End .col-sm-6 col-lg-4 col-xl-3 -->
                                 </c:forEach>
-                                                
-                                
+
+
                                 <div class="load-more-container text-center">
                                     <c:forEach begin="1" end="${endPage}" var="i">
                                         <a href="cusSearchController?index=${i}&searchKey=${searchKey}" class="btn btn-outline-darker btn-load-more">${i} <i class="icon-refresh"></i></a>

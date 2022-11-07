@@ -227,7 +227,6 @@ public class BookDAO {
 //        }
 //        return list;
 //    }
-
 //    public List<Book> getDiscountBook() {
 //        List<Book> list = new ArrayList<>();
 //        String sql = "			select b.bookCode, b.bookName, b.img, b.importPrice, b.buyPrice, b.description, b.quantity,p.postID,ca.cateID,ca.cateName,p.postName,pc.companyID,pc.companyName,b.postDate,d.discountPercent,a.authorName\n"
@@ -267,7 +266,6 @@ public class BookDAO {
 //        }
 //        return list;
 //    }
-
     public List<Book> SearchBook() {
         List<Book> list = new ArrayList<>();
         String sql = "			select b.bookCode, b.bookName, b.img, b.importPrice, b.buyPrice, b.description, b.quantity,p.postID,ca.cateID,ca.cateName,p.postName,pc.companyID,pc.companyName,b.postDate,d.discountPercent,a.authorName\n"
@@ -510,7 +508,7 @@ public class BookDAO {
         }
         return list;
     }
-    
+
     public Book getBookBybookCodeV2(String bookCode) {
         String sql = "select b.bookCode, b.bookName, b.img, b.importPrice, b.buyPrice, b.description, b.quantity,c.cateID,c.cateName,p.postID,p.postName,pc.companyID,pc.companyName,b.postDate,d.discountPercent\n"
                 + "from ((((tblBook b inner join tblCategory c on b.cateID=c.cateID)\n"
@@ -536,7 +534,7 @@ public class BookDAO {
         }
         return null;
     }
-    
+
     public int getDisCountByBookCode(String bookCode) {
         String sql = "select discountPercent from tblDiscount\n"
                 + "where bookCode = ? ";
@@ -553,6 +551,7 @@ public class BookDAO {
         }
         return 0;
     }
+
     public void deleteDiscount(String id) {
         String sql = " update tblBook\n"
                 + "set postID=3\n"
@@ -565,7 +564,7 @@ public class BookDAO {
         } catch (Exception e) {
         }
     }
-    
+
     public void uploadStatusBook(String id) {
         String sql = " update tblBook\n"
                 + "set postID=4\n"
@@ -578,6 +577,7 @@ public class BookDAO {
         } catch (Exception e) {
         }
     }
+
     public void uploadUnpostBook(String id) {
         String sql = " update tblBook\n"
                 + "set postID=1\n"
@@ -591,9 +591,42 @@ public class BookDAO {
         }
     }
 
+    public int getQuantityByBookCode(long bookCode) {
+        String sql = " select quantity\n"
+                + "from tblBook\n"
+                + "where bookCode = ? ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setLong(1, bookCode);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                int qty = rs.getInt(1);
+                return qty;
+            }
+        } catch (Exception e) {
+        }
+        return 0;
+    }
+
+    public void updateQuantityBookByBookCode(int qty, long bookCode) {
+        String sql = " update tblBook \n"
+                + "set quantity = ?\n"
+                + "where bookCode = ? ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, qty);
+            ps.setLong(2, bookCode);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+
     public static void main(String[] args) {
         BookDAO dAO = new BookDAO();
-        List<Book> list = dAO.SearchBook("t", 1, 8);
-        System.out.println(list);
+//        List<Book> list = dAO.SearchBook("t", 1, 8);
+//        System.out.println(list);
+        //dAO.updateQuantityBookByBookCode(5, "3300000018287");
     }
 }

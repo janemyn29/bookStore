@@ -42,11 +42,15 @@ public class CusFeedBackController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             FeedbackDAO fdao = new FeedbackDAO();
+            
             List<Feedback> list = fdao.getFeedbackManage();
             int lastFeedbackID;
             int sizeList = list.size() - 1;
             lastFeedbackID = (int) (list.get(sizeList).getFeedID() + 1);
-
+            
+//            if(list.size()==0){
+//            int feedbackID = 1;
+//            }
             int feedbackID = lastFeedbackID;
 
             String bookid = request.getParameter("txtbookCode");

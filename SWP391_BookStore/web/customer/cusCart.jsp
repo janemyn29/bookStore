@@ -488,6 +488,7 @@
                                     <span class="cart-count">${cart.size()}</span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
+                                    
                                     <c:forEach items="${cart}" var="cart">
                                         <div class="dropdown-cart-products">
                                             <div class="product">

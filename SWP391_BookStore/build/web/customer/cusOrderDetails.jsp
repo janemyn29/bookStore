@@ -86,6 +86,12 @@
                                                 <label>Email address *</label>
                                                 <small class="form-text">(This field is read only)</small>
                                                 <input type="email" class="form-control" value="${acc.getEmail()}" readonly>
+
+                                                <div>
+                                                    <label>Your Note *</label>
+                                                    <small class="form-text">(You can edit your note here)</small>
+                                                    <input type="text" class="form-control" name="txtNote" value="${note}">
+                                                </div>
                                                 <c:forEach items ="${listOrdetail}" var="orde">
                                                     <c:set var="note" value="${orde.getNote()}"></c:set>
                                                 </c:forEach>
@@ -116,23 +122,7 @@
                                                         </c:forEach>
                                                     </tbody>                                        
                                                 </table>
-                                                        <h5 class="center-parent">-------------Edit Your Note Below-------------</h5>
-                                                <form action="cuseditnote" method="post">
-                                                    <input type="text" name="txtorderID" value="${orderID}" hidden>
-                                                    <div>
-                                                        <label>Your Note *</label>
-                                                        <small class="form-text">(You can edit your note here)</small>
-                                                        <input type="text" class="form-control" name="txtNote" value="${note}">
-                                                    </div>
-                                                    <a href="cusorderhome" class="btn btn-outline-primary-2">
-                                                        <span>BACK</span>
-                                                        <i class="icon-arrow-left"></i>
-                                                    </a>
-                                                    <button class=" btn btn btn-outline-primary-2">
-                                                        <span>SAVE NOTE</span>
-                                                        <i class="icon-arrow-down"></i>
-                                                    </button>
-                                                </form>
+                                                <h5 class="center-parent">-------------Edit Your Note Below-------------</h5>
 
 
 

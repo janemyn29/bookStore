@@ -89,6 +89,55 @@ public class CartController extends HttpServlet {
                     session.setAttribute("cart", cart);
                     request.getRequestDispatcher("home").forward(request, response);
 
+                }
+                if (action.equals("addToCartShop")) { // them sach vao cart
+                    if (session.getAttribute("cart") == null) { // add cuon sach dau tien vao cart
+                        cart.add(new Cart(b.getBookBybookCode(request.getParameter("bookCode")), 1));
+
+                    } else { // add cung 1 cuon sach
+                        cart = (List<Cart>) session.getAttribute("cart");
+                        int index = isExisting(ibookCode, cart);
+                        if (index == -1) {
+                            cart.add(new Cart(b.getBookBybookCode(request.getParameter("bookCode")), 1));
+                        } else {
+                            int quantity = cart.get(index).getQty() + 1;
+                            cart.get(index).setQty(quantity);
+                        }
+                    }
+                    //tinh discount sach
+                    for (int i = 0; i < cart.size(); i++) {
+                        int discountPercent = b.getDisCountByBookCode(request.getParameter("bookCode"));
+                        Book book = b.getBookBybookCode(request.getParameter("bookCode"));
+                        Book book2 = b.getBookBybookCodeV2(request.getParameter("bookCode"));
+                        if (discountPercent > 0) {// sach co discount
+                            for (Cart c : cart) {
+                                if (book.getBookCode() == (book2.getBookCode())) {
+                                    int tmp = c.getBook().getBuyPrice();
+                                    int tmp2 = c.getBook().getBuyPrice() * discountPercent / 100;
+                                    int ibuyPrice = tmp - tmp2;
+                                    c.setBuyPrice(ibuyPrice);
+                                    ibuyPrice = +ibuyPrice;
+                                    session.setAttribute("ibuyPrice", ibuyPrice);
+                                }
+                            }
+                        } else if (discountPercent == 0) { // sach ko discount
+                            bookCode = request.getParameter("bookCode");
+                            for (Cart c : cart) {
+                                if (String.valueOf(c.getBook().getBookCode()).equals(String.valueOf(bookCode))) {
+                                    int ibuyPrice = c.getBook().getBuyPrice();
+                                    c.setBuyPrice(ibuyPrice);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    int totalPrice = totalPrice(cart);
+                    session.setAttribute("totalPrice", totalPrice);// set tong tien
+
+                    session.setAttribute("cart", cart);
+                    request.getRequestDispatcher("cusshopping").forward(request, response);
+
                 } else if (action.equals("remove")) { // xoa sach trong cart
                     cart = (List<Cart>) session.getAttribute("cart");
                     bookCode = request.getParameter("bookCode");
@@ -147,16 +196,16 @@ public class CartController extends HttpServlet {
                     cart.get(index).setQty(quantity);
                     session.setAttribute("cart", cart);
                     request.getRequestDispatcher("cart.jsp").forward(request, response);
-                    
-                } else if(action.equals("checkout")){
-                    if(session.getAttribute("cart") == null){
+
+                } else if (action.equals("checkout")) {
+                    if (session.getAttribute("cart") == null) {
                         session.setAttribute("check", "checkcart");
                         request.getRequestDispatcher("cusCart.jsp").forward(request, response);
-                    }else{
+                    } else {
                         request.getRequestDispatcher("cusCheckOut.jsp").forward(request, response);
                     }
                 }
-                
+
                 session.setAttribute("cart", cart);
                 request.getRequestDispatcher("home").forward(request, response);
             }

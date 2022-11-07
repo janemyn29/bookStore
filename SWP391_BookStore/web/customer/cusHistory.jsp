@@ -47,7 +47,7 @@
                         <div class="container">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="cushome">Home</a></li>
-<!--                                <li class="breadcrumb-item"><a href="shopping.jsp">Shop</a></li>-->
+                                <!--                                <li class="breadcrumb-item"><a href="shopping.jsp">Shop</a></li>-->
                                 <li class="breadcrumb-item active" aria-current="page">My History</li>
                             </ol>
                         </div><!-- End .container -->
@@ -80,27 +80,41 @@
                                                                 <th>Order Address</th>
                                                                 <th>Status</th>
                                                                 <th>Action</th>
+                                                                <th>Return The Goods</th>
                                                             </tr>
                                                         </thead>
 
                                                         <tbody>
-                                                            <c:set var="count" value="0"></c:set>
+                                                        <c:set var="count" value="0"></c:set>
                                                         <c:forEach items ="${listOrd2}" var="ord2">
                                                             <c:set var="count" value="${count=count+1}"></c:set>
-                                                            <tr class="center-parent">
-                                                                <td>${count}</td>
+                                                                <tr class="center-parent">
+                                                                    <td>${count}</td>
                                                                 <td>${ord2.orderDate}</td>
                                                                 <td>${ord2.address}</td>
                                                                 <td>${ord2.status}</td>
                                                                 <td><a class="icon-eye" href="cushistoryorderdetail?orderID=${ord2.orderID}"></a></td>
+
+                                                                <td>
+                                                                    <a class="icon-close" onclick='showMess1(${ord2.orderID})'></a>
+                                                                </td>
                                                             </tr>
                                                         </c:forEach>
+
+                                                    <script>
+                                                        function showMess1(id) {
+                                                            var option = confirm("Are you sure to cancel this order ?");
+                                                            if (option === true) {
+                                                                window.location.href = "cuscancelorder?orderID=" + id;
+                                                            }
+                                                        }
+                                                    </script>
                                                     </tbody>                                        
                                                 </table>
-                                                    <a href="cusEditProfile.jsp" class="btn btn-outline-primary-2">
-                                                        <span>BACK</span>
-                                                        <i class="icon-arrow-left"></i>
-                                                    </a>
+                                                <a href="cusEditProfile.jsp" class="btn btn-outline-primary-2">
+                                                    <span>BACK</span>
+                                                    <i class="icon-arrow-left"></i>
+                                                </a>
 
                                             </div>
                                         </div><!-- .End .tab-pane -->
