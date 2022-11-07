@@ -277,10 +277,6 @@
         <servlet-class>com.bookstore.Importer.ImpCreateCompanyController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ImpCompanyController</servlet-name>
-        <servlet-class>com.bookstore.Importer.ImpCompanyController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ImpProfileController</servlet-name>
         <servlet-class>com.bookstore.Importer.ImpProfileController</servlet-class>
     </servlet>
@@ -480,6 +476,58 @@
         <servlet-name>AddToCartFromCateController</servlet-name>
         <servlet-class>com.bookstore.Cart.AddToCartFromCateController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ImChangePassController</servlet-name>
+        <servlet-class>com.bookstore.Importer.ImChangePassController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ImCreateComController</servlet-name>
+        <servlet-class>com.bookstore.Importer.ImCreateComController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ImCreateComNav</servlet-name>
+        <servlet-class>com.bookstore.Importer.ImCreateComNav</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ImEditComNav</servlet-name>
+        <servlet-class>com.bookstore.Importer.ImEditComNav</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ImEditProfileController</servlet-name>
+        <servlet-class>com.bookstore.Importer.ImEditProfileController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ImEditProfileNavController</servlet-name>
+        <servlet-class>com.bookstore.Importer.ImEditProfileNavController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ImPCompanyController</servlet-name>
+        <servlet-class>com.bookstore.Importer.ImPCompanyController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ImProfileController</servlet-name>
+        <servlet-class>com.bookstore.Importer.ImProfileController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ImRemoveController</servlet-name>
+        <servlet-class>com.bookstore.Importer.ImRemoveController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ImChangeController</servlet-name>
+        <servlet-class>com.bookstore.Importer.ImChangeController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ImpEditCompanyController</servlet-name>
+        <servlet-class>com.bookstore.Importer.ImpEditCompanyController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ImHomeController</servlet-name>
+        <servlet-class>com.bookstore.Importer.ImHomeController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ImpNavController</servlet-name>
+        <servlet-class>com.bookstore.Importer.ImpNavController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -651,10 +699,6 @@
     <servlet-mapping>
         <servlet-name>ImpCreateCompanyController</servlet-name>
         <url-pattern>/importer/ImpCreateCompanyController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ImpCompanyController</servlet-name>
-        <url-pattern>/importer/ImpCompanyController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ImpProfileController</servlet-name>
@@ -855,6 +899,58 @@
     <servlet-mapping>
         <servlet-name>AddToCartFromCateController</servlet-name>
         <url-pattern>/addtocartfromcate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImChangePassController</servlet-name>
+        <url-pattern>/imp/imchangenav</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImCreateComController</servlet-name>
+        <url-pattern>/imp/imAddCompany</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImCreateComNav</servlet-name>
+        <url-pattern>/imp/imCreatCom</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImEditComNav</servlet-name>
+        <url-pattern>/imp/editCompNav</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImEditProfileController</servlet-name>
+        <url-pattern>/imp/imEditProfile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImEditProfileNavController</servlet-name>
+        <url-pattern>/imp/imeditProfileNav</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImPCompanyController</servlet-name>
+        <url-pattern>/imp/pcompany</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImProfileController</servlet-name>
+        <url-pattern>/imp/imProfile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImRemoveController</servlet-name>
+        <url-pattern>/imp/removeComp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImChangeController</servlet-name>
+        <url-pattern>/imp/imChangePass</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImpEditCompanyController</servlet-name>
+        <url-pattern>/imp/imEditCompany</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImHomeController</servlet-name>
+        <url-pattern>/imp/imhome</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImpNavController</servlet-name>
+        <url-pattern>/imp/imhomenav</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

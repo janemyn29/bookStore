@@ -217,7 +217,7 @@
                                                         <a href="adUploadnav?id=${b.bookCode}" data-toggle="tooltip" data-placement="bottom" title="Upload"><i   class="fa fa-upload"></i></a>
                                                         </c:if>
                                                         <c:if test="${b.postName == 'posted'}">
-                                                        <a href="adEditBook?id=${b.bookCode}" data-toggle="tooltip" data-placement="bottom" title="Edit"><i   class="icon-pencil"></i></a>
+                                                        <a href="editbooknav?id=${b.bookCode}" data-toggle="tooltip" data-placement="bottom" title="Edit"><i   class="icon-pencil"></i></a>
                                                         </c:if>
                                                         <c:if test="${b.postName == 'posted'}">
                                                         <a onclick='showMess2(${b.bookCode})'   data-toggle="tooltip" data-placement="bottom" title="Unpost"><i   class="fa fa-undo"></i></a>
@@ -318,7 +318,7 @@
                                                         function showMess3(id) {
                                                             var option = confirm("Do you want to edit information of book befor upload?");
                                                             if (option === true) {
-                                                                window.location.href = "adUploadnav?id=" + id;
+                                                                window.location.href = "editbooknav?id=" + id;
                                                             }
                                                             if (option===false){
                                                                 window.location.href = "adUploadnav?id=" + id;

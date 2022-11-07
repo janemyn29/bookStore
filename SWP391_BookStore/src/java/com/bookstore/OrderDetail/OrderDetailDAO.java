@@ -26,7 +26,7 @@ public class OrderDetailDAO {
 
     public List<OrderDetail> getListDetailByOrder(String orderID) {
         List<OrderDetail> list = new ArrayList<>();
-        String sql = " select d.OdetailID,o.orderID,d.bookcode,b.bookName,b.img,d.oDetailQty,d.buyPrice\n"
+        String sql = " select d.OdetailID,o.orderID,d.bookcode,b.bookName,b.img,d.oDetailQty,d.price\n"
                 + "from (([dbo].[tblOrderDetail] d inner join [dbo].[tblOrder] o on d.orderID=o.orderID)\n"
                 + "inner join [dbo].[tblBook] b on d.bookcode=b.bookCode)\n"
                 + "where d.orderID= ? ";

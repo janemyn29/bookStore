@@ -5,6 +5,7 @@
  */
 package com.bookstore.Admin;
 
+import com.bookstore.Author.Author;
 import com.bookstore.Author.AuthorDAO;
 import com.bookstore.Book.BookShop;
 import com.bookstore.Book.BookShopDAO;
@@ -12,6 +13,7 @@ import com.bookstore.Category.Category;
 import com.bookstore.Category.CategoryDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -42,16 +44,29 @@ public class AdEditBookNavController extends HttpServlet {
 
             BookShopDAO dAO = new BookShopDAO();
             AuthorDAO authordAO = new AuthorDAO();
+            List<Author> list = authordAO.getListAuthorByBookcode(code);
+            List<Author> listAuthor = new ArrayList<>();
+            if (list.size() > 1) {
+
+                for (int i = 1; i < list.size(); i++) {
+                    Author temp= list.get(i);
+                    listAuthor.add(temp);
+                }
+            }
+
             BookShop book = dAO.getBookBybookCodeV2(code);
 
-                CategoryDAO daoC = new CategoryDAO();
-                List<Category> listC = daoC.getCategoryBook();
+            CategoryDAO daoC = new CategoryDAO();
+            List<Category> listC = daoC.getCategoryBook();
 
-                request.setAttribute("listC", listC);
+            request.setAttribute("listC", listC);
+            request.setAttribute("listA", listAuthor);
+            request.setAttribute("Author1", list.get(0));
+            request.setAttribute("listSize", list.size());
 
-                request.setAttribute("book", book);
-                request.getRequestDispatcher("adEditBook.jsp").forward(request, response);
-            
+            request.setAttribute("book", book);
+            request.getRequestDispatcher("acEditBook.jsp").forward(request, response);
+
         }
     }
 

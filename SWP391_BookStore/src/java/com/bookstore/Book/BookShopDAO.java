@@ -365,7 +365,44 @@ public class BookShopDAO {
         }
         return check;
     }
+ public boolean uploadBookInforVs2(String img, int price, String des, String cate, String code) {
+        String sql = "";
+        if (img.equals("")) {
+            sql = " update tblBook\n"
+                    + "set  buyPrice= ?, description=?,cateID=?,postID='1'\n"
+                    + "where bookCode=? ";
+        } else {
+            sql = " update tblBook\n"
+                    + "set img=? buyPrice= ?, description=?,cateID=?,postID='1'\n"
+                    + "where bookCode=? ";
+        }
+        boolean check = false;
+        try {
 
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            if (img.equals("")) {
+                
+                ps.setInt(1, price);
+                ps.setString(2, des);
+                ps.setString(3, cate);
+                ps.setString(4, code);
+            } else {
+                ps.setString(1, img);
+                ps.setInt(2, price);
+                ps.setString(3, des);
+                ps.setString(4, cate);
+                ps.setString(5, code);
+            }
+
+            check = ps.executeUpdate() > 0;
+
+        } catch (SQLException ex) {
+            System.out.println("Update Student error!" + ex.getMessage());
+        }
+        return check;
+    }
     public static void main(String[] args) {
         BookShopDAO dao = new BookShopDAO();
         List<BookShop> book = dao.getAllBook();

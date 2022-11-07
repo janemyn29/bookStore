@@ -160,6 +160,20 @@ public class AuthorDAO {
         } catch (Exception e) {
         }
     }
+    
+    
+    public void deleteCompose(int id) {
+        String sql = " delete from tblCompose\n"
+                + "where composeID=? ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
 
     public static void main(String[] args) {
 

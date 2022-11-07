@@ -623,6 +623,22 @@ public class BookDAO {
         }
     }
 
+    public int getBookByCompanyID(int compID) {
+        String sql = " select count(*)\n"
+                + "from tblBook b inner join tblPublishCompany pc on b.companyID=pc.companyID\n"
+                + "where b.companyID=? ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, compID);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+        }
+        return 0;
+    }
     public static void main(String[] args) {
         BookDAO dAO = new BookDAO();
 //        List<Book> list = dAO.SearchBook("t", 1, 8);

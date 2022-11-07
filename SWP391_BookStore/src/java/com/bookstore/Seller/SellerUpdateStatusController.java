@@ -46,12 +46,14 @@ public class SellerUpdateStatusController extends HttpServlet {
             OrderDAO dao = new OrderDAO();
             boolean retur = false;
             try {
-                if(check.equals("received") || check.equals("not confirm")){
+                if(check.equals("received")){
                 retur = dao.updateOrderStatusNormal(orderid, check);
                 }else if (check.equals("delivering")) {
-                 retur =dao.updateOrderStatusAndMinusQty(orderid, check);
+                 retur =dao.updateOrderStatusNormal(orderid, check);
                 }else if (check.equals("delivery fail")) {
                  retur =dao.updateOrderStatusAndAddQty(orderid, check);
+                }else if (check.equals("not confirm")){
+                    retur=dao.updateOrderStatusAndAddQty(orderid, check);
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(SellerUpdateStatusController.class.getName()).log(Level.SEVERE, null, ex);

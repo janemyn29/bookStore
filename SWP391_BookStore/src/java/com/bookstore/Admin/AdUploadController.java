@@ -122,7 +122,7 @@ public class AdUploadController extends HttpServlet {
             authorDAO.createCompose(code,temp[i]);
         }
         
-        request.setAttribute("mess", "Upload Book sucessful!");
+               request.setAttribute("check", "Upload Book sucessful!");
         request.getRequestDispatcher("adbook").forward(request, response);
 
     }
