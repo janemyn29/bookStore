@@ -80,7 +80,7 @@
                                                                 <th>Order Address</th>
                                                                 <th>Status</th>
                                                                 <th>Action</th>
-                                                                <th>Return The Goods</th>
+                                                                <th>Return This Item</th>
                                                             </tr>
                                                         </thead>
 
@@ -96,19 +96,10 @@
                                                                 <td><a class="icon-eye" href="cushistoryorderdetail?orderID=${ord2.orderID}"></a></td>
 
                                                                 <td>
-                                                                    <a class="icon-close" onclick='showMess1(${ord2.orderID})'></a>
+                                                                    <a href="cuscancelorder?status=${ord2.status}&orderID=${ord2.orderID}" class="underline" >return</a>
                                                                 </td>
                                                             </tr>
                                                         </c:forEach>
-
-                                                    <script>
-                                                        function showMess1(id) {
-                                                            var option = confirm("Are you sure to cancel this order ?");
-                                                            if (option === true) {
-                                                                window.location.href = "cuscancelorder?orderID=" + id;
-                                                            }
-                                                        }
-                                                    </script>
                                                     </tbody>                                        
                                                 </table>
                                                 <a href="cusEditProfile.jsp" class="btn btn-outline-primary-2">

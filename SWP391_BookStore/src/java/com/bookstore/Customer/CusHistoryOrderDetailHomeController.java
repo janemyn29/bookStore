@@ -5,6 +5,7 @@
  */
 package com.bookstore.Customer;
 
+import com.bookstore.Account.Account;
 import com.bookstore.Order.Order;
 import com.bookstore.Order.OrderDAO;
 import java.io.IOException;
@@ -45,7 +46,17 @@ public class CusHistoryOrderDetailHomeController extends HttpServlet {
             List<Order> listOrdetail = odao.getOrderDetailByorderID(id);
             // set attribute len
             request.setAttribute("listOrdetail", listOrdetail);
-            //day du lieu va chuyen trang
+            // goi session
+            HttpSession session = request.getSession();
+            // check account
+            Account acc = (Account) session.getAttribute("acc");
+            // lay account id
+            int accountID = acc.getAccID();
+            // lay history theo order id va account id
+            List<Order> listOrd2 = odao.getOrderByOrderIDAndAccountID(id, accountID);
+            // set attribute
+            request.setAttribute("listOrd2", listOrd2);
+            //chuyen trang
             request.getRequestDispatcher("cusDetailHistory.jsp").forward(request, response);
         }
     }

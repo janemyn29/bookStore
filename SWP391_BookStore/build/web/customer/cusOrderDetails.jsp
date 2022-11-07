@@ -73,6 +73,8 @@
                                             <div class="tab-pane fade show active" id="tab-ordersdetail" role="tabpanel" aria-labelledby="tab-ordersdetail-link">
                                                 <div class="table-responsive">
 
+
+
                                                     <div>
                                                         <label>User Name *</label>
                                                         <small class="form-text">(This field is read only)</small>
@@ -87,24 +89,51 @@
                                                 <small class="form-text">(This field is read only)</small>
                                                 <input type="email" class="form-control" value="${acc.getEmail()}" readonly>
 
-                                                <div>
-                                                    <label>Your Note *</label>
-                                                    <small class="form-text">(You can edit your note here)</small>
-                                                    <input type="text" class="form-control" name="txtNote" value="${note}">
-                                                </div>
                                                 <c:forEach items ="${listOrdetail}" var="orde">
                                                     <c:set var="note" value="${orde.getNote()}"></c:set>
                                                 </c:forEach>
 
+                                                <div>
+                                                    <label>Your Note *</label>
+                                                    <small class="form-text">(This field is read only)</small>
+                                                    <input type="text" class="form-control" value="${note}" readonly>
+                                                </div>
+
                                                 <table class="table table-striped table-bordered zero-configuration">
                                                     <thead>
                                                         <tr class="center-parent">
-                                                            <th>Number</th>
-                                                            <th>Book Name</th>
-                                                            <th>Quantity</th>
-                                                            <th>Price</th>
-                                                            <th>Total Price</th>
-                                                        </tr>
+                                                    <h5 class="center-parent">--------------------------------Order----------------------------------</h5> 
+                                                    <th>Number</th>
+                                                    <th>Order Date</th>
+                                                    <th>Order Address</th>
+                                                    <th>Status</th>
+                                                    </tr>
+                                                    </thead>
+
+                                                    <tbody>
+                                                        <c:set var="count" value="0"></c:set>
+                                                        <c:forEach items ="${listOrd}" var="ord2">
+                                                            <c:set var="count" value="${count=count+1}"></c:set>
+                                                                <tr class="center-parent">
+                                                                    <td>${count}</td>
+                                                                <td>${ord2.orderDate}</td>
+                                                                <td>${ord2.address}</td>
+                                                                <td>${ord2.status}</td>
+                                                            </tr>
+                                                        </c:forEach>
+                                                    </tbody>                                        
+                                                </table>
+
+                                                <table class="table table-striped table-bordered zero-configuration">
+                                                    <thead>
+                                                        <tr class="center-parent">
+                                                    <h5 class="center-parent">------------------------------Order Detail------------------------------</h5>
+                                                    <th>Number</th>
+                                                    <th>Book Name</th>
+                                                    <th>Quantity</th>
+                                                    <th>Price</th>
+                                                    <th>Total Price</th>
+                                                    </tr>
                                                     </thead>
 
                                                     <tbody>
@@ -122,10 +151,10 @@
                                                         </c:forEach>
                                                     </tbody>                                        
                                                 </table>
-                                                <h5 class="center-parent">-------------Edit Your Note Below-------------</h5>
-
-
-
+                                                <a href="cusorderhome" class="btn btn-outline-primary-2">
+                                                    <span>BACK</span>
+                                                    <i class="icon-arrow-left"></i>
+                                                </a>
                                             </div>
                                         </div><!-- .End .tab-pane -->
                                     </div><!-- End .container -->

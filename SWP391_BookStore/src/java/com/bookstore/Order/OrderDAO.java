@@ -336,7 +336,7 @@ public class OrderDAO {
         List<Order> list = new ArrayList<>();
         String sql = " select orderID, orderDate, userAddress, status\n"
                 + "from tblOrder\n"
-                + "where (status = 'recieved' or status = 'cancel') and accountID = ? ";
+                + "where (status = 'received' or status = 'canceled') and accountID = ? ";
 
         try {
             conn = new DBUtils().getConnection();
@@ -470,9 +470,32 @@ public class OrderDAO {
         return list;
     }
 
+    public List<Order> getOrderByOrderIDAndAccountID(int orderID, int accountID) {
+        List<Order> list = new ArrayList<>();
+        String sql = " select orderID, orderDate, userAddress, status\n"
+                + "from tblOrder\n"
+                + "where orderID = ? and accountID = ? ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, orderID);
+            ps.setInt(2, accountID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                list.add(new Order(rs.getInt(1),
+                        rs.getDate(2),
+                        rs.getString(3),
+                        rs.getString(4)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
     public static void main(String[] args) {
         OrderDAO dAO = new OrderDAO();
         //Order list = dAO.getOrderByID("1");
-        System.out.println(dAO.getListOrderDetailByOrderID(8));
+        System.out.println(dAO.getOrderByOrderIDAndAccountID(1, 4));
     }
 }

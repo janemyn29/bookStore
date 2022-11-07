@@ -41,7 +41,7 @@
                 <main class="main">
                     <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
                         <div class="container">
-                            <h1 class="page-title">My History Orders Detail</h1>
+                            <h1 class="page-title">Return The Goods</h1>
                         </div><!-- End .container -->
                     </div><!-- End .page-header -->
                     <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
@@ -68,95 +68,21 @@
                                             </li>
                                         </ul>
                                     </aside><!-- End .col-lg-3 -->
-
-                                <c:forEach items ="${listOrdetail}" var="orde">
-                                    <c:set var="note" value="${orde.getNote()}"></c:set>
-                                </c:forEach>
                                 <div class="col-md-8 col-lg-9">
                                     <div class="tab-content">
                                         <div class="tab-pane fade show active" id="tab-ordersdetail" role="tabpanel" aria-labelledby="tab-ordersdetail-link">
                                             <div class="table-responsive">
-                                                <div class="row">
 
-                                                    <div class="col-sm-6">
-                                                        <label>User Name *</label>
-                                                        <small class="form-text">(This field is read only)</small>
-                                                        <input type="text" class="form-control" value="${acc.getUsername()}" readonly>
-                                                    </div>
-
-                                                    <div class="col-sm-6">
-                                                        <label>Phone Number *</label>
-                                                        <small class="form-text">(This field is read only)</small>
-                                                        <input type="text" class="form-control" value="${acc.getPhone()}" readonly>
-                                                    </div>
-                                                </div>
-                                                <label>Email address *</label>
-                                                <small class="form-text">(This field is read only)</small>
-                                                <input type="email" class="form-control" value="${acc.getEmail()}" readonly>
                                                 <div>
-                                                    <label>Why do you want to return the item? *</label>
+                                                    <label>Why do you want to return this item? *</label>
                                                     <small class="form-text">(This field is required)</small>
-                                                    <textarea type="text" class="form-control" value="${note}" placeholder="Ex: Old, damaged, poor quality books, . . ." required></textarea>
+                                                    <textarea type="text" class="form-control" placeholder="Ex: Old, damaged, poor quality books, . . ." required></textarea>
                                                 </div>
+
+
                                                 <br>
 
-                                                <table class="table table-striped table-bordered zero-configuration">
-                                                    <thead>
-                                                        ---------------------------------------------------- ORDER----------------------------------------------------
-                                                        <tr class="center-parent">
-                                                            <th>Number</th>
-                                                            <th>Order Date</th>
-                                                            <th>Order Address</th>
-                                                            <th>Status</th>
-                                                            <th>Action</th>
-                                                            <th>Cancel</th>
-                                                        </tr>
-                                                    </thead>
-
-                                                    <tbody>
-                                                        <c:set var="count" value="0"></c:set>
-                                                        <c:forEach items ="${listOrd}" var="ord">
-                                                            <c:set var="count" value="${count=count+1}"></c:set>
-                                                                <tr class="center-parent">
-                                                                    <td>${count}</td>
-                                                                <td>${ord.orderDate}</td>
-                                                                <td>${ord.address}</td>
-                                                                <td>${ord.status}</td>
-                                                            </tr>
-                                                        </c:forEach>
-                                                    </tbody>                                        
-                                                </table>
-
-
-
-                                                <table class="table table-striped table-bordered zero-configuration">
-                                                    <thead>
-                                                        ---------------------------------------------------- DETAIL----------------------------------------------------
-                                                        <tr class="center-parent">
-                                                            <th>Number</th>
-                                                            <th>Book Name</th>
-                                                            <th>Quantity</th>
-                                                            <th>Price</th>
-                                                            <th>Total Price</th>
-                                                            <th>Feed back</th>
-                                                        </tr>
-                                                    </thead>
-
-                                                    <tbody>
-                                                        <c:set var="count" value="0"></c:set>
-                                                        <c:forEach items ="${listOrdetail}" var="orde">
-                                                            <c:set var="count" value="${count=count+1}"></c:set>
-                                                                <tr class="center-parent">
-                                                                    <td>${count}</td>
-                                                                <td>${orde.bookName}</td>
-                                                                <td>${orde.oDetailQty}</td>
-                                                                <td>${orde.buyPrice}</td>
-                                                                <td>${orde.total}</td>
-                                                                <td><a class="underline" href="cusfeedhome?bookCode=${orde.bookCode}&orderID=${orde.orderID}&oDetailID=${orde.oDetailID}">Click here</a></td>
-                                                            </tr>
-                                                        </c:forEach>
-                                                    </tbody>  
-                                                </table>
+                                                
                                                 <a href="cushistoryhome" class="btn btn-outline-primary-2">
                                                     <span>BACK</span>
                                                     <i class="icon-arrow-left"></i>

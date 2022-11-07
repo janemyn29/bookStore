@@ -472,6 +472,14 @@
         <servlet-name>AdEditBookNavController</servlet-name>
         <servlet-class>com.bookstore.Admin.AdEditBookNavController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CusAddShoppingController</servlet-name>
+        <servlet-class>com.bookstore.Cart.CusAddShoppingController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddToCartFromCateController</servlet-name>
+        <servlet-class>com.bookstore.Cart.AddToCartFromCateController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -839,6 +847,14 @@
     <servlet-mapping>
         <servlet-name>AdEditBookNavController</servlet-name>
         <url-pattern>/admin/editbooknav</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CusAddShoppingController</servlet-name>
+        <url-pattern>/cusaddshopping</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddToCartFromCateController</servlet-name>
+        <url-pattern>/addtocartfromcate</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -5,6 +5,7 @@
  */
 package com.bookstore.Customer;
 
+import com.bookstore.Account.Account;
 import com.bookstore.Book.BookDAO;
 import com.bookstore.Order.Order;
 import com.bookstore.Order.OrderDAO;
@@ -15,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -54,10 +56,23 @@ public class CusCancelOrderController extends HttpServlet {
                 request.getRequestDispatcher("cusorderhome").forward(request, response);
             } else if (status.equals("delivering")) {
                 request.getRequestDispatcher("cusorderhome").forward(request, response);
-            } else if (status.equals("recieved")) {
-
+            } else if (status.equals("received")) {
+                // lay list detail tu ham lay list theo id
+                List<Order> listOrdetail = odao.getOrderDetailByorderID(orderID);
+                // set attribute len
+                request.setAttribute("listOrdetail", listOrdetail);
+                // goi session
+                HttpSession session = request.getSession();
+                // check account
+                Account acc = (Account) session.getAttribute("acc");
+                // lay account id
+                int accountID = acc.getAccID();
+                // lay history theo order id va account id
+                List<Order> listOrd2 = odao.getOrderByOrderIDAndAccountID(orderID, accountID);
+                // set attribute
+                request.setAttribute("listOrd2", listOrd2);
+                request.getRequestDispatcher("cusReasonForm.jsp");
             }
-            request.getRequestDispatcher("cusorderhome").forward(request, response);
         }
     }
 

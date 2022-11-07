@@ -5,6 +5,7 @@
  */
 package com.bookstore.Customer;
 
+import com.bookstore.Account.Account;
 import com.bookstore.Order.Order;
 import com.bookstore.Order.OrderDAO;
 import com.bookstore.OrderDetail.OrderDetail;
@@ -45,9 +46,19 @@ public class CusOrderDetailHomeController extends HttpServlet {
             OrderDAO odao = new OrderDAO();
             // lay list detail tu ham lay list theo id
             List<Order> listOrdetail = odao.getOrderDetailByorderID(id);
-            // set attribute len
+            // set attribute
             request.setAttribute("listOrdetail", listOrdetail);
-            //day du lieu va chuyen trang
+            // new session
+            HttpSession session = request.getSession();
+            // check account
+            Account acc = (Account) session.getAttribute("acc");
+            // lay account id
+            int accountID = acc.getAccID();
+            // lay list order theo account id
+            List<Order> listOrd = odao.getOrderByOrderIDAndAccountID(id, accountID);
+            // set attribute
+            request.setAttribute("listOrd", listOrd);
+            //chuyen trang
             request.getRequestDispatcher("cusOrderDetails.jsp").forward(request, response);
         }
     }

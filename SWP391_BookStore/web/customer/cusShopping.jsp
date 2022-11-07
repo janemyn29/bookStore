@@ -97,7 +97,7 @@
                                                     <img style="width: 	277px; height: 	375px;" src="${listAll.image}" alt="Product image" class="product-image">
                                                 </a>
                                                 <div class="product-action action-icon-top">
-                                                    <a href="${pageContext.request.contextPath }/cart?&action=addToCartShop&bookCode=${listAll.bookCode}" class="btn-product btn-cart"><span>add to cart</span></a>
+                                                    <a href="${pageContext.request.contextPath }/cusaddshopping?&action=addToCart&bookCode=${listAll.bookCode}" class="btn-product btn-cart"><span>add to cart</span></a>
                                                 </div><!-- End .product-action -->
                                             </figure><!-- End .product-media -->
 

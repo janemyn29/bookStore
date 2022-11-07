@@ -86,6 +86,8 @@ public class Order {
     public Order(String status) {
         this.status = status;
     }
+    
+    
 
     public Order(int oDetailQty, long bookCode) {
         this.oDetailQty = oDetailQty;

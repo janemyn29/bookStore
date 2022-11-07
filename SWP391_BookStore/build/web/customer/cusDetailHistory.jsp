@@ -41,7 +41,7 @@
                 <main class="main">
                     <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
                         <div class="container">
-                            <h1 class="page-title">My History Orders Detail</h1>
+                            <h1 class="page-title">My History Detail</h1>
                         </div><!-- End .container -->
                     </div><!-- End .page-header -->
                     <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
@@ -49,7 +49,7 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="cushome">Home</a></li>
                                 <li class="breadcrumb-item"><a href="cushistoryhome">My History</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">My History Orders Detail</li>
+                                <li class="breadcrumb-item active" aria-current="page">My History Detail</li>
                             </ol>
                         </div><!-- End .container -->
                     </nav><!-- End .breadcrumb-nav -->
@@ -61,7 +61,7 @@
                                     <aside class="col-md-4 col-lg-3">
                                         <ul class="nav nav-dashboard flex-column mb-3 mb-md-0" role="tablist">
                                             <li class="nav-item">
-                                                <a class="nav-link active" id="tab-ordersdetail-link" data-toggle="tab" href="#tab-ordersdetail" role="tab" aria-controls="tab-ordersdetail" aria-selected="false">My History Orders Detail</a>
+                                                <a class="nav-link active" id="tab-ordersdetail-link" data-toggle="tab" href="#tab-ordersdetail" role="tab" aria-controls="tab-ordersdetail" aria-selected="false">My History Detail</a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" href="/SWP391_BookStore/logout">Sign Out</a>
@@ -97,19 +97,42 @@
                                                 </div>
                                                 <br>
 
+                                                <table class="table table-striped table-bordered zero-configuration">
+                                                    <thead>
+                                                    <h5 class="center-parent">---------------------------------History---------------------------------</h5>
+                                                    <tr class="center-parent">
+                                                        <th>Number</th>
+                                                        <th>Order Date</th>
+                                                        <th>Order Address</th>
+                                                        <th>Status</th>
+                                                    </tr>
+                                                    </thead>
 
+                                                    <tbody>
+                                                        <c:set var="count" value="0"></c:set>
+                                                        <c:forEach items ="${listOrd2}" var="ord2">
+                                                            <c:set var="count" value="${count=count+1}"></c:set>
+                                                                <tr class="center-parent">
+                                                                    <td>${count}</td>
+                                                                <td>${ord2.orderDate}</td>
+                                                                <td>${ord2.address}</td>
+                                                                <td>${ord2.status}</td>
+                                                            </tr>
+                                                        </c:forEach>
+                                                    </tbody>                                        
+                                                </table>
 
                                                 <table class="table table-striped table-bordered zero-configuration">
                                                     <thead>
-                                                        ---------------------------------------------------------------------------------------------------------------
-                                                        <tr class="center-parent">
-                                                            <th>Number</th>
-                                                            <th>Book Name</th>
-                                                            <th>Quantity</th>
-                                                            <th>Price</th>
-                                                            <th>Total Price</th>
-                                                            <th>Feed back</th>
-                                                        </tr>
+                                                    <h5 class="center-parent">------------------------------History Detail------------------------------</h5>
+                                                    <tr class="center-parent">
+                                                        <th>Number</th>
+                                                        <th>Book Name</th>
+                                                        <th>Quantity</th>
+                                                        <th>Price</th>
+                                                        <th>Total Price</th>
+                                                        <th>Feed back</th>
+                                                    </tr>
                                                     </thead>
 
                                                     <tbody>
