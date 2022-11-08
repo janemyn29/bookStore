@@ -25,7 +25,7 @@ import java.util.ListIterator;
  *
  * @author Admin
  */
-public class CartController extends HttpServlet {
+public class ShoppingPageController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -55,7 +55,7 @@ public class CartController extends HttpServlet {
                         cart.add(new Cart(b.getBookBybookCode(request.getParameter("bookCode")), 1));
                     } else {
                         request.setAttribute("checkQuanity", "Store has no more quantity of this book left. We apologize for the inconvenience.");
-                        request.getRequestDispatcher("home").forward(request, response);
+                        request.getRequestDispatcher("shopping?index=1").forward(request, response);
                     }
                 } else { // add nhung cuon tiep theo
                     cart = (List<Cart>) session.getAttribute("cart");
@@ -65,7 +65,7 @@ public class CartController extends HttpServlet {
                             cart.add(new Cart(b.getBookBybookCode(request.getParameter("bookCode")), 1));
                         } else {
                             request.setAttribute("checkQuanity", "Store has no more quantity of this book left. We apologize for the inconvenience.");
-                            request.getRequestDispatcher("home").forward(request, response);
+                            request.getRequestDispatcher("shopping?index=1").forward(request, response);
                         }
                     } else {
                         int quantityBookInCart = cart.get(index).getQty();
@@ -74,7 +74,7 @@ public class CartController extends HttpServlet {
                             cart.get(index).setQty(quantity);
                         } else {
                             request.setAttribute("checkQuanity", "Store has no more quantity of this book left. We apologize for the inconvenience.");
-                            request.getRequestDispatcher("home").forward(request, response);
+                            request.getRequestDispatcher("shopping?index=1").forward(request, response);
                         }
                     }
                 }
@@ -114,7 +114,7 @@ public class CartController extends HttpServlet {
                 session.setAttribute("totalPrice", totalPrice);// set tong tien
 
                 session.setAttribute("cart", cart);
-                request.getRequestDispatcher("home").forward(request, response);
+                request.getRequestDispatcher("shopping?index=1").forward(request, response);
 
             } else if (action.equals("remove")) { // xoa sach trong cart
                 cart = (List<Cart>) session.getAttribute("cart");
@@ -146,7 +146,7 @@ public class CartController extends HttpServlet {
                     }
                 }
                 session.setAttribute("cart", cart);
-                request.getRequestDispatcher("home").forward(request, response);
+                request.getRequestDispatcher("shopping?index=1").forward(request, response);
 
             } else if (action.equals("decre")) { // giam quantity
                 cart = (List<Cart>) session.getAttribute("cart");
@@ -183,7 +183,7 @@ public class CartController extends HttpServlet {
             }
 
             session.setAttribute("cart", cart);
-            request.getRequestDispatcher("home").forward(request, response);
+            request.getRequestDispatcher("shopping?index=1").forward(request, response);
         }
     }
 

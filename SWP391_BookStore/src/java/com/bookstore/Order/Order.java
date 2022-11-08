@@ -12,6 +12,7 @@ import java.sql.Date;
  * @author tramy
  */
 public class Order {
+
     private int orderID;
     private int accountID;
     private Date orderDate;
@@ -28,7 +29,9 @@ public class Order {
     private long bookCode;
     private String bookName;
     private String statusFeed;
-    
+    private Date receivedDate;
+    private Date requestDate;
+    private String returnReason;
 
     public Order() {
     }
@@ -55,7 +58,7 @@ public class Order {
         this.email = email;
         this.phone = phone;
     }
-    
+
     public Order(int oDetailID, long bookCode, int oDetailQty, int buyPrice, int orderID, String statusFeed) {
         this.oDetailID = oDetailID;
         this.bookCode = bookCode;
@@ -86,17 +89,11 @@ public class Order {
     public Order(String status) {
         this.status = status;
     }
-    
-    
 
     public Order(int oDetailQty, long bookCode) {
         this.oDetailQty = oDetailQty;
         this.bookCode = bookCode;
     }
-    
-    
-    
-    
 
     public String getStatusFeed() {
         return statusFeed;
@@ -105,10 +102,7 @@ public class Order {
     public void setStatusFeed(String statusFeed) {
         this.statusFeed = statusFeed;
     }
-    
-    
-    
-   
+
     public String getBookName() {
         return bookName;
     }
@@ -116,7 +110,6 @@ public class Order {
     public void setBookName(String bookName) {
         this.bookName = bookName;
     }
-    
 
     public int getoDetailQty() {
         return oDetailQty;
@@ -149,8 +142,6 @@ public class Order {
     public void setBookCode(long bookCode) {
         this.bookCode = bookCode;
     }
-    
-    
 
     public int getOrderID() {
         return orderID;
@@ -232,13 +223,35 @@ public class Order {
         this.phone = phone;
     }
 
-    @Override
-    public String toString() {
-        return "Order{" + "orderID=" + orderID + ", accountID=" + accountID + ", orderDate=" + orderDate + ", address=" + address + ", total=" + total + ", Note=" + Note + ", status=" + status + ", accName=" + accName + ", email=" + email + ", phone=" + phone + ", oDetailQty=" + oDetailQty + ", buyPrice=" + buyPrice + ", oDetailID=" + oDetailID + ", bookCode=" + bookCode + ", bookName=" + bookName + '}';
+    public Date getReceivedDate() {
+        return receivedDate;
     }
 
+    public void setReceivedDate(Date receivedDate) {
+        this.receivedDate = receivedDate;
+    }
+
+    public Date getRequestDate() {
+        return requestDate;
+    }
+
+    public void setRequestDate(Date requestDate) {
+        this.requestDate = requestDate;
+    }
+
+    public String getReturnReason() {
+        return returnReason;
+    }
+
+    public void setReturnReason(String returnReason) {
+        this.returnReason = returnReason;
+    }
+    
     
 
-    
-    
+    @Override
+    public String toString() {
+        return "Order{" + "orderID=" + orderID + ", accountID=" + accountID + ", orderDate=" + orderDate + ", address=" + address + ", total=" + total + ", Note=" + Note + ", status=" + status + ", accName=" + accName + ", email=" + email + ", phone=" + phone + ", oDetailQty=" + oDetailQty + ", buyPrice=" + buyPrice + ", oDetailID=" + oDetailID + ", bookCode=" + bookCode + ", bookName=" + bookName + ", statusFeed=" + statusFeed + '}';
+    }
+
 }

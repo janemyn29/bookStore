@@ -171,6 +171,12 @@ public class Book {
         this.discountPercent = discountPercent;
         this.authorName = authorName;
     }
+
+    public Book(int qty) {
+        this.qty = qty;
+    }
+    
+    
         
     Book(long aLong, String string, String string0, String string1, String string2, String string3, int aInt, String string4, int aInt0, int aInt1) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -298,8 +304,10 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book{" + "bookCode=" + bookCode + ", bookName=" + bookName + ", image=" + image + ", importPrice=" + importPrice + ", buyPrice=" + buyPrice + ", description=" + description + ", qty=" + qty + ", cateID=" + cateID + ", cateName=" + cateName + ", postID=" + postID + ", postName=" + postName + ", companyID=" + companyID + ", companyName=" + companyName + ", postDate=" + postDate + ", discountPercent=" + discountPercent + ", author=" + author + ", authorName=" + authorName + '}';
+        return "Book{" + "qty=" + qty + '}';
     }
+
+    
     
 
     

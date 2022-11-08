@@ -25,7 +25,7 @@ import java.util.ListIterator;
  *
  * @author Admin
  */
-public class CartController extends HttpServlet {
+public class CusShoppingPageController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -53,9 +53,9 @@ public class CartController extends HttpServlet {
                 if (session.getAttribute("cart") == null) { // add cuon sach dau tien vao cart
                     if (quantityBookAvailable > 0) { // kiem tra sach add vao co qua so luong trong kho khong?
                         cart.add(new Cart(b.getBookBybookCode(request.getParameter("bookCode")), 1));
-                    } else {
+                    }else{
                         request.setAttribute("checkQuanity", "Store has no more quantity of this book left. We apologize for the inconvenience.");
-                        request.getRequestDispatcher("home").forward(request, response);
+                        request.getRequestDispatcher("cusshopping?index=1").forward(request, response);
                     }
                 } else { // add nhung cuon tiep theo
                     cart = (List<Cart>) session.getAttribute("cart");
@@ -65,7 +65,7 @@ public class CartController extends HttpServlet {
                             cart.add(new Cart(b.getBookBybookCode(request.getParameter("bookCode")), 1));
                         } else {
                             request.setAttribute("checkQuanity", "Store has no more quantity of this book left. We apologize for the inconvenience.");
-                            request.getRequestDispatcher("home").forward(request, response);
+                            request.getRequestDispatcher("cusshopping?index=1").forward(request, response);
                         }
                     } else {
                         int quantityBookInCart = cart.get(index).getQty();
@@ -74,7 +74,7 @@ public class CartController extends HttpServlet {
                             cart.get(index).setQty(quantity);
                         } else {
                             request.setAttribute("checkQuanity", "Store has no more quantity of this book left. We apologize for the inconvenience.");
-                            request.getRequestDispatcher("home").forward(request, response);
+                            request.getRequestDispatcher("cusshopping?index=1").forward(request, response);
                         }
                     }
                 }
@@ -114,7 +114,7 @@ public class CartController extends HttpServlet {
                 session.setAttribute("totalPrice", totalPrice);// set tong tien
 
                 session.setAttribute("cart", cart);
-                request.getRequestDispatcher("home").forward(request, response);
+                request.getRequestDispatcher("cusshopping?index=1").forward(request, response);
 
             } else if (action.equals("remove")) { // xoa sach trong cart
                 cart = (List<Cart>) session.getAttribute("cart");
@@ -132,7 +132,7 @@ public class CartController extends HttpServlet {
                     }
                 }
                 session.setAttribute("cart", cart);
-                request.getRequestDispatcher("cart.jsp").forward(request, response);
+                request.getRequestDispatcher("cusCart.jsp").forward(request, response);
 
             } else if (action.equals("removeHome")) { // xoa sach trong minicart header
                 bookCode = request.getParameter("bookCode");
@@ -146,7 +146,7 @@ public class CartController extends HttpServlet {
                     }
                 }
                 session.setAttribute("cart", cart);
-                request.getRequestDispatcher("home").forward(request, response);
+                request.getRequestDispatcher("cusshopping?index=1").forward(request, response);
 
             } else if (action.equals("decre")) { // giam quantity
                 cart = (List<Cart>) session.getAttribute("cart");
@@ -165,7 +165,7 @@ public class CartController extends HttpServlet {
                     }
                 }
                 session.setAttribute("cart", cart);
-                request.getRequestDispatcher("cart.jsp").forward(request, response);
+                request.getRequestDispatcher("cusCart.jsp").forward(request, response);
 
             } else if (action.equals("incre")) { // tang quantity
                 cart = (List<Cart>) session.getAttribute("cart");
@@ -175,15 +175,15 @@ public class CartController extends HttpServlet {
                     int quantity = cart.get(index).getQty() + 1;
                     cart.get(index).setQty(quantity);
                     session.setAttribute("cart", cart);
-                    request.getRequestDispatcher("cart.jsp").forward(request, response);
+                    request.getRequestDispatcher("cusCart.jsp").forward(request, response);
                 } else {
                     request.setAttribute("checkQuanity", "Store has no more quantity of this book left. We apologize for the inconvenience.");
-                    request.getRequestDispatcher("cart.jsp").forward(request, response);
+                    request.getRequestDispatcher("cusCart.jsp").forward(request, response);
                 }
             }
 
             session.setAttribute("cart", cart);
-            request.getRequestDispatcher("home").forward(request, response);
+            request.getRequestDispatcher("cusshopping?index=1").forward(request, response);
         }
     }
 

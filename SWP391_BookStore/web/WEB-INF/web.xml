@@ -469,14 +469,6 @@
         <servlet-class>com.bookstore.Admin.AdEditBookNavController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CusAddShoppingController</servlet-name>
-        <servlet-class>com.bookstore.Cart.CusAddShoppingController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>AddToCartFromCateController</servlet-name>
-        <servlet-class>com.bookstore.Cart.AddToCartFromCateController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ImChangePassController</servlet-name>
         <servlet-class>com.bookstore.Importer.ImChangePassController</servlet-class>
     </servlet>
@@ -535,6 +527,30 @@
     <servlet>
         <servlet-name>ImReceiptDetailController</servlet-name>
         <servlet-class>com.bookstore.Importer.ImReceiptDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CusRetrunNavController</servlet-name>
+        <servlet-class>com.bookstore.Customer.CusRetrunNavController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CusReturnManagementNavController</servlet-name>
+        <servlet-class>com.bookstore.Customer.CusReturnManagementNavController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CusReturnManagementDetailController</servlet-name>
+        <servlet-class>com.bookstore.Customer.CusReturnManagementDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ShoppingPageController</servlet-name>
+        <servlet-class>com.bookstore.Cart.ShoppingPageController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CusShoppingPageController</servlet-name>
+        <servlet-class>com.bookstore.Cart.CusShoppingPageController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProductPageController</servlet-name>
+        <servlet-class>com.bookstore.Cart.ProductPageController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -901,14 +917,6 @@
         <url-pattern>/admin/editbooknav</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CusAddShoppingController</servlet-name>
-        <url-pattern>/cusaddshopping</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>AddToCartFromCateController</servlet-name>
-        <url-pattern>/addtocartfromcate</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>ImChangePassController</servlet-name>
         <url-pattern>/imp/imchangenav</url-pattern>
     </servlet-mapping>
@@ -967,6 +975,30 @@
     <servlet-mapping>
         <servlet-name>ImReceiptDetailController</servlet-name>
         <url-pattern>/imp/receiptDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CusRetrunNavController</servlet-name>
+        <url-pattern>/customer/cusreturnnav</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CusReturnManagementNavController</servlet-name>
+        <url-pattern>/customer/cusreturnmanagementnav</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CusReturnManagementDetailController</servlet-name>
+        <url-pattern>/customer/cusreturnmanagementdetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShoppingPageController</servlet-name>
+        <url-pattern>/shoppingpage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CusShoppingPageController</servlet-name>
+        <url-pattern>/customer/cusshoppingpage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductPageController</servlet-name>
+        <url-pattern>/productpage</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

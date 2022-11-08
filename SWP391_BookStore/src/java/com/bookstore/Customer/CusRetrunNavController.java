@@ -25,7 +25,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Admin
  */
-public class CusHistoryHomeController extends HttpServlet {
+public class CusRetrunNavController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,14 +40,41 @@ public class CusHistoryHomeController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-
+            //lay orderID khi click vao xem detail
+            String orderID = request.getParameter("orderID");
+            //parse id sang kieu int
+            int id = Integer.parseInt(orderID);
+            // goi dao
             OrderDAO odao = new OrderDAO();
+            // new session
             HttpSession session = request.getSession();
+            // check account
             Account acc = (Account) session.getAttribute("acc");
+            // lay account id
             int accountID = acc.getAccID();
-            List<Order> listOrd2 = odao.getOrderListByStatus2(accountID);
-            request.setAttribute("listOrd2", listOrd2);
-            request.getRequestDispatcher("cusHistory.jsp").forward(request, response);
+            // lay list order theo account id
+            List<Order> listOrd = odao.getOrderByOrderIDAndAccountID(id, accountID);
+            // set attribute
+            request.setAttribute("listOrd", listOrd);
+            //chuyen trang
+
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+            LocalDate now = LocalDate.now();
+            Date today = Date.valueOf(now);
+            String tmp = odao.checkRecievedDateByOrderID(id);
+            Date recievedDate = Date.valueOf(tmp);
+
+            Calendar c1 = Calendar.getInstance();
+            Calendar c2 = Calendar.getInstance();
+            c1.setTime(recievedDate);
+            c2.setTime(today);
+            Long noDay = (c2.getTime().getTime() - c1.getTime().getTime()) / (24 * 3600 * 1000);
+            if (noDay <= 5) {
+                request.getRequestDispatcher("cusReasonForm.jsp").forward(request, response);
+            } else {
+                request.setAttribute("checkDate", "Refund time expired!!!");
+                request.getRequestDispatcher("cushistoryhome").forward(request, response);
+            }
         }
     }
 

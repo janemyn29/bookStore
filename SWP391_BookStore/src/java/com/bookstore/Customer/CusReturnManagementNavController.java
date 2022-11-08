@@ -10,10 +10,6 @@ import com.bookstore.Order.Order;
 import com.bookstore.Order.OrderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +21,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Admin
  */
-public class CusHistoryHomeController extends HttpServlet {
+public class CusReturnManagementNavController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,14 +36,13 @@ public class CusHistoryHomeController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-
             OrderDAO odao = new OrderDAO();
             HttpSession session = request.getSession();
             Account acc = (Account) session.getAttribute("acc");
             int accountID = acc.getAccID();
-            List<Order> listOrd2 = odao.getOrderListByStatus2(accountID);
-            request.setAttribute("listOrd2", listOrd2);
-            request.getRequestDispatcher("cusHistory.jsp").forward(request, response);
+            List<Order> listOrd = odao.getOrderListByStatus3(accountID);
+            request.setAttribute("listOrd", listOrd);
+            request.getRequestDispatcher("cusReturnManagement.jsp").forward(request, response);
         }
     }
 

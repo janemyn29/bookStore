@@ -10,10 +10,6 @@ import com.bookstore.Order.Order;
 import com.bookstore.Order.OrderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +21,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Admin
  */
-public class CusHistoryHomeController extends HttpServlet {
+public class CusReturnManagementDetailController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,14 +36,28 @@ public class CusHistoryHomeController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-
+            //lay orderID khi click vao xem detail
+            String orderID = request.getParameter("orderID");
+            //parse id sang kieu int
+            int id = Integer.parseInt(orderID);
+            // goi dao
             OrderDAO odao = new OrderDAO();
+            // lay list detail tu ham lay list theo id
+            List<Order> listOrdetail = odao.getOrderDetailByorderID(id);
+            // set attribute
+            request.setAttribute("listOrdetail", listOrdetail);
+            // new session
             HttpSession session = request.getSession();
+            // check account
             Account acc = (Account) session.getAttribute("acc");
+            // lay account id
             int accountID = acc.getAccID();
-            List<Order> listOrd2 = odao.getOrderListByStatus2(accountID);
-            request.setAttribute("listOrd2", listOrd2);
-            request.getRequestDispatcher("cusHistory.jsp").forward(request, response);
+            // lay list order theo account id
+            List<Order> listOrd = odao.getOrderByOrderIDAndAccountID(id, accountID);
+            // set attribute
+            request.setAttribute("listOrd", listOrd);
+            //chuyen trang
+            request.getRequestDispatcher("cusReturnManagementDetail.jsp").forward(request, response);
         }
     }
 

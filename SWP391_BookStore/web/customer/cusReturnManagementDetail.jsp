@@ -1,16 +1,15 @@
-<%@page import="com.bookstore.Account.Account"%>
-<%@page import="com.bookstore.Book.BookDAO"%>
-<%@page import="com.bookstore.Book.Book"%>
-<%@page import="com.bookstore.Cart.Cart"%>
-<%@page import="java.util.List"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%-- 
+    Document   : dashboard
+    Created on : Sep 26, 2022, 6:59:35 PM
+    Author     : Admin
+--%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-
-
-    <!-- molla/cart.html  22 Nov 2019 09:55:06 GMT -->
+<html>
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -35,170 +34,133 @@
         <!-- Main CSS File -->
         <link rel="stylesheet" href="assets/css/style.css">
     </head>
-
     <body>
         <div class="page-wrapper">
-            <jsp:include page="header.jsp"></jsp:include>
-
+            <jsp:include page="cusHeader.jsp"></jsp:include>
                 <main class="main">
                     <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
                         <div class="container">
-                            <h1 class="page-title">Shopping Cart<span>Shop</span></h1>
+                            <h1 class="page-title">My Return Detail</h1>
                         </div><!-- End .container -->
                     </div><!-- End .page-header -->
-                    <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                    <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
                         <div class="container">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="home">Home</a></li>
-                                <li class="breadcrumb-item"><a href="shopping">Shop</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Shopping Cart</li>
+                                <li class="breadcrumb-item"><a href="cushome">Home</a></li>
+                                <li class="breadcrumb-item"><a href="cusorderhome">My Return Management</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">My Return Detail</li>
                             </ol>
                         </div><!-- End .container -->
-                    <c:if test='${checkQuanity == "Store has no more quantity of this book left. We apologize for the inconvenience."}'>
-                        <h5  class="center-parent"style="color: red;">${checkQuanity}</h5>
-                    </c:if>
-                </nav><!-- End .breadcrumb-nav -->
+                    </nav><!-- End .breadcrumb-nav -->
 
-                <div class="page-content">
-                    <div class="cart">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-9">
-                                    <table class="table table-cart table-mobile">
-                                        <thead>
-                                            <tr>
-                                                <th>Product</th>
-                                                <th>Price</th>
-                                                <th></th>
-                                                <th>Quantity</th>
-                                                <th>Total</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
+                    <div class="page-content">
+                        <div class="dashboard">
+                            <div class="container">
+                                <div class="row">
+                                    <aside class="col-md-4 col-lg-3">
+                                        <ul class="nav nav-dashboard flex-column mb-3 mb-md-0" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" id="tab-ordersdetail-link" data-toggle="tab" href="#tab-ordersdetail" role="tab" aria-controls="tab-ordersdetail" aria-selected="false">My Return Detail</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="/SWP391_BookStore/logout">Sign Out</a>
+                                            </li>
+                                        </ul>
+                                    </aside><!-- End .col-lg-3 -->
 
-                                        <tbody>
-                                            <c:forEach items="${cart}" var="cart">
-                                                <tr>
-                                                    <td class="product-col">
-                                                        <div class="product">
-                                                            <figure class="product-media">
-                                                                <img src="${cart.book.image}" alt="Product image" class="product-image">
-                                                            </figure>
-                                                            <h3 class="product-title">
-                                                                <a href="product.jsp">${cart.book.bookName}</a>
-                                                            </h3> 
-                                                        </div> 
-                                                    </td>
-
-                                                    <c:if test='${cart.book.buyPrice == cart.buyPrice}'>
-                                                        <td class="price-col">
-                                                            <fmt:formatNumber value="${cart.book.buyPrice}" pattern=" #,##0 VND" /> 
-                                                        </td>
-                                                        <td></td>
-                                                    </c:if>
-
-                                                    <c:if test='${cart.book.buyPrice != cart.buyPrice}'>
-                                                        <td class="price-col">
-                                                            <fmt:formatNumber value="${cart.buyPrice}" pattern=" #,##0 VND" />
-                                                        </td>
-                                                        <td class="line-through">
-                                                            <fmt:formatNumber value="${cart.book.buyPrice}" pattern=" #,##0 VND" />  
-                                                        </td>
-                                                    </c:if>
+                                    <div class="col-md-8 col-lg-9">
+                                        <div class="tab-content">
+                                            <div class="tab-pane fade show active" id="tab-ordersdetail" role="tabpanel" aria-labelledby="tab-ordersdetail-link">
+                                                <div class="table-responsive">
 
 
-                                                    <td class="quantity-col">
-                                                        <div class="cart-product-quantity">
-                                                            <a href="${pageContext.request.contextPath }/cart?action=decre&bookCode=${cart.book.bookCode}">-</a>
-                                                            <a class="alert">
-                                                                ${cart.qty}                                                     
-                                                            </a>
-                                                            <a href="${pageContext.request.contextPath }/cart?action=incre&bookCode=${cart.book.bookCode}">+</a>
-                                                        </div>
-                                                    </td>
 
-                                                    <td class="total-col">
-                                                        <fmt:formatNumber value="${cart.buyPrice * cart.qty}" pattern=" #,##0 VND" /> 
-                                                    </td>
+                                                    <div>
+                                                        <label>User Name *</label>
+                                                        <small class="form-text">(This field is read only)</small>
+                                                        <input type="text" class="form-control" value="${acc.getUsername()}" readonly>
+                                                </div>
+                                                <div>
+                                                    <label>Phone Number *</label>
+                                                    <small class="form-text">(This field is read only)</small>
+                                                    <input type="text" class="form-control" value="${acc.getPhone()}" readonly>
+                                                </div>
+                                                <label>Email address *</label>
+                                                <small class="form-text">(This field is read only)</small>
+                                                <input type="email" class="form-control" value="${acc.getEmail()}" readonly>
 
-
-                                                    <td class="remove-col">
-                                                        <a href="${pageContext.request.contextPath }/cart?action=remove&bookCode=${cart.book.bookCode}" class="btn-remove">
-                                                            <i class="icon-close"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            </c:forEach>
-                                        </tbody>
-
-                                    </table><!-- End .table table-wishlist -->
-
-                                </div><!-- End .col-lg-9 -->
-                                <aside class="col-lg-3">
-
-
-                                    <div class="summary summary-cart">
-                                        <a class="logo" style="color: orange">
-                                            <img src="assets/images/logo.png" alt="Molla Logo" width="105" height="25">
-                                            <h9 class="right-parent"><i class="icon-phone"></i>Call: +0123 456 789</h9>
-                                            <h9>(Tra My)</h9>
-                                        </a>
-
-                                        <h5 class="center-parent">BILL</h5><!-- End .summary-title -->
-                                        <h7>Guess Name: ${acc.getUsername()}</h7><br>
-                                        <h7>Guess Phone Number: ${acc.getPhone()}</h7>
-                                        <h1 class="summary-title"></h1>
-
-                                        <table class="table table-summary">
-
-                                            <tbody>                                              
-                                                <tr class="summary-subtotal">
-                                                    <td>Quantity</td>
-                                                    <td class="center-parent">Name</td>
-                                                    <td>Price</td>
-                                                </tr><!-- End .summary-subtotal -->
-                                                <c:forEach items="${cart}" var="cart">
-                                                    <tr class="summary-subtotal">
-                                                        <td>X ${cart.qty}</td>
-                                                        <td>${cart.book.bookName}</td>
-                                                        <td>
-                                                            <fmt:formatNumber value="${cart.buyPrice * cart.qty}" pattern=" #,##0 VND" />  
-                                                        </td>
-                                                    </tr><!-- End .summary-subtotal -->
+                                                <c:forEach items ="${listOrdetail}" var="orde">
+                                                    <c:set var="note" value="${orde.getNote()}"></c:set>
                                                 </c:forEach>
-                                            </tbody>
-                                            <tr>
 
-                                                <td class="total-col">Total:</td>
-                                                <c:forEach items="${cart}" var="cart">
-                                                <script>
-                                                    int total += ${cart.buyPrice * cart.qty};
-                                                </script>
-                                            </c:forEach>
-                                            <c:set value="${total}" var="totalAll"></c:set>
+                                                <div>
+                                                    <label>Your Note *</label>
+                                                    <small class="form-text">(This field is read only)</small>
+                                                    <input type="text" class="form-control" value="${note}" readonly>
+                                                </div>
 
-                                                <td class="total-col">
-                                                <fmt:formatNumber value="${totalPrice}" pattern=" #,##0 VND" />                                       
-                                            </td>
+                                                <table class="table table-striped table-bordered zero-configuration">
+                                                    <thead>
+                                                        <tr class="center-parent">
+                                                    <h5 class="center-parent">--------------------------------Return Order----------------------------------</h5> 
+                                                    <th>Number</th>
+                                                    <th>Order Date</th>
+                                                    <th>Order Address</th>
+                                                    <th>Status</th>
+                                                    </tr>
+                                                    </thead>
 
+                                                    <tbody>
+                                                        <c:set var="count" value="0"></c:set>
+                                                        <c:forEach items ="${listOrd}" var="ord2">
+                                                            <c:set var="count" value="${count=count+1}"></c:set>
+                                                                <tr class="center-parent">
+                                                                    <td>${count}</td>
+                                                                <td>${ord2.orderDate}</td>
+                                                                <td>${ord2.address}</td>
+                                                                <td>${ord2.status}</td>
+                                                            </tr>
+                                                        </c:forEach>
+                                                    </tbody>                                        
+                                                </table>
 
-                                            </tr><!-- End .summary-total -->
-                                        </table><!-- End .table table-summary -->
+                                                <table class="table table-striped table-bordered zero-configuration">
+                                                    <thead>
+                                                        <tr class="center-parent">
+                                                    <h5 class="center-parent">------------------------------Return Order Detail------------------------------</h5>
+                                                    <th>Number</th>
+                                                    <th>Book Name</th>
+                                                    <th>Quantity</th>
+                                                    <th>Price</th>
+                                                    <th>Total Price</th>
+                                                    </tr>
+                                                    </thead>
 
-                                        <c:if test='${cart == null}'>
-                                            <label  style="color: red;">You have no item in cart!<br>Pls continue to shopping</label>
-                                            </c:if>
-                                            <c:if test='${cart != null}'>
-                                            <a href="checkOut.jsp" class="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO CHECKOUT</a>
-                                        </c:if>
-
-                                    </div><!-- End .summary -->
-
-                                    <a href="cushome" class="btn btn-outline-dark-2 btn-block mb-3"><span>CONTINUE SHOPPING</span><i class="icon-refresh"></i></a>
-                                </aside><!-- End .col-lg-3 -->
+                                                    <tbody>
+                                                        <c:set var="count" value="0"></c:set>
+                                                        <c:forEach items ="${listOrdetail}" var="orde">
+                                                            <c:set var="count" value="${count=count+1}"></c:set>
+                                                                <tr class="center-parent">
+                                                                    <td>${count}</td>
+                                                                <td>${orde.bookName}</td>
+                                                                <td>${orde.oDetailQty}</td>
+                                                                <td>${orde.buyPrice}</td>
+                                                                <td>${orde.total}</td>
+                                                            </tr>
+                                                        </c:forEach>
+                                                    </tbody>                                        
+                                                </table>
+                                                <a href="cusorderhome" class="btn btn-outline-primary-2">
+                                                    <i class="icon-arrow-left"></i>
+                                                    <span>BACK</span>                                      
+                                                </a>
+                                            </div>
+                                        </div><!-- .End .tab-pane -->
+                                    </div><!-- End .container -->
+                                </div><!-- End .col-lg-9 --> 
                             </div><!-- End .row -->
                         </div><!-- End .container -->
-                    </div><!-- End .cart -->
+                    </div><!-- End .dashboard -->
                 </div><!-- End .page-content -->
             </main><!-- End .main -->
 
@@ -252,11 +214,11 @@
 
                             <div class="col-sm-6 col-lg-3">
                                 <div class="widget">
-                                    <h4 class="widget-title">My Account</h4><!-- End .widget-title -->
+                                    <h4 class="widget-title">My Orders</h4><!-- End .widget-title -->
 
                                     <ul class="widget-list">
                                         <li><a href="#">Sign In</a></li>
-                                        <li><a href="cart.jsp">View Cart</a></li>
+                                        <li><a href="cart.html">View Cart</a></li>
                                         <li><a href="#">My Wishlist</a></li>
                                         <li><a href="#">Track My Order</a></li>
                                         <li><a href="#">Help</a></li>
@@ -269,7 +231,7 @@
 
                 <div class="footer-bottom">
                     <div class="container">
-                        <p class="footer-copyright">Copyright © 2019 Molla Store. All Rights Reserved.</p><!-- End .footer-copyright -->
+                        <p class="footer-copyright">Copyright Â© 2019 Molla Store. All Rights Reserved.</p><!-- End .footer-copyright -->
                         <figure class="footer-payments">
                             <img src="assets/images/payments.png" alt="Payment methods" width="272" height="20">
                         </figure><!-- End .footer-payments -->
@@ -335,8 +297,8 @@
                                 <li><a href="category-fullwidth.html">Shop Fullwidth No Sidebar</a></li>
                                 <li><a href="product-category-boxed.html">Product Category Boxed</a></li>
                                 <li><a href="product-category-fullwidth.html"><span>Product Category Fullwidth<span class="tip tip-new">New</span></span></a></li>
-                                <li><a href="cart.jsp">Cart</a></li>
-                                <li><a href="checkOut.jsp">Checkout</a></li>
+                                <li><a href="cart.html">Cart</a></li>
+                                <li><a href="checkout.html">Checkout</a></li>
                                 <li><a href="wishlist.html">Wishlist</a></li>
                                 <li><a href="#">Lookbook</a></li>
                             </ul>
@@ -572,10 +534,7 @@
         <script src="assets/js/jquery.waypoints.min.js"></script>
         <script src="assets/js/superfish.min.js"></script>
         <script src="assets/js/owl.carousel.min.js"></script>
-        <script src="assets/js/bootstrap-input-spinner.js"></script>
         <!-- Main JS File -->
         <script src="assets/js/main.js"></script>
     </body>
-
-    <!-- molla/cart.html  22 Nov 2019 09:55:06 GMT -->
 </html>

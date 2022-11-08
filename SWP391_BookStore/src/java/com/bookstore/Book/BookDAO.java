@@ -639,10 +639,11 @@ public class BookDAO {
         }
         return 0;
     }
+
     public static void main(String[] args) {
         BookDAO dAO = new BookDAO();
 //        List<Book> list = dAO.SearchBook("t", 1, 8);
 //        System.out.println(list);
-        //dAO.updateQuantityBookByBookCode(5, "3300000018287");
+//        System.out.println(dAO.getQuantityByBookCode("3300000018287"));
     }
 }

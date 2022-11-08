@@ -148,12 +148,17 @@
                                                                 <td>${orde.total}</td>
                                                             </tr>
                                                             <c:set var="orderID" value="${orde.orderID}"></c:set>
+                                                            <c:set var="confirm" value="confirm"></c:set>
                                                         </c:forEach>
                                                     </tbody>                                        
                                                 </table>
                                                 <a href="cusorderhome" class="btn btn-outline-primary-2">
-                                                    <span>BACK</span>
                                                     <i class="icon-arrow-left"></i>
+                                                    <span>BACK</span>                                      
+                                                </a>
+                                                <a href="cuscancelorder?orderID=${orderID}&action=${confirm}" class="btn btn-outline-primary-2">
+                                                    <span>CONFIRM RECEIPT OF  THIS GOOD</span>
+                                                    <i class="icon-check"></i>
                                                 </a>
                                             </div>
                                         </div><!-- .End .tab-pane -->

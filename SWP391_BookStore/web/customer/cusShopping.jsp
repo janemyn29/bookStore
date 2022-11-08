@@ -84,6 +84,9 @@
                     <div class="container">
 
                         <div class="products">
+                            <c:if test='${checkQuanity == "Store has no more quantity of this book left. We apologize for the inconvenience."}'>
+                                <h5  class="center-parent"style="color: red;">${checkQuanity}</h5>
+                            </c:if>
                             <div class="row">
                                 <c:forEach items="${listAll}" var="listAll" >
                                     <div class="col-6 col-md-4 col-lg-4 col-xl-3">
@@ -97,7 +100,7 @@
                                                     <img style="width: 	277px; height: 	375px;" src="${listAll.image}" alt="Product image" class="product-image">
                                                 </a>
                                                 <div class="product-action action-icon-top">
-                                                    <a href="${pageContext.request.contextPath }/cusaddshopping?&action=addToCart&bookCode=${listAll.bookCode}" class="btn-product btn-cart"><span>add to cart</span></a>
+                                                    <a href="${pageContext.request.contextPath }/customer/cusshoppingpage?&action=addToCart&bookCode=${listAll.bookCode}" class="btn-product btn-cart"><span>add to cart</span></a>
                                                 </div><!-- End .product-action -->
                                             </figure><!-- End .product-media -->
 

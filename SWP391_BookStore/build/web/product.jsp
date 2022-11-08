@@ -61,17 +61,6 @@
                                 <li class="breadcrumb-item active" aria-current="page">${detailProduct.bookName}</li>
                         </ol>
 
-                        <nav class="product-pager ml-auto" aria-label="Product">
-                            <a class="product-pager-link product-pager-prev" href="#" aria-label="Previous" tabindex="-1">
-                                <i class="icon-angle-left"></i>
-                                <span>Prev</span>
-                            </a>
-
-                            <a class="product-pager-link product-pager-next" href="#" aria-label="Next" tabindex="-1">
-                                <span>Next</span>
-                                <i class="icon-angle-right"></i>
-                            </a>
-                        </nav><!-- End .pager-nav -->
                     </div><!-- End .container -->
                 </nav><!-- End .breadcrumb-nav -->
 
@@ -95,6 +84,9 @@
                                 </div><!-- End .col-md-6 -->
 
                                 <div class="col-md-6">
+                                    <c:if test='${checkQuanity == "Store has no more quantity of this book left. We apologize for the inconvenience."}'>
+                                        <h5  class="center-parent"style="color: red;">${checkQuanity}</h5>
+                                    </c:if>
                                     <div class="product-details">
                                         <h1 class="product-title">${detailProduct.bookName}</h1><!-- End .product-title -->
 
@@ -107,12 +99,13 @@
 
                                         <c:if test="${detailProduct.qty==0}">
                                             <div style="color: red" class="product-price">
-                                               SOLD OUT
+                                                SOLD OUT
                                             </div>
-                                        </c:if>        
+                                        </c:if>       
+
                                         <div class="product-content">
                                             <p id="product-content-desc" class="product-content-desc">${detailProduct.description}</p>
-                                            <button onclick="handleMoreLessClick()">show more/less</button>
+                                            <button class="btn btn-outline-secondary" onclick="handleMoreLessClick()">show more/less</button>
                                             <script>
                                                 const element = document.getElementById("product-content-desc");
                                                 function handleMoreLessClick() {
@@ -161,60 +154,63 @@
                                     <div class="products">
                                         <div class="row justify-content-center">
                                             <c:forEach items="${listRecentArrival}" var="listAll" >
-                                    <div class="col-6 col-md-4 col-lg-4 col-xl-3">
-                                        <div class="product">
-                                            <figure class="product-media">
-                                                <c:if test="${listAll.discountPercent > 0}">
-                                                    <span class="product-label label-new">Discount</span>
-                                                </c:if>
-                                                <a href="detail?pbookCode=${listAll.bookCode}&categoryBook=${listAll.cateName}">
-                                                    <img style="width: 	277px; height: 	375px;" src="${listAll.image}" alt="Product image" class="product-image">
-                                                </a>
-                                                
-                                                <div class="product-action">
-                                                    <a href="#" class="btn-product btn-cart"><span>Add to Cart</span></a>
-                                                </div>
-                                            </figure><!-- End .product-media -->
+                                                <div class="col-6 col-md-4 col-lg-4 col-xl-3">
+                                                    <div class="product">
+                                                        <figure class="product-media">
 
-                                            <div class="product-body">
-                                                <div class="product-cat">
-                                                    <a href="">${listAll.cateName}</a>
-                                                </div><!-- End .product-cat -->
-                                                <h3 class="product-title"><a href="detail?pbookCode=${listAll.bookCode}&categoryBook=${listAll.cateName}">${listAll.bookName}</a></h3><!-- End .product-title -->
-                                                    <c:if test="${listAll.discountPercent == 0}">
-                                                    <div class="product-price">
-                                                        Price <fmt:formatNumber value="${listAll.buyPrice}" pattern=" #,##0 VND" />
-                                                        
-                                                    </div><!-- End .product-price -->
-                                                </c:if>
-                                                <c:if test="${listAll.discountPercent > 0}">
-                                                    <div class="product-price" style="text-decoration: line-through">
-                                                        Old Price: <fmt:formatNumber value="${listAll.buyPrice}" pattern=" #,##0 VND" />
-                                                    </div><!-- End .product-price -->
-                                                    <div class="product-price">
-                                                        Sale Price: <fmt:formatNumber value="${listAll.buyPrice- (listAll.discountPercent *listAll.buyPrice/100)}" pattern=" #,##0 VND" />
-                                                    </div><!-- End .product-price -->
-                                                </c:if>
+                                                            <c:if test="${listAll.discountPercent > 0}">
+                                                                <span class="product-label label-new">Discount</span>
+                                                            </c:if>
 
-                                                <div class="product-author">
-                                                    Author: 
-                                                    <c:if test="${listAll.getAuthorNum()==1}">
-                                                        ${listAll.author}
-                                                    </c:if>
-                                                    <c:if test="${listAll.getAuthorNum()!=1}">
+                                                            <a href="detail?pbookCode=${listAll.bookCode}&categoryBook=${listAll.cateName}">
+                                                                <img style="width: 	277px; height: 	375px;" src="${listAll.image}" alt="Product image" class="product-image">
+                                                            </a>                                             
 
-                                                        <div class="product">
-                                                            <c:forTokens var="token" items="${listAll.author}" delims=",">
-                                                                <li><c:out value="${token}"/></li>
-                                                                </c:forTokens>
+                                                            <div class="product-action">
+                                                                <a href="${pageContext.request.contextPath }/productpage?&action=addToCart&bookCode=${listAll.bookCode}" class="btn-product btn-cart"><span>add to cart</span></a>
+                                                            </div>
 
-                                                        </div><!-- End .ratings -->
-                                                    </c:if>
-                                                </div><!-- End .rating-container -->
-                                            </div><!-- End .product-body -->
-                                        </div><!-- End .product -->
-                                    </div><!-- End .col-sm-6 col-lg-4 col-xl-3 -->
-                                </c:forEach>
+                                                        </figure><!-- End .product-media -->
+
+                                                        <div class="product-body">
+                                                            <div class="product-cat">
+                                                                <a href="">${listAll.cateName}</a>
+                                                            </div><!-- End .product-cat -->
+                                                            <h3 class="product-title"><a href="detail?pbookCode=${listAll.bookCode}&categoryBook=${listAll.cateName}">${listAll.bookName}</a></h3><!-- End .product-title -->
+                                                                <c:if test="${listAll.discountPercent == 0}">
+                                                                <div class="product-price">
+                                                                    Price <fmt:formatNumber value="${listAll.buyPrice}" pattern=" #,##0 VND" />
+
+                                                                </div><!-- End .product-price -->
+                                                            </c:if>
+                                                            <c:if test="${listAll.discountPercent > 0}">
+                                                                <div class="product-price" style="text-decoration: line-through">
+                                                                    Old Price: <fmt:formatNumber value="${listAll.buyPrice}" pattern=" #,##0 VND" />
+                                                                </div><!-- End .product-price -->
+                                                                <div class="product-price">
+                                                                    Sale Price: <fmt:formatNumber value="${listAll.buyPrice- (listAll.discountPercent *listAll.buyPrice/100)}" pattern=" #,##0 VND" />
+                                                                </div><!-- End .product-price -->
+                                                            </c:if>
+
+                                                            <div class="product-author">
+                                                                Author: 
+                                                                <c:if test="${listAll.getAuthorNum()==1}">
+                                                                    ${listAll.author}
+                                                                </c:if>
+                                                                <c:if test="${listAll.getAuthorNum()!=1}">
+
+                                                                    <div class="product">
+                                                                        <c:forTokens var="token" items="${listAll.author}" delims=",">
+                                                                            <li><c:out value="${token}"/></li>
+                                                                            </c:forTokens>
+
+                                                                    </div><!-- End .ratings -->
+                                                                </c:if>
+                                                            </div><!-- End .rating-container -->
+                                                        </div><!-- End .product-body -->
+                                                    </div><!-- End .product -->
+                                                </div><!-- End .col-sm-6 col-lg-4 col-xl-3 -->
+                                            </c:forEach>
 
 
 
@@ -337,37 +333,45 @@
         </div><!-- End .page-wrapper -->
         <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
 
-        <!-- Sticky Bar -->
-        <div class="sticky-bar">
-            <div class="container">
-                <div class="row">
-                    <div class="col-6">
-                        <figure class="product-media">
-                            <a href="product.jsp">
-                                <img src="${detailProduct.image}" alt="Product image">
-                            </a>
-                        </figure><!-- End .product-media -->
-                        <h4 class="product-title"><a href="product.jsp">${detailProduct.bookName}</a></h4><!-- End .product-title -->
-                    </div><!-- End .col-6 -->
 
-                    <div class="col-6 justify-content-end">
-                        <div class="product-price">
-                            <fmt:formatNumber value="${detailProduct.buyPrice}" pattern=" #,##0 VND" />
-                            
-                        </div><!-- End .product-price -->
-                        <div class="product-details-quantity">
-                            <input type="number" id="sticky-cart-qty" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
-                        </div><!-- End .product-details-quantity -->
+        <form action="productpage" method="post">
+            <!-- Sticky Bar -->
+            <div class="sticky-bar">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6">
+                            <figure class="product-media">
+                                <a href="product.jsp">
+                                    <img src="${detailProduct.image}" alt="Product image">
+                                </a>
+                            </figure><!-- End .product-media -->
+                            <h4 class="product-title"><a href="product.jsp">${detailProduct.bookName}</a></h4><!-- End .product-title -->
+                        </div><!-- End .col-6 -->
 
-                        <div class="product-details-action">
-                            <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                            <a href="#" class="btn-product btn-wishlist" title="Wishlist"><span>Add to Wishlist</span></a>
-                        </div><!-- End .product-details-action -->
-                    </div><!-- End .col-6 -->
-                </div><!-- End .row -->
-            </div><!-- End .container -->
-        </div><!-- End .sticky-bar -->
 
+                        <div class="col-6 justify-content-end">
+                            <div class="product-price">
+                                <fmt:formatNumber value="${detailProduct.buyPrice}" pattern=" #,##0 VND" />
+
+                            </div><!-- End .product-price -->
+
+                            <div class="product-details-quantity">
+                                <input type="number" id="sticky-cart-qty" name="txtnumber" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
+                            </div><!-- End .product-details-quantity -->
+                            <input type="text" name="bookCode" value="${detailProduct.bookCode}" hidden>
+                            <input type="text" name="action" value="addToCart" hidden>
+
+                            <div class="product-details-action">
+                                <button type="submit" class="btn btn-outline-primary-2">
+                                    <span>Add To Cart</span>
+                                </button>
+                            </div><!-- End .product-details-action -->
+
+                        </div><!-- End .col-6 -->
+                    </div><!-- End .row -->
+                </div><!-- End .container -->
+            </div><!-- End .sticky-bar -->
+        </form>
 
 
 

@@ -28,15 +28,9 @@
                             <li><a href="/SWP391_BookStore/logout">Logout</a></li>
                             <li><a href="about.html">About Us</a></li>
                             <li><a href="contact.html">Contact Us</a></li>
-                                <%
-                                    Account acc = (Account) request.getSession().getAttribute("acc");
-                                    if (acc == null) {
-                                %>
-                            <li><a href="/SWP391_BookStore/loginnav">Login</li>
-                                <%
-                                } else {%>
+                          
                             <li><a href="editprofile">Hello ${acc.getUsername()}</a></li>
-                                <%}%>
+
                         </ul>
                     </li>
                 </ul><!-- End .top-menu -->

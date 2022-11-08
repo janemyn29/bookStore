@@ -69,6 +69,9 @@
                                                 <a class="nav-link" href="cushistoryhome">My History</a>
                                             </li>
                                             <li class="nav-item">
+                                                <a class="nav-link" href="cusreturnmanagementnav">My Return Management</a>
+                                            </li>
+                                            <li class="nav-item">
                                                 <a class="nav-link" href="cusChangePass.jsp">Change Password</a>
                                             </li>
                                             

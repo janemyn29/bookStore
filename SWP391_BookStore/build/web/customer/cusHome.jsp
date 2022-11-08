@@ -52,38 +52,41 @@
                         <div class="container">
                             <div class="heading heading-center mb-3">
                                 <h2 class="title-lg">Discount Books</h2><!-- End .title -->
-                                <ul class="nav nav-pills justify-content-center" role="tablist">
-                                </ul>
-                            </div><!-- End .heading -->
+                            <c:if test='${checkQuanity == "Store has no more quantity of this book left. We apologize for the inconvenience."}'>
+                                <h5  class="center-parent"style="color: red;">${checkQuanity}</h5>
+                            </c:if>
+                            <ul class="nav nav-pills justify-content-center" role="tablist">
+                            </ul>
+                        </div><!-- End .heading -->
 
-                            <div class="tab-content tab-content-carousel">
-                                <div class="tab-pane p-0 fade show active" id="trendy-all-tab" role="tabpanel" aria-labelledby="trendy-all-link">
-                                    <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 
-                                         data-owl-options='{
-                                         "nav": false, 
-                                         "dots": true,
-                                         "margin": 20,
-                                         "loop": false,
-                                         "responsive": {
-                                         "0": {
-                                         "items":2
-                                         },
-                                         "480": {
-                                         "items":2
-                                         },
-                                         "768": {
-                                         "items":3
-                                         },
-                                         "992": {
-                                         "items":4
-                                         },
-                                         "1200": {
-                                         "items":4,
-                                         "nav": true,
-                                         "dots": false
-                                         }
-                                         }
-                                         }'>
+                        <div class="tab-content tab-content-carousel">
+                            <div class="tab-pane p-0 fade show active" id="trendy-all-tab" role="tabpanel" aria-labelledby="trendy-all-link">
+                                <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 
+                                     data-owl-options='{
+                                     "nav": false, 
+                                     "dots": true,
+                                     "margin": 20,
+                                     "loop": false,
+                                     "responsive": {
+                                     "0": {
+                                     "items":2
+                                     },
+                                     "480": {
+                                     "items":2
+                                     },
+                                     "768": {
+                                     "items":3
+                                     },
+                                     "992": {
+                                     "items":4
+                                     },
+                                     "1200": {
+                                     "items":4,
+                                     "nav": true,
+                                     "dots": false
+                                     }
+                                     }
+                                     }'>
                                     <c:forEach items="${listDiscountBook}" var="discount">
                                         <div class="product product-11 text-center">
                                             <figure class="product-media">

@@ -25,7 +25,7 @@ import java.util.ListIterator;
  *
  * @author Admin
  */
-public class CartController extends HttpServlet {
+public class ProductPageController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -47,25 +47,29 @@ public class CartController extends HttpServlet {
             //lay so luong sach co san trong kho
             int quantityBookAvailable = b.getQuantityByBookCode(ibookCode);
 
+            String num = request.getParameter("txtnumber");
+            int number = Integer.parseInt(num);
+
             // lay so luong 1 sach trong cart theo vi tri
             //int quantityBookInCart = (int) session.getAttribute("quantityBookInCart");
             if (action.equals("addToCart")) { // them sach vao cart
                 if (session.getAttribute("cart") == null) { // add cuon sach dau tien vao cart
-                    if (quantityBookAvailable > 0) { // kiem tra sach add vao co qua so luong trong kho khong?
-                        cart.add(new Cart(b.getBookBybookCode(request.getParameter("bookCode")), 1));
-                    } else {
-                        request.setAttribute("checkQuanity", "Store has no more quantity of this book left. We apologize for the inconvenience.");
-                        request.getRequestDispatcher("home").forward(request, response);
+                    cart = (List<Cart>) session.getAttribute("cart");
+                    int index = isExisting(ibookCode, cart);
+                    int quantityBookInCart = cart.get(index).getQty();
+                    if (quantityBookInCart < quantityBookAvailable) { // kiem tra sach add vao co qua so luong trong kho khong?
+                        cart.add(new Cart(b.getBookBybookCode(request.getParameter("bookCode")), number));
                     }
                 } else { // add nhung cuon tiep theo
                     cart = (List<Cart>) session.getAttribute("cart");
                     int index = isExisting(ibookCode, cart);
                     if (index == -1) {
-                        if (quantityBookAvailable > 0) {
-                            cart.add(new Cart(b.getBookBybookCode(request.getParameter("bookCode")), 1));
+                        int quantityBookInCart = cart.get(index).getQty();
+                        if (quantityBookInCart < quantityBookAvailable) {
+                            cart.add(new Cart(b.getBookBybookCode(request.getParameter("bookCode")), number));
                         } else {
                             request.setAttribute("checkQuanity", "Store has no more quantity of this book left. We apologize for the inconvenience.");
-                            request.getRequestDispatcher("home").forward(request, response);
+                            request.getRequestDispatcher("detail?pbookCode=8935244875430&categoryBook=Foreign%20language#").forward(request, response);
                         }
                     } else {
                         int quantityBookInCart = cart.get(index).getQty();
@@ -74,7 +78,7 @@ public class CartController extends HttpServlet {
                             cart.get(index).setQty(quantity);
                         } else {
                             request.setAttribute("checkQuanity", "Store has no more quantity of this book left. We apologize for the inconvenience.");
-                            request.getRequestDispatcher("home").forward(request, response);
+                            request.getRequestDispatcher("detail?pbookCode=8935244875430&categoryBook=Foreign%20language#").forward(request, response);
                         }
                     }
                 }
@@ -114,76 +118,8 @@ public class CartController extends HttpServlet {
                 session.setAttribute("totalPrice", totalPrice);// set tong tien
 
                 session.setAttribute("cart", cart);
-                request.getRequestDispatcher("home").forward(request, response);
-
-            } else if (action.equals("remove")) { // xoa sach trong cart
-                cart = (List<Cart>) session.getAttribute("cart");
-                bookCode = request.getParameter("bookCode");
-                for (Cart c : cart) {
-                    if (String.valueOf(c.getBook().getBookCode()).equals(String.valueOf(bookCode))) {
-                        cart.remove(c);
-                        break;
-                    }
-                }
-                for (int i = 0; i < cart.size(); i++) {
-                    if (cart.get(i).getBook().getDiscountPercent() > 0) {
-                        int ibuyPrice = cart.get(i).getBook().getBuyPrice() * cart.get(i).getBook().getDiscountPercent() % 100;
-                        cart.get(i).setBuyPrice(ibuyPrice);
-                    }
-                }
-                session.setAttribute("cart", cart);
-                request.getRequestDispatcher("cart.jsp").forward(request, response);
-
-            } else if (action.equals("removeHome")) { // xoa sach trong minicart header
-                bookCode = request.getParameter("bookCode");
-                cart = (List<Cart>) request.getSession().getAttribute("cart");
-                if (cart != null) {
-                    for (Cart c : cart) {
-                        if (String.valueOf(c.getBook().getBookCode()).equals(String.valueOf(bookCode))) {
-                            cart.remove(c);
-                            break;
-                        }
-                    }
-                }
-                session.setAttribute("cart", cart);
-                request.getRequestDispatcher("home").forward(request, response);
-
-            } else if (action.equals("decre")) { // giam quantity
-                cart = (List<Cart>) session.getAttribute("cart");
-                int index = isExisting(ibookCode, cart);
-                int quantity = cart.get(index).getQty() - 1;
-                cart.get(index).setQty(quantity);
-                if (cart.get(index).getQty() <= 0) { // neu qty = 0 => xoa sach
-                    cart = (List<Cart>) request.getSession().getAttribute("cart");
-                    if (cart != null) {
-                        for (Cart c : cart) {
-                            if (String.valueOf(c.getBook().getBookCode()).equals(String.valueOf(bookCode))) {
-                                cart.remove(c);
-                                break;
-                            }
-                        }
-                    }
-                }
-                session.setAttribute("cart", cart);
-                request.getRequestDispatcher("cart.jsp").forward(request, response);
-
-            } else if (action.equals("incre")) { // tang quantity
-                cart = (List<Cart>) session.getAttribute("cart");
-                int index = isExisting(ibookCode, cart);
-                int quantityBookInCart = cart.get(index).getQty();
-                if (quantityBookInCart < quantityBookAvailable) {
-                    int quantity = cart.get(index).getQty() + 1;
-                    cart.get(index).setQty(quantity);
-                    session.setAttribute("cart", cart);
-                    request.getRequestDispatcher("cart.jsp").forward(request, response);
-                } else {
-                    request.setAttribute("checkQuanity", "Store has no more quantity of this book left. We apologize for the inconvenience.");
-                    request.getRequestDispatcher("cart.jsp").forward(request, response);
-                }
+                request.getRequestDispatcher("detail?pbookCode=8935244875430&categoryBook=Foreign%20language#").forward(request, response);
             }
-
-            session.setAttribute("cart", cart);
-            request.getRequestDispatcher("home").forward(request, response);
         }
     }
 

@@ -11,6 +11,14 @@ import com.bookstore.Order.Order;
 import com.bookstore.Order.OrderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
+import java.util.Calendar;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -43,37 +51,66 @@ public class CusCancelOrderController extends HttpServlet {
             String status = odao.checkOrderStatus(orderID);
             List<Order> list = odao.getListOrderDetailByOrderID(orderID);
             BookDAO b = new BookDAO();
-
-            if (status.equals("confirming")) {
-                for (Order o : list) {
-                    int detailQuantity = o.getoDetailQty();
-                    long bookCode = o.getBookCode();
-                    int quanityBookInStore = b.getQuantityByBookCode(bookCode);
-                    int quanityBookInStoreAfter = quanityBookInStore + detailQuantity;
-                    b.updateQuantityBookByBookCode(quanityBookInStoreAfter, bookCode);
+            String action = request.getParameter("action");
+            if (action == null) {
+                if (status.equals("confirming")) {
+                    for (Order o : list) {
+                        int detailQuantity = o.getoDetailQty();
+                        long bookCode = o.getBookCode();
+                        int quanityBookInStore = b.getQuantityByBookCode(bookCode);
+                        int quanityBookInStoreAfter = quanityBookInStore + detailQuantity;
+                        b.updateQuantityBookByBookCode(quanityBookInStoreAfter, bookCode);
+                    }
+                    odao.updateOrderStatusByID(orderID);
+                    request.getRequestDispatcher("cusorderhome").forward(request, response);
+                } else if (status.equals("delivering")) {
+                    request.getRequestDispatcher("cusorderhome").forward(request, response);
+                } else if (status.equals("recieved")) {
+                    // lay list detail tu ham lay list theo id
+                    List<Order> listOrdetail = odao.getOrderDetailByorderID(orderID);
+                    // set attribute len
+                    request.setAttribute("listOrdetail", listOrdetail);
+                    // goi session
+                    HttpSession session = request.getSession();
+                    // check account
+                    Account acc = (Account) session.getAttribute("acc");
+                    // lay account id
+                    int accountID = acc.getAccID();
+                    // lay history theo order id va account id
+                    List<Order> listOrd2 = odao.getOrderByOrderIDAndAccountID(orderID, accountID);
+                    // set attribute
+                    request.setAttribute("listOrd2", listOrd2);
+                    request.getRequestDispatcher("cusReasonForm.jsp").forward(request, response);
                 }
-                odao.updateOrderStatusByID(orderID);
-                request.getRequestDispatcher("cusorderhome").forward(request, response);
-            } else if (status.equals("delivering")) {
-                request.getRequestDispatcher("cusorderhome").forward(request, response);
-            } else if (status.equals("received")) {
-                // lay list detail tu ham lay list theo id
-                List<Order> listOrdetail = odao.getOrderDetailByorderID(orderID);
-                // set attribute len
-                request.setAttribute("listOrdetail", listOrdetail);
-                // goi session
+            } else if (action.equals("return")) {
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+                LocalDateTime now = LocalDateTime.now();
+                String requestDate = dtf.format(now);
+                String reason = request.getParameter("txtReason");
+                odao.updateOrderStatusByIDUpgrade(requestDate, reason, orderID);
+
+                request.getRequestDispatcher("cusHistory.jsp").forward(request, response);
+
+            } else if (action.equals("confirm") && status.equals("delivering")) { // xac nhan da nhan duoc hang
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+                LocalDateTime now = LocalDateTime.now();
+                String receivedDate = dtf.format(now);
+                odao.updateOrderStatusByIDConfirm(receivedDate, orderID);
                 HttpSession session = request.getSession();
-                // check account
                 Account acc = (Account) session.getAttribute("acc");
-                // lay account id
                 int accountID = acc.getAccID();
-                // lay history theo order id va account id
-                List<Order> listOrd2 = odao.getOrderByOrderIDAndAccountID(orderID, accountID);
-                // set attribute
+                List<Order> listOrd2 = odao.getOrderListByStatus2(accountID);
                 request.setAttribute("listOrd2", listOrd2);
-                request.getRequestDispatcher("cusReasonForm.jsp");
+                request.getRequestDispatcher("cusHistory.jsp").forward(request, response);
             }
         }
+        OrderDAO odao = new OrderDAO();
+        HttpSession session = request.getSession();
+        Account acc = (Account) session.getAttribute("acc");
+        int accountID = acc.getAccID();
+        List<Order> listOrd2 = odao.getOrderListByStatus2(accountID);
+        request.setAttribute("listOrd2", listOrd2);
+        request.getRequestDispatcher("cusHistory.jsp").forward(request, response);
     }
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

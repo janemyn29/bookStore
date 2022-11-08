@@ -74,17 +74,20 @@
                                                 <div class="table-responsive">
                                                     <table class="table table-striped table-bordered zero-configuration">
                                                         <thead>
-                                                            <tr class="center-parent">
-                                                                <th>Number</th>
-                                                                <th>Order Date</th>
-                                                                <th>Order Address</th>
-                                                                <th>Status</th>
-                                                                <th>Action</th>
-                                                                <th>Return This Item</th>
-                                                            </tr>
-                                                        </thead>
+                                                        <c:if test='${checkDate == "Refund time expired!!!"}'>
+                                                        <h5 class="center-parent" style="color: red;">${checkDate}</h5>
+                                                    </c:if>
+                                                    <tr class="center-parent">
+                                                        <th>Number</th>
+                                                        <th>Order Date</th>
+                                                        <th>Order Address</th>
+                                                        <th>Status</th>
+                                                        <th>Action</th>
+                                                        <th>Return This Item</th>
+                                                    </tr>
+                                                    </thead>
 
-                                                        <tbody>
+                                                    <tbody>
                                                         <c:set var="count" value="0"></c:set>
                                                         <c:forEach items ="${listOrd2}" var="ord2">
                                                             <c:set var="count" value="${count=count+1}"></c:set>
@@ -96,7 +99,7 @@
                                                                 <td><a class="icon-eye" href="cushistoryorderdetail?orderID=${ord2.orderID}"></a></td>
 
                                                                 <td>
-                                                                    <a href="cuscancelorder?status=${ord2.status}&orderID=${ord2.orderID}" class="underline" >return</a>
+                                                                    <a href="cusreturnnav?orderID=${ord2.orderID}" class="underline" >return</a>
                                                                 </td>
                                                             </tr>
                                                         </c:forEach>

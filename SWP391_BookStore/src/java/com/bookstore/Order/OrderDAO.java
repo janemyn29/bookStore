@@ -13,6 +13,7 @@ import com.bookstore.OrderDetail.OrderDetailDAO;
 import com.bookstore.Utils.DBUtils;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -223,9 +224,9 @@ public class OrderDAO {
 
     public List<Order> getOrderManage() {
         List<Order> list = new ArrayList<>();
-        String sql = "select o.orderID, ac.accountID,o.orderDate, o.userAddress, o.totalPrice,o.orderNote,o.status\n"
+        String sql = " select o.orderID, ac.accountID, o.orderDate, o.userAddress, o.totalPrice, o.orderNote, o.status\n"
                 + "from ((tblOrder o inner join tblOrderDetail od on o.orderID=od.orderID)\n"
-                + "inner join tblAccount ac on ac.accountID=o.accountID)";
+                + "inner join tblAccount ac on ac.accountID=o.accountID) ";
 
         try {
             conn = new DBUtils().getConnection();
@@ -248,8 +249,8 @@ public class OrderDAO {
     }
 
     public void addNewOrder(int orderID, int accountID, String orderDate, String address, int total, String Note, String status) throws NoSuchAlgorithmException {
-        String sql = "insert into tblOrder\n"
-                + "values(?, ?, ?, ?, ?, ?, ?)";
+        String sql = " insert into tblOrder(orderID, accountID, orderDate, userAddress, totalPrice, orderNote, status)\n"
+                + "values(?, ?, ?, ?, ?, ?, ?) ";
         try {
             conn = new DBUtils().getConnection();
             ps = conn.prepareStatement(sql);
@@ -267,9 +268,9 @@ public class OrderDAO {
 
     public List<Order> getOrderDetailManage() {
         List<Order> list = new ArrayList<>();
-        String sql = "select od.OdetailID, b.bookCode, od.oDetailQty, b.buyPrice, o.orderID, od.status\n"
+        String sql = " select od.OdetailID, b.bookCode, od.oDetailQty, b.buyPrice, o.orderID, od.status\n"
                 + "from ((tblOrderDetail od inner join tblOrder o on od.orderID=o.orderID)\n"
-                + "inner join tblBook b on b.bookCode = od.bookCode)";
+                + "inner join tblBook b on b.bookCode = od.bookCode) ";
 
         try {
             conn = new DBUtils().getConnection();
@@ -312,7 +313,7 @@ public class OrderDAO {
         List<Order> list = new ArrayList<>();
         String sql = " select orderID, orderDate, userAddress, status\n"
                 + "from tblOrder\n"
-                + "where (status = 'confirming' or status = 'delivering' or status = 'wait to approve') and accountID = ? ";
+                + "where (status = 'confirming' or status = 'delivering') and accountID = ? ";
 
         try {
             conn = new DBUtils().getConnection();
@@ -336,7 +337,31 @@ public class OrderDAO {
         List<Order> list = new ArrayList<>();
         String sql = " select orderID, orderDate, userAddress, status\n"
                 + "from tblOrder\n"
-                + "where (status = 'received' or status = 'canceled') and accountID = ? ";
+                + "where (status = 'recieved' or status = 'canceled') and accountID = ? ";
+
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, accountID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                list.add(new Order(rs.getInt(1), //orderID
+                        rs.getDate(2), //orderDate
+                        rs.getString(3).trim(),//userAddress
+                        rs.getString(4).trim()));//status
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public List<Order> getOrderListByStatus3(int accountID) {
+        List<Order> list = new ArrayList<>();
+        String sql = " select orderID, orderDate, userAddress, status\n"
+                + "from tblOrder\n"
+                + "where (status = 'expired' or status = 'wait to approve') and accountID = ? ";
 
         try {
             conn = new DBUtils().getConnection();
@@ -493,9 +518,67 @@ public class OrderDAO {
         return list;
     }
 
-    public static void main(String[] args) {
+    public void updateOrderStatusByIDConfirm(String receivedDate, int orderID) {
+
+        String sql = " update tblOrder\n"
+                + "set status = 'recieved', receivedDate = ?\n"
+                + "where orderID = ? ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, receivedDate);
+            ps.setInt(2, orderID);
+            rs = ps.executeQuery();
+
+        } catch (Exception e) {
+        }
+    }
+
+    public void updateOrderStatusByIDUpgrade(String requestDate, String returnReason, int orderID) {
+
+        String sql = " update tblOrder\n"
+                + "set status = 'wait to approve', requestDate = ? , returnReason = ?\n"
+                + "where orderID = ? ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, requestDate);
+            ps.setString(2, returnReason);
+            ps.setInt(3, orderID);
+            rs = ps.executeQuery();
+
+        } catch (Exception e) {
+        }
+    }
+
+    public String checkRecievedDateByOrderID(int orderID) {
+
+        String sql = " select receivedDate\n"
+                + "from tblOrder\n"
+                + "where orderID = ? ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, orderID);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String receivedDate = rs.getString(1);
+
+                return receivedDate;
+            }
+        } catch (Exception e) {
+        }
+
+        return null;
+    }
+
+    public static void main(String[] args) throws NoSuchAlgorithmException {
         OrderDAO dAO = new OrderDAO();
         //Order list = dAO.getOrderByID("1");
-        System.out.println(dAO.getOrderByOrderIDAndAccountID(1, 4));
+
+//        dAO.addNewOrder(14, 4, "2022-11-07", "test quantity 2", 150000, "test quantity 2", "confirming");
+        System.out.println(dAO.getOrderListByStatus2(4));
+//dAO.addNewOrder(15, 4, "2022-11-07", "test", 45000, "test2", "confirming");
+
     }
 }
