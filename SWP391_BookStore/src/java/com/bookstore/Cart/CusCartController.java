@@ -175,7 +175,7 @@ public class CusCartController extends HttpServlet {
                     int quantity = cart.get(index).getQty() + 1;
                     cart.get(index).setQty(quantity);
                     session.setAttribute("cart", cart);
-                    request.getRequestDispatcher("cart.jsp").forward(request, response);
+                    request.getRequestDispatcher("cusCart.jsp").forward(request, response);
                 } else {
                     request.setAttribute("checkQuanity", "Store has no more quantity of this book left. We apologize for the inconvenience.");
                     request.getRequestDispatcher("cusCart.jsp").forward(request, response);

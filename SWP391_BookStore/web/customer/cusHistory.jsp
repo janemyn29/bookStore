@@ -65,6 +65,13 @@
                                             <li class="nav-item">
                                                 <a class="nav-link" href="/SWP391_BookStore/logout">Sign Out</a>
                                             </li>
+                                            <li>
+                                            <small>Notice:<br> - You can click on</small><i class="icon-eye"></i> <small> in the action column to view history details.<br>
+                                                - Or give feed back with history status as "recieved".<br>
+                                                - And you can only return products that have a status of "recieved" and have been received less than 5 days by click the "return" button at "return this item" column.
+                                            </small>
+                                            </li>
+                                            <br>
                                         </ul>
                                     </aside><!-- End .col-lg-3 -->
 
@@ -76,6 +83,9 @@
                                                         <thead>
                                                         <c:if test='${checkDate == "Refund time expired!!!"}'>
                                                         <h5 class="center-parent" style="color: red;">${checkDate}</h5>
+                                                    </c:if>
+                                                    <c:if test='${checkstatus == "You can only return products that have status is recieved"}'>
+                                                        <h5 class="center-parent" style="color: red;">${checkstatus}</h5>
                                                     </c:if>
                                                     <tr class="center-parent">
                                                         <th>Number</th>
@@ -99,7 +109,7 @@
                                                                 <td><a class="icon-eye" href="cushistoryorderdetail?orderID=${ord2.orderID}"></a></td>
 
                                                                 <td>
-                                                                    <a href="cusreturnnav?orderID=${ord2.orderID}" class="underline" >return</a>
+                                                                    <a href="cusreturnnav?orderID=${ord2.orderID}&status=${ord2.status}" class="underline" >return</a>
                                                                 </td>
                                                             </tr>
                                                         </c:forEach>

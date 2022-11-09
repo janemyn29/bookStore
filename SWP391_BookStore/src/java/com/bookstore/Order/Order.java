@@ -32,6 +32,7 @@ public class Order {
     private Date receivedDate;
     private Date requestDate;
     private String returnReason;
+    private Date approveDate;
 
     public Order() {
     }
@@ -85,6 +86,15 @@ public class Order {
         this.orderID = orderID;
         this.oDetailID = oDetailID;
     }
+
+    public Date getApproveDate() {
+        return approveDate;
+    }
+
+    public void setApproveDate(Date approveDate) {
+        this.approveDate = approveDate;
+    }
+    
 
     public Order(String status) {
         this.status = status;
@@ -246,12 +256,13 @@ public class Order {
     public void setReturnReason(String returnReason) {
         this.returnReason = returnReason;
     }
-    
-    
 
     @Override
     public String toString() {
-        return "Order{" + "orderID=" + orderID + ", accountID=" + accountID + ", orderDate=" + orderDate + ", address=" + address + ", total=" + total + ", Note=" + Note + ", status=" + status + ", accName=" + accName + ", email=" + email + ", phone=" + phone + ", oDetailQty=" + oDetailQty + ", buyPrice=" + buyPrice + ", oDetailID=" + oDetailID + ", bookCode=" + bookCode + ", bookName=" + bookName + ", statusFeed=" + statusFeed + '}';
+        return "Order{" + "orderID=" + orderID + ", accountID=" + accountID + ", orderDate=" + orderDate + ", address=" + address + ", total=" + total + ", Note=" + Note + ", status=" + status + ", accName=" + accName + ", email=" + email + ", phone=" + phone + ", oDetailQty=" + oDetailQty + ", buyPrice=" + buyPrice + ", oDetailID=" + oDetailID + ", bookCode=" + bookCode + ", bookName=" + bookName + ", statusFeed=" + statusFeed + ", receivedDate=" + receivedDate + ", requestDate=" + requestDate + ", returnReason=" + returnReason + ", approveDate=" + approveDate + '}';
     }
+    
+    
+    
 
 }

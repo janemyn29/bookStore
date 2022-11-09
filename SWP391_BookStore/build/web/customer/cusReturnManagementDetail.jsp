@@ -150,7 +150,7 @@
                                                         </c:forEach>
                                                     </tbody>                                        
                                                 </table>
-                                                <a href="cusorderhome" class="btn btn-outline-primary-2">
+                                                <a href="cusreturnmanagementnav" class="btn btn-outline-primary-2">
                                                     <i class="icon-arrow-left"></i>
                                                     <span>BACK</span>                                      
                                                 </a>

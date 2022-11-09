@@ -65,6 +65,11 @@
                                             <li class="nav-item">
                                                 <a class="nav-link" href="/SWP391_BookStore/logout">Sign Out</a>
                                             </li>
+                                            <li>
+                                                <small>Notice:<br> - You can click on</small><i class="icon-eye"></i> <small> in the action column to view order details.<br>
+                                                - Or confirm receipt of goods with order status as "delivering".
+                                            </small>
+                                            <li>
                                         </ul>
                                     </aside><!-- End .col-lg-3 -->
 
@@ -73,18 +78,24 @@
                                             <div class="tab-pane fade show active" id="tab-orders" role="tabpanel" aria-labelledby="tab-orders-link">
                                                 <div class="table-responsive">
                                                     <table class="table table-striped table-bordered zero-configuration">
-                                                        <thead>
-                                                            <tr class="center-parent">
-                                                                <th>Number</th>
-                                                                <th>Order Date</th>
-                                                                <th>Order Address</th>
-                                                                <th>Status</th>
-                                                                <th>Action</th>
-                                                                <th>Cancel</th>
-                                                            </tr>
-                                                        </thead>
+                                                    <c:if test='${checkstatus == "You cannot return the product being delivered."}'>
+                                                        <h5 class="center-parent" style="color: red;">${checkstatus}</h5>
+                                                    </c:if>  
+                                                    <c:if test='${checkstatus == "Cancel order success"}'>
+                                                        <h5 class="center-parent" style="color: greenyellow;">${checkstatus}</h5>
+                                                    </c:if>  
+                                                    <thead>
+                                                        <tr class="center-parent">
+                                                            <th>Number</th>
+                                                            <th>Order Date</th>
+                                                            <th>Order Address</th>
+                                                            <th>Status</th>
+                                                            <th>Action</th>
+                                                            <th>Cancel</th>
+                                                        </tr>
+                                                    </thead>
 
-                                                        <tbody>
+                                                    <tbody>
                                                         <c:set var="count" value="0"></c:set>
                                                         <c:forEach items ="${listOrd}" var="ord">
                                                             <c:set var="count" value="${count=count+1}"></c:set>

@@ -52,6 +52,7 @@ public class CusCancelOrderController extends HttpServlet {
             List<Order> list = odao.getListOrderDetailByOrderID(orderID);
             BookDAO b = new BookDAO();
             String action = request.getParameter("action");
+            HttpSession session = request.getSession();
             if (action == null) {
                 if (status.equals("confirming")) {
                     for (Order o : list) {
@@ -62,16 +63,16 @@ public class CusCancelOrderController extends HttpServlet {
                         b.updateQuantityBookByBookCode(quanityBookInStoreAfter, bookCode);
                     }
                     odao.updateOrderStatusByID(orderID);
+                    session.setAttribute("checkstatus", "Cancel order success");
                     request.getRequestDispatcher("cusorderhome").forward(request, response);
                 } else if (status.equals("delivering")) {
+                    session.setAttribute("checkstatus", "You cannot return the product being delivered.");
                     request.getRequestDispatcher("cusorderhome").forward(request, response);
                 } else if (status.equals("recieved")) {
                     // lay list detail tu ham lay list theo id
                     List<Order> listOrdetail = odao.getOrderDetailByorderID(orderID);
                     // set attribute len
                     request.setAttribute("listOrdetail", listOrdetail);
-                    // goi session
-                    HttpSession session = request.getSession();
                     // check account
                     Account acc = (Account) session.getAttribute("acc");
                     // lay account id
@@ -96,7 +97,6 @@ public class CusCancelOrderController extends HttpServlet {
                 LocalDateTime now = LocalDateTime.now();
                 String receivedDate = dtf.format(now);
                 odao.updateOrderStatusByIDConfirm(receivedDate, orderID);
-                HttpSession session = request.getSession();
                 Account acc = (Account) session.getAttribute("acc");
                 int accountID = acc.getAccID();
                 List<Order> listOrd2 = odao.getOrderListByStatus2(accountID);

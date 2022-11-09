@@ -46,22 +46,245 @@
         <link rel="stylesheet" href="assets/css/plugins/nouislider/nouislider.css">
     </head>
 
+    <style>
+        .navigation-item.active {
+            color:red
+        }
+    </style>
+
     <body>
         <div class="page-wrapper">
-            <jsp:include page="header.jsp"></jsp:include>
+            <header class="header">
+                <div class="header-top">
+                    <div class="container">
+                        <div class="header-left">
 
-                <main class="main">
-                    <!--                    <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
-                                            <div class="container">
-                                                <h1 class="page-title">Boxed No Sidebar<span>Shop</span></h1>
-                                            </div> End .container 
-                                        </div> End .page-header -->
-                    <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2">
-                        <div class="container">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="home">Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">Shop</a></li>
-                                <li class="breadcrumb-item"><a href="#">
+                        </div><!-- End .header-left -->
+
+                        <div class="header-right">
+                            <ul class="top-menu">
+                                <li>
+                                    <ul>
+                                        <li><a href=""></a></li>
+                                        <li><a href="about.html">About Us</a></li>
+                                        <li><a href="contact.html">Contact Us</a></li>
+                                        <li><a href="loginnav">Login</a></li>
+                                    </ul>
+                                </li>
+                            </ul><!-- End .top-menu -->
+                        </div><!-- End .header-right -->
+                    </div><!-- End .container -->
+                </div><!-- End .header-top -->
+
+                <div class="header-middle sticky-header">
+                    <div class="container">
+                        <div class="header-left">
+                            <button class="mobile-menu-toggler">
+                                <span class="sr-only">Toggle mobile menu</span>
+                                <i class="icon-bars"></i>
+                            </button>
+
+                            <a href="home" class="logo">
+                                <img src="assets/images/logo.png" alt="Molla Logo" width="105" height="25">
+                            </a>
+
+                            <nav class="main-nav" >
+                                <ul class="menu sf-arrows" id="menu-active-Class">
+                                    <li>
+                                        <a href="home" class="navigation-item ">Home</a>
+                                    </li>
+                                    <li>
+                                        <a href="shopping?index=1" class="navigation-item">Shopping</a>
+                                    </li>
+                                    <li>
+                                        <a href="" id="sf-with-ul" class="navigation-item">Category</a>
+                                        <div class="megamenu megamenu-sm">
+                                            <div class="row no-gutters">
+                                                <div class="col-md-12">
+                                                    <div class="menu-col">
+                                                        <ul>
+                                                            <c:forEach items="${listC}" var="o">
+                                                                <li><a href="category?categoryName=${o.name}">${o.name}</a></li>
+                                                                <!--href giúp truy?n ???ng d?n--> 
+                                                            </c:forEach>
+                                                        </ul>
+                                                    </div><!-- End .menu-col -->
+                                                </div><!-- End .col-md-6 -->
+                                            </div><!-- End .row -->
+                                        </div><!-- End .megamenu megamenu-sm -->
+                                    </li>
+                                    <script>
+                                        const navList = document.querySelectorAll('.navigation-item');
+                                        const path = window.location.href.replace("http://localhost:8084/SWP391_BookStore/", "");
+                                        switch (path) {
+                                            case "home":
+                                            {
+                                                navList[0].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "shopping":
+                                            {
+                                                navList[1].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "detail":
+                                            {
+                                                navList[2].classList.toggle("")
+                                                break;
+                                            }
+                                            case "category?categoryName=Art%20-%20Literary":
+                                            {
+                                                navList[3].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "category?categoryName=Comics":
+                                            {
+                                                navList[4].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "category?categoryName=Textbook%20-%20Syllabus":
+                                            {
+                                                navList[5].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "category?categoryName=Novel":
+                                            {
+                                                navList[6].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "category?categoryName=Foreign%20language":
+                                            {
+                                                navList[7].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "category?categoryName=Science":
+                                            {
+                                                navList[8].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "category?categoryName=Horror":
+                                            {
+                                                navList[9].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "":
+                                            {
+                                                navList[10].classList.toggle("")
+                                                break;
+                                            }
+                                            default:
+                                            {
+                                                navList[11].classList.toggle("")
+                                                break;
+                                            }
+                                        }
+
+                                    </script>
+                                    <!--                        <script>
+                                                                // Add active class to the current button (highlight it)
+                                                                var header = document.getElementById("menu-active-Class");
+                                                                var btns = header.getElementsByClassName("navigation-item");
+                                                                for (var i = 0; i < btns.length; i++) {
+                                                                    btns[i].addEventListener("click", function () {
+                                                                        var current = document.getElementsByClassName("active");
+                                                                        current[0].className = current[0].className.replace(" active", "");
+                                                                        this.className += " active";
+                                                                    });
+                                                                }
+                                                            </script>-->
+                                </ul><!-- End .menu -->
+                            </nav><!-- End .main-nav -->
+                        </div><!-- End .header-left -->
+
+                        <div class="header-right">
+                            <div class="header-search">
+                                <a href="#" class="search-toggle" role="button" title="Search"><i class="icon-search"></i></a>
+                                <form action="SearchController?index=1" method="post">
+                                    <div class="header-search-wrapper">
+                                        <label for="q" class="sr-only">Search</label>
+                                        <input type="search" class="form-control" name="searchKey" 
+                                               placeholder="Search in..." required>
+                                        <input type="submit" class="search-btn" value="Search" />
+
+                                    </div><!-- End .header-search-wrapper -->
+                                </form>
+                            </div><!-- End .header-search -->
+
+                            <%
+
+                                if (session.getAttribute("cart") == null) {
+                            %>
+                            <div class="dropdown cart-dropdown">
+                                <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                                    <i class="icon-shopping-cart"></i>
+                                    <span class="cart-count">${cart.size()}</span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <div class="dropdown-cart-products">
+                                        <label  style="color: black;">Your cart is empty</label>
+                                    </div>
+                                    <div class="dropdown-cart-action">
+                                        <a href="cart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span></a>
+                                        <a href="checkOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
+                                    </div><!-- End .dropdown-cart-total -->
+                                </div><!-- End .dropdown-menu -->
+                            </div><!-- End .cart-dropdown -->
+                            <%} else {%>
+                            <div class="dropdown cart-dropdown">
+                                <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                                    <i class="icon-shopping-cart"></i>
+                                    <span class="cart-count">${cart.size()}</span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <c:forEach items="${cart}" var="cart">
+                                        <div class="dropdown-cart-products">
+                                            <div class="product">
+                                                <div class="product-cart-details">
+                                                    <h4 class="product-title">
+                                                        <a href="product.html">${cart.book.bookName}</a>
+                                                    </h4>
+
+                                                    <span class="cart-product-info">
+                                                        <span class="cart-product-qty">${cart.qty}</span> X
+                                                        <fmt:formatNumber value="${cart.buyPrice}" pattern=" #,##0 VND" />                                         
+                                                    </span>
+                                                </div><!-- End .product-cart-details -->
+
+                                                <figure class="product-image-container">
+                                                    <a href="product.html" class="product-image">
+                                                        <img src="${cart.book.image}" alt="product">
+                                                    </a>
+                                                </figure>
+                                                <a href="${pageContext.request.contextPath }/shoppingpage?action=remove&bookCode=${cart.book.bookCode}" class="btn-remove"><i class="icon-close"></i></a>
+                                            </div><!-- End .product -->
+
+                                        </div><!-- End .cart-product -->    
+                                    </c:forEach>
+
+                                    <div class="dropdown-cart-action">
+                                        <a href="cart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span></a>
+                                        <a href="checkOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
+                                    </div><!-- End .dropdown-cart-total -->
+                                </div><!-- End .dropdown-menu -->
+                            </div><!-- End .cart-dropdown -->
+                            <%}%>
+                        </div><!-- End .header-right -->
+                    </div><!-- End .container -->
+                </div><!-- End .header-middle -->
+            </header><!-- End .header -->
+
+            <main class="main">
+                <!--                    <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+                                        <div class="container">
+                                            <h1 class="page-title">Boxed No Sidebar<span>Shop</span></h1>
+                                        </div> End .container 
+                                    </div> End .page-header -->
+                <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2">
+                    <div class="container">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="home">Home</a></li>
+                            <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                            <li class="breadcrumb-item"><a href="#">
                                     <%
                                         String categoryName = request.getParameter("categoryName");
                                         if (categoryName != null) {
@@ -99,8 +322,9 @@
                                                 <a href="detail?pbookCode=${listAll.bookCode}&categoryBook=${listAll.cateName}">
                                                     <img style="width: 	277px; height: 	375px;" src="${listAll.image}" alt="Product image" class="product-image">
                                                 </a>
+
                                                 <div class="product-action action-icon-top">
-                                                    <a href="${pageContext.request.contextPath }/shoppingpage?&action=addToCart&bookCode=${listAll.bookCode}" class="btn-product btn-cart"><span>add to cart</span></a>
+                                                    <a href="${pageContext.request.contextPath }/shoppingpage?&action=addToCart&bookCode=${listAll.bookCode}&cateName=${listAll.cateName}&index=${i}" class="btn-product btn-cart"><span>add to cart</span></a>
                                                 </div><!-- End .product-action -->
                                             </figure><!-- End .product-media -->
 
@@ -135,7 +359,6 @@
                                                             <c:forTokens var="token" items="${listAll.author}" delims=",">
                                                                 <li><c:out value="${token}"/></li>
                                                                 </c:forTokens>
-
                                                         </div><!-- End .ratings -->
                                                     </c:if>
                                                 </div><!-- End .rating-container -->
@@ -148,6 +371,7 @@
                                 <div class="load-more-container text-center">
                                     <c:forEach begin="1" end="${endPage}" var="i">
                                         <a href="SearchController?index=${i}&searchKey=${searchKey}" class="btn btn-outline-darker btn-load-more">${i} <i class="icon-refresh"></i></a>
+                                            <c:set var="i" value="${i}"></c:set>
                                         </c:forEach>
                                 </div><!-- End .load-more-container -->
                             </div><!-- End .products -->

@@ -57,6 +57,7 @@ public class CusRetrunNavController extends HttpServlet {
             // set attribute
             request.setAttribute("listOrd", listOrd);
             //chuyen trang
+            String status = request.getParameter("status");
 
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
             LocalDate now = LocalDate.now();
@@ -69,9 +70,12 @@ public class CusRetrunNavController extends HttpServlet {
             c1.setTime(recievedDate);
             c2.setTime(today);
             Long noDay = (c2.getTime().getTime() - c1.getTime().getTime()) / (24 * 3600 * 1000);
-            if (noDay <= 5) {
+            if (noDay <= 5 && status.equals("recieved")) {
                 request.getRequestDispatcher("cusReasonForm.jsp").forward(request, response);
-            } else {
+            } else if (!status.equals("recieved")) {
+                request.setAttribute("checkstatus", "You can only return products that have status is recieved");
+                request.getRequestDispatcher("cushistoryhome").forward(request, response);
+            } else if (noDay > 5) {
                 request.setAttribute("checkDate", "Refund time expired!!!");
                 request.getRequestDispatcher("cushistoryhome").forward(request, response);
             }

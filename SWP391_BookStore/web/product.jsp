@@ -46,19 +46,242 @@
             }
         </style>
 
+        <style>
+            .navigation-item.active {
+                color:red
+            }
+        </style>
+
     </head>
 
     <body>
         <div class="page-wrapper">
-            <jsp:include page="header.jsp"></jsp:include>
+            <header class="header">
+                <div class="header-top">
+                    <div class="container">
+                        <div class="header-left">
 
-                <main class="main">
-                    <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
-                        <div class="container d-flex align-items-center">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="home">Home</a></li>
-                                <li class="breadcrumb-item"><a href=""shopping?index=1"">Shopping</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">${detailProduct.bookName}</li>
+                        </div><!-- End .header-left -->
+
+                        <div class="header-right">
+                            <ul class="top-menu">
+                                <li>
+                                    <ul>
+                                        <li><a href=""></a></li>
+                                        <li><a href="about.html">About Us</a></li>
+                                        <li><a href="contact.html">Contact Us</a></li>
+                                        <li><a href="loginnav">Login</a></li>
+                                    </ul>
+                                </li>
+                            </ul><!-- End .top-menu -->
+                        </div><!-- End .header-right -->
+                    </div><!-- End .container -->
+                </div><!-- End .header-top -->
+
+                <div class="header-middle sticky-header">
+                    <div class="container">
+                        <div class="header-left">
+                            <button class="mobile-menu-toggler">
+                                <span class="sr-only">Toggle mobile menu</span>
+                                <i class="icon-bars"></i>
+                            </button>
+
+                            <a href="home" class="logo">
+                                <img src="assets/images/logo.png" alt="Molla Logo" width="105" height="25">
+                            </a>
+
+                            <nav class="main-nav" >
+                                <ul class="menu sf-arrows" id="menu-active-Class">
+                                    <li>
+                                        <a href="home" class="navigation-item ">Home</a>
+                                    </li>
+                                    <li>
+                                        <a href="shopping?index=1" class="navigation-item">Shopping</a>
+                                    </li>
+                                    <li>
+                                        <a href="" id="sf-with-ul" class="navigation-item">Category</a>
+                                        <div class="megamenu megamenu-sm">
+                                            <div class="row no-gutters">
+                                                <div class="col-md-12">
+                                                    <div class="menu-col">
+                                                        <ul>
+                                                            <c:forEach items="${listC}" var="o">
+                                                                <li><a href="category?categoryName=${o.name}">${o.name}</a></li>
+                                                                <!--href giúp truy?n ???ng d?n--> 
+                                                            </c:forEach>
+                                                        </ul>
+                                                    </div><!-- End .menu-col -->
+                                                </div><!-- End .col-md-6 -->
+                                            </div><!-- End .row -->
+                                        </div><!-- End .megamenu megamenu-sm -->
+                                    </li>
+                                    <script>
+                                        const navList = document.querySelectorAll('.navigation-item');
+                                        const path = window.location.href.replace("http://localhost:8084/SWP391_BookStore/", "");
+                                        switch (path) {
+                                            case "home":
+                                            {
+                                                navList[0].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "shopping":
+                                            {
+                                                navList[1].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "detail":
+                                            {
+                                                navList[2].classList.toggle("")
+                                                break;
+                                            }
+                                            case "category?categoryName=Art%20-%20Literary":
+                                            {
+                                                navList[3].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "category?categoryName=Comics":
+                                            {
+                                                navList[4].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "category?categoryName=Textbook%20-%20Syllabus":
+                                            {
+                                                navList[5].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "category?categoryName=Novel":
+                                            {
+                                                navList[6].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "category?categoryName=Foreign%20language":
+                                            {
+                                                navList[7].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "category?categoryName=Science":
+                                            {
+                                                navList[8].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "category?categoryName=Horror":
+                                            {
+                                                navList[9].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "":
+                                            {
+                                                navList[10].classList.toggle("")
+                                                break;
+                                            }
+                                            default:
+                                            {
+                                                navList[11].classList.toggle("")
+                                                break;
+                                            }
+                                        }
+
+                                    </script>
+                                    <!--                        <script>
+                                                                // Add active class to the current button (highlight it)
+                                                                var header = document.getElementById("menu-active-Class");
+                                                                var btns = header.getElementsByClassName("navigation-item");
+                                                                for (var i = 0; i < btns.length; i++) {
+                                                                    btns[i].addEventListener("click", function () {
+                                                                        var current = document.getElementsByClassName("active");
+                                                                        current[0].className = current[0].className.replace(" active", "");
+                                                                        this.className += " active";
+                                                                    });
+                                                                }
+                                                            </script>-->
+                                </ul><!-- End .menu -->
+                            </nav><!-- End .main-nav -->
+                        </div><!-- End .header-left -->
+
+                        <div class="header-right">
+                            <div class="header-search">
+                                <a href="#" class="search-toggle" role="button" title="Search"><i class="icon-search"></i></a>
+                                <form action="SearchController?index=1" method="post">
+                                    <div class="header-search-wrapper">
+                                        <label for="q" class="sr-only">Search</label>
+                                        <input type="search" class="form-control" name="searchKey" 
+                                               placeholder="Search in..." required>
+                                        <input type="submit" class="search-btn" value="Search" />
+
+                                    </div><!-- End .header-search-wrapper -->
+                                </form>
+                            </div><!-- End .header-search -->
+
+                            <%
+
+                                if (session.getAttribute("cart") == null) {
+                            %>
+                            <div class="dropdown cart-dropdown">
+                                <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                                    <i class="icon-shopping-cart"></i>
+                                    <span class="cart-count">${cart.size()}</span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <div class="dropdown-cart-products">
+                                        <label  style="color: black;">Your cart is empty</label>
+                                    </div>
+                                    <div class="dropdown-cart-action">
+                                        <a href="cart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span></a>
+                                        <a href="checkOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
+                                    </div><!-- End .dropdown-cart-total -->
+                                </div><!-- End .dropdown-menu -->
+                            </div><!-- End .cart-dropdown -->
+                            <%} else {%>
+                            <div class="dropdown cart-dropdown">
+                                <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                                    <i class="icon-shopping-cart"></i>
+                                    <span class="cart-count">${cart.size()}</span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <c:forEach items="${cart}" var="cart">
+                                        <div class="dropdown-cart-products">
+                                            <div class="product">
+                                                <div class="product-cart-details">
+                                                    <h4 class="product-title">
+                                                        <a href="product.html">${cart.book.bookName}</a>
+                                                    </h4>
+
+                                                    <span class="cart-product-info">
+                                                        <span class="cart-product-qty">${cart.qty}</span> X
+                                                        <fmt:formatNumber value="${cart.buyPrice}" pattern=" #,##0 VND" />                                         
+                                                    </span>
+                                                </div><!-- End .product-cart-details -->
+
+                                                <figure class="product-image-container">
+                                                    <a href="product.html" class="product-image">
+                                                        <img src="${cart.book.image}" alt="product">
+                                                    </a>
+                                                </figure>
+                                                <a href="${pageContext.request.contextPath }/productpage?action=remove&bookCode=${cart.book.bookCode}" class="btn-remove"><i class="icon-close"></i></a>
+                                            </div><!-- End .product -->
+
+                                        </div><!-- End .cart-product -->    
+                                    </c:forEach>
+
+                                    <div class="dropdown-cart-action">
+                                        <a href="cart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span></a>
+                                        <a href="checkOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
+                                    </div><!-- End .dropdown-cart-total -->
+                                </div><!-- End .dropdown-menu -->
+                            </div><!-- End .cart-dropdown -->
+                            <%}%>
+                        </div><!-- End .header-right -->
+                    </div><!-- End .container -->
+                </div><!-- End .header-middle -->
+            </header><!-- End .header -->
+
+            <main class="main">
+                <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
+                    <div class="container d-flex align-items-center">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="home">Home</a></li>
+                            <li class="breadcrumb-item"><a href=""shopping?index=1"">Shopping</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">${detailProduct.bookName}</li>
                         </ol>
 
                     </div><!-- End .container -->
@@ -105,7 +328,7 @@
 
                                         <div class="product-content">
                                             <p id="product-content-desc" class="product-content-desc">${detailProduct.description}</p>
-                                            <button class="btn btn-outline-secondary" onclick="handleMoreLessClick()">show more/less</button>
+                                            <button class="btn btn-outline-primary-2" onclick="handleMoreLessClick()">show more/less</button>
                                             <script>
                                                 const element = document.getElementById("product-content-desc");
                                                 function handleMoreLessClick() {
@@ -210,6 +433,7 @@
                                                         </div><!-- End .product-body -->
                                                     </div><!-- End .product -->
                                                 </div><!-- End .col-sm-6 col-lg-4 col-xl-3 -->
+                                                <c:set var="cateName" value="${listAll.cateName}"></c:set>
                                             </c:forEach>
 
 
@@ -334,44 +558,42 @@
         <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
 
 
-        <form action="productpage" method="post">
-            <!-- Sticky Bar -->
-            <div class="sticky-bar">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-6">
-                            <figure class="product-media">
-                                <a href="product.jsp">
-                                    <img src="${detailProduct.image}" alt="Product image">
-                                </a>
-                            </figure><!-- End .product-media -->
-                            <h4 class="product-title"><a href="product.jsp">${detailProduct.bookName}</a></h4><!-- End .product-title -->
-                        </div><!-- End .col-6 -->
+        <!--        <form action="productpage" method="post">-->
+        <!-- Sticky Bar -->
+        <div class="sticky-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6">
+                        <figure class="product-media">
+                            <a href="product.jsp">
+                                <img src="${detailProduct.image}" alt="Product image">
+                            </a>
+                        </figure><!-- End .product-media -->
+                        <h4 class="product-title"><a href="product.jsp">${detailProduct.bookName}</a></h4><!-- End .product-title -->
+                    </div><!-- End .col-6 -->   
 
 
-                        <div class="col-6 justify-content-end">
-                            <div class="product-price">
-                                <fmt:formatNumber value="${detailProduct.buyPrice}" pattern=" #,##0 VND" />
+                    <div class="col-6 justify-content-end">
+                        <div class="product-price">
+                            <fmt:formatNumber value="${detailProduct.buyPrice}" pattern=" #,##0 VND" />
 
-                            </div><!-- End .product-price -->
+                        </div><!-- End .product-price -->
 
-                            <div class="product-details-quantity">
-                                <input type="number" id="sticky-cart-qty" name="txtnumber" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
-                            </div><!-- End .product-details-quantity -->
-                            <input type="text" name="bookCode" value="${detailProduct.bookCode}" hidden>
-                            <input type="text" name="action" value="addToCart" hidden>
+                        <!--                            <div class="product-details-quantity">
+                                                        <input type="number" id="sticky-cart-qty" name="txtnumber" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
+                                                    </div> End .product-details-quantity -->
+                        <input type="text" name="bookCode" value="${detailProduct.bookCode}" hidden>
+                        <input type="text" name="action" value="addToCart" hidden>
 
-                            <div class="product-details-action">
-                                <button type="submit" class="btn btn-outline-primary-2">
-                                    <span>Add To Cart</span>
-                                </button>
-                            </div><!-- End .product-details-action -->
+                        <div class="product-details-action">
+                            <a href="${pageContext.request.contextPath }/productpage?&action=addToCart&bookCode=${detailProduct.bookCode}&cateName=${cateName}" class="btn-product btn-cart"><span>add to cart</span></a>
+                        </div><!-- End .product-details-action -->
 
-                        </div><!-- End .col-6 -->
-                    </div><!-- End .row -->
-                </div><!-- End .container -->
-            </div><!-- End .sticky-bar -->
-        </form>
+                    </div><!-- End .col-6 -->
+                </div><!-- End .row -->
+            </div><!-- End .container -->
+        </div><!-- End .sticky-bar -->
+        <!--        </form>-->
 
 
 

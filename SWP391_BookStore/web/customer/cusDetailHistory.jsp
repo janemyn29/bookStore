@@ -118,6 +118,7 @@
                                                                 <td>${ord2.address}</td>
                                                                 <td>${ord2.status}</td>
                                                             </tr>
+                                                            <c:set var="status" value="${ord2.status}"></c:set>
                                                         </c:forEach>
                                                     </tbody>                                        
                                                 </table>
@@ -131,7 +132,9 @@
                                                         <th>Quantity</th>
                                                         <th>Price</th>
                                                         <th>Total Price</th>
-                                                        <th>Feed back</th>
+                                                            <c:if test='${status == "recieved"}'>
+                                                            <th>Feed back</th>
+                                                            </c:if>
                                                     </tr>
                                                     </thead>
 
@@ -145,7 +148,9 @@
                                                                 <td>${orde.oDetailQty}</td>
                                                                 <td>${orde.buyPrice}</td>
                                                                 <td>${orde.total}</td>
-                                                                <td><a class="underline" href="cusfeedhome?bookCode=${orde.bookCode}&orderID=${orde.orderID}&oDetailID=${orde.oDetailID}">Click here</a></td>
+                                                                <c:if test='${status == "recieved"}'>
+                                                                    <td><a class="underline" href="cusfeedhome?bookCode=${orde.bookCode}&orderID=${orde.orderID}&oDetailID=${orde.oDetailID}">Click here</a></td>
+                                                                </c:if>
                                                             </tr>
                                                         </c:forEach>
                                                     </tbody>  

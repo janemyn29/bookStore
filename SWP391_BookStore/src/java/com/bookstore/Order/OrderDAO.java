@@ -361,7 +361,7 @@ public class OrderDAO {
         List<Order> list = new ArrayList<>();
         String sql = " select orderID, orderDate, userAddress, status\n"
                 + "from tblOrder\n"
-                + "where (status = 'expired' or status = 'wait to approve') and accountID = ? ";
+                + "where (status = 'returning' or status = 'wait to approve' or status = 'out of date') and accountID = ? ";
 
         try {
             conn = new DBUtils().getConnection();
@@ -448,6 +448,22 @@ public class OrderDAO {
             conn = new DBUtils().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setInt(1, orderID);
+            rs = ps.executeQuery();
+
+        } catch (Exception e) {
+        }
+    }
+    
+    public void updateOrderStatusByUpgrade(String status, int orderID) {
+
+        String sql = " update tblOrder\n"
+                + "set status = ?\n"
+                + "where orderID = ? ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, status);
+            ps.setInt(2, orderID);
             rs = ps.executeQuery();
 
         } catch (Exception e) {
@@ -565,6 +581,27 @@ public class OrderDAO {
                 String receivedDate = rs.getString(1);
 
                 return receivedDate;
+            }
+        } catch (Exception e) {
+        }
+
+        return null;
+    }
+
+    public String checkApproveDateByOrderID(int orderID) {
+
+        String sql = " select approveDate\n"
+                + "from tblOrder\n"
+                + "where orderID = ? ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, orderID);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String approveDate = rs.getString(1);
+
+                return approveDate;
             }
         } catch (Exception e) {
         }

@@ -10,6 +10,10 @@ import com.bookstore.Order.Order;
 import com.bookstore.Order.OrderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -42,6 +46,28 @@ public class CusReturnManagementNavController extends HttpServlet {
             int accountID = acc.getAccID();
             List<Order> listOrd = odao.getOrderListByStatus3(accountID);
             request.setAttribute("listOrd", listOrd);
+
+            for (Order list : listOrd) {
+                int id = list.getOrderID();
+                String status = list.getStatus();
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+                LocalDate now = LocalDate.now();
+                Date today = Date.valueOf(now);
+                String tmp = odao.checkApproveDateByOrderID(id);
+                Date approveDate = Date.valueOf(tmp);
+
+                Calendar c1 = Calendar.getInstance();
+                Calendar c2 = Calendar.getInstance();
+                c1.setTime(approveDate);
+                c2.setTime(today);
+                Long noDay = (c2.getTime().getTime() - c1.getTime().getTime()) / (24 * 3600 * 1000);
+                if (noDay > 5) {
+                    if (status.equals("returning")) {
+                        odao.updateOrderStatusByUpgrade("out of date", id);
+                    }
+                }
+            }
+
             request.getRequestDispatcher("cusReturnManagement.jsp").forward(request, response);
         }
     }

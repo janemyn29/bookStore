@@ -120,6 +120,7 @@
                                                                 <td>${ord2.address}</td>
                                                                 <td>${ord2.status}</td>
                                                             </tr>
+                                                            <c:set var="status" value="${ord2.status}"></c:set>
                                                         </c:forEach>
                                                     </tbody>                                        
                                                 </table>
@@ -156,10 +157,13 @@
                                                     <i class="icon-arrow-left"></i>
                                                     <span>BACK</span>                                      
                                                 </a>
-                                                <a href="cuscancelorder?orderID=${orderID}&action=${confirm}" class="btn btn-outline-primary-2">
-                                                    <span>CONFIRM RECEIPT OF  THIS GOOD</span>
-                                                    <i class="icon-check"></i>
-                                                </a>
+                                                <c:if test='${status == "delivering"}'>
+                                                    <a href="cuscancelorder?orderID=${orderID}&action=${confirm}" class="btn btn-outline-primary-2">
+                                                        <span>CONFIRM RECEIPT OF  THIS GOOD</span>
+                                                        <i class="icon-check"></i>
+                                                    </a>
+                                                </c:if>
+
                                             </div>
                                         </div><!-- .End .tab-pane -->
                                     </div><!-- End .container -->
