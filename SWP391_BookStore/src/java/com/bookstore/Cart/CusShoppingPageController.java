@@ -53,7 +53,7 @@ public class CusShoppingPageController extends HttpServlet {
                 if (session.getAttribute("cart") == null) { // add cuon sach dau tien vao cart
                     if (quantityBookAvailable > 0) { // kiem tra sach add vao co qua so luong trong kho khong?
                         cart.add(new Cart(b.getBookBybookCode(request.getParameter("bookCode")), 1));
-                    }else{
+                    } else {
                         request.setAttribute("checkQuanity", "Store has no more quantity of this book left. We apologize for the inconvenience.");
                         request.getRequestDispatcher("cusshopping?index=1").forward(request, response);
                     }
@@ -132,56 +132,8 @@ public class CusShoppingPageController extends HttpServlet {
                     }
                 }
                 session.setAttribute("cart", cart);
-                request.getRequestDispatcher("cusCart.jsp").forward(request, response);
-
-            } else if (action.equals("removeHome")) { // xoa sach trong minicart header
-                bookCode = request.getParameter("bookCode");
-                cart = (List<Cart>) request.getSession().getAttribute("cart");
-                if (cart != null) {
-                    for (Cart c : cart) {
-                        if (String.valueOf(c.getBook().getBookCode()).equals(String.valueOf(bookCode))) {
-                            cart.remove(c);
-                            break;
-                        }
-                    }
-                }
-                session.setAttribute("cart", cart);
                 request.getRequestDispatcher("cusshopping?index=1").forward(request, response);
-
-            } else if (action.equals("decre")) { // giam quantity
-                cart = (List<Cart>) session.getAttribute("cart");
-                int index = isExisting(ibookCode, cart);
-                int quantity = cart.get(index).getQty() - 1;
-                cart.get(index).setQty(quantity);
-                if (cart.get(index).getQty() <= 0) { // neu qty = 0 => xoa sach
-                    cart = (List<Cart>) request.getSession().getAttribute("cart");
-                    if (cart != null) {
-                        for (Cart c : cart) {
-                            if (String.valueOf(c.getBook().getBookCode()).equals(String.valueOf(bookCode))) {
-                                cart.remove(c);
-                                break;
-                            }
-                        }
-                    }
-                }
-                session.setAttribute("cart", cart);
-                request.getRequestDispatcher("cusCart.jsp").forward(request, response);
-
-            } else if (action.equals("incre")) { // tang quantity
-                cart = (List<Cart>) session.getAttribute("cart");
-                int index = isExisting(ibookCode, cart);
-                int quantityBookInCart = cart.get(index).getQty();
-                if (quantityBookInCart < quantityBookAvailable) {
-                    int quantity = cart.get(index).getQty() + 1;
-                    cart.get(index).setQty(quantity);
-                    session.setAttribute("cart", cart);
-                    request.getRequestDispatcher("cusCart.jsp").forward(request, response);
-                } else {
-                    request.setAttribute("checkQuanity", "Store has no more quantity of this book left. We apologize for the inconvenience.");
-                    request.getRequestDispatcher("cusCart.jsp").forward(request, response);
-                }
             }
-
             session.setAttribute("cart", cart);
             request.getRequestDispatcher("cusshopping?index=1").forward(request, response);
         }
