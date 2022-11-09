@@ -6,6 +6,7 @@
 package com.bookstore.Customer;
 
 import com.bookstore.Account.Account;
+import com.bookstore.Cart.Cart;
 import com.bookstore.Feedback.Feedback;
 import com.bookstore.Feedback.FeedbackDAO;
 import com.bookstore.Order.Order;
@@ -44,14 +45,8 @@ public class CusFeedBackController extends HttpServlet {
             FeedbackDAO fdao = new FeedbackDAO();
             
             List<Feedback> list = fdao.getFeedbackManage();
-            int lastFeedbackID;
-            int sizeList = list.size() - 1;
-            lastFeedbackID = (int) (list.get(sizeList).getFeedID() + 1);
-            
-//            if(list.size()==0){
-//            int feedbackID = 1;
-//            }
-            int feedbackID = lastFeedbackID;
+
+            int feedbackID = getLastFeedBackID(list);
 
             String bookid = request.getParameter("txtbookCode");
             long bookCode = Long.parseLong(bookid);
@@ -88,6 +83,16 @@ public class CusFeedBackController extends HttpServlet {
             request.getRequestDispatcher("cusDetailHistory.jsp").forward(request, response);
         }
     }
+    
+    private int getLastFeedBackID(List<Feedback> list) {
+        if (list.size() > 0) {
+            int sizeList = list.size() - 1;
+            int lastFeedID = (int) (list.get(sizeList).getFeedID()+ 1);
+            return lastFeedID;
+        }
+        return 1;
+    }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

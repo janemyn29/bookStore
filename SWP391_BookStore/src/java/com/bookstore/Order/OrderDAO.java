@@ -225,8 +225,7 @@ public class OrderDAO {
     public List<Order> getOrderManage() {
         List<Order> list = new ArrayList<>();
         String sql = " select o.orderID, ac.accountID, o.orderDate, o.userAddress, o.totalPrice, o.orderNote, o.status\n"
-                + "from ((tblOrder o inner join tblOrderDetail od on o.orderID=od.orderID)\n"
-                + "inner join tblAccount ac on ac.accountID=o.accountID) ";
+                + "from (tblOrder o inner join tblAccount ac on ac.accountID=o.accountID) ";
 
         try {
             conn = new DBUtils().getConnection();
@@ -361,7 +360,7 @@ public class OrderDAO {
         List<Order> list = new ArrayList<>();
         String sql = " select orderID, orderDate, userAddress, status\n"
                 + "from tblOrder\n"
-                + "where (status = 'returning' or status = 'wait to approve' or status = 'out of date') and accountID = ? ";
+                + "where (status = 'returning' or status = 'wait to approve' or status = 'out of date' or status = 'returned') and accountID = ? ";
 
         try {
             conn = new DBUtils().getConnection();
@@ -453,7 +452,7 @@ public class OrderDAO {
         } catch (Exception e) {
         }
     }
-    
+
     public void updateOrderStatusByUpgrade(String status, int orderID) {
 
         String sql = " update tblOrder\n"
@@ -614,7 +613,7 @@ public class OrderDAO {
         //Order list = dAO.getOrderByID("1");
 
 //        dAO.addNewOrder(14, 4, "2022-11-07", "test quantity 2", 150000, "test quantity 2", "confirming");
-        System.out.println(dAO.getOrderListByStatus2(4));
+        System.out.println(dAO.getOrderManage());
 //dAO.addNewOrder(15, 4, "2022-11-07", "test", 45000, "test2", "confirming");
 
     }

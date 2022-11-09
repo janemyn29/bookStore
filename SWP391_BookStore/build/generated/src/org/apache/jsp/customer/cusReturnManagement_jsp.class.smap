@@ -1,0 +1,23 @@
+SMAP
+cusReturnManagement_jsp.java
+JSP
+*S JSP
+*F
++ 0 cusReturnManagement.jsp
+customer/cusReturnManagement.jsp
+*L
+5,34:57
+39:91,3
+40,52:94
+91:562,6
+91,2:148
+92:581,11
+93:592
+93:640,6
+93,2:595
+95,4:597,3
+99:609
+100:610,3
+101,3:613
+103,393:152
+*E

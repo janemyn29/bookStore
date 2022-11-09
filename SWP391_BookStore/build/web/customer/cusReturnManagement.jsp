@@ -65,6 +65,10 @@
                                             <li class="nav-item">
                                                 <a class="nav-link" href="/SWP391_BookStore/logout">Sign Out</a>
                                             </li>
+                                            <li>
+                                            <small>Notice:<br> - You can click on</small><i class="icon-eye"></i> <small> in the action column to view history details.<br>
+                                            </small>
+                                            </li>
                                         </ul>
                                     </aside><!-- End .col-lg-3 -->
 

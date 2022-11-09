@@ -54,6 +54,9 @@ public class CusReturnManagementNavController extends HttpServlet {
                 LocalDate now = LocalDate.now();
                 Date today = Date.valueOf(now);
                 String tmp = odao.checkApproveDateByOrderID(id);
+                if (tmp == null) {
+                    break;
+                }
                 Date approveDate = Date.valueOf(tmp);
 
                 Calendar c1 = Calendar.getInstance();
