@@ -46,32 +46,247 @@
             }
         </style>
 
+        <style>
+            .navigation-item.active {
+                color:red
+            }
+        </style>
+
     </head>
 
     <body>
         <div class="page-wrapper">
-            <jsp:include page="cusHeader.jsp"></jsp:include>
+            <header class="header">
+                <div class="header-top">
+                    <div class="container">
+                        <div class="header-left">
 
-                <main class="main">
-                    <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
-                        <div class="container d-flex align-items-center">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="cushome">Home</a></li>
-                                <li class="breadcrumb-item"><a href="cusshopping?index=1">Shopping</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">${detailProduct.bookName}</li>
+                        </div><!-- End .header-left -->
+
+                        <div class="header-right">
+                            <ul class="top-menu">
+                                <li>
+                                    <ul>
+                                        <li><a href="/SWP391_BookStore/logout">Logout</a></li>
+                                        <li><a href="about.html">About Us</a></li>
+                                        <li><a href="contact.html">Contact Us</a></li>
+
+                                        <li><a href="editprofile">Hello ${acc.getUsername()}</a></li>
+
+                                    </ul>
+                                </li>
+                            </ul><!-- End .top-menu -->
+                        </div><!-- End .header-right -->
+                    </div><!-- End .container -->
+                </div><!-- End .header-top -->
+
+                <div class="header-middle sticky-header">
+                    <div class="container">
+                        <div class="header-left">
+                            <button class="mobile-menu-toggler">
+                                <span class="sr-only">Toggle mobile menu</span>
+                                <i class="icon-bars"></i>
+                            </button>
+
+                            <a href="cushome" class="logo">
+                                <img src="assets/images/logo.png" alt="Molla Logo" width="105" height="25">
+                            </a>
+
+                            <nav class="main-nav" >
+                                <ul class="menu sf-arrows" id="menu-active-Class">
+                                    <li>
+                                        <a href="cushome" class="navigation-item ">Home</a>
+                                    </li>
+                                    <li>
+                                        <a href="cusshopping?index=1" class="navigation-item">Shopping</a>
+                                    </li>
+                                    <li>
+                                        <a href="" id="sf-with-ul" class="navigation-item">Category</a>
+                                        <div class="megamenu megamenu-sm">
+                                            <div class="row no-gutters">
+                                                <div class="col-md-12">
+                                                    <div class="menu-col">
+                                                        <ul>
+                                                            <c:forEach items="${listC}" var="o">
+                                                                <li><a href="cuscategory?categoryName=${o.name}">${o.name}</a></li>
+                                                                <!--href giúp truyền đường dẫn--> 
+                                                            </c:forEach>
+                                                        </ul>
+                                                    </div><!-- End .menu-col -->
+                                                </div><!-- End .col-md-6 -->
+                                            </div><!-- End .row -->
+                                        </div><!-- End .megamenu megamenu-sm -->
+                                    </li>
+                                    <script>
+                                        const navList = document.querySelectorAll('.navigation-item');
+                                        const path = window.location.href.replace("http://localhost:8084/SWP391_BookStore/", "");
+                                        switch (path) {
+                                            case "cushome":
+                                            {
+                                                navList[0].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "cusshopping":
+                                            {
+                                                navList[1].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "cusdetail":
+                                            {
+                                                navList[2].classList.toggle("")
+                                                break;
+                                            }
+                                            case "cuscategory?categoryName=Art%20-%20Literary":
+                                            {
+                                                navList[3].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "cuscategory?categoryName=Comics":
+                                            {
+                                                navList[4].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "cuscategory?categoryName=Textbook%20-%20Syllabus":
+                                            {
+                                                navList[5].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "cuscategory?categoryName=Novel":
+                                            {
+                                                navList[6].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "cuscategory?categoryName=Foreign%20language":
+                                            {
+                                                navList[7].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "cuscategory?categoryName=Science":
+                                            {
+                                                navList[8].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "cuscategory?categoryName=Horror":
+                                            {
+                                                navList[9].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "":
+                                            {
+                                                navList[10].classList.toggle("")
+                                                break;
+                                            }
+                                            default:
+                                            {
+                                                navList[11].classList.toggle("")
+                                                break;
+                                            }
+                                        }
+
+                                    </script>
+                                    <!--                        <script>
+                                                                // Add active class to the current button (highlight it)
+                                                                var header = document.getElementById("menu-active-Class");
+                                                                var btns = header.getElementsByClassName("navigation-item");
+                                                                for (var i = 0; i < btns.length; i++) {
+                                                                    btns[i].addEventListener("click", function () {
+                                                                        var current = document.getElementsByClassName("active");
+                                                                        current[0].className = current[0].className.replace(" active", "");
+                                                                        this.className += " active";
+                                                                    });
+                                                                }
+                                                            </script>-->
+                                </ul><!-- End .menu -->
+                            </nav><!-- End .main-nav -->
+                        </div><!-- End .header-left -->
+
+                        <div class="header-right">
+                            <div class="header-search">
+                                <a href="#" class="search-toggle" role="button" title="Search"><i class="icon-search"></i></a>
+                                <form action="cusSearchController?index=1" method="post">
+                                    <div class="header-search-wrapper">
+                                        <label for="q" class="sr-only">Search</label>
+                                        <input type="search" class="form-control" name="searchKey" 
+                                               placeholder="Search in..." required>
+                                        <input type="submit" class="search-btn" value="Search" />
+
+                                    </div><!-- End .header-search-wrapper -->
+                                </form>
+                            </div><!-- End .header-search -->
+
+                            <%
+
+                                if (session.getAttribute("cart") == null) {
+                            %>
+                            <div class="dropdown cart-dropdown">
+                                <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                                    <i class="icon-shopping-cart"></i>
+                                    <span class="cart-count">${cart.size()}</span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <div class="dropdown-cart-products">
+                                        <label  style="color: black;">Your cart is empty</label>
+                                    </div>
+                                    <div class="dropdown-cart-action">
+                                        <a href="cusCart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span></a>
+                                        <a href="cusCheckOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
+                                    </div><!-- End .dropdown-cart-total -->
+                                </div><!-- End .dropdown-menu -->
+                            </div><!-- End .cart-dropdown -->
+                            <%} else {%>
+                            <div class="dropdown cart-dropdown">
+                                <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                                    <i class="icon-shopping-cart"></i>
+                                    <span class="cart-count">${cart.size()}</span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <c:forEach items="${cart}" var="cart">
+                                        <div class="dropdown-cart-products">
+                                            <div class="product">
+                                                <div class="product-cart-details">
+                                                    <h4 class="product-title">
+                                                        <a href="product.html">${cart.book.bookName}</a>
+                                                    </h4>
+
+                                                    <span class="cart-product-info">
+                                                        <span class="cart-product-qty">${cart.qty} x
+                                                            <fmt:formatNumber value="${cart.book.buyPrice}" pattern=" #,##0 VND" />   
+                                                        </span>
+                                                    </span>
+                                                </div><!-- End .product-cart-details -->
+
+                                                <figure class="product-image-container">
+                                                    <a href="product.html" class="product-image">
+                                                        <img src="${cart.book.image}" alt="product">
+                                                    </a>
+                                                </figure>
+                                                <a href="${pageContext.request.contextPath }/customer/cusproductpage?action=remove&bookCode=${cart.book.bookCode}" class="btn-remove"><i class="icon-close"></i></a>
+                                            </div><!-- End .product -->
+
+                                        </div><!-- End .cart-product -->    
+                                    </c:forEach>
+
+                                    <div class="dropdown-cart-action">
+                                        <a href="cusCart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span></a>
+                                        <a href="cusCheckOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
+                                    </div><!-- End .dropdown-cart-total -->
+                                </div><!-- End .dropdown-menu -->
+                            </div><!-- End .cart-dropdown -->
+                            <%}%>
+                        </div><!-- End .header-right -->
+                    </div><!-- End .container -->
+                </div><!-- End .header-middle -->
+            </header><!-- End .header -->
+
+            <main class="main">
+                <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
+                    <div class="container d-flex align-items-center">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="home">Home</a></li>
+                            <li class="breadcrumb-item"><a href="shopping?index=1">Shopping</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">${detailProduct.bookName}</li>
                         </ol>
 
-                        <nav class="product-pager ml-auto" aria-label="Product">
-                            <a class="product-pager-link product-pager-prev" href="#" aria-label="Previous" tabindex="-1">
-                                <i class="icon-angle-left"></i>
-                                <span>Prev</span>
-                            </a>
-
-                            <a class="product-pager-link product-pager-next" href="#" aria-label="Next" tabindex="-1">
-                                <span>Next</span>
-                                <i class="icon-angle-right"></i>
-                            </a>
-                        </nav><!-- End .pager-nav -->
                     </div><!-- End .container -->
                 </nav><!-- End .breadcrumb-nav -->
 
@@ -95,6 +310,9 @@
                                 </div><!-- End .col-md-6 -->
 
                                 <div class="col-md-6">
+                                    <c:if test='${checkQuanity == "Store has no more quantity of this book left. We apologize for the inconvenience."}'>
+                                        <h5  class="center-parent"style="color: red;">${checkQuanity}</h5>
+                                    </c:if>
                                     <div class="product-details">
                                         <h1 class="product-title">${detailProduct.bookName}</h1><!-- End .product-title -->
 
@@ -107,12 +325,13 @@
 
                                         <c:if test="${detailProduct.qty==0}">
                                             <div style="color: red" class="product-price">
-                                               SOLD OUT
+                                                SOLD OUT
                                             </div>
-                                        </c:if>        
+                                        </c:if>       
+
                                         <div class="product-content">
                                             <p id="product-content-desc" class="product-content-desc">${detailProduct.description}</p>
-                                            <button onclick="handleMoreLessClick()">show more/less</button>
+                                            <button class="btn btn-outline-primary-2" onclick="handleMoreLessClick()">show more/less</button>
                                             <script>
                                                 const element = document.getElementById("product-content-desc");
                                                 function handleMoreLessClick() {
@@ -127,7 +346,7 @@
                                         <div class="product-details-footer">
                                             <div class="product-cat">
                                                 <span>Category:</span>
-                                                <a href="cuscategory?categoryName=${detailProduct.cateName}">${detailProduct.cateName}</a>
+                                                <a href="category?categoryName=${detailProduct.cateName}">${detailProduct.cateName}</a>
                                             </div><!-- End .product-cat -->
                                         </div>
                                         <div class="product-details-footer">
@@ -161,60 +380,64 @@
                                     <div class="products">
                                         <div class="row justify-content-center">
                                             <c:forEach items="${listRecentArrival}" var="listAll" >
-                                    <div class="col-6 col-md-4 col-lg-4 col-xl-3">
-                                        <div class="product">
-                                            <figure class="product-media">
-                                                <c:if test="${listAll.discountPercent > 0}">
-                                                    <span class="product-label label-new">Discount</span>
-                                                </c:if>
-                                                <a href="cusdetail?pbookCode=${listAll.bookCode}&categoryBook=${listAll.cateName}">
-                                                    <img style="width: 	277px; height: 	375px;" src="${listAll.image}" alt="Product image" class="product-image">
-                                                </a>
-                                                
-                                                <div class="product-action">
-                                                    <a href="#" class="btn-product btn-cart"><span>Add to Cart</span></a>
-                                                </div>
-                                            </figure><!-- End .product-media -->
+                                                <div class="col-6 col-md-4 col-lg-4 col-xl-3">
+                                                    <div class="product">
+                                                        <figure class="product-media">
 
-                                            <div class="product-body">
-                                                <div class="product-cat">
-                                                    <a href="">${listAll.cateName}</a>
-                                                </div><!-- End .product-cat -->
-                                                <h3 class="product-title"><a href="cusdetail?pbookCode=${listAll.bookCode}&categoryBook=${listAll.cateName}">${listAll.bookName}</a></h3><!-- End .product-title -->
-                                                    <c:if test="${listAll.discountPercent == 0}">
-                                                    <div class="product-price">
-                                                        Price <fmt:formatNumber value="${listAll.buyPrice}" pattern=" #,##0 VND" />
-                                                        
-                                                    </div><!-- End .product-price -->
-                                                </c:if>
-                                                <c:if test="${listAll.discountPercent > 0}">
-                                                    <div class="product-price" style="text-decoration: line-through">
-                                                        Old Price: <fmt:formatNumber value="${listAll.buyPrice}" pattern=" #,##0 VND" />
-                                                    </div><!-- End .product-price -->
-                                                    <div class="product-price">
-                                                        Sale Price: <fmt:formatNumber value="${listAll.buyPrice- (listAll.discountPercent *listAll.buyPrice/100)}" pattern=" #,##0 VND" />
-                                                    </div><!-- End .product-price -->
-                                                </c:if>
+                                                            <c:if test="${listAll.discountPercent > 0}">
+                                                                <span class="product-label label-new">Discount</span>
+                                                            </c:if>
 
-                                                <div class="product-author">
-                                                    Author: 
-                                                    <c:if test="${listAll.getAuthorNum()==1}">
-                                                        ${listAll.author}
-                                                    </c:if>
-                                                    <c:if test="${listAll.getAuthorNum()!=1}">
+                                                            <a href="detail?pbookCode=${listAll.bookCode}&categoryBook=${listAll.cateName}">
+                                                                <img style="width: 	277px; height: 	375px;" src="${listAll.image}" alt="Product image" class="product-image">
+                                                            </a>                                             
 
-                                                        <div class="product">
-                                                            <c:forTokens var="token" items="${listAll.author}" delims=",">
-                                                                <li><c:out value="${token}"/></li>
-                                                                </c:forTokens>
+                                                            <div class="product-action">
+                                                                <a href="${pageContext.request.contextPath }/customer/cusproductpage?&action=addToCart&bookCode=${listAll.bookCode}" class="btn-product btn-cart"><span>add to cart</span></a>
+                                                            </div>
 
-                                                        </div><!-- End .ratings -->
-                                                    </c:if>
-                                                </div><!-- End .rating-container -->
-                                            </div><!-- End .product-body -->
-                                        </div><!-- End .product -->
-                                    </div><!-- End .col-sm-6 col-lg-4 col-xl-3 -->
-                                </c:forEach>
+                                                        </figure><!-- End .product-media -->
+
+                                                        <div class="product-body">
+                                                            <div class="product-cat">
+                                                                <a href="">${listAll.cateName}</a>
+                                                            </div><!-- End .product-cat -->
+                                                            <h3 class="product-title"><a href="detail?pbookCode=${listAll.bookCode}&categoryBook=${listAll.cateName}">${listAll.bookName}</a></h3><!-- End .product-title -->
+                                                                <c:if test="${listAll.discountPercent == 0}">
+                                                                <div class="product-price">
+                                                                    Price <fmt:formatNumber value="${listAll.buyPrice}" pattern=" #,##0 VND" />
+
+                                                                </div><!-- End .product-price -->
+                                                            </c:if>
+                                                            <c:if test="${listAll.discountPercent > 0}">
+                                                                <div class="product-price" style="text-decoration: line-through">
+                                                                    Old Price: <fmt:formatNumber value="${listAll.buyPrice}" pattern=" #,##0 VND" />
+                                                                </div><!-- End .product-price -->
+                                                                <div class="product-price">
+                                                                    Sale Price: <fmt:formatNumber value="${listAll.buyPrice- (listAll.discountPercent *listAll.buyPrice/100)}" pattern=" #,##0 VND" />
+                                                                </div><!-- End .product-price -->
+                                                            </c:if>
+
+                                                            <div class="product-author">
+                                                                Author: 
+                                                                <c:if test="${listAll.getAuthorNum()==1}">
+                                                                    ${listAll.author}
+                                                                </c:if>
+                                                                <c:if test="${listAll.getAuthorNum()!=1}">
+
+                                                                    <div class="product">
+                                                                        <c:forTokens var="token" items="${listAll.author}" delims=",">
+                                                                            <li><c:out value="${token}"/></li>
+                                                                            </c:forTokens>
+
+                                                                    </div><!-- End .ratings -->
+                                                                </c:if>
+                                                            </div><!-- End .rating-container -->
+                                                        </div><!-- End .product-body -->
+                                                    </div><!-- End .product -->
+                                                </div><!-- End .col-sm-6 col-lg-4 col-xl-3 -->
+                                                <c:set var="cateName" value="${listAll.cateName}"></c:set>
+                                            </c:forEach>
 
 
 
@@ -337,37 +560,218 @@
         </div><!-- End .page-wrapper -->
         <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
 
+
+        <!--        <form action="productpage" method="post">-->
         <!-- Sticky Bar -->
         <div class="sticky-bar">
             <div class="container">
                 <div class="row">
                     <div class="col-6">
                         <figure class="product-media">
-                            <a href="#">
+                            <a href="product.jsp">
                                 <img src="${detailProduct.image}" alt="Product image">
                             </a>
                         </figure><!-- End .product-media -->
-                        <h4 class="product-title"><a href="#">${detailProduct.bookName}</a></h4><!-- End .product-title -->
-                    </div><!-- End .col-6 -->
+                        <h4 class="product-title"><a href="product.jsp">${detailProduct.bookName}</a></h4><!-- End .product-title -->
+                    </div><!-- End .col-6 -->   
+
 
                     <div class="col-6 justify-content-end">
                         <div class="product-price">
                             <fmt:formatNumber value="${detailProduct.buyPrice}" pattern=" #,##0 VND" />
-                            
+
                         </div><!-- End .product-price -->
-                        <div class="product-details-quantity">
-                            <input type="number" id="sticky-cart-qty" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
-                        </div><!-- End .product-details-quantity -->
+
+                        <!--                            <div class="product-details-quantity">
+                                                        <input type="number" id="sticky-cart-qty" name="txtnumber" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
+                                                    </div> End .product-details-quantity -->
+                        <input type="text" name="bookCode" value="${detailProduct.bookCode}" hidden>
+                        <input type="text" name="action" value="addToCart" hidden>
 
                         <div class="product-details-action">
-                            <a href="#" class="btn-product btn-cart"><span>Add to Cart</span></a>
+                            <a href="${pageContext.request.contextPath }/customer/cusproductpage?&action=addToCart&bookCode=${detailProduct.bookCode}&cateName=${cateName}" class="btn-product btn-cart"><span>add to cart</span></a>
                         </div><!-- End .product-details-action -->
+
                     </div><!-- End .col-6 -->
                 </div><!-- End .row -->
             </div><!-- End .container -->
         </div><!-- End .sticky-bar -->
+        <!--        </form>-->
 
 
+
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu-overlay"></div><!-- End .mobil-menu-overlay -->
+
+        <div class="mobile-menu-container">
+            <div class="mobile-menu-wrapper">
+                <span class="mobile-menu-close"><i class="icon-close"></i></span>
+
+                <form action="#" method="get" class="mobile-search">
+                    <label for="mobile-search" class="sr-only">Search</label>
+                    <input type="search" class="form-control" name="mobile-search" id="mobile-search" placeholder="Search in..." required>
+                    <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
+                </form>
+
+                <!--            <nav class="mobile-nav">
+                                <ul class="mobile-menu">
+                                    <li class="active">
+                                        <a href="index.html">Home</a>
+                
+                                        <ul>
+                                            <li><a href="index-1.html">01 - furniture store</a></li>
+                                            <li><a href="index.html">02 - furniture store</a></li>
+                                            <li><a href="index-3.html">03 - electronic store</a></li>
+                                            <li><a href="index-4.html">04 - electronic store</a></li>
+                                            <li><a href="index-5.html">05 - fashion store</a></li>
+                                            <li><a href="index-6.html">06 - fashion store</a></li>
+                                            <li><a href="index-7.html">07 - fashion store</a></li>
+                                            <li><a href="index-8.html">08 - fashion store</a></li>
+                                            <li><a href="index-9.html">09 - fashion store</a></li>
+                                            <li><a href="index-10.html">10 - shoes store</a></li>
+                                            <li><a href="index-11.html">11 - furniture simple store</a></li>
+                                            <li><a href="index-12.html">12 - fashion simple store</a></li>
+                                            <li><a href="index-13.html">13 - market</a></li>
+                                            <li><a href="index-14.html">14 - market fullwidth</a></li>
+                                            <li><a href="index-15.html">15 - lookbook 1</a></li>
+                                            <li><a href="index-16.html">16 - lookbook 2</a></li>
+                                            <li><a href="index-17.html">17 - fashion store</a></li>
+                                            <li><a href="index-18.html">18 - fashion store (with sidebar)</a></li>
+                                            <li><a href="index-19.html">19 - games store</a></li>
+                                            <li><a href="index-20.html">20 - book store</a></li>
+                                            <li><a href="index-21.html">21 - sport store</a></li>
+                                            <li><a href="index-22.html">22 - tools store</a></li>
+                                            <li><a href="index-23.html">23 - fashion left navigation store</a></li>
+                                            <li><a href="index-24.html">24 - extreme sport store</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="category.html">Shop</a>
+                                        <ul>
+                                            <li><a href="category-list.html">Shop List</a></li>
+                                            <li><a href="category-2cols.html">Shop Grid 2 Columns</a></li>
+                                            <li><a href="category.html">Shop Grid 3 Columns</a></li>
+                                            <li><a href="category-4cols.html">Shop Grid 4 Columns</a></li>
+                                            <li><a href="category-boxed.html"><span>Shop Boxed No Sidebar<span class="tip tip-hot">Hot</span></span></a></li>
+                                            <li><a href="category-fullwidth.html">Shop Fullwidth No Sidebar</a></li>
+                                            <li><a href="product-category-boxed.html">Product Category Boxed</a></li>
+                                            <li><a href="product-category-fullwidth.html"><span>Product Category Fullwidth<span class="tip tip-new">New</span></span></a></li>
+                                            <li><a href="cart.html">Cart</a></li>
+                                            <li><a href="checkout.html">Checkout</a></li>
+                                            <li><a href="wishlist.html">Wishlist</a></li>
+                                            <li><a href="#">Lookbook</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="product.jsp" class="sf-with-ul">Product</a>
+                                        <ul>
+                                            <li><a href="product.jsp">Default</a></li>
+                                            <li><a href="product-centered.html">Centered</a></li>
+                                            <li><a href="product-extended.html"><span>Extended Info<span class="tip tip-new">New</span></span></a></li>
+                                            <li><a href="product-gallery.html">Gallery</a></li>
+                                            <li><a href="product-sticky.html">Sticky Info</a></li>
+                                            <li><a href="product-sidebar.html">Boxed With Sidebar</a></li>
+                                            <li><a href="product-fullwidth.html">Full Width</a></li>
+                                            <li><a href="product-masonry.html">Masonry Sticky Info</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#">Pages</a>
+                                        <ul>
+                                            <li>
+                                                <a href="about.html">About</a>
+                
+                                                <ul>
+                                                    <li><a href="about.html">About 01</a></li>
+                                                    <li><a href="about-2.html">About 02</a></li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a href="contact.html">Contact</a>
+                
+                                                <ul>
+                                                    <li><a href="contact.html">Contact 01</a></li>
+                                                    <li><a href="contact-2.html">Contact 02</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="login.html">Login</a></li>
+                                            <li><a href="faq.html">FAQs</a></li>
+                                            <li><a href="404.html">Error 404</a></li>
+                                            <li><a href="coming-soon.html">Coming Soon</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="blog.html">Blog</a>
+                
+                                        <ul>
+                                            <li><a href="blog.html">Classic</a></li>
+                                            <li><a href="blog-listing.html">Listing</a></li>
+                                            <li>
+                                                <a href="#">Grid</a>
+                                                <ul>
+                                                    <li><a href="blog-grid-2cols.html">Grid 2 columns</a></li>
+                                                    <li><a href="blog-grid-3cols.html">Grid 3 columns</a></li>
+                                                    <li><a href="blog-grid-4cols.html">Grid 4 columns</a></li>
+                                                    <li><a href="blog-grid-sidebar.html">Grid sidebar</a></li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a href="#">Masonry</a>
+                                                <ul>
+                                                    <li><a href="blog-masonry-2cols.html">Masonry 2 columns</a></li>
+                                                    <li><a href="blog-masonry-3cols.html">Masonry 3 columns</a></li>
+                                                    <li><a href="blog-masonry-4cols.html">Masonry 4 columns</a></li>
+                                                    <li><a href="blog-masonry-sidebar.html">Masonry sidebar</a></li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a href="#">Mask</a>
+                                                <ul>
+                                                    <li><a href="blog-mask-grid.html">Blog mask grid</a></li>
+                                                    <li><a href="blog-mask-masonry.html">Blog mask masonry</a></li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a href="#">Single Post</a>
+                                                <ul>
+                                                    <li><a href="single.html">Default with sidebar</a></li>
+                                                    <li><a href="single-fullwidth.html">Fullwidth no sidebar</a></li>
+                                                    <li><a href="single-fullwidth-sidebar.html">Fullwidth with sidebar</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="elements-list.html">Elements</a>
+                                        <ul>
+                                            <li><a href="elements-products.html">Products</a></li>
+                                            <li><a href="elements-typography.html">Typography</a></li>
+                                            <li><a href="elements-titles.html">Titles</a></li>
+                                            <li><a href="elements-banners.html">Banners</a></li>
+                                            <li><a href="elements-product-category.html">Product Category</a></li>
+                                            <li><a href="elements-video-banners.html">Video Banners</a></li>
+                                            <li><a href="elements-buttons.html">Buttons</a></li>
+                                            <li><a href="elements-accordions.html">Accordions</a></li>
+                                            <li><a href="elements-tabs.html">Tabs</a></li>
+                                            <li><a href="elements-testimonials.html">Testimonials</a></li>
+                                            <li><a href="elements-blog-posts.html">Blog Posts</a></li>
+                                            <li><a href="elements-portfolio.html">Portfolio</a></li>
+                                            <li><a href="elements-cta.html">Call to Action</a></li>
+                                            <li><a href="elements-icon-boxes.html">Icon Boxes</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav> End .mobile-nav -->
+
+                <div class="social-icons">
+                    <a href="#" class="social-icon" target="_blank" title="Facebook"><i class="icon-facebook-f"></i></a>
+                    <a href="#" class="social-icon" target="_blank" title="Twitter"><i class="icon-twitter"></i></a>
+                    <a href="#" class="social-icon" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
+                    <a href="#" class="social-icon" target="_blank" title="Youtube"><i class="icon-youtube"></i></a>
+                </div><!-- End .social-icons -->
+            </div><!-- End .mobile-menu-wrapper -->
+        </div><!-- End .mobile-menu-container -->
 
         <!-- Sign in / Register Modal -->
         <div class="modal fade" id="signin-modal" tabindex="-1" role="dialog" aria-hidden="true">

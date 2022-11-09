@@ -280,7 +280,7 @@
                     <div class="container d-flex align-items-center">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="home">Home</a></li>
-                            <li class="breadcrumb-item"><a href=""shopping?index=1"">Shopping</a></li>
+                            <li class="breadcrumb-item"><a href="shopping?index=1">Shopping</a></li>
                             <li class="breadcrumb-item active" aria-current="page">${detailProduct.bookName}</li>
                         </ol>
 
