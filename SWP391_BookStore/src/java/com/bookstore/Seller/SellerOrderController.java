@@ -38,6 +38,7 @@ public class SellerOrderController extends HttpServlet {
             OrderDAO dAO=new OrderDAO();
         List<Order> list=dAO.listOrder();
         request.setAttribute("listO", list);
+        request.setAttribute("temp", "All");
         request.getRequestDispatcher("sellerOrder.jsp").forward(request, response);
         }
     }

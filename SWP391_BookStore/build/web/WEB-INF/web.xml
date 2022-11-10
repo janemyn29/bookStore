@@ -572,6 +572,14 @@
         <servlet-name>ImAddReceiptController</servlet-name>
         <servlet-class>com.bookstore.Importer.ImAddReceiptController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SellerOrderStatusController</servlet-name>
+        <servlet-class>com.bookstore.Seller.SellerOrderStatusController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SellerReturnStatusController</servlet-name>
+        <servlet-class>com.bookstore.Seller.SellerReturnStatusController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -1039,6 +1047,14 @@
     <servlet-mapping>
         <servlet-name>ImAddReceiptController</servlet-name>
         <url-pattern>/imp/imCreate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SellerOrderStatusController</servlet-name>
+        <url-pattern>/Seller/adOrderStatus</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SellerReturnStatusController</servlet-name>
+        <url-pattern>/Seller/sellerReStatus</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

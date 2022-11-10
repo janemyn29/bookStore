@@ -102,7 +102,71 @@
                             <div class="card">
                                 <div class="card-body">
                                     <span class="card-title">Return Management</span>
-
+                                    <form action="sellerReStatus" style="margin-top:15px ">
+                                    <label>Choose Status:</label>
+                                        <div class="input-group">
+                                    <select name='status' class="custom-select">
+                                                <c:if test="${temp=='All'}">
+                                                <option selected value="All">All</option>
+                                                <option value="wait to approve">Wait to approve</option>
+                                                <option value="returning">Returning</option>
+                                                <option value="reject">Reject</option>
+                                                <option value="returned">Returned</option>
+                                                <option value="out of date">Expired Returned</option>
+                                                
+                                                </c:if>
+                                                <c:if test="${temp=='wait to approve'}">
+                                                <option  value="All">All</option>
+                                                <option selected value="wait to approve">Wait to approve</option>
+                                                <option value="returning">Returning</option>
+                                                <option value="reject">Reject</option>
+                                                <option value="returned">Returned</option>
+                                                <option value="out of date">Expired Returned</option>
+                                                
+                                                </c:if>
+                                                <c:if test="${temp=='returning'}">
+                                                <option  value="All">All</option>
+                                                <option value="wait to approve">Wait to approve</option>
+                                                <option selected value="returning">Returning</option>
+                                                <option value="reject">Reject</option>
+                                                <option value="returned">Returned</option>
+                                                <option value="out of date">Expired Returned</option>
+                                                
+                                                </c:if>
+                                                <c:if test="${temp=='reject'}">
+                                                <option  value="All">All</option>
+                                                <option value="wait to approve">Wait to approve</option>
+                                                <option  value="returning">Returning</option>
+                                                <option selected value="reject">Reject</option>
+                                                <option value="returned">Returned</option>
+                                                <option value="out of date">Expired Returned</option>
+                                                
+                                                </c:if>
+                                                <c:if test="${temp=='returned'}">
+                                                <option  value="All">All</option>
+                                                <option value="wait to approve">Wait to approve</option>
+                                                <option  value="returning">Returning</option>
+                                                <option  value="reject">Reject</option>
+                                                <option selected value="returned">Returned</option>
+                                                <option value="out of date">Expired Returned</option>
+                                                
+                                                </c:if>
+                                                <c:if test="${temp=='out of date'}">
+                                                <option  value="All">All</option>
+                                                <option value="wait to approve">Wait to approve</option>
+                                                <option  value="returning">Returning</option>
+                                                <option  value="reject">Reject</option>
+                                                <option  value="returned">Returned</option>
+                                                <option selected value="out of date">Expired Returned</option>
+                                                
+                                                </c:if>
+                                    </select>
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-dark" type="submit">Filter
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
                                     <div class="table-responsive">
                                         <table class="table table-striped table-bordered zero-configuration">
                                             <thead>

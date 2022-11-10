@@ -172,8 +172,8 @@
                                             <c:if test='${order.getStatus().equals("not confirm")}'>
                                                 <input style="color: red" type="text"  class="form-control"  value='Not Confirm' readonly>
                                             </c:if>
-                                            <c:if test='${order.getStatus().equals("canceled")}'>
-                                                <input style="color: red" type="text"  class="form-control"  value='Canceled' readonly>
+                                            <c:if test='${order.getStatus().equals("cancelled")}'>
+                                                <input style="color: red" type="text"  class="form-control"  value='Cancelled' readonly>
                                             </c:if>
                                             <c:if test='${order.getStatus().equals("delivery fail")}'>
                                                 <input style="color: red" type="text"  class="form-control"  value='Delivery Fail' readonly>

@@ -49,6 +49,26 @@ public class OrderDAO {
         }
         return list;
     }
+    public List<Order> listOrderByStatus(String status) {
+        List<Order> list = new ArrayList<>();
+
+        String sql = " select o.orderID, o.accountID,o.orderDate,o.userAddress,o.totalPrice,o.orderNote,o.status,a.userName,a.email,a.phoneNumber\n"
+                + "from [dbo].[tblOrder] o inner join [dbo].[tblAccount] a on  o.accountID=a.accountID "
+                + "where o.status=? ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, status);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                //int orderID, int accountID, Date orderDate, String address, int total, String Note, String status, String accName, String email, String phone
+                list.add(new Order(rs.getInt(1), rs.getInt(2), rs.getDate(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
 
     public List<Order> listCancelOrderByAccID(int accID) {
         List<Order> list = new ArrayList<>();

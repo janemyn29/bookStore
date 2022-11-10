@@ -5,14 +5,13 @@
  */
 package com.bookstore.Seller;
 
+import com.bookstore.Order.Order;
+import com.bookstore.Order.OrderDAO;
 import com.bookstore.Order.Return;
 import com.bookstore.Order.ReturnDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author tramy
  */
-public class SellerReturnController extends HttpServlet {
+public class SellerReturnStatusController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,28 +37,17 @@ public class SellerReturnController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            ReturnDAO dAO = new ReturnDAO();
-        List<Return> list = dAO.listReturn();
-        Long now= System.currentTimeMillis();
-            for (Return return1 : list) {
-                if (return1.getStatus().equals("returning")) {
-                    Long temp = return1.getApproveDate().getTime();
-                    Long check=now-(432000*1000);
-                    if (check>=temp) {
-                        String id = String.valueOf(return1.getOrderID());
-                        try {
-                            dAO.updateReturn(id);
-                        } catch (SQLException ex) {
-                            Logger.getLogger(SellerReturnController.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    }
-                }
-            }
-            List<Return> listRe = dAO.listReturn();
-        request.setAttribute("listO", listRe);
-        request.setAttribute("temp", "All");
+            String status= request.getParameter("status");
+            if (status.equals("All")) {
+                request.setAttribute("temp", status);
+                request.getRequestDispatcher("sellerReturn").forward(request, response);
+            }else{
+            ReturnDAO dAO=new ReturnDAO();
+        List<Return> list=dAO.listReturnByStatus(status);
+        request.setAttribute("listO", list);
+        request.setAttribute("temp", status);
         request.getRequestDispatcher("sellerReturn.jsp").forward(request, response);
-        }
+        }}
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -55,6 +55,38 @@ public class ReturnDAO {
         return list;
     }
     
+    public List<Return> listReturnByStatus(String status) {
+        List<Return> list = new ArrayList<>();
+
+        String sql = " Select o.orderID,o.accountID,o.orderDate,o.userAddress,o.totalPrice,o.orderNote,o.status,a.userName,"
+                + "a.email,a.phoneNumber,o.receivedDate,o.requestDate,o.returnReason,o.approveDate\n"
+                + "from [dbo].[tblOrder] o inner join [dbo].[tblAccount] a on  o.accountID=a.accountID\n"
+                + "where o.status =? ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, status);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                //int orderID, int accountID, Date orderDate, String address, int total, String Note, String status, String accName, String email, String phone
+                list.add(new Return(rs.getInt(1),//oID
+                        rs.getInt(2),//accID
+                        rs.getDate(3),//orDate
+                        rs.getString(4),//Address
+                        rs.getInt(5),//price
+                        rs.getString(6),//note
+                        rs.getString(7),//status
+                        rs.getString(8),//name
+                        rs.getString(9),
+                        rs.getString(10),
+                        rs.getDate(11), rs.getDate(12), rs.getString(13), rs.getDate(14)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+    
     public Return getReturnByID(String id) {
         String sql = " Select o.orderID,o.accountID,o.orderDate,o.userAddress,o.totalPrice,o.orderNote,o.status,a.userName,"
                 + "a.email,a.phoneNumber,o.receivedDate,o.requestDate,o.returnReason,o.approveDate\n"

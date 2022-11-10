@@ -101,6 +101,83 @@
                             <div class="card">
                                 <div class="card-body">
                                     <span class="card-title">Order Management</span>
+                                    <form action="adOrderStatus" style="margin-top:15px ">
+                                    <label>Choose Status:</label>
+                                        <div class="input-group">
+                                            <select name='status' class="custom-select">
+                                                <c:if test="${temp=='All'}">
+                                                    <option selected value="All">All</option>
+                                                <option value="confirming">Confirming</option>
+                                                <option value="not confirm">Not Confirm</option>
+                                                <option value="cancelled">Cancelled</option>
+                                                <option value="delivering">Delivering</option>
+                                                <option value="delivery fail">Delivery Fail</option>
+                                                <option value="received">Received</option>
+                                                </c:if>
+                                                
+                                                <c:if test="${temp=='confirming'}">
+                                                    <option  value="All">All</option>
+                                                <option selected value="confirming">Confirming</option>
+                                                <option value="not confirm">Not Confirm</option>
+                                                <option value="cancelled">Cancelled</option>
+                                                <option value="delivering">Delivering</option>
+                                                <option value="delivery fail">Delivery Fail</option>
+                                                <option value="received">Received</option>
+                                                </c:if>
+                                                <c:if test="${temp=='not confirm'}">
+                                                    <option  value="All">All</option>
+                                                <option value="confirming">Confirming</option>
+                                                <option selected value="not confirm">Not Confirm</option>
+                                                <option value="cancelled">Cancelled</option>
+                                                <option value="delivering">Delivering</option>
+                                                <option value="delivery fail">Delivery Fail</option>
+                                                <option value="received">Received</option>
+                                                </c:if>
+                                                <c:if test="${temp=='cancelled'}">
+                                                    <option  value="All">All</option>
+                                                <option value="confirming">Confirming</option>
+                                                <option  value="not confirm">Not Confirm</option>
+                                                <option selected value="cancelled">Cancelled</option>
+                                                <option value="delivering">Delivering</option>
+                                                <option value="delivery fail">Delivery Fail</option>
+                                                <option value="received">Received</option>
+                                                </c:if>
+                                                <c:if test="${temp=='delivering'}">
+                                                    <option  value="All">All</option>
+                                                <option value="confirming">Confirming</option>
+                                                <option  value="not confirm">Not Confirm</option>
+                                                <option  value="cancelled">Cancelled</option>
+                                                <option selected value="delivering">Delivering</option>
+                                                <option value="delivery fail">Delivery Fail</option>
+                                                <option value="received">Received</option>
+                                                </c:if>
+                                                <c:if test="${temp=='delivery fail'}">
+                                                    <option  value="All">All</option>
+                                                <option value="confirming">Confirming</option>
+                                                <option  value="not confirm">Not Confirm</option>
+                                                <option  value="cancelled">Cancelled</option>
+                                                <option  value="delivering">Delivering</option>
+                                                <option selected value="delivery fail">Delivery Fail</option>
+                                                <option value="received">Received</option>
+                                                </c:if>
+                                                <c:if test="${temp=='received'}">
+                                                    <option  value="All">All</option>
+                                                <option value="confirming">Confirming</option>
+                                                <option  value="not confirm">Not Confirm</option>
+                                                <option  value="cancelled">Cancelled</option>
+                                                <option  value="delivering">Delivering</option>
+                                                <option  value="delivery fail">Delivery Fail</option>
+                                                <option selected value="received">Received</option>
+                                                </c:if>
+                                                
+               
+                                            </select>
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-dark" type="submit">Filter
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
 
                                     <div class="table-responsive">
                                         <table class="table table-striped table-bordered zero-configuration">
@@ -124,7 +201,7 @@
                                                     for (Order elem : list) {
                                                         MoneyFormat fm = new MoneyFormat();
                                                         String foString = fm.formatMoney(elem.getTotal());
-                                                        if(elem.getStatus().equals("confirming") ||elem.getStatus().equals("not confirm") || elem.getStatus().equals("canceled")||elem.getStatus().equals("received")||elem.getStatus().equals("delivery fail")||elem.getStatus().equals("delivering")){
+                                                        if(elem.getStatus().equals("confirming") ||elem.getStatus().equals("not confirm") || elem.getStatus().equals("cancelled")||elem.getStatus().equals("received")||elem.getStatus().equals("delivery fail")||elem.getStatus().equals("delivering")){
                                                         out.print("<tr>"
                                                                 + "<td>" + elem.getOrderID() + "</td>"
                                                                 + "<td>" + elem.getAccName() + "</td>"
@@ -141,8 +218,8 @@
                                                             out.print("<span class='badge badge-pill badge-warning'>Delivering</span></td>");
                                                         } else if (elem.getStatus().equals("not confirm")) {
                                                             out.print("<span class='badge badge-pill badge-danger'>Not Confirm</span></td>");
-                                                        } else if (elem.getStatus().equals("canceled")) {
-                                                            out.print("<span class='badge badge-pill badge-danger'>Canceled</span></td>");
+                                                        } else if (elem.getStatus().equals("cancelled")) {
+                                                            out.print("<span class='badge badge-pill badge-danger'>Cancelled</span></td>");
                                                         } else if (elem.getStatus().equals("received")) {
                                                             out.print("<span class='badge badge-pill badge-success'>Received</span></td>");
                                                         } else if (elem.getStatus().equals("delivery fail")) {
