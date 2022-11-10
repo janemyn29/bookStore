@@ -66,10 +66,17 @@
                                                 <a class="nav-link" href="/SWP391_BookStore/logout">Sign Out</a>
                                             </li>
                                             <li>
-                                            <small>Notice:<br> - You can click on</small><i class="icon-eye"></i> <small> in the action column to view history details.<br>
-                                                - Or give feed back with history status as "recieved".<br>
-                                                - And you can only return products that have a status of "recieved" and have been received less than 5 days by click the "return" button at "return this item" column.
-                                            </small>
+                                                <small>Notice:<br> - You can click on</small><i class="icon-eye"></i> <small> in the action column to view history details.<br>
+                                                    - Or give feed back with history status as "recieved".<br>
+                                                    - And you can only return products that have a status of "recieved" and have been received less than 5 days by click the "return" button at "return this item" column.
+                                                </small>
+                                                <small style="color: green"> 
+                                                    <br>
+                                                    Any questions contact:
+                                                    <br> <i class="icon-facebook-f"></i> Tran My
+                                                    <br> <i class="icon-google">mail</i> : mytran@gmail.com
+                                                    <br> <i class="icon-phone"></i> 0837462988
+                                                </small>
                                             </li>
                                             <br>
                                         </ul>

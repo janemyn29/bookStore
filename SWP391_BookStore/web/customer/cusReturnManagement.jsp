@@ -66,8 +66,21 @@
                                                 <a class="nav-link" href="/SWP391_BookStore/logout">Sign Out</a>
                                             </li>
                                             <li>
-                                            <small>Notice:<br> - You can click on</small><i class="icon-eye"></i> <small> in the action column to view history details.<br>
-                                            </small>
+                                                <small>Notice:<br> - You can click on</small><i class="icon-eye"></i> <small> in the action column to view history details.<br>
+                                                    - Return address: 
+                                                    FPT University TP. Ho Chi Minh City, Lot E2a-7, Street D1, D. D1, Long Thanh My, Thu Duc City, Ho Chi Minh City 700000
+                                                </small>
+                                                <small style="color: red">
+                                                    <br> WARNING: 
+                                                    <br>- DEADLINE FOR SENDING A RETURN AFTER ACCEPTANCE IS 5 DAYS FROM ACCEPTANCE DATE
+                                                </small>
+                                                <small style="color: green"> 
+                                                    <br>
+                                                    Any questions contact:
+                                                    <br> <i class="icon-facebook-f"></i> Tran My
+                                                    <br> <i class="icon-google">mail</i> : mytran@gmail.com
+                                                    <br> <i class="icon-phone"></i> 0837462988
+                                                </small>
                                             </li>
                                         </ul>
                                     </aside><!-- End .col-lg-3 -->

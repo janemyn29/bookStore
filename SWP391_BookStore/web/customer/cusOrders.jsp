@@ -69,6 +69,13 @@
                                                 <small>Notice:<br> - You can click on</small><i class="icon-eye"></i> <small> in the action column to view order details.<br>
                                                 - Or confirm receipt of goods with order status as "delivering".
                                             </small>
+                                                <small style="color: green"> 
+                                                    <br>
+                                                    Any questions contact:
+                                                    <br> <i class="icon-facebook-f"></i> Tran My
+                                                    <br> <i class="icon-google">mail</i> : mytran@gmail.com
+                                                    <br> <i class="icon-phone"></i> 0837462988
+                                                </small>
                                             <li>
                                         </ul>
                                     </aside><!-- End .col-lg-3 -->
