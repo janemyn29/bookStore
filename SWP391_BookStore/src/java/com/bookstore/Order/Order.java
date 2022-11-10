@@ -69,6 +69,24 @@ public class Order {
         this.statusFeed = statusFeed;
     }
 
+    public Order(int orderID, Date orderDate, String address, String status, Date receivedDate) {
+        this.orderID = orderID;
+        this.orderDate = orderDate;
+        this.address = address;
+        this.status = status;
+        this.receivedDate = receivedDate;
+    }
+    
+    public Order(int orderID, Date orderDate, String address, String status, Date receivedDate, Date requestDate) {
+        this.orderID = orderID;
+        this.orderDate = orderDate;
+        this.address = address;
+        this.status = status;
+        this.receivedDate = receivedDate;
+        this.requestDate = requestDate;
+    }
+    
+    
     public Order(int orderID, Date orderDate, String address, String status) {
         this.orderID = orderID;
         this.orderDate = orderDate;

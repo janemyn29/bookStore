@@ -649,12 +649,20 @@
 
 
                                             <c:if test='${acc == null}'>
-                                                <small>You need sign in first before checkout!</small><br>
-                                                <small>Click the button below to sign in.</small>
+                                                <small style="color: red">You need sign in first before checkout!</small><br>
+                                                <small style="color: red">Click the button below to sign in.</small>
                                                 <a href="login.jsp" class="btn btn-outline-primary-2 btn-order btn-block">Loggin to checkout</a>
                                             </c:if>
-                                            <c:if test='${acc != null}'>
+                                            <c:if test='${acc != null && cart!=null}'>
                                                 <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">Place Order</button>
+                                            </c:if>
+                                            <c:if test='${cart==null && acc==null}'>
+                                                <a href="home" class="btn btn-outline-primary-2 btn-order btn-block">Continue to shopping</a>
+                                            </c:if>
+                                            <c:if test='${cart==null && acc!=null}'>
+                                                <small style="color: red">Your cart is empty!</small><br>
+                                                <small style="color: red">Please add at least 1 book to your cart to check out!</small>
+                                                <a href="cushome" class="btn btn-outline-primary-2 btn-order btn-block">Continue to shopping</a>
                                             </c:if>
                                         </div><!-- End .summary -->
                                     </aside><!-- End .col-lg-3 -->

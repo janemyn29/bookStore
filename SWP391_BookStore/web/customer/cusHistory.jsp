@@ -84,12 +84,13 @@
                                                         <c:if test='${checkDate == "Refund time expired!!!"}'>
                                                         <h5 class="center-parent" style="color: red;">${checkDate}</h5>
                                                     </c:if>
-                                                    <c:if test='${checkstatus == "You can only return products that have status is recieved"}'>
+                                                    <c:if test='${checkstatus == "You can only return products that have status is received"}'>
                                                         <h5 class="center-parent" style="color: red;">${checkstatus}</h5>
                                                     </c:if>
                                                     <tr class="center-parent">
                                                         <th>Number</th>
                                                         <th>Order Date</th>
+                                                        <th>Received Date</th>
                                                         <th>Order Address</th>
                                                         <th>Status</th>
                                                         <th>Action</th>
@@ -104,6 +105,7 @@
                                                                 <tr class="center-parent">
                                                                     <td>${count}</td>
                                                                 <td>${ord2.orderDate}</td>
+                                                                <td>${ord2.receivedDate}</td>
                                                                 <td>${ord2.address}</td>
                                                                 <td>${ord2.status}</td>
                                                                 <td><a class="icon-eye" href="cushistoryorderdetail?orderID=${ord2.orderID}"></a></td>

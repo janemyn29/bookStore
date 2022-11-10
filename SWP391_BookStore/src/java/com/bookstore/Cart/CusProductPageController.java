@@ -130,7 +130,10 @@ public class CusProductPageController extends HttpServlet {
                         cart.get(i).setBuyPrice(ibuyPrice);
                     }
                 }
+                int totalPrice = totalPrice(cart);
+                session.setAttribute("totalPrice", totalPrice);// set tong tien
                 session.setAttribute("cart", cart);
+                request.getRequestDispatcher("cusdetail?pbookCode="+ bookCode +"&cateName=" + cateName).forward(request, response);
             }
 
             session.setAttribute("cart", cart);

@@ -105,6 +105,8 @@
                                                     <h5 class="center-parent">--------------------------------Return Order----------------------------------</h5> 
                                                     <th>Number</th>
                                                     <th>Order Date</th>
+                                                    <th>Received Date</th>
+                                                    <th>Request Date</th>
                                                     <th>Order Address</th>
                                                     <th>Status</th>
                                                     </tr>
@@ -117,6 +119,8 @@
                                                                 <tr class="center-parent">
                                                                     <td>${count}</td>
                                                                 <td>${ord2.orderDate}</td>
+                                                                <td>${ord2.receivedDate}</td>
+                                                                <td>${ord2.requestDate}</td>
                                                                 <td>${ord2.address}</td>
                                                                 <td>${ord2.status}</td>
                                                             </tr>

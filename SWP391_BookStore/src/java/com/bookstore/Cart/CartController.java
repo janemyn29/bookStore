@@ -131,6 +131,8 @@ public class CartController extends HttpServlet {
                         cart.get(i).setBuyPrice(ibuyPrice);
                     }
                 }
+                int totalPrice = totalPrice(cart);
+                session.setAttribute("totalPrice", totalPrice);// set tong tien
                 session.setAttribute("cart", cart);
                 request.getRequestDispatcher("cart.jsp").forward(request, response);
 
@@ -145,6 +147,8 @@ public class CartController extends HttpServlet {
                         }
                     }
                 }
+                int totalPrice = totalPrice(cart);
+                session.setAttribute("totalPrice", totalPrice);// set tong tien
                 session.setAttribute("cart", cart);
                 request.getRequestDispatcher("home").forward(request, response);
 
@@ -164,6 +168,8 @@ public class CartController extends HttpServlet {
                         }
                     }
                 }
+                int totalPrice = totalPrice(cart);
+                session.setAttribute("totalPrice", totalPrice);// set tong tien
                 session.setAttribute("cart", cart);
                 request.getRequestDispatcher("cart.jsp").forward(request, response);
 
@@ -174,6 +180,8 @@ public class CartController extends HttpServlet {
                 if (quantityBookInCart < quantityBookAvailable) {
                     int quantity = cart.get(index).getQty() + 1;
                     cart.get(index).setQty(quantity);
+                    int totalPrice = totalPrice(cart);
+                    session.setAttribute("totalPrice", totalPrice);// set tong tien
                     session.setAttribute("cart", cart);
                     request.getRequestDispatcher("cart.jsp").forward(request, response);
                 } else {

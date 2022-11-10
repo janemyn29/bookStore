@@ -334,9 +334,9 @@ public class OrderDAO {
 
     public List<Order> getOrderListByStatus2(int accountID) {
         List<Order> list = new ArrayList<>();
-        String sql = " select orderID, orderDate, userAddress, status\n"
+        String sql = " select orderID, orderDate, userAddress, status, receivedDate\n"
                 + "from tblOrder\n"
-                + "where (status = 'received' or status = 'canceled') and accountID = ? ";
+                + "where (status = 'received' or status = 'cancelled') and accountID = ? ";
 
         try {
             conn = new DBUtils().getConnection();
@@ -349,7 +349,8 @@ public class OrderDAO {
                 list.add(new Order(rs.getInt(1), //orderID
                         rs.getDate(2), //orderDate
                         rs.getString(3).trim(),//userAddress
-                        rs.getString(4).trim()));//status
+                        rs.getString(4).trim(),//status
+                        rs.getDate(5)));
             }
         } catch (Exception e) {
         }
@@ -426,7 +427,7 @@ public class OrderDAO {
     public void updateOrderStatusByID(int orderID) {
 
         String sql = " update tblOrder\n"
-                + "set status = 'canceled'\n"
+                + "set status = 'cancelled'\n"
                 + "where orderID = ? ";
         try {
             conn = new DBUtils().getConnection();
@@ -511,7 +512,7 @@ public class OrderDAO {
 
     public List<Order> getOrderByOrderIDAndAccountID(int orderID, int accountID) {
         List<Order> list = new ArrayList<>();
-        String sql = " select orderID, orderDate, userAddress, status\n"
+        String sql = " select orderID, orderDate, userAddress, status, receivedDate, requestDate\n"
                 + "from tblOrder\n"
                 + "where orderID = ? and accountID = ? ";
         try {
@@ -525,7 +526,9 @@ public class OrderDAO {
                 list.add(new Order(rs.getInt(1),
                         rs.getDate(2),
                         rs.getString(3),
-                        rs.getString(4)));
+                        rs.getString(4),
+                        rs.getDate(5),
+                        rs.getDate(6)));
             }
         } catch (Exception e) {
         }
