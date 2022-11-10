@@ -69,7 +69,7 @@
 
                         </li>
                         <li class="mega-menu mega-menu-sm">
-                        <a href="sellerReturn" aria-expanded="false">
+                            <a class="active" href="sellerReturn" aria-expanded="false">
                             <i class="icon-list"></i><span class="nav-text">Return Management</span>
                         </a>
                         
@@ -93,8 +93,8 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">Home</li>
 
-                            <li class="breadcrumb-item "><a href="sellerOrder">Order Management</a></li>
-                            <li class="breadcrumb-item active">Order Detail</li>
+                            <li class="breadcrumb-item "><a href="sellerOrder">Return Management</a></li>
+                            <li class="breadcrumb-item active">Return Detail</li>
 
                         </ol>
                     </div>
@@ -105,8 +105,8 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <span class="card-title">Order Detail</span>
-                                    
+                                    <span class="card-title">Return Detail</span>
+
                                     <c:if test='${mess!=null}'>
                                         <div class="alert alert-success">${mess}</div>
                                     </c:if>
@@ -160,30 +160,42 @@
                                             <textarea class="form-control h-150px" rows="4" id="comment" readonly>${order.getNote()}</textarea>
                                         </div>
                                     </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Request Date:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="email" class="form-control"  value='${order.getRequestDate()}' readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label"> Return Reason:</label>
+                                        <div class="col-sm-10">
+
+                                            <textarea class="form-control h-150px" rows="4" id="comment" readonly>${order.getReturnReason()}</textarea>
+                                        </div>
+                                    </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Status:</label>
                                         <div  class="col-sm-10">
-                                            <c:if test='${order.getStatus().equals("confirming")}'>
-                                                <input style="color: #c96" type="text"  class="form-control"  value='Confirming' readonly>
+                                            <c:if test='${order.getStatus().equals("returning")}'>
+                                                <input style="color: #c96" type="text"  class="form-control"  value='Returning' readonly>
                                             </c:if>
-                                            <c:if test='${order.getStatus().equals("delivering")}'>
-                                                <input style="color: #c96" type="text"  class="form-control"  value='Delivering' readonly>
+                                            <c:if test='${order.getStatus().equals("wait to approve")}'>
+                                                <input style="color: #c96" type="text"  class="form-control"  value='Wait to approve' readonly>
                                             </c:if>
-                                            <c:if test='${order.getStatus().equals("not confirm")}'>
-                                                <input style="color: red" type="text"  class="form-control"  value='Not Confirm' readonly>
+                                            <c:if test='${order.getStatus().equals("reject")}'>
+                                                <input style="color: red" type="text"  class="form-control"  value='Reject' readonly>
                                             </c:if>
-                                            <c:if test='${order.getStatus().equals("canceled")}'>
-                                                <input style="color: red" type="text"  class="form-control"  value='Canceled' readonly>
+                                            <c:if test='${order.getStatus().equals("returned")}'>
+                                                <input style="color: #14CF43" type="text"  class="form-control"  value='Returned' readonly>
                                             </c:if>
-                                            <c:if test='${order.getStatus().equals("delivery fail")}'>
-                                                <input style="color: red" type="text"  class="form-control"  value='Delivery Fail' readonly>
+                                            <c:if test='${order.getStatus().equals("out of date")}'>
+                                                <input style="color: red" type="text"  class="form-control"  value='Expired returned' readonly>
                                             </c:if>
-                                            <c:if test='${order.getStatus().equals("received")}'>
-                                                <input style="color: #14CF43" type="text"  class="form-control"  value='Received' readonly>
-                                            </c:if>
+
                                         </div>
                                     </div>
-                                        
+
                                     <div class="table-responsive">
                                         <table class="table table-striped table-bordered zero-configuration">
                                             <thead>
@@ -198,44 +210,44 @@
                                             </thead>
                                             <tbody>
                                                 <%
-                                                    List<OrderDetail> detail= (List<OrderDetail>)request.getAttribute("detail");
+                                                    List<OrderDetail> detail = (List<OrderDetail>) request.getAttribute("detail");
                                                     for (OrderDetail o : detail) {
                                                         MoneyFormat fm = new MoneyFormat();
                                                         String foString = fm.formatMoney(o.getPrice());
-                                                            out.print("<tr>"
-                                                        +"<td>"+o.getDetailID()+"</td>"
-                                                        +"<td>"+o.getBookcode()+"</td>"
-                                                        +"<td>"+o.getbName()+"</td>"
-                                                        +"<td><img width='80px' src='"+o.getImg()+"'></td>"
-                                                       +" <td>"+o.getQuantity()+"</td>"
-                                                        +"<td>"+foString+"</td>"
-                                                    +"</tr>");
-                                                        }
+                                                        out.print("<tr>"
+                                                                + "<td>" + o.getDetailID() + "</td>"
+                                                                + "<td>" + o.getBookcode() + "</td>"
+                                                                + "<td>" + o.getbName() + "</td>"
+                                                                + "<td><img width='80px' src='" + o.getImg() + "'></td>"
+                                                                + " <td>" + o.getQuantity() + "</td>"
+                                                                + "<td>" + foString + "</td>"
+                                                                + "</tr>");
+                                                    }
                                                 %>
-                                               
+
                                             </tbody>
                                         </table>
                                     </div>
 
 
-                                    <c:if test='${order.getStatus().equals("received")||order.getStatus().equals("not confirm")||order.getStatus().equals("delivery fail") ||order.getStatus().equals("canceled")}'>    
+                                    <c:if test='${order.getStatus().equals("reject")||order.getStatus().equals("returned")||order.getStatus().equals("out of date")}'>    
                                         <div style="margin-top: 18px" class="form-group row">
 
-                                            <a style="margin-left: 415px" href="sellerOrder"><button style="margin-left: 5px;margin-right: 5px" class="btn mb-1 btn-warning">Cancel</button></a>
+                                            <a style="margin-left: 415px" href="sellerReturn"><button style="margin-left: 5px;margin-right: 5px" class="btn mb-1 btn-warning">Cancel</button></a>
                                         </div>
 
                                     </c:if>
 
-                                    <c:if test='${order.getStatus().equals("confirming")}'>    
-                                        <form action="selledUpdate">
+                                    <c:if test='${order.getStatus().equals("wait to approve")}'>    
+                                        <form action="selleApp">
                                             <div style="margin-top: 18px" class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Update status:</label>
                                                 <div  class="col-sm-10">
 
                                                     <div class="input-group">
                                                         <select name='check' class="custom-select">
-                                                            <option value="delivering" style="color: green">Approve</option>
-                                                            <option value="not confirm" style="color: red">Not Confirm</option>   
+                                                            <option value="returning" style="color: green">Approve</option>
+                                                            <option value="reject" style="color: red">Reject</option>   
                                                         </select>
                                                     </div>
                                                 </div>
@@ -243,83 +255,71 @@
 
                                             </div>
                                             <div class="form-group row">
-                                                <<table style="border: none">
-                                                    <tr>
-                                                    <button style="margin-left: 350px" type="submit" class="btn mb-1 btn-warning" >Update</button>
-                                                    </tr>
+                                                <table style="border: none">
+                                                    <td>
+                                                        <button style="margin-left: 350px" type="submit" class="btn mb-1 btn-warning" >Update</button>
+                                                    </td>
                                             </div>
                                         </form>
-                                        <tr>
-                                        <a style="margin-left: 70px" href="sellerOrder" class="btn mb-1 btn-warning">Cancel</a>
                                         <td>
-                                            </table>
-                                        </c:if>
-                                        <c:if test='${order.getStatus().equals("delivering")}'>    
-                                            <form action="selledUpdate" method="POST">
-                                                <div style="margin-top: 18px" class="form-group row">
-                                                    <label class="col-sm-2 col-form-label">Update status:</label>
-                                                    <div  class="col-sm-10">
+                                            <a style="margin-left: 70px" href="sellerReturn" class="btn mb-1 btn-warning">Cancel</a>
+                                        </td>
+                                        </table>
+                                    </c:if>
+                                    <c:if test='${order.getStatus().equals("returning")}'>    
+                                        <div class="form-group row">
+                                            <input type="hidden" name="orderid" value='${order.getOrderID()}'>
 
-                                                        <div class="input-group">
-                                                            <select name='check' class="custom-select">
-                                                                <option value="received" style="color: #14CF43">Recieved</option>
-                                                                <option value="delivery fail" style="color: red">Delivery Fail</option>   
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <input type="hidden" name="orderid" value='${order.getOrderID()}'>
-
-                                                </div>
-                                                <div class="form-group row">
-                                                    <table style="border: none">
-                                                        <tr>
-                                                        <button style="margin-left: 350px" type="submit" class="btn mb-1 btn-warning" >Update</button>
-                                                        </tr>
-                                                </div>
-                                            </form>
-                                        <tr>
-                                        <a style="margin-left: 70px" href="sellerOrder" class="btn mb-1 btn-warning">Cancel</a>
+                                            <table style="border: none">
+                                                <td>
+                                                    <a href="selleApp?check=returned&orderid=${order.getOrderID()}"><button style="margin-left: 350px" type="submit" class="btn mb-1 btn-warning" >Received</button></a>
+                                                </td>
+                                        
                                         <td>
-                                            </table>
-                                        </c:if>
+                                            <a style="margin-left: 70px" href="sellerReturn" class="btn mb-1 btn-warning">Cancel</a>
+                                        </td>
+                                        </form>
+                                        </table>
+                                        
+                                </c:if>
 
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- #/ container -->
             </div>
-            <!--**********************************
-                Content body end
-            ***********************************-->
-
-
-            <!--**********************************
-                Footer start
-            ***********************************-->
-
-            <!--**********************************
-                Footer end
-            ***********************************-->
+            <!-- #/ container -->
         </div>
         <!--**********************************
-            Main wrapper end
+            Content body end
+        ***********************************-->
+
+
+        <!--**********************************
+            Footer start
         ***********************************-->
 
         <!--**********************************
-            Scripts
+            Footer end
         ***********************************-->
-        <script src="../admin/plugins/common/common.min.js"></script>
-        <script src="../admin/js/custom.min.js"></script>
-        <script src="../admin/js/settings.js"></script>
-        <script src="../admin/js/gleek.js"></script>
-        <script src="../admin/js/styleSwitcher.js"></script>
+    </div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
 
-        <script src="../admin/plugins/tables/js/jquery.dataTables.min.js"></script>
-        <script src="../admin/plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
-        <script src="../admin/plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <script src="../admin/plugins/common/common.min.js"></script>
+    <script src="../admin/js/custom.min.js"></script>
+    <script src="../admin/js/settings.js"></script>
+    <script src="../admin/js/gleek.js"></script>
+    <script src="../admin/js/styleSwitcher.js"></script>
 
-    </body>
+    <script src="../admin/plugins/tables/js/jquery.dataTables.min.js"></script>
+    <script src="../admin/plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
+    <script src="../admin/plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
+
+</body>
 
 </html>

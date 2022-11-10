@@ -53,9 +53,9 @@ public class OrderDAO {
     public List<Order> listCancelOrderByAccID(int accID) {
         List<Order> list = new ArrayList<>();
 
-        String sql = " select *\n"
-                + "from tblOrder \n"
-                + "where status like 'canceled' and accountID=? ";
+        String sql = " select o.orderID, o.accountID,o.orderDate, o.userAddress, o.totalPrice,o.orderNote,o.status\n"
+                + "from tblOrder o\n"
+                + " where status like 'canceled' and accountID=? ";
         try {
             conn = new DBUtils().getConnection();
             ps = conn.prepareStatement(sql);
@@ -69,6 +69,36 @@ public class OrderDAO {
         } catch (Exception e) {
         }
         return list;
+    }
+    
+    public boolean updateOrderStatusReceived(String orderid, String check) throws SQLException {
+        try {
+            Date temp =  new Date(System.currentTimeMillis());
+
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " update [dbo].[tblOrder] \n"
+                        + "set [status]= ?,[receivedDate] = ?\n"
+                        + "where [orderID] = ? ";
+                ps = conn.prepareStatement(sql);
+                ps.setString(1, check);
+                ps.setDate(2,temp);
+                ps.setString(3, orderid);
+                int row = ps.executeUpdate();
+
+                if (row > 0) {
+                    return true;
+                }
+            }
+        } finally {
+            if (ps != null) {
+                ps.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return false;
     }
 
     public Order getOrderByID(String id) {

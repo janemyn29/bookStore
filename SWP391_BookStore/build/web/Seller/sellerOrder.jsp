@@ -67,6 +67,12 @@
                                 <i class="icon-list"></i><span class="nav-text">Order Management</span>
                             </a>
                         </li>
+                        <li class="mega-menu mega-menu-sm">
+                        <a href="sellerReturn" aria-expanded="false">
+                            <i class="icon-list"></i><span class="nav-text">Return Management</span>
+                        </a>
+                        
+                    </li>
 
                     </ul>
                 </div>
@@ -118,6 +124,7 @@
                                                     for (Order elem : list) {
                                                         MoneyFormat fm = new MoneyFormat();
                                                         String foString = fm.formatMoney(elem.getTotal());
+                                                        if(elem.getStatus().equals("confirming") ||elem.getStatus().equals("not confirm") || elem.getStatus().equals("canceled")||elem.getStatus().equals("received")||elem.getStatus().equals("delivery fail")||elem.getStatus().equals("delivering")){
                                                         out.print("<tr>"
                                                                 + "<td>" + elem.getOrderID() + "</td>"
                                                                 + "<td>" + elem.getAccName() + "</td>"
@@ -143,7 +150,8 @@
                                                         }
                                                         out.print("<td>"
                                                                 + "<a style='margin-left: 25px' href='sellerOrderDetail?id=" + elem.getOrderID() + "' data-toggle='tooltip' data-placement='bottom' title='View Order Detail'><i   class='icon-eye'></i></a>"
-                                                                + " </td>");
+                                                                + " </td></tr>");
+                                                        }
                                                     }                                                    %>
 
                                                 

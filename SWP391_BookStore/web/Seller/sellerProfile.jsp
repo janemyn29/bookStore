@@ -62,6 +62,12 @@
                             </a>
 
                         </li>
+                        <li class="mega-menu mega-menu-sm">
+                        <a href="sellerReturn" aria-expanded="false">
+                            <i class="icon-list"></i><span class="nav-text">Return Management</span>
+                        </a>
+                        
+                    </li>
 
                     </ul>
                 </div>

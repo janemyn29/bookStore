@@ -3,18 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bookstore.Seller;
+package com.bookstore.Importer;
 
-import com.bookstore.Order.Order;
-import com.bookstore.Order.OrderDAO;
-import com.bookstore.OrderDetail.OrderDetail;
-import com.bookstore.OrderDetail.OrderDetailDAO;
+import com.bookstore.Company.Company;
+import com.bookstore.Company.CompanyDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author tramy
  */
-public class SellerUpdateStatusController extends HttpServlet {
+public class ImAddReceiptNav extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,38 +37,13 @@ public class SellerUpdateStatusController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String check = request.getParameter("check");
-            String orderid = request.getParameter("orderid");
-
-            OrderDAO dao = new OrderDAO();
-            boolean retur = false;
-            try {
-                if(check.equals("received")){
-                retur = dao.updateOrderStatusReceived(orderid, check);
-                }else if (check.equals("delivering")) {
-                 retur =dao.updateOrderStatusNormal(orderid, check);
-                }else if (check.equals("delivery fail")) {
-                 retur =dao.updateOrderStatusAndAddQty(orderid, check);
-                }else if (check.equals("not confirm")){
-                    retur=dao.updateOrderStatusAndAddQty(orderid, check);
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(SellerUpdateStatusController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            if (retur == true) {
-
-                Order order = dao.getOrderByID(orderid);
-
-                OrderDetailDAO detailDAO = new OrderDetailDAO();
-                List<OrderDetail> list = detailDAO.getListDetailByOrder(orderid);
-                
-                
-                request.setAttribute("mess", "Update Status of Order Successfull!");
-                request.setAttribute("order", order);
-                request.setAttribute("detail", list);
-                request.getRequestDispatcher("sellerOrderDetail.jsp").forward(request, response);
-            }
-
+             CompanyDAO dao = new CompanyDAO();
+             List<Company> listC = dao.getListPublishCompanyVS2();
+             request.setAttribute("listC", listC);
+             String now= new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+             
+             request.setAttribute("day", now);
+            request.getRequestDispatcher("imAddReceipt.jsp").forward(request, response);
         }
     }
 

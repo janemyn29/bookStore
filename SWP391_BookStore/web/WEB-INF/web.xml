@@ -552,6 +552,22 @@
         <servlet-name>CusProductPageController</servlet-name>
         <servlet-class>com.bookstore.Cart.CusProductPageController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SellerReturnController</servlet-name>
+        <servlet-class>com.bookstore.Seller.SellerReturnController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SellerReturnDetailController</servlet-name>
+        <servlet-class>com.bookstore.Seller.SellerReturnDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SellerReturnUpdateController</servlet-name>
+        <servlet-class>com.bookstore.Seller.SellerReturnUpdateController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ImAddReceiptNav</servlet-name>
+        <servlet-class>com.bookstore.Importer.ImAddReceiptNav</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -999,6 +1015,22 @@
     <servlet-mapping>
         <servlet-name>CusProductPageController</servlet-name>
         <url-pattern>/customer/cusproductpage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SellerReturnController</servlet-name>
+        <url-pattern>/Seller/sellerReturn</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SellerReturnDetailController</servlet-name>
+        <url-pattern>/Seller/sellerReturnDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SellerReturnUpdateController</servlet-name>
+        <url-pattern>/Seller/selleApp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImAddReceiptNav</servlet-name>
+        <url-pattern>/imp/impaddnav</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

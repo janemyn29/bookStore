@@ -4,6 +4,7 @@
     Author     : tramy
 --%>
 
+<%@page import="com.bookstore.Order.Return"%>
 <%@page import="java.util.List"%>
 <%@page import="com.bookstore.Order.Order"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -68,7 +69,7 @@
                             </a>
                         </li>
                         <li class="mega-menu mega-menu-sm">
-                        <a href="sellerReturn" aria-expanded="false">
+                        <a class="active" href="sellerReturn" aria-expanded="false">
                             <i class="icon-list"></i><span class="nav-text">Return Management</span>
                         </a>
                         
@@ -89,7 +90,7 @@
                     <div class="col p-md-0">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">Home</li>
-                            <li class="breadcrumb-item active">Order Management</li>
+                            <li class="breadcrumb-item active">Return Management</li>
                         </ol>
                     </div>
                 </div>
@@ -100,7 +101,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <span class="card-title">Order Management</span>
+                                    <span class="card-title">Return Management</span>
 
                                     <div class="table-responsive">
                                         <table class="table table-striped table-bordered zero-configuration">
@@ -120,11 +121,11 @@
                                             </thead>
                                             <tbody>
                                                 <%
-                                                    List<Order> list = (List<Order>) request.getAttribute("listO");
-                                                    for (Order elem : list) {
+                                                    List<Return> list = (List<Return>) request.getAttribute("listO");
+                                                    for (Return elem : list) {
                                                         MoneyFormat fm = new MoneyFormat();
                                                         String foString = fm.formatMoney(elem.getTotal());
-                                                        if(elem.getStatus().equals("confirming") ||elem.getStatus().equals("not confirm") || elem.getStatus().equals("canceled")||elem.getStatus().equals("received")||elem.getStatus().equals("delivery fail")||elem.getStatus().equals("delivering")){
+                                                        
                                                         out.print("<tr>"
                                                                 + "<td>" + elem.getOrderID() + "</td>"
                                                                 + "<td>" + elem.getAccName() + "</td>"
@@ -135,24 +136,22 @@
                                                                 + "<td>" + elem.getOrderDate() + "</td>"
                                                                 + "<td>" + foString + "</td>"
                                                                 + "<td>");
-                                                        if (elem.getStatus().equals("confirming")) {
-                                                            out.print("<span class='badge badge-pill badge-warning'>Confirming</span></td>");
-                                                        } else if (elem.getStatus().equals("delivering")) {
-                                                            out.print("<span class='badge badge-pill badge-warning'>Delivering</span></td>");
-                                                        } else if (elem.getStatus().equals("not confirm")) {
-                                                            out.print("<span class='badge badge-pill badge-danger'>Not Confirm</span></td>");
-                                                        } else if (elem.getStatus().equals("canceled")) {
-                                                            out.print("<span class='badge badge-pill badge-danger'>Canceled</span></td>");
-                                                        } else if (elem.getStatus().equals("received")) {
-                                                            out.print("<span class='badge badge-pill badge-success'>Received</span></td>");
-                                                        } else if (elem.getStatus().equals("delivery fail")) {
-                                                            out.print("<span class='badge badge-pill badge-danger'>Delivery Fail</span></td>");
+                                                        if (elem.getStatus().equals("returning")) {
+                                                            out.print("<span class='badge badge-pill badge-warning'>Returning</span></td>");
+                                                        } else if (elem.getStatus().equals("returned")) {
+                                                            out.print("<span class='badge badge-pill badge-success'>Returned</span></td>");
+                                                        } else if (elem.getStatus().equals("wait to approve")) {
+                                                            out.print("<span class='badge badge-pill badge-warning'>Wait to approve</span></td>");
+                                                        } else if (elem.getStatus().equals("reject")) {
+                                                            out.print("<span class='badge badge-pill badge-danger'>Reject</span></td>");
+                                                        } else if (elem.getStatus().equals("out of date")) {
+                                                            out.print("<span class='badge badge-pill badge-danger'>Expired Returned</span></td>");
                                                         }
                                                         out.print("<td>"
-                                                                + "<a style='margin-left: 25px' href='sellerOrderDetail?id=" + elem.getOrderID() + "' data-toggle='tooltip' data-placement='bottom' title='View Order Detail'><i   class='icon-eye'></i></a>"
+                                                                + "<a style='margin-left: 25px' href='sellerReturnDetail?id=" + elem.getOrderID() + "' data-toggle='tooltip' data-placement='bottom' title='View Order Detail'><i   class='icon-eye'></i></a>"
                                                                 + " </td></tr>");
-                                                        }
-                                                    }                                                    %>
+                                                        
+                                                    }%>
 
                                                 
                                             </tbody>

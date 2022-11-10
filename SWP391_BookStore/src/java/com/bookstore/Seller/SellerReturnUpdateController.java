@@ -5,8 +5,9 @@
  */
 package com.bookstore.Seller;
 
-import com.bookstore.Order.Order;
 import com.bookstore.Order.OrderDAO;
+import com.bookstore.Order.Return;
+import com.bookstore.Order.ReturnDAO;
 import com.bookstore.OrderDetail.OrderDetail;
 import com.bookstore.OrderDetail.OrderDetailDAO;
 import java.io.IOException;
@@ -24,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author tramy
  */
-public class SellerUpdateStatusController extends HttpServlet {
+public class SellerReturnUpdateController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,34 +45,32 @@ public class SellerUpdateStatusController extends HttpServlet {
             String orderid = request.getParameter("orderid");
 
             OrderDAO dao = new OrderDAO();
+            ReturnDAO dao1 = new ReturnDAO();
             boolean retur = false;
             try {
-                if(check.equals("received")){
-                retur = dao.updateOrderStatusReceived(orderid, check);
-                }else if (check.equals("delivering")) {
+                if(check.equals("returned")){
+                retur = dao.updateOrderStatusAndAddQty(orderid, check);
+                }else if (check.equals("returning")) {
                  retur =dao.updateOrderStatusNormal(orderid, check);
-                }else if (check.equals("delivery fail")) {
-                 retur =dao.updateOrderStatusAndAddQty(orderid, check);
-                }else if (check.equals("not confirm")){
-                    retur=dao.updateOrderStatusAndAddQty(orderid, check);
+                }else if (check.equals("reject")) {
+                 retur =dao.updateOrderStatusNormal(orderid, check);
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(SellerUpdateStatusController.class.getName()).log(Level.SEVERE, null, ex);
             }
             if (retur == true) {
 
-                Order order = dao.getOrderByID(orderid);
+                Return order=dao1.getReturnByID(orderid);
 
                 OrderDetailDAO detailDAO = new OrderDetailDAO();
                 List<OrderDetail> list = detailDAO.getListDetailByOrder(orderid);
                 
                 
-                request.setAttribute("mess", "Update Status of Order Successfull!");
+                request.setAttribute("mess", "Update Status of Returned-Order Successfull!");
                 request.setAttribute("order", order);
                 request.setAttribute("detail", list);
-                request.getRequestDispatcher("sellerOrderDetail.jsp").forward(request, response);
+                request.getRequestDispatcher("sellerReturnDetail.jsp").forward(request, response);
             }
-
         }
     }
 

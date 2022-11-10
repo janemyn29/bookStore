@@ -5,10 +5,8 @@
  */
 package com.bookstore.Seller;
 
-import com.bookstore.Order.Order;
-import com.bookstore.Order.OrderDAO;
-import com.bookstore.OrderDetail.OrderDetail;
-import com.bookstore.OrderDetail.OrderDetailDAO;
+import com.bookstore.Order.Return;
+import com.bookstore.Order.ReturnDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -24,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author tramy
  */
-public class SellerUpdateStatusController extends HttpServlet {
+public class SellerReturnController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,38 +38,26 @@ public class SellerUpdateStatusController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String check = request.getParameter("check");
-            String orderid = request.getParameter("orderid");
-
-            OrderDAO dao = new OrderDAO();
-            boolean retur = false;
-            try {
-                if(check.equals("received")){
-                retur = dao.updateOrderStatusReceived(orderid, check);
-                }else if (check.equals("delivering")) {
-                 retur =dao.updateOrderStatusNormal(orderid, check);
-                }else if (check.equals("delivery fail")) {
-                 retur =dao.updateOrderStatusAndAddQty(orderid, check);
-                }else if (check.equals("not confirm")){
-                    retur=dao.updateOrderStatusAndAddQty(orderid, check);
+            ReturnDAO dAO = new ReturnDAO();
+        List<Return> list = dAO.listReturn();
+        Long now= System.currentTimeMillis();
+            for (Return return1 : list) {
+                if (return1.getStatus().equals("returning")) {
+                    Long temp = return1.getApproveDate().getTime();
+                    Long check=now-(432000*1000);
+                    if (check>=temp) {
+                        String id = String.valueOf(return1.getOrderID());
+                        try {
+                            dAO.updateReturn(id);
+                        } catch (SQLException ex) {
+                            Logger.getLogger(SellerReturnController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
                 }
-            } catch (SQLException ex) {
-                Logger.getLogger(SellerUpdateStatusController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if (retur == true) {
-
-                Order order = dao.getOrderByID(orderid);
-
-                OrderDetailDAO detailDAO = new OrderDetailDAO();
-                List<OrderDetail> list = detailDAO.getListDetailByOrder(orderid);
-                
-                
-                request.setAttribute("mess", "Update Status of Order Successfull!");
-                request.setAttribute("order", order);
-                request.setAttribute("detail", list);
-                request.getRequestDispatcher("sellerOrderDetail.jsp").forward(request, response);
-            }
-
+            List<Return> listRe = dAO.listReturn();
+        request.setAttribute("listO", listRe);
+        request.getRequestDispatcher("sellerReturn.jsp").forward(request, response);
         }
     }
 

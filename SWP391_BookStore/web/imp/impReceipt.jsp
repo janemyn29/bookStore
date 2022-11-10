@@ -98,7 +98,7 @@
                                         <div class="alert alert-success">${check}</div>
                                     </c:if>
 
-                                    <a href="imCreatCom" style="margin-top: 10px"><button  class="btn btn-outline-dark" >Add New Company</button></a>
+                                    <a href="impaddnav" style="margin-top: 10px"><button  class="btn btn-outline-dark" >Add New Receipt</button></a>
                                     <div class="table-responsive">
                                         <table class="table table-striped table-bordered zero-configuration">
                                             <thead>
