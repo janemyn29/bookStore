@@ -73,9 +73,9 @@ public class OrderDAO {
     public List<Order> listCancelOrderByAccID(int accID) {
         List<Order> list = new ArrayList<>();
 
-        String sql = " select o.orderID, o.accountID,o.orderDate, o.userAddress, o.totalPrice,o.orderNote,o.status\n"
-                + "from tblOrder o\n"
-                + " where status like 'canceled' and accountID=? ";
+        String sql = "  select orderID, accountID,orderDate,userAddress,totalPrice,orderNote,status\n" +
+"from tblOrder\n" +
+" where status like 'cancelled' and accountID=? ";
         try {
             conn = new DBUtils().getConnection();
             ps = conn.prepareStatement(sql);
@@ -83,7 +83,7 @@ public class OrderDAO {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-
+                //int orderID, int accountID, Date orderDate, String address, int total, String Note, String status
                 list.add(new Order(rs.getInt(1), rs.getInt(2), rs.getDate(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getString(7)));
             }
         } catch (Exception e) {
@@ -689,11 +689,8 @@ public class OrderDAO {
 
     public static void main(String[] args) throws NoSuchAlgorithmException {
         OrderDAO dAO = new OrderDAO();
-        //Order list = dAO.getOrderByID("1");
-
-//        dAO.addNewOrder(14, 4, "2022-11-07", "test quantity 2", 150000, "test quantity 2", "confirming");
-        dAO.updateOrderStatusByID3(11);
-//dAO.addNewOrder(15, 4, "2022-11-07", "test", 45000, "test2", "confirming");
+        List<Order> list = dAO.listCancelOrderByAccID(4);
+        System.out.println(list);
 
     }
 }

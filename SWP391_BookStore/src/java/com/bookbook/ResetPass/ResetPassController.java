@@ -40,7 +40,7 @@ public class ResetPassController extends HttpServlet {
             boolean test=dao.resetPassword(email, password);
             if (test) {
                 request.setAttribute("check", "Reset password successfully. Please use your account to login!");
-                request.getRequestDispatcher("login.jsp").forward(request, response);
+                request.getRequestDispatcher("loginnav").forward(request, response);
             }
         }catch(Exception e){
             response.sendRedirect("404.jsp");

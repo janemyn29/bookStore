@@ -39,7 +39,7 @@ public class AdCustomerController extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             AccountDAO dAO= new AccountDAO();
-            List<Account> listAcc=dAO.getListAccountsByRole("4","1");
+            List<Account> listAcc=dAO.getListAccountsByRole("4","2");
             List<Account> tempList=new ArrayList<>();
             
             for (Account account : listAcc) {
