@@ -54,7 +54,7 @@ public class CartController extends HttpServlet {
                     if (quantityBookAvailable > 0) { // kiem tra sach add vao co qua so luong trong kho khong?
                         cart.add(new Cart(b.getBookBybookCode(request.getParameter("bookCode")), 1));
                     } else {
-                        request.setAttribute("checkQuanity", "Store has no more quantity of this book left. We apologize for the inconvenience.");
+                        session.setAttribute("checkQuanity", "Store has no more quantity of this book left. We apologize for the inconvenience.");
                         request.getRequestDispatcher("home").forward(request, response);
                     }
                 } else { // add nhung cuon tiep theo
@@ -64,7 +64,7 @@ public class CartController extends HttpServlet {
                         if (quantityBookAvailable > 0) {
                             cart.add(new Cart(b.getBookBybookCode(request.getParameter("bookCode")), 1));
                         } else {
-                            request.setAttribute("checkQuanity", "Store has no more quantity of this book left. We apologize for the inconvenience.");
+                            session.setAttribute("checkQuanity", "Store has no more quantity of this book left. We apologize for the inconvenience.");
                             request.getRequestDispatcher("home").forward(request, response);
                         }
                     } else {
@@ -73,7 +73,7 @@ public class CartController extends HttpServlet {
                             int quantity = cart.get(index).getQty() + 1;
                             cart.get(index).setQty(quantity);
                         } else {
-                            request.setAttribute("checkQuanity", "Store has no more quantity of this book left. We apologize for the inconvenience.");
+                            session.setAttribute("checkQuanity", "Store has no more quantity of this book left. We apologize for the inconvenience.");
                             request.getRequestDispatcher("home").forward(request, response);
                         }
                     }

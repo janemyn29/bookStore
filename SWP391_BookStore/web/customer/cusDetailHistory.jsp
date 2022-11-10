@@ -75,6 +75,9 @@
                                 <div class="col-md-8 col-lg-9">
                                     <div class="tab-content">
                                         <div class="tab-pane fade show active" id="tab-ordersdetail" role="tabpanel" aria-labelledby="tab-ordersdetail-link">
+                                        <c:if test='${message == "Thank you for your feed back"}'>
+                                            <h5 class="text-center" style="color: green">${message}</h5>
+                                        </c:if>
                                             <div class="table-responsive">
 
                                                 <div>
@@ -148,7 +151,7 @@
                                                                 <td>${orde.oDetailQty}</td>
                                                                 <td>${orde.buyPrice}</td>
                                                                 <td>${orde.total}</td>
-                                                                <c:if test='${status == "recieved"}'>
+                                                                <c:if test='${status == "received"}'>
                                                                     <td><a class="underline" href="cusfeedhome?bookCode=${orde.bookCode}&orderID=${orde.orderID}&oDetailID=${orde.oDetailID}">Click here</a></td>
                                                                 </c:if>
                                                             </tr>

@@ -108,8 +108,10 @@ public class Feedback {
 
     @Override
     public String toString() {
-        return "Feedback{" + "feedID=" + feedID + ", bookcode=" + bookcode + ", accID=" + accID + ", accName=" + accName + ", detail=" + detail + ", starID=" + starID + '}';
+        return "Feedback{" + "feedID=" + feedID + ", bookcode=" + bookcode + ", accID=" + accID + ", accName=" + accName + ", detail=" + detail + ", starID=" + starID + ", oDetailID=" + oDetailID + '}';
     }
+
+
     
     
     

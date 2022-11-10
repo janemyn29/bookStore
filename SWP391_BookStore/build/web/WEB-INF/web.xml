@@ -209,10 +209,6 @@
         <servlet-class>com.bookstore.Customer.CusHomeController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CusViewProfileController</servlet-name>
-        <servlet-class>com.bookstore.Customer.CusViewProfileController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>CusChangePasswordController</servlet-name>
         <servlet-class>com.bookstore.Customer.CusChangePasswordController</servlet-class>
     </servlet>
@@ -659,10 +655,6 @@
     <servlet-mapping>
         <servlet-name>CusHomeController</servlet-name>
         <url-pattern>/customer/cushome</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CusViewProfileController</servlet-name>
-        <url-pattern>/customer/cusview</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CusChangePasswordController</servlet-name>

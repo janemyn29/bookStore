@@ -54,7 +54,7 @@ public class CusShoppingPageController extends HttpServlet {
                     if (quantityBookAvailable > 0) { // kiem tra sach add vao co qua so luong trong kho khong?
                         cart.add(new Cart(b.getBookBybookCode(request.getParameter("bookCode")), 1));
                     } else {
-                        request.setAttribute("checkQuanity", "Store has no more quantity of this book left. We apologize for the inconvenience.");
+                        session.setAttribute("checkQuanity", "Store has no more quantity of this book left. We apologize for the inconvenience.");
                         request.getRequestDispatcher("cusshopping?index=1").forward(request, response);
                     }
                 } else { // add nhung cuon tiep theo
@@ -64,7 +64,7 @@ public class CusShoppingPageController extends HttpServlet {
                         if (quantityBookAvailable > 0) {
                             cart.add(new Cart(b.getBookBybookCode(request.getParameter("bookCode")), 1));
                         } else {
-                            request.setAttribute("checkQuanity", "Store has no more quantity of this book left. We apologize for the inconvenience.");
+                            session.setAttribute("checkQuanity", "Store has no more quantity of this book left. We apologize for the inconvenience.");
                             request.getRequestDispatcher("cusshopping?index=1").forward(request, response);
                         }
                     } else {

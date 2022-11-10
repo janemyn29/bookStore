@@ -336,7 +336,7 @@ public class OrderDAO {
         List<Order> list = new ArrayList<>();
         String sql = " select orderID, orderDate, userAddress, status\n"
                 + "from tblOrder\n"
-                + "where (status = 'recieved' or status = 'canceled') and accountID = ? ";
+                + "where (status = 'received' or status = 'canceled') and accountID = ? ";
 
         try {
             conn = new DBUtils().getConnection();
@@ -453,16 +453,15 @@ public class OrderDAO {
         }
     }
 
-    public void updateOrderStatusByUpgrade(String status, int orderID) {
+    public void updateOrderStatusByID3(int orderID) {
 
         String sql = " update tblOrder\n"
-                + "set status = ?\n"
+                + "set status = 'out of date'\n"
                 + "where orderID = ? ";
         try {
             conn = new DBUtils().getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, status);
-            ps.setInt(2, orderID);
+            ps.setInt(1, orderID);
             rs = ps.executeQuery();
 
         } catch (Exception e) {
@@ -536,7 +535,7 @@ public class OrderDAO {
     public void updateOrderStatusByIDConfirm(String receivedDate, int orderID) {
 
         String sql = " update tblOrder\n"
-                + "set status = 'recieved', receivedDate = ?\n"
+                + "set status = 'received', receivedDate = ?\n"
                 + "where orderID = ? ";
         try {
             conn = new DBUtils().getConnection();
@@ -591,7 +590,7 @@ public class OrderDAO {
 
         String sql = " select approveDate\n"
                 + "from tblOrder\n"
-                + "where orderID = ? ";
+                + "where orderID = ?";
         try {
             conn = new DBUtils().getConnection();
             ps = conn.prepareStatement(sql);
@@ -608,12 +607,39 @@ public class OrderDAO {
         return null;
     }
 
+    public List<Order> getOrderDetailByoDetailID(int oDetailID) {
+        List<Order> list = new ArrayList<>();
+        String sql = " select o.totalPrice, o.orderNote, od.oDetailQty, od.price, b.bookName, b.bookCode, o.orderID, od.OdetailID\n"
+                + "from ((tblOrderDetail od inner join tblBook b on od.bookcode = b.bookCode)\n"
+                + "inner join tblOrder o on o.orderID = od.orderID)\n"
+                + "where od.OdetailID = ? ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, oDetailID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                list.add(new Order(rs.getInt(1),
+                        rs.getString(2).trim(),
+                        rs.getInt(3),
+                        rs.getInt(4),
+                        rs.getString(5).trim(),
+                        rs.getLong(6),
+                        rs.getInt(7),
+                        rs.getInt(8)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
     public static void main(String[] args) throws NoSuchAlgorithmException {
         OrderDAO dAO = new OrderDAO();
         //Order list = dAO.getOrderByID("1");
 
 //        dAO.addNewOrder(14, 4, "2022-11-07", "test quantity 2", 150000, "test quantity 2", "confirming");
-        System.out.println(dAO.getOrderManage());
+        dAO.updateOrderStatusByID3(11);
 //dAO.addNewOrder(15, 4, "2022-11-07", "test", 45000, "test2", "confirming");
 
     }

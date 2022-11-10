@@ -351,19 +351,18 @@ public class FeedbackDAO {
         return list;
     }
 
-    public List<Feedback> getFeedbackManageByBookCodeAndOrder(String bookCode, int orderID) {
+    public List<Feedback> getFeedbackManageByBookCodeAndOrder(String bookCode, int oDetailID) {
         List<Feedback> list = new ArrayList<>();
-        String sql = " use bookStore\n"
-                + "select f.feedbackID, f.bookCode, f.accountID, f.feedbackDetail, f.starID, f.OdetailID\n"
+        String sql = " select f.feedbackID, f.bookCode, f.accountID, f.feedbackDetail, f.starID, f.OdetailID\n"
                 + "from ((tblFeedback f inner join tblOrderDetail od on od.OdetailID = f.OdetailID)\n"
                 + "inner join tblOrder o on o.orderID = od.orderID)\n"
-                + "where f.bookCode = ? and o.orderID = ? ";
+                + "where f.bookCode = ? and od.OdetailID = ? ";
 
         try {
             conn = new DBUtils().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, bookCode);
-            ps.setInt(2, orderID);
+            ps.setInt(2, oDetailID);
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -383,7 +382,7 @@ public class FeedbackDAO {
     public static void main(String[] args) {
         FeedbackDAO dAO = new FeedbackDAO();
         //List<FeedbackTitle> list = dAO.addtotalAndStar();
-        //System.out.println(dAO.getFeedbackManageByBookCodeAndOrder("9780062023131"));
+        System.out.println(dAO.getFeedbackManageByBookCodeAndOrder("8935244875454", 2));
     }
 
 }

@@ -68,7 +68,7 @@ public class CusCancelOrderController extends HttpServlet {
                 } else if (status.equals("delivering")) {
                     session.setAttribute("checkstatus", "You cannot return the product being delivered.");
                     request.getRequestDispatcher("cusorderhome").forward(request, response);
-                } else if (status.equals("recieved")) {
+                } else if (status.equals("received")) {
                     // lay list detail tu ham lay list theo id
                     List<Order> listOrdetail = odao.getOrderDetailByorderID(orderID);
                     // set attribute len

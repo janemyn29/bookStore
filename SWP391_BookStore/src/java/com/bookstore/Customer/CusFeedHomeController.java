@@ -36,18 +36,18 @@ public class CusFeedHomeController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String orderID = request.getParameter("orderID");
+            String oDetailID = request.getParameter("oDetailID");
             //parse id sang kieu int
-            int id = Integer.parseInt(orderID);
+            int detailID = Integer.parseInt(oDetailID);
             // goi dao
             OrderDAO odao = new OrderDAO();
             // lay list detail tu ham lay list theo id
-            List<Order> listOrdetail = odao.getOrderDetailByorderID(id);
+            List<Order> listOrdetail = odao.getOrderDetailByoDetailID(detailID);
             // set attribute len
             FeedbackDAO fdao = new FeedbackDAO();
             String bookid = request.getParameter("bookCode");
 
-            List<Feedback> listFeedBack = fdao.getFeedbackManageByBookCodeAndOrder(bookid, id);
+            List<Feedback> listFeedBack = fdao.getFeedbackManageByBookCodeAndOrder(bookid, detailID);
             request.setAttribute("listFeedBack", listFeedBack);
             request.setAttribute("listOrdetail", listOrdetail);
             //day du lieu va chuyen trang

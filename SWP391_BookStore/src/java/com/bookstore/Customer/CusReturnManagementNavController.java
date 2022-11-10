@@ -54,23 +54,21 @@ public class CusReturnManagementNavController extends HttpServlet {
                 LocalDate now = LocalDate.now();
                 Date today = Date.valueOf(now);
                 String tmp = odao.checkApproveDateByOrderID(id);
-                if (tmp == null) {
-                    break;
-                }
-                Date approveDate = Date.valueOf(tmp);
+                if (tmp != null) {
+                    Date approveDate = Date.valueOf(tmp);
 
-                Calendar c1 = Calendar.getInstance();
-                Calendar c2 = Calendar.getInstance();
-                c1.setTime(approveDate);
-                c2.setTime(today);
-                Long noDay = (c2.getTime().getTime() - c1.getTime().getTime()) / (24 * 3600 * 1000);
-                if (noDay > 5) {
-                    if (status.equals("returning")) {
-                        odao.updateOrderStatusByUpgrade("out of date", id);
+                    Calendar c1 = Calendar.getInstance();
+                    Calendar c2 = Calendar.getInstance();
+                    c1.setTime(approveDate);
+                    c2.setTime(today);
+                    Long noDay = (c2.getTime().getTime() - c1.getTime().getTime()) / (24 * 3600 * 1000);
+                    if (noDay > 5) {
+                        if (status.equals("returning")) {
+                            odao.updateOrderStatusByID3(id);
+                        }
                     }
                 }
             }
-
             request.getRequestDispatcher("cusReturnManagement.jsp").forward(request, response);
         }
     }

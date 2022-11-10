@@ -104,7 +104,8 @@
                                                 </table>
 
                                                 <c:if test='${listFeedBack.size() != 0}'>
-                                                    <h5>You aldready rate this book!Thank You</h5>
+                                                    <br>
+                                                    <h5 class="center-parent" style="color: green">You aldready rate this book!Thank You</h5>
                                                     <a href="cushistoryorderdetail?orderID=${orderID}" class="btn btn-outline-primary-2">
                                                         <span>BACK</span>
                                                         <i class="icon-arrow-left"></i>
@@ -112,7 +113,6 @@
                                                 </c:if>
 
                                                 <c:if test='${listFeedBack.size() == 0}'>
-                                                    <h5>Pls Rate Us</h5>
                                                     <form action="cusfeedback" method="post">
                                                         <div class="my-container">                                                   
                                                             <div class="star-widget">

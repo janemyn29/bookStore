@@ -43,7 +43,7 @@ public class CusFeedBackController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             FeedbackDAO fdao = new FeedbackDAO();
-            
+
             List<Feedback> list = fdao.getFeedbackManage();
 
             int feedbackID = getLastFeedBackID(list);
@@ -83,16 +83,15 @@ public class CusFeedBackController extends HttpServlet {
             request.getRequestDispatcher("cusDetailHistory.jsp").forward(request, response);
         }
     }
-    
+
     private int getLastFeedBackID(List<Feedback> list) {
         if (list.size() > 0) {
             int sizeList = list.size() - 1;
-            int lastFeedID = (int) (list.get(sizeList).getFeedID()+ 1);
+            int lastFeedID = (int) (list.get(sizeList).getFeedID() + 1);
             return lastFeedID;
         }
         return 1;
     }
-
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
