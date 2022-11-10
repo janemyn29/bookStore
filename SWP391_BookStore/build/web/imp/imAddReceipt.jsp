@@ -109,7 +109,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <form>
+                                <form action="imCreate" method="POST">
                                     <div class="card-body">
                                         <span class="card-title">Receipt Detail</span>
 
@@ -130,21 +130,16 @@
                                             <label class="col-sm-2 col-form-label">Importer Name:</label>
                                             <div class="col-sm-10">
                                                 <input type="email" name="email" class="form-control"  value="${acc.getUsername()}"  readonly>
+                                                <input type="hidden" name="accid" class="form-control"  value="${acc.getAccID()}"  readonly>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Receipted Date</label>
                                             <div class="col-sm-10">
-                                                <input type="type" name="text" class="form-control"  Value="${day}" readonly>
+                                                <input type="text" name="day" class="form-control"  Value="${day}" readonly>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Total Imported Price</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" name="email" class="form-control" value='${receipt.totalImportPrice}'  required>
-                                            </div>
-                                        </div>
-
+                                
                                         <div class="table-responsive">
                                             <table id="table_field" class="table table-striped table-bordered zero-configuration">
                                                 <thead>
@@ -169,8 +164,18 @@
                                                 </tbody>
                                             </table>
                                         </div>
+                                        <table style="border: none">
+                                                <td>
+                                                    <button style="margin-left: 350px" type="submit" class="btn mb-1 btn-warning" >Create</button>
+                                                </td>
+
+                                                <td>
+                                                    <a style="margin-left: 70px" href="listReceipt" class="btn mb-1 btn-warning">Cancel</a>
+                                                </td>
+                                                </form>
+                                            </table>
                                         <center>
-                                            <a style="margin-left: 70px" href="listReceipt" class="btn mb-1 btn-warning">Close</a>
+                                            
                                         </center>
                                     </div>
                                 </form>

@@ -304,14 +304,10 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book{" + "qty=" + qty + '}';
+        return "Book{" + "bookCode=" + bookCode + ", bookName=" + bookName + ", image=" + image + ", importPrice=" + importPrice + ", buyPrice=" + buyPrice + ", description=" + description + ", qty=" + qty + ", cateID=" + cateID + ", cateName=" + cateName + ", postID=" + postID + ", postName=" + postName + ", companyID=" + companyID + ", companyName=" + companyName + ", postDate=" + postDate + ", discountPercent=" + discountPercent + ", author=" + author + ", authorName=" + authorName + '}';
     }
 
-    
-    
 
-    
-    
     
 
     /**

@@ -19,6 +19,11 @@ public class ReceiptDetail {
     public ReceiptDetail() {
     }
 
+    public ReceiptDetail(int rdID) {
+        this.rdID = rdID;
+    }
+    
+
     public ReceiptDetail(int rdID, long bookcode, String bookName, int qty, int price) {
         this.rdID = rdID;
         this.bookcode = bookcode;
@@ -26,6 +31,14 @@ public class ReceiptDetail {
         this.qty = qty;
         this.price = price;
     }
+
+    public ReceiptDetail(long bookcode, String bookName, int qty, int price) {
+        this.bookcode = bookcode;
+        this.bookName = bookName;
+        this.qty = qty;
+        this.price = price;
+    }
+    
 
     public int getRdID() {
         return rdID;

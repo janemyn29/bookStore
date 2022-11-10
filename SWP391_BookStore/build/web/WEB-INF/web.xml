@@ -568,6 +568,10 @@
         <servlet-name>ImAddReceiptNav</servlet-name>
         <servlet-class>com.bookstore.Importer.ImAddReceiptNav</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ImAddReceiptController</servlet-name>
+        <servlet-class>com.bookstore.Importer.ImAddReceiptController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -1031,6 +1035,10 @@
     <servlet-mapping>
         <servlet-name>ImAddReceiptNav</servlet-name>
         <url-pattern>/imp/impaddnav</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImAddReceiptController</servlet-name>
+        <url-pattern>/imp/imCreate</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

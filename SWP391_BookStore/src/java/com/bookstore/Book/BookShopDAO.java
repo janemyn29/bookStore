@@ -10,7 +10,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -304,7 +306,7 @@ public class BookShopDAO {
         }
         return list;
     }
-    
+
     public BookShop getBookBybookCodeV2(String bookCode) {
         String sql = " select b.bookCode, b.bookName, b.img, b.importPrice, b.buyPrice, b.description, b.quantity,ca.cateID,ca.cateName,p.postName,p.postID,b.postDate,d.discountPercent,pc.companyName\n"
                 + "from ((((tblBook b left join tblDiscount d on b.bookCode=d.bookCode)\n"
@@ -340,7 +342,7 @@ public class BookShopDAO {
         }
         return null;
     }
-    
+
     public boolean uploadBookInfor(String img, int price, String des, String cate, String code) {
 
         String sql = " update tblBook\n"
@@ -365,15 +367,17 @@ public class BookShopDAO {
         }
         return check;
     }
- public boolean uploadBookInforVs2(String img, int price, String des, String cate, String code) {
+
+    public boolean uploadBookInforVs2(String img, int price, String des, String cate, String code) {
+        String now = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
         String sql = "";
         if (img.equals("")) {
             sql = " update tblBook\n"
-                    + "set  buyPrice= ?, description=?,cateID=?,postID='1'\n"
+                    + "set  buyPrice= ?, description=?,cateID=?,postID='1',postDate=?\n"
                     + "where bookCode=? ";
         } else {
             sql = " update tblBook\n"
-                    + "set img=? buyPrice= ?, description=?,cateID=?,postID='1'\n"
+                    + "set img=? buyPrice= ?, description=?,cateID=?,postID='1',postDate=?\n"
                     + "where bookCode=? ";
         }
         boolean check = false;
@@ -383,17 +387,19 @@ public class BookShopDAO {
             PreparedStatement ps = conn.prepareStatement(sql);
 
             if (img.equals("")) {
-                
+
                 ps.setInt(1, price);
                 ps.setString(2, des);
                 ps.setString(3, cate);
                 ps.setString(4, code);
+                ps.setString(5, now);
             } else {
                 ps.setString(1, img);
                 ps.setInt(2, price);
                 ps.setString(3, des);
                 ps.setString(4, cate);
                 ps.setString(5, code);
+                ps.setString(6, now);
             }
 
             check = ps.executeUpdate() > 0;
@@ -403,9 +409,51 @@ public class BookShopDAO {
         }
         return check;
     }
+
+    public boolean plusQty(int qty, String code) {
+
+        String sql = " update tblBook\n"
+                + "set quantity = ?\n"
+                + "where bookCode=? ";
+
+        boolean check = false;
+        try {
+
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setInt(1, qty);
+            ps.setString(2, code);
+
+            check = ps.executeUpdate() > 0;
+
+        } catch (SQLException ex) {
+            System.out.println("Update Student error!" + ex.getMessage());
+        }
+        return check;
+    }
+
+    
+    public void insertBook(String bookcode, String name, int price, int qty, String comID) {
+
+        String query = " insert into tblBook(bookCode,bookName,importPrice,quantity,postID,companyID)\n"
+                + "values(?,?,?,?,2,?) ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, bookcode);
+            ps.setString(2, name);
+            ps.setInt(3, price);
+            ps.setInt(4, qty);
+            ps.setString(5, comID);
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+
+        }
+    }
     public static void main(String[] args) {
         BookShopDAO dao = new BookShopDAO();
-        List<BookShop> book = dao.getAllBook();
-        System.out.println(book);
+        dao.insertBook("2222", "connan", 10, 11000, "10");
     }
 }

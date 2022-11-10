@@ -128,7 +128,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Total Imported Price</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="email" class="form-control" value='${receipt.totalImportPrice}'  readonly>
+                                            <input type="text" name="email" class="form-control" value='${receipt.totalImportPrice}VND'  readonly>
                                         </div>
                                     </div>
 
@@ -150,16 +150,16 @@
                                                     <td>${o.bookcode}</td>
                                                     <td>${o.bookName}</td>
                                                     <td>${o.qty}</td>
-                                                    <td>${o.price}</td>
+                                                    <td><fmt:formatNumber value="${o.price}" pattern=" #,##0 VND" /></td>
                                                 </tr>
                                                 
                                                 </c:forEach>
                                             </tbody>
                                         </table>
                                     </div>
-
-                                        <a style="margin-left: 70px" href="listReceipt" class="btn mb-1 btn-warning">Close</a>
-
+                                        <center>
+                                        <a  href="listReceipt" class="btn mb-1 btn-warning">Close</a>
+                                        </center>
                                 </div>
                             </div>
                         </div>

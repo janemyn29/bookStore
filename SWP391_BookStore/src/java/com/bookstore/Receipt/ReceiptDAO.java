@@ -5,11 +5,14 @@
  */
 package com.bookstore.Receipt;
 
+import com.bookstore.Company.Company;
+import com.bookstore.Company.CompanyDAO;
 import com.bookstore.Utils.DBUtils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -143,10 +146,47 @@ public class ReceiptDAO {
 //
 //        return 0;
 //    }
+    public void createReceipt(String accountID, String day, int totalPrice, String comID) {
+
+        ReceiptDAO dao = new ReceiptDAO();
+        int lastCID;
+        List<Receipt> list = dao.getListReceipt();
+        if(list==null){
+            lastCID=1;
+        }else{
+            int sizeList = list.size() - 1;
+        lastCID = list.get(sizeList).getReceiptID() + 1;
+        }
+        
+        
+        String query = " insert into tblReceipt\n"
+                + "values(?,?,?,?,?) ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, lastCID);
+            ps.setString(2, accountID);
+            ps.setString(3,day);
+            ps.setInt(4, totalPrice);
+            ps.setString(5, comID);
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+
+        }
+    }
+
     public static void main(String[] args) {
         ReceiptDAO receiptDAO = new ReceiptDAO();
-        Receipt list = receiptDAO.getReceiptByid("1");
-        System.out.println(list);
+        List<Receipt> receipts= receiptDAO.getListReceipt();
+        int lastCID;
+        int sizeList = receipts.size() - 1;
+        lastCID = receipts.get(sizeList).getReceiptID() + 1;
+        System.out.println(lastCID);
+        
+        System.out.println(receipts);
+//        Date now= new Date(System.currentTimeMillis());
+        receiptDAO.createReceipt("3", "2022-11-11", 11111, "10");
     }
 
 }
