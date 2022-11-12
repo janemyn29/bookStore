@@ -452,8 +452,44 @@ public class BookShopDAO {
 
         }
     }
-    public static void main(String[] args) {
-        BookShopDAO dao = new BookShopDAO();
-        dao.insertBook("2222", "connan", 10, 11000, "10");
+    public List<BookShop> getBookFilter(String price, String cateName) {
+        List<BookShop> list = new ArrayList<>();
+        String sql = "select b.bookCode, b.bookName, b.img, b.importPrice, b.buyPrice, b.description, b.quantity,ca.cateID,ca.cateName,p.postID,p.postName,b.postDate\n"
+                + "               from (((tblBook b \n"
+                + "               inner join tblCategory ca on b.cateID=ca.cateID)\n"
+                + "              inner join tblPostHistory p on p.postID=b.postID)\n"
+                + "             inner join tblPublishCompany pc on pc.companyID=b.companyID )\n"
+                + "              where b.postID=1 and (ca.cateName=? and b.buyPrice< ?)\n"
+                + "              ";
+
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+
+            ps.setString(1, cateName);
+            ps.setString(2, price);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+
+                list.add(new BookShop(
+                        rs.getLong("bookCode"),//bookcode
+                        rs.getString("bookName"),//bookname 
+                        rs.getString("img"),//image
+                        rs.getInt("importPrice"),//importprice
+                        rs.getInt("buyPrice"),//buyprice
+                        rs.getString("description"),//description
+                        rs.getInt("quantity"),//qty
+                        rs.getInt("cateID"),//cateID
+                        rs.getString("cateName"),//catename
+                        rs.getInt("postID"),//postID 
+                        rs.getString("postName"),//postName
+                        rs.getDate("postDate"),//postdate
+                        0,
+                        ""//author
+                ));
+            }
+        } catch (Exception e) {
+        }
+        return list;
     }
 }
