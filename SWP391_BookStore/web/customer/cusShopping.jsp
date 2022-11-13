@@ -308,6 +308,15 @@
 
                 <div class="page-content">
                     <div class="container">
+                        <div class="toolbox">
+                            <div class="toolbox-left">
+                                <a href="#" class="sidebar-toggler"><i class="icon-bars"></i>Filters</a>
+                            </div><!-- End .toolbox-left -->
+
+                            <div class="toolbox-center">
+                            </div><!-- End .toolbox-center -->
+
+                        </div><!-- End .toolbox -->
 
                         <div class="products">
                             <c:if test='${checkQuanity == "Store has no more quantity of this book left. We apologize for the inconvenience."}'>
@@ -630,6 +639,144 @@
                                                     </aside> End .sidebar-filter -->
                         </div>
                     </div><!-- End .page-content -->
+                    <aside class="sidebar-shop sidebar-filter">
+                            <div class="sidebar-filter-wrapper">
+                                <div class="widget widget-clean">
+                                    <label><i class="icon-close"></i>Filters</label>
+                                    <a href="#" class="sidebar-filter-clear">Clean All</a>
+                                </div><!-- End .widget -->
+                                <div class="widget widget-collapsible">
+                                    <h3 class="widget-title">
+                                        <a data-toggle="collapse" href="#widget-1" role="button" aria-expanded="true" aria-controls="widget-1">
+                                            Category
+                                        </a>
+                                    </h3><!-- End .widget-title -->
+
+                                    <div class="collapse show" id="widget-1">
+                                        <div class="widget-body">
+                                            <div class="filter-items filter-items-count">
+                                                <div class="filter-item">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="cat-1">
+                                                        <label class="custom-control-label" for="cat-1">Art - Literary </label>
+                                                    </div><!-- End .custom-checkbox -->
+                                                </div><!-- End .filter-item -->
+
+                                                <div class="filter-item">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="cat-2">
+                                                        <label class="custom-control-label" for="cat-2">Comics</label>
+                                                    </div><!-- End .custom-checkbox -->
+                                                </div><!-- End .filter-item -->
+
+                                                <div class="filter-item">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="cat-3">
+                                                        <label class="custom-control-label" for="cat-3">Textbook - Syllabus </label>
+                                                    </div><!-- End .custom-checkbox -->
+                                                </div><!-- End .filter-item -->
+
+                                                <div class="filter-item">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="cat-4">
+                                                        <label class="custom-control-label" for="cat-4">Novel </label>
+                                                    </div><!-- End .custom-checkbox -->
+                                                </div><!-- End .filter-item -->
+
+                                                <div class="filter-item">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="cat-5">
+                                                        <label class="custom-control-label" for="cat-5">Foreign language </label>
+                                                    </div><!-- End .custom-checkbox -->
+                                                </div><!-- End .filter-item -->
+
+                                                <div class="filter-item">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="cat-6">
+                                                        <label class="custom-control-label" for="cat-6">Science </label>
+                                                    </div><!-- End .custom-checkbox -->
+                                                </div><!-- End .filter-item -->
+
+                                                <div class="filter-item">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="cat-7">
+                                                        <label class="custom-control-label" for="cat-7">Horror </label>
+                                                    </div><!-- End .custom-checkbox -->
+                                                </div><!-- End .filter-item -->
+
+                                            </div><!-- End .filter-items -->
+                                        </div><!-- End .widget-body -->
+                                    </div><!-- End .collapse -->
+                                </div><!-- End .widget -->
+
+                                <div class="widget widget-collapsible">
+                                    <h3 class="widget-title">
+                                        <a data-toggle="collapse" href="#widget-5" role="button" aria-expanded="true" aria-controls="widget-5">
+                                            Price
+                                        </a>
+                                    </h3><!-- End .widget-title -->
+
+                                    <div class="collapse show" id="widget-5">
+                                        <div class="widget-body">
+                                            <div class="filter-price">
+                                                <div class="filter-price-text">
+                                                    Price Range:
+                                                    <span id="filter-price-range"></span>
+                                                </div><!-- End .filter-price-text -->
+
+                                                <div id="price-slider"></div><!-- End #price-slider -->
+                                            </div><!-- End .filter-price -->
+                                            <button onclick="handleClick()" >Sort</button>
+                                            <script>
+                                                function handleClick() {
+                                                const list = document.querySelectorAll(".noUi-tooltip");
+                                                const test = document.querySelectorAll(".custom-control-input");
+                                                let price;
+                                                if (list.length > 1) {
+                                                    
+                                                        price = list[list.length - 1].innerText.replace("VND", "");
+                                                        }
+                                                        const categoryLists = Array.from(test).map(v => v.checked);
+                                                        $.ajax({url: "${pageContext.request.contextPath }customer/cusshopping?index=1", data: {price: price, categories: categoryLists.join("-")}, success: function (result) {
+                                                                console.log({result})
+                                                    const htmlString = result.map((o) => `
+                                                            <div class=\"col-6 col-md-4 col-lg-4 col-xl-3\">
+                                                                <div class=\"product\">
+                                                                    <figure class=\"product-media\">
+                                                                        \${o.discountPercent > 1 ? "<span class=\"product-label label-new\">Discount</span>" : ""}
+                                                                        <a href=\"detail?pbookCode=\${o.bookCode}&categoryBook=\${o.cateName}\">
+                                                                            <img style="width:277px; height:375px;" src="\${o.image}" alt="Product image" class="product-image">
+                                                                        </a>
+                                                                        <div class=\"product-action\">
+                                                                            <a href=\"#\" class=\"btn-product btn-cart\"><span>Add to Cart</span></a>
+                                                                        </div>
+                                                                    </figure>
+                                                                    <div class=\"product-body\">
+                                                                        <div class=\"product-cat\">
+                                                                            <a href="">\${o.cateName}</a>
+                                                                        </div>
+                                                                        <h3 class="product-title">
+                                                                            <a href="detail?pbookCode=\${o.bookCode}&categoryBook=\${o.cateName}">\${o.bookName}</a>
+                                                                        </h3>
+                                                                        \${o.discountPercent == 0 ? "<div class=\"product-price\">Price: " + o.buyPrice + "</div>" :"<div class=\"product-price\">Sale Price: " + (o.buyPrice-(o.discountPercent *o.buyPrice/100)) + "</div>"}
+                                                                        <div class="product-author">Author: \${o.authorNum == 1 ? o.author : ""+o.author+""}</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                                    `);
+                                                            console.log({htmlString});
+                                                            $("#content").html(htmlString);
+                                                                
+                                                        }
+                                                    });
+                                                }
+
+                                            </script>
+                                        </div><!-- End .widget-body -->
+                                    </div><!-- End .collapse -->
+                                </div><!-- End .widget -->
+                            </div><!-- End .sidebar-filter-wrapper -->
+                        </aside><!-- End .sidebar-filter -->
             </main><!-- End .main -->
 
             <footer class="footer">

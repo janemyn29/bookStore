@@ -162,7 +162,7 @@ $(document).ready(function () {
     }
 
     // Slider For category pages / filter price
-    if ( typeof noUiSlider === 'object' ) {
+  if ( typeof noUiSlider === 'object' ) {
 		var priceSlider  = document.getElementById('price-slider');
 
 		// Check if #price-slider elem is exists if not return
@@ -170,18 +170,18 @@ $(document).ready(function () {
 		if (priceSlider == null) return;
 
 		noUiSlider.create(priceSlider, {
-			start: [ 0, 750 ],
+			start: [ 0, 1000000 ],
 			connect: true,
 			step: 50,
 			margin: 200,
 			range: {
 				'min': 0,
-				'max': 1000
+				'max': 1000000
 			},
 			tooltips: true,
 			format: wNumb({
 		        decimals: 0,
-		        prefix: '$'
+		        prefix: 'VND'
 		    })
 		});
 

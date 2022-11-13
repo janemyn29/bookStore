@@ -293,11 +293,11 @@
                     </div><!-- End .products -->
                 </div><!-- .End .tab-pane -->
         </div><!-- End .tab-content -->
-        <div class="more-container text-center">
+<!--        <div class="more-container text-center">
             <a href="#" class="btn btn-outline-darker btn-more"><span>Load more products</span><i class="icon-long-arrow-down"></i></a>
             <a href="#" class="btn btn-outline-darker btn-more"><span>Load more products</span><i class="icon-long-arrow-down"></i></a>
             <a href="#" class="btn btn-outline-darker btn-more"><span>Load more products</span><i class="icon-long-arrow-down"></i></a>
-        </div><!-- End .more-container -->
+        </div> End .more-container -->
     </div><!-- End .container -->
 
     <div class="container">
