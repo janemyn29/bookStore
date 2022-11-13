@@ -145,7 +145,7 @@ public class ReturnDAO {
 
     public static void main(String[] args) {
         ReturnDAO dAO = new ReturnDAO();
-        Return list = dAO.getReturnByID("13");
+        List<Return> list = dAO.listReturn();
         System.out.println(list);
     }
 }

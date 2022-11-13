@@ -53,7 +53,7 @@ public class SellerReturnController extends HttpServlet {
                             Logger.getLogger(SellerReturnController.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
-                }
+                }else{}
             }
             List<Return> listRe = dAO.listReturn();
         request.setAttribute("listO", listRe);

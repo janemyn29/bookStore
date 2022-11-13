@@ -343,6 +343,34 @@ public class BookShopDAO {
         return null;
     }
 
+    public BookShop getBookBybookCodeVS3(String bookCode) {
+        String sql = " select b.bookCode, b.bookName, b.importPrice, b.quantity,p.postName,p.postID,pc.companyName\n"
+                + "from ((tblBook b\n"
+                + "inner join tblPostHistory p on p.postID=b.postID)\n"
+                + "inner join tblPublishCompany pc on pc.companyID=b.companyID )\n"
+                + "where b.bookCode= ? ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, bookCode);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                return new BookShop(
+                        rs.getLong("bookCode"),//bookcode
+                        rs.getString("bookName"),//bookname 
+                        rs.getInt("importPrice"),//importprice
+                        rs.getInt("quantity"),//qty
+                        rs.getInt("postID"),//postID 
+                        rs.getString("postName"),//postName,
+                        rs.getString("companyName")//author
+                );
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
     public boolean uploadBookInfor(String img, int price, String des, String cate, String code) {
 
         String sql = " update tblBook\n"
@@ -433,7 +461,6 @@ public class BookShopDAO {
         return check;
     }
 
-    
     public void insertBook(String bookcode, String name, int price, int qty, String comID) {
 
         String query = " insert into tblBook(bookCode,bookName,importPrice,quantity,postID,companyID)\n"
@@ -452,7 +479,8 @@ public class BookShopDAO {
 
         }
     }
-   public List<BookShop> getBookFilter(String price, String cateName) {
+
+    public List<BookShop> getBookFilter(String price, String cateName) {
         List<BookShop> list = new ArrayList<>();
         String sql = "select b.bookCode, b.bookName, b.img, b.importPrice, b.buyPrice, b.description, b.quantity,ca.cateID,ca.cateName,p.postID,p.postName,b.postDate\n"
                 + "               from (((tblBook b \n"
@@ -491,5 +519,11 @@ public class BookShopDAO {
         } catch (Exception e) {
         }
         return list;
+    }
+    
+    public static void main(String[] args) {
+        BookShopDAO dAO= new BookShopDAO();
+        BookShop book = dAO.getBookBybookCodeVS3("2341234");
+        System.out.println(book);
     }
 }

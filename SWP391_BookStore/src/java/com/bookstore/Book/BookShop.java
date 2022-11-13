@@ -66,6 +66,18 @@ public class BookShop {
         this.publish = publish;
     }
 
+    public BookShop(long bookCode, String bookName, int importPrice, int qty, int postID, String postName, String publish) {
+        this.bookCode = bookCode;
+        this.bookName = bookName;
+        this.importPrice = importPrice;
+        this.qty = qty;
+        this.postID = postID;
+        this.postName = postName;
+        this.publish = publish;
+    }
+    
+    
+
     public BookShop(long bookCode, String bookName) {
         this.bookCode = bookCode;
         this.bookName = bookName;

@@ -43,7 +43,7 @@ public class AdUploadNavController extends HttpServlet {
 
             BookShopDAO dAO = new BookShopDAO();
             AuthorDAO authordAO = new AuthorDAO();
-            BookShop book = dAO.getBookBybookCodeV2(code);
+            BookShop book = dAO.getBookBybookCodeVS3(code);
 
             if (book.getPostID() == 4) {
                 BookDAO bdao = new BookDAO();
