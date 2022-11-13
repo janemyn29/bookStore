@@ -46,32 +46,250 @@
         <link rel="stylesheet" href="assets/css/plugins/nouislider/nouislider.css">
     </head>
 
+    <style>
+        .navigation-item.active {
+            color:red
+        }
+    </style>
+
     <body>
         <div class="page-wrapper">
-            <jsp:include page="header.jsp"></jsp:include>
+            <header class="header">
+                <div class="header-top">
+                    <div class="container">
+                        <div class="header-left">
 
-                <main class="main">
-                    <!--                    <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
-                                            <div class="container">
-                                                <h1 class="page-title">Boxed No Sidebar<span>Shop</span></h1>
-                                            </div> End .container 
-                                        </div> End .page-header -->
-                    <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2">
-                        <div class="container">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="home">Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">Shop</a></li>
-                                <li class="breadcrumb-item"><a href="#">
+                        </div><!-- End .header-left -->
+
+                        <div class="header-right">
+                            <ul class="top-menu">
+                                <li>
+                                    <ul>
+                                        <li><a href=""></a></li>
+                                        <li><a href="about.html">About Us</a></li>
+                                        <li><a href="contact.html">Contact Us</a></li>
+                                        <li><a href="loginnav">Login</a></li>
+                                    </ul>
+                                </li>
+                            </ul><!-- End .top-menu -->
+                        </div><!-- End .header-right -->
+                    </div><!-- End .container -->
+                </div><!-- End .header-top -->
+
+                <div class="header-middle sticky-header">
+                    <div class="container">
+                        <div class="header-left">
+                            <button class="mobile-menu-toggler">
+                                <span class="sr-only">Toggle mobile menu</span>
+                                <i class="icon-bars"></i>
+                            </button>
+
+                            <a href="home" class="logo">
+                                <img src="assets/images/logo.png" alt="Molla Logo" width="105" height="25">
+                            </a>
+
+                            <nav class="main-nav" >
+                                <ul class="menu sf-arrows" id="menu-active-Class">
+                                    <li>
+                                        <a href="home" class="navigation-item ">Home</a>
+                                    </li>
+                                    <li>
+                                        <a href="shopping?index=1" class="navigation-item">Shopping</a>
+                                    </li>
+                                    <li>
+                                        <a href="" id="sf-with-ul" class="navigation-item">Category</a>
+                                        <div class="megamenu megamenu-sm">
+                                            <div class="row no-gutters">
+                                                <div class="col-md-12">
+                                                    <div class="menu-col">
+                                                        <ul>
+                                                            <c:forEach items="${listC}" var="o">
+                                                                <li><a href="category?categoryName=${o.name}">${o.name}</a></li>
+                                                                <!--href giúp truy?n ???ng d?n--> 
+                                                            </c:forEach>
+                                                        </ul>
+                                                    </div><!-- End .menu-col -->
+                                                </div><!-- End .col-md-6 -->
+                                            </div><!-- End .row -->
+                                        </div><!-- End .megamenu megamenu-sm -->
+                                    </li>
+                                    <script>
+                                        const navList = document.querySelectorAll('.navigation-item');
+                                        const path = window.location.href.replace("http://localhost:8084/SWP391_BookStore/", "");
+                                        switch (path) {
+                                            case "home":
+                                            {
+                                                navList[0].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "shopping":
+                                            {
+                                                navList[1].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "detail":
+                                            {
+                                                navList[2].classList.toggle("")
+                                                break;
+                                            }
+                                            case "category?categoryName=Art%20-%20Literary":
+                                            {
+                                                navList[3].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "category?categoryName=Comics":
+                                            {
+                                                navList[4].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "category?categoryName=Textbook%20-%20Syllabus":
+                                            {
+                                                navList[5].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "category?categoryName=Novel":
+                                            {
+                                                navList[6].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "category?categoryName=Foreign%20language":
+                                            {
+                                                navList[7].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "category?categoryName=Science":
+                                            {
+                                                navList[8].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "category?categoryName=Horror":
+                                            {
+                                                navList[9].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "":
+                                            {
+                                                navList[10].classList.toggle("")
+                                                break;
+                                            }
+                                            default:
+                                            {
+                                                navList[11].classList.toggle("")
+                                                break;
+                                            }
+                                        }
+
+                                    </script>
+                                    <!--                        <script>
+                                                                // Add active class to the current button (highlight it)
+                                                                var header = document.getElementById("menu-active-Class");
+                                                                var btns = header.getElementsByClassName("navigation-item");
+                                                                for (var i = 0; i < btns.length; i++) {
+                                                                    btns[i].addEventListener("click", function () {
+                                                                        var current = document.getElementsByClassName("active");
+                                                                        current[0].className = current[0].className.replace(" active", "");
+                                                                        this.className += " active";
+                                                                    });
+                                                                }
+                                                            </script>-->
+                                </ul><!-- End .menu -->
+                            </nav><!-- End .main-nav -->
+                        </div><!-- End .header-left -->
+
+                        <div class="header-right">
+                            <div class="header-search">
+                                <a href="#" class="search-toggle" role="button" title="Search"><i class="icon-search"></i></a>
+                                <form action="SearchController?index=1" method="post">
+                                    <div class="header-search-wrapper">
+                                        <label for="q" class="sr-only">Search</label>
+                                        <input type="search" class="form-control" name="searchKey" 
+                                               placeholder="Search in..." required>
+                                        <input type="submit" class="search-btn" value="Search" />
+
+                                    </div><!-- End .header-search-wrapper -->
+                                </form>
+                            </div><!-- End .header-search -->
+
+                            <%
+
+                                if (session.getAttribute("cart") == null) {
+                            %>
+                            <div class="dropdown cart-dropdown">
+                                <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                                    <i class="icon-shopping-cart"></i>
+                                    <span class="cart-count">${cart.size()}</span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <div class="dropdown-cart-products">
+                                        <label  style="color: black;">Your cart is empty</label>
+                                    </div>
+                                    <div class="dropdown-cart-action">
+                                        <a href="cart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span></a>
+                                        <a href="checkOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
+                                    </div><!-- End .dropdown-cart-total -->
+                                </div><!-- End .dropdown-menu -->
+                            </div><!-- End .cart-dropdown -->
+                            <%} else {%>
+                            <div class="dropdown cart-dropdown">
+                                <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                                    <i class="icon-shopping-cart"></i>
+                                    <span class="cart-count">${cart.size()}</span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <c:forEach items="${cart}" var="cart">
+                                        <div class="dropdown-cart-products">
+                                            <div class="product">
+                                                <div class="product-cart-details">
+                                                    <h4 class="product-title">
+                                                        <a href="product.html">${cart.book.bookName}</a>
+                                                    </h4>
+
+                                                    <span class="cart-product-info">
+                                                        <span class="cart-product-qty">${cart.qty}</span> X
+                                                        <fmt:formatNumber value="${cart.buyPrice}" pattern=" #,##0 VND" />                                         
+                                                    </span>
+                                                </div><!-- End .product-cart-details -->
+
+                                                <figure class="product-image-container">
+                                                    <a href="product.html" class="product-image">
+                                                        <img src="${cart.book.image}" alt="product">
+                                                    </a>
+                                                </figure>
+                                                <a href="${pageContext.request.contextPath }/shoppingpage?action=remove&bookCode=${cart.book.bookCode}" class="btn-remove"><i class="icon-close"></i></a>
+                                            </div><!-- End .product -->
+
+                                        </div><!-- End .cart-product -->    
+                                    </c:forEach>
+
+                                    <div class="dropdown-cart-action">
+                                        <a href="cart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span></a>
+                                        <a href="checkOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
+                                    </div><!-- End .dropdown-cart-total -->
+                                </div><!-- End .dropdown-menu -->
+                            </div><!-- End .cart-dropdown -->
+                            <%}%>
+                        </div><!-- End .header-right -->
+                    </div><!-- End .container -->
+                </div><!-- End .header-middle -->
+            </header><!-- End .header -->
+
+            <main class="main">
+                <!--                    <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+                                        <div class="container">
+                                            <h1 class="page-title">Boxed No Sidebar<span>Shop</span></h1>
+                                        </div> End .container 
+                                    </div> End .page-header -->
+                <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2">
+                    <div class="container">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="home">Home</a></li>
+                            <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                            <li class="breadcrumb-item"><a href="#">
                                     <%
                                         String categoryName = request.getParameter("categoryName");
-                                        String searchkey = request.getParameter("searchKey");
-                                        if (searchkey != null) {
+                                        if (categoryName != null) {
                                     %>
-                                    Search: <%=searchkey%>
-                                    <%
-                                    } else if (categoryName != null) {
-                                    %>
-                                    <%=categoryName%>
+                                    <% out.print(categoryName); %>
                                     <%
                                     } else {
                                     %>
@@ -87,18 +305,12 @@
 
                 <div class="page-content">
                     <div class="container">
-                        <div class="toolbox">
-                            <div class="toolbox-left">
-                                <a href="#" class="sidebar-toggler"><i class="icon-bars"></i>Filters</a>
-                            </div><!-- End .toolbox-left -->
-
-                            <div class="toolbox-center">
-                            </div><!-- End .toolbox-center -->
-
-                        </div><!-- End .toolbox -->
 
                         <div class="products">
-                            <div class="row" id="content">
+                            <c:if test='${checkQuanity == "Store has no more quantity of this book left. We apologize for the inconvenience."}'>
+                                <h5  class="center-parent"style="color: red;">${checkQuanity}</h5>
+                            </c:if>
+                            <div class="row">
                                 <c:forEach items="${listAll}" var="listAll" >
                                     <div class="col-6 col-md-4 col-lg-4 col-xl-3">
                                         <div class="product">
@@ -110,10 +322,11 @@
                                                 <a href="detail?pbookCode=${listAll.bookCode}&categoryBook=${listAll.cateName}">
                                                     <img style="width: 	277px; height: 	375px;" src="${listAll.image}" alt="Product image" class="product-image">
                                                 </a>
-                                                <div class="product-action">
-                                                    <a href="#" class="btn-product btn-cart"><span>Add to Cart</span></a>
-                                                </div>
-                                            </figure>
+
+                                                <div class="product-action action-icon-top">
+                                                    <a href="${pageContext.request.contextPath }/shoppingpage?&action=addToCart&bookCode=${listAll.bookCode}&cateName=${listAll.cateName}&index=${i}" class="btn-product btn-cart"><span>add to cart</span></a>
+                                                </div><!-- End .product-action -->
+                                            </figure><!-- End .product-media -->
 
                                             <div class="product-body">
                                                 <div class="product-cat">
@@ -124,15 +337,15 @@
                                                     <div class="product-price">
                                                         Price <fmt:formatNumber value="${listAll.buyPrice}" pattern=" #,##0 VND" />
 
-                                                    </div>
+                                                    </div><!-- End .product-price -->
                                                 </c:if>
                                                 <c:if test="${listAll.discountPercent > 0}">
                                                     <div class="product-price" style="text-decoration: line-through">
                                                         Old Price: <fmt:formatNumber value="${listAll.buyPrice}" pattern=" #,##0 VND" />
-                                                    </div>
+                                                    </div><!-- End .product-price -->
                                                     <div class="product-price">
                                                         Sale Price: <fmt:formatNumber value="${listAll.buyPrice- (listAll.discountPercent *listAll.buyPrice/100)}" pattern=" #,##0 VND" />
-                                                    </div>
+                                                    </div><!-- End .product-price -->
                                                 </c:if>
 
                                                 <div class="product-author">
@@ -146,256 +359,380 @@
                                                             <c:forTokens var="token" items="${listAll.author}" delims=",">
                                                                 <li><c:out value="${token}"/></li>
                                                                 </c:forTokens>
-
-                                                        </div>
+                                                        </div><!-- End .ratings -->
                                                     </c:if>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                                </div><!-- End .rating-container -->
+                                            </div><!-- End .product-body -->
+                                        </div><!-- End .product -->
+                                    </div><!-- End .col-sm-6 col-lg-4 col-xl-3 -->
                                 </c:forEach>
-                                <div class="page-content">
-                                    <div class="load-more-container text-center">
-                                        <c:forEach begin="1" end="${endPage}" var="i">
-                                            <a href="SearchController?index=${i}&searchKey=${searchKey}" class="btn btn-outline-darker btn-load-more">${i} <i class="icon-refresh"></i></a>
-                                            </c:forEach>
-                                    </div><!-- End .load-more-container -->
-                                </div><!-- End .products -->
 
-                                <div class="sidebar-filter-overlay"></div>
-                            </div>
-                        </div><!-- End .page-content -->
-                        <div class="sidebar-filter-overlay"></div><!-- End .sidebar-filter-overlay -->
-                        <aside class="sidebar-shop sidebar-filter">
-                            <div class="sidebar-filter-wrapper">
-                                <div class="widget widget-clean">
-                                    <label><i class="icon-close"></i>Filters</label>
-                                    <a href="#" class="sidebar-filter-clear">Clean All</a>
+
+                                <div class="load-more-container text-center">
+                                    <c:forEach begin="1" end="${endPage}" var="i">
+                                        <a href="SearchController?index=${i}&searchKey=${searchKey}" class="btn btn-outline-darker btn-load-more">${i} <i class="icon-refresh"></i></a>
+                                            <c:set var="i" value="${i}"></c:set>
+                                        </c:forEach>
+                                </div><!-- End .load-more-container -->
+                            </div><!-- End .products -->
+
+                            <div class="sidebar-filter-overlay"></div><!-- End .sidebar-filter-overlay -->
+                            <!--                        <aside class="sidebar-shop sidebar-filter">
+                                                        <div class="sidebar-filter-wrapper">
+                                                            <div class="widget widget-clean">
+                                                                <label><i class="icon-close"></i>Filters</label>
+                                                                <a href="#" class="sidebar-filter-clear">Clean All</a>
+                                                            </div> End .widget 
+                                                            <div class="widget widget-collapsible">
+                                                                <h3 class="widget-title">
+                                                                    <a data-toggle="collapse" href="#widget-1" role="button" aria-expanded="true" aria-controls="widget-1">
+                                                                        Category
+                                                                    </a>
+                                                                </h3> End .widget-title 
+                            
+                                                                <div class="collapse show" id="widget-1">
+                                                                    <div class="widget-body">
+                                                                        <div class="filter-items filter-items-count">
+                                                                            <div class="filter-item">
+                                                                                <div class="custom-control custom-checkbox">
+                                                                                    <input type="checkbox" class="custom-control-input" id="cat-1">
+                                                                                    <label class="custom-control-label" for="cat-1">Dresses</label>
+                                                                                </div> End .custom-checkbox 
+                                                                                <span class="item-count">3</span>
+                                                                            </div> End .filter-item 
+                            
+                                                                            <div class="filter-item">
+                                                                                <div class="custom-control custom-checkbox">
+                                                                                    <input type="checkbox" class="custom-control-input" id="cat-2">
+                                                                                    <label class="custom-control-label" for="cat-2">T-shirts</label>
+                                                                                </div> End .custom-checkbox 
+                                                                                <span class="item-count">0</span>
+                                                                            </div> End .filter-item 
+                            
+                                                                            <div class="filter-item">
+                                                                                <div class="custom-control custom-checkbox">
+                                                                                    <input type="checkbox" class="custom-control-input" id="cat-3">
+                                                                                    <label class="custom-control-label" for="cat-3">Bags</label>
+                                                                                </div> End .custom-checkbox 
+                                                                                <span class="item-count">4</span>
+                                                                            </div> End .filter-item 
+                            
+                                                                            <div class="filter-item">
+                                                                                <div class="custom-control custom-checkbox">
+                                                                                    <input type="checkbox" class="custom-control-input" id="cat-4">
+                                                                                    <label class="custom-control-label" for="cat-4">Jackets</label>
+                                                                                </div> End .custom-checkbox 
+                                                                                <span class="item-count">2</span>
+                                                                            </div> End .filter-item 
+                            
+                                                                            <div class="filter-item">
+                                                                                <div class="custom-control custom-checkbox">
+                                                                                    <input type="checkbox" class="custom-control-input" id="cat-5">
+                                                                                    <label class="custom-control-label" for="cat-5">Shoes</label>
+                                                                                </div> End .custom-checkbox 
+                                                                                <span class="item-count">2</span>
+                                                                            </div> End .filter-item 
+                            
+                                                                            <div class="filter-item">
+                                                                                <div class="custom-control custom-checkbox">
+                                                                                    <input type="checkbox" class="custom-control-input" id="cat-6">
+                                                                                    <label class="custom-control-label" for="cat-6">Jumpers</label>
+                                                                                </div> End .custom-checkbox 
+                                                                                <span class="item-count">1</span>
+                                                                            </div> End .filter-item 
+                            
+                                                                            <div class="filter-item">
+                                                                                <div class="custom-control custom-checkbox">
+                                                                                    <input type="checkbox" class="custom-control-input" id="cat-7">
+                                                                                    <label class="custom-control-label" for="cat-7">Jeans</label>
+                                                                                </div> End .custom-checkbox 
+                                                                                <span class="item-count">1</span>
+                                                                            </div> End .filter-item 
+                            
+                                                                            <div class="filter-item">
+                                                                                <div class="custom-control custom-checkbox">
+                                                                                    <input type="checkbox" class="custom-control-input" id="cat-8">
+                                                                                    <label class="custom-control-label" for="cat-8">Sportwear</label>
+                                                                                </div> End .custom-checkbox 
+                                                                                <span class="item-count">0</span>
+                                                                            </div> End .filter-item 
+                                                                        </div> End .filter-items 
+                                                                    </div> End .widget-body 
+                                                                </div> End .collapse 
+                                                            </div> End .widget 
+                            
+                                                            <div class="widget widget-collapsible">
+                                                                <h3 class="widget-title">
+                                                                    <a data-toggle="collapse" href="#widget-2" role="button" aria-expanded="true" aria-controls="widget-2">
+                                                                        Size
+                                                                    </a>
+                                                                </h3> End .widget-title 
+                            
+                                                                <div class="collapse show" id="widget-2">
+                                                                    <div class="widget-body">
+                                                                        <div class="filter-items">
+                                                                            <div class="filter-item">
+                                                                                <div class="custom-control custom-checkbox">
+                                                                                    <input type="checkbox" class="custom-control-input" id="size-1">
+                                                                                    <label class="custom-control-label" for="size-1">XS</label>
+                                                                                </div> End .custom-checkbox 
+                                                                            </div> End .filter-item 
+                            
+                                                                            <div class="filter-item">
+                                                                                <div class="custom-control custom-checkbox">
+                                                                                    <input type="checkbox" class="custom-control-input" id="size-2">
+                                                                                    <label class="custom-control-label" for="size-2">S</label>
+                                                                                </div> End .custom-checkbox 
+                                                                            </div> End .filter-item 
+                            
+                                                                            <div class="filter-item">
+                                                                                <div class="custom-control custom-checkbox">
+                                                                                    <input type="checkbox" class="custom-control-input" checked id="size-3">
+                                                                                    <label class="custom-control-label" for="size-3">M</label>
+                                                                                </div> End .custom-checkbox 
+                                                                            </div> End .filter-item 
+                            
+                                                                            <div class="filter-item">
+                                                                                <div class="custom-control custom-checkbox">
+                                                                                    <input type="checkbox" class="custom-control-input" checked id="size-4">
+                                                                                    <label class="custom-control-label" for="size-4">L</label>
+                                                                                </div> End .custom-checkbox 
+                                                                            </div> End .filter-item 
+                            
+                                                                            <div class="filter-item">
+                                                                                <div class="custom-control custom-checkbox">
+                                                                                    <input type="checkbox" class="custom-control-input" id="size-5">
+                                                                                    <label class="custom-control-label" for="size-5">XL</label>
+                                                                                </div> End .custom-checkbox 
+                                                                            </div> End .filter-item 
+                            
+                                                                            <div class="filter-item">
+                                                                                <div class="custom-control custom-checkbox">
+                                                                                    <input type="checkbox" class="custom-control-input" id="size-6">
+                                                                                    <label class="custom-control-label" for="size-6">XXL</label>
+                                                                                </div> End .custom-checkbox 
+                                                                            </div> End .filter-item 
+                                                                        </div> End .filter-items 
+                                                                    </div> End .widget-body 
+                                                                </div> End .collapse 
+                                                            </div> End .widget 
+                            
+                                                            <div class="widget widget-collapsible">
+                                                                <h3 class="widget-title">
+                                                                    <a data-toggle="collapse" href="#widget-3" role="button" aria-expanded="true" aria-controls="widget-3">
+                                                                        Colour
+                                                                    </a>
+                                                                </h3> End .widget-title 
+                            
+                                                                <div class="collapse show" id="widget-3">
+                                                                    <div class="widget-body">
+                                                                        <div class="filter-colors">
+                                                                            <a href="#" style="background: #b87145;"><span class="sr-only">Color Name</span></a>
+                                                                            <a href="#" style="background: #f0c04a;"><span class="sr-only">Color Name</span></a>
+                                                                            <a href="#" style="background: #333333;"><span class="sr-only">Color Name</span></a>
+                                                                            <a href="#" class="selected" style="background: #cc3333;"><span class="sr-only">Color Name</span></a>
+                                                                            <a href="#" style="background: #3399cc;"><span class="sr-only">Color Name</span></a>
+                                                                            <a href="#" style="background: #669933;"><span class="sr-only">Color Name</span></a>
+                                                                            <a href="#" style="background: #f2719c;"><span class="sr-only">Color Name</span></a>
+                                                                            <a href="#" style="background: #ebebeb;"><span class="sr-only">Color Name</span></a>
+                                                                        </div> End .filter-colors 
+                                                                    </div> End .widget-body 
+                                                                </div> End .collapse 
+                                                            </div> End .widget 
+                            
+                                                            <div class="widget widget-collapsible">
+                                                                <h3 class="widget-title">
+                                                                    <a data-toggle="collapse" href="#widget-4" role="button" aria-expanded="true" aria-controls="widget-4">
+                                                                        Brand
+                                                                    </a>
+                                                                </h3> End .widget-title 
+                            
+                                                                <div class="collapse show" id="widget-4">
+                                                                    <div class="widget-body">
+                                                                        <div class="filter-items">
+                                                                            <div class="filter-item">
+                                                                                <div class="custom-control custom-checkbox">
+                                                                                    <input type="checkbox" class="custom-control-input" id="brand-1">
+                                                                                    <label class="custom-control-label" for="brand-1">Next</label>
+                                                                                </div> End .custom-checkbox 
+                                                                            </div> End .filter-item 
+                            
+                                                                            <div class="filter-item">
+                                                                                <div class="custom-control custom-checkbox">
+                                                                                    <input type="checkbox" class="custom-control-input" id="brand-2">
+                                                                                    <label class="custom-control-label" for="brand-2">River Island</label>
+                                                                                </div> End .custom-checkbox 
+                                                                            </div> End .filter-item 
+                            
+                                                                            <div class="filter-item">
+                                                                                <div class="custom-control custom-checkbox">
+                                                                                    <input type="checkbox" class="custom-control-input" id="brand-3">
+                                                                                    <label class="custom-control-label" for="brand-3">Geox</label>
+                                                                                </div> End .custom-checkbox 
+                                                                            </div> End .filter-item 
+                            
+                                                                            <div class="filter-item">
+                                                                                <div class="custom-control custom-checkbox">
+                                                                                    <input type="checkbox" class="custom-control-input" id="brand-4">
+                                                                                    <label class="custom-control-label" for="brand-4">New Balance</label>
+                                                                                </div> End .custom-checkbox 
+                                                                            </div> End .filter-item 
+                            
+                                                                            <div class="filter-item">
+                                                                                <div class="custom-control custom-checkbox">
+                                                                                    <input type="checkbox" class="custom-control-input" id="brand-5">
+                                                                                    <label class="custom-control-label" for="brand-5">UGG</label>
+                                                                                </div> End .custom-checkbox 
+                                                                            </div> End .filter-item 
+                            
+                                                                            <div class="filter-item">
+                                                                                <div class="custom-control custom-checkbox">
+                                                                                    <input type="checkbox" class="custom-control-input" id="brand-6">
+                                                                                    <label class="custom-control-label" for="brand-6">F&F</label>
+                                                                                </div> End .custom-checkbox 
+                                                                            </div> End .filter-item 
+                            
+                                                                            <div class="filter-item">
+                                                                                <div class="custom-control custom-checkbox">
+                                                                                    <input type="checkbox" class="custom-control-input" id="brand-7">
+                                                                                    <label class="custom-control-label" for="brand-7">Nike</label>
+                                                                                </div> End .custom-checkbox 
+                                                                            </div> End .filter-item 
+                            
+                                                                        </div> End .filter-items 
+                                                                    </div> End .widget-body 
+                                                                </div> End .collapse 
+                                                            </div> End .widget 
+                            
+                                                            <div class="widget widget-collapsible">
+                                                                <h3 class="widget-title">
+                                                                    <a data-toggle="collapse" href="#widget-5" role="button" aria-expanded="true" aria-controls="widget-5">
+                                                                        Price
+                                                                    </a>
+                                                                </h3> End .widget-title 
+                            
+                                                                <div class="collapse show" id="widget-5">
+                                                                    <div class="widget-body">
+                                                                        <div class="filter-price">
+                                                                            <div class="filter-price-text">
+                                                                                Price Range:
+                                                                                <span id="filter-price-range"></span>
+                                                                            </div> End .filter-price-text 
+                            
+                                                                            <div id="price-slider"></div> End #price-slider 
+                                                                        </div> End .filter-price 
+                                                                    </div> End .widget-body 
+                                                                </div> End .collapse 
+                                                            </div> End .widget 
+                                                        </div> End .sidebar-filter-wrapper 
+                                                    </aside> End .sidebar-filter -->
+                        </div>
+                    </div><!-- End .page-content -->
+            </main><!-- End .main -->
+
+            <footer class="footer">
+                <div class="footer-middle">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="widget widget-about">
+                                    <img src="assets/images/logo.png" class="footer-logo" alt="Footer Logo" width="105" height="25">
+                                    <p>Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. </p>
+
+                                    <div class="social-icons">
+                                        <a href="#" class="social-icon" target="_blank" title="Facebook"><i class="icon-facebook-f"></i></a>
+                                        <a href="#" class="social-icon" target="_blank" title="Twitter"><i class="icon-twitter"></i></a>
+                                        <a href="#" class="social-icon" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
+                                        <a href="#" class="social-icon" target="_blank" title="Youtube"><i class="icon-youtube"></i></a>
+                                        <a href="#" class="social-icon" target="_blank" title="Pinterest"><i class="icon-pinterest"></i></a>
+                                    </div><!-- End .soial-icons -->
+                                </div><!-- End .widget about-widget -->
+                            </div><!-- End .col-sm-6 col-lg-3 -->
+
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="widget">
+                                    <h4 class="widget-title">Useful Links</h4><!-- End .widget-title -->
+
+                                    <ul class="widget-list">
+                                        <li><a href="about.html">About Molla</a></li>
+                                        <li><a href="#">How to shop on Molla</a></li>
+                                        <li><a href="#">FAQ</a></li>
+                                        <li><a href="contact.html">Contact us</a></li>
+                                        <li><a href="login.html">Log in</a></li>
+                                    </ul><!-- End .widget-list -->
                                 </div><!-- End .widget -->
-                                <div class="widget widget-collapsible">
-                                    <h3 class="widget-title">
-                                        <a data-toggle="collapse" href="#widget-1" role="button" aria-expanded="true" aria-controls="widget-1">
-                                            Category
-                                        </a>
-                                    </h3><!-- End .widget-title -->
+                            </div><!-- End .col-sm-6 col-lg-3 -->
 
-                                    <div class="collapse show" id="widget-1">
-                                        <div class="widget-body">
-                                            <div class="filter-items filter-items-count">
-                                                <div class="filter-item">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="cat-1">
-                                                        <label class="custom-control-label" for="cat-1">Art - Literary </label>
-                                                    </div><!-- End .custom-checkbox -->
-                                                </div><!-- End .filter-item -->
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="widget">
+                                    <h4 class="widget-title">Customer Service</h4><!-- End .widget-title -->
 
-                                                <div class="filter-item">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="cat-2">
-                                                        <label class="custom-control-label" for="cat-2">Comics</label>
-                                                    </div><!-- End .custom-checkbox -->
-                                                </div><!-- End .filter-item -->
-
-                                                <div class="filter-item">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="cat-3">
-                                                        <label class="custom-control-label" for="cat-3">Textbook - Syllabus </label>
-                                                    </div><!-- End .custom-checkbox -->
-                                                </div><!-- End .filter-item -->
-
-                                                <div class="filter-item">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="cat-4">
-                                                        <label class="custom-control-label" for="cat-4">Novel </label>
-                                                    </div><!-- End .custom-checkbox -->
-                                                </div><!-- End .filter-item -->
-
-                                                <div class="filter-item">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="cat-5">
-                                                        <label class="custom-control-label" for="cat-5">Foreign language </label>
-                                                    </div><!-- End .custom-checkbox -->
-                                                </div><!-- End .filter-item -->
-
-                                                <div class="filter-item">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="cat-6">
-                                                        <label class="custom-control-label" for="cat-6">Science </label>
-                                                    </div><!-- End .custom-checkbox -->
-                                                </div><!-- End .filter-item -->
-
-                                                <div class="filter-item">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="cat-7">
-                                                        <label class="custom-control-label" for="cat-7">Horror </label>
-                                                    </div><!-- End .custom-checkbox -->
-                                                </div><!-- End .filter-item -->
-
-                                            </div><!-- End .filter-items -->
-                                        </div><!-- End .widget-body -->
-                                    </div><!-- End .collapse -->
+                                    <ul class="widget-list">
+                                        <li><a href="#">Payment Methods</a></li>
+                                        <li><a href="#">Money-back guarantee!</a></li>
+                                        <li><a href="#">Returns</a></li>
+                                        <li><a href="#">Shipping</a></li>
+                                        <li><a href="#">Terms and conditions</a></li>
+                                        <li><a href="#">Privacy Policy</a></li>
+                                    </ul><!-- End .widget-list -->
                                 </div><!-- End .widget -->
+                            </div><!-- End .col-sm-6 col-lg-3 -->
 
-                                <div class="widget widget-collapsible">
-                                    <h3 class="widget-title">
-                                        <a data-toggle="collapse" href="#widget-5" role="button" aria-expanded="true" aria-controls="widget-5">
-                                            Price
-                                        </a>
-                                    </h3><!-- End .widget-title -->
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="widget">
+                                    <h4 class="widget-title">My Account</h4><!-- End .widget-title -->
 
-                                    <div class="collapse show" id="widget-5">
-                                        <div class="widget-body">
-                                            <div class="filter-price">
-                                                <div class="filter-price-text">
-                                                    Price Range:
-                                                    <span id="filter-price-range"></span>
-                                                </div><!-- End .filter-price-text -->
-
-                                                <div id="price-slider"></div><!-- End #price-slider -->
-                                            </div><!-- End .filter-price -->
-                                            <button onclick="handleClick()" >Sort</button>
-                                            <script>
-                                                function handleClick() {
-                                                const list = document.querySelectorAll(".noUi-tooltip");
-                                                const test = document.querySelectorAll(".custom-control-input");
-                                                let price;
-                                                if (list.length > 1) {
-                                                    
-                                                        price = list[list.length - 1].innerText.replace("VND", "");
-                                                        }
-                                                        const categoryLists = Array.from(test).map(v => v.checked);
-                                                        $.ajax({url: "shopping?index=1", data: {price: price, categories: categoryLists.join("-")}, success: function (result) {
-                                                                console.log({result})
-                                                    const htmlString = result.map((o) => `
-                                                            <div class=\"col-6 col-md-4 col-lg-4 col-xl-3\">
-                                                                <div class=\"product\">
-                                                                    <figure class=\"product-media\">
-                                                                        \${o.discountPercent > 1 ? "<span class=\"product-label label-new\">Discount</span>" : ""}
-                                                                        <a href=\"detail?pbookCode=\${o.bookCode}&categoryBook=\${o.cateName}\">
-                                                                            <img style="width:277px; height:375px;" src="\${o.image}" alt="Product image" class="product-image">
-                                                                        </a>
-                                                                        <div class=\"product-action\">
-                                                                            <a href=\"#\" class=\"btn-product btn-cart\"><span>Add to Cart</span></a>
-                                                                        </div>
-                                                                    </figure>
-                                                                    <div class=\"product-body\">
-                                                                        <div class=\"product-cat\">
-                                                                            <a href="">\${o.cateName}</a>
-                                                                        </div>
-                                                                        <h3 class="product-title">
-                                                                            <a href="detail?pbookCode=\${o.bookCode}&categoryBook=\${o.cateName}">\${o.bookName}</a>
-                                                                        </h3>
-                                                                        \${o.discountPercent == 0 ? "<div class=\"product-price\">Price: " + o.buyPrice + "</div>" :"<div class=\"product-price\">Sale Price: " + (o.buyPrice-(o.discountPercent *o.buyPrice/100)) + "</div>"}
-                                                                        <div class="product-author">Author: \${o.authorNum == 1 ? o.author : ""+o.author+""}</div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                                    `);
-                                                            console.log({htmlString});
-                                                            $("#content").html(htmlString);
-                                                                
-                                                        }
-                                                    });
-                                                }
-
-                                            </script>
-                                        </div><!-- End .widget-body -->
-                                    </div><!-- End .collapse -->
+                                    <ul class="widget-list">
+                                        <li><a href="#">Sign In</a></li>
+                                        <li><a href="cart.html">View Cart</a></li>
+                                        <li><a href="#">My Wishlist</a></li>
+                                        <li><a href="#">Track My Order</a></li>
+                                        <li><a href="#">Help</a></li>
+                                    </ul><!-- End .widget-list -->
                                 </div><!-- End .widget -->
-                            </div><!-- End .sidebar-filter-wrapper -->
-                        </aside><!-- End .sidebar-filter -->
+                            </div><!-- End .col-sm-6 col-lg-3 -->
+                        </div><!-- End .row -->
+                    </div><!-- End .container -->
+                </div><!-- End .footer-middle -->
 
-                        </main><!-- End .main -->
+                <div class="footer-bottom">
+                    <div class="container">
 
-                        <footer class="footer">
-                            <div class="footer-middle">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-sm-6 col-lg-3">
-                                            <div class="widget widget-about">
-                                                <img src="assets/images/logo.png" class="footer-logo" alt="Footer Logo" width="105" height="25">
-                                                <p>The 5 accepts online orders and has home delivery. DO NOT support ordering and receiving goods directly at the office as well as all Fahasa systems nationwide. </p>
-
-                                                <div class="social-icons">
-                                                    <a href="#" class="social-icon" target="_blank" title="Facebook"><i class="icon-facebook-f"></i></a>
-                                                    <a href="#" class="social-icon" target="_blank" title="Twitter"><i class="icon-twitter"></i></a>
-                                                    <a href="#" class="social-icon" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
-                                                    <a href="#" class="social-icon" target="_blank" title="Youtube"><i class="icon-youtube"></i></a>
-                                                    <a href="#" class="social-icon" target="_blank" title="Pinterest"><i class="icon-pinterest"></i></a>
-                                                </div><!-- End .soial-icons -->
-                                            </div><!-- End .widget about-widget -->
-                                        </div><!-- End .col-sm-6 col-lg-3 -->
-
-
-                                        <div class="col-sm-6 col-lg-3">
-                                            <div class="widget">
-                                                <h4 class="widget-title">Customer Service</h4><!-- End .widget-title -->
-
-                                                <ul class="widget-list">
-                                                    <li><a href="#">Payment Methods</a></li>
-                                                    <li><a href="#">Money-back guarantee!</a></li>
-                                                    <li><a href="#">Returns</a></li>
-                                                    <li><a href="#">Shipping</a></li>
-                                                    <li><a href="#">Terms and conditions</a></li>
-                                                    <li><a href="#">Privacy Policy</a></li>
-                                                </ul><!-- End .widget-list -->
-                                            </div><!-- End .widget -->
-                                        </div><!-- End .col-sm-6 col-lg-3 -->
-
-                                        <div class="col-sm-6 col-lg-3">
-                                            <div class="widget">
-                                                <h4 class="widget-title">My Account</h4><!-- End .widget-title -->
-
-                                                <ul class="widget-list">
-                                                    <li><a href="#">Sign In</a></li>
-                                                    <li><a href="cart.html">View Cart</a></li>
-                                                    <li><a href="#">Track My Order</a></li>
-                                                    <li><a href="#">Help</a></li>
-                                                </ul><!-- End .widget-list -->
-                                            </div><!-- End .widget -->
-                                        </div><!-- End .col-sm-6 col-lg-3 -->
-                                    </div><!-- End .row -->
-                                </div><!-- End .container -->
-                            </div><!-- End .footer-middle -->
-
-                            <div class="footer-bottom">
-                                <div class="container">
-
-                                    <figure class="footer-payments">
-                                        <img src="assets/images/payments.png" alt="Payment methods" width="272" height="20">
-                                    </figure><!-- End .footer-payments -->
-                                </div><!-- End .container -->
-                            </div><!-- End .footer-bottom -->
-                        </footer><!-- End .footer -->
-                    </div><!-- End .page-wrapper -->
-                    <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
+                        <figure class="footer-payments">
+                            <img src="assets/images/payments.png" alt="Payment methods" width="272" height="20">
+                        </figure><!-- End .footer-payments -->
+                    </div><!-- End .container -->
+                </div><!-- End .footer-bottom -->
+            </footer><!-- End .footer -->
+        </div><!-- End .page-wrapper -->
+        <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
 
 
 
-                    <!-- Plugins JS File -->
-                    <%
-                        String nullProduct = (String) request.getAttribute("nullProduct");
-                        if (nullProduct != null) {
-                    %>
-                    <h3 color="red" >No Product was found</h3>
-                    <%
-                        }
-                    %>
-                    <script src="assets/js/jquery.min.js"></script>
-                    <script src="assets/js/bootstrap.bundle.min.js"></script>
-                    <script src="assets/js/jquery.hoverIntent.min.js"></script>
-                    <script src="assets/js/jquery.waypoints.min.js"></script>
-                    <script src="assets/js/superfish.min.js"></script>
-                    <script src="assets/js/owl.carousel.min.js"></script>
-                    <script src="assets/js/wNumb.js"></script>
-                    <script src="assets/js/bootstrap-input-spinner.js"></script>
-                    <script src="assets/js/jquery.magnific-popup.min.js"></script>
-                    <script src="assets/js/nouislider.min.js"></script>
-                    <!-- Main JS File -->
-                    <script src="assets/js/main.js"></script>
-                    </body>
+        <!-- Plugins JS File -->
+        <%
+            String nullProduct = (String) request.getAttribute("nullProduct");
+            if (nullProduct != null) {
+        %>
+        <h3 color="red" >No Product was found</h3>
+        <%
+            }
+        %>
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/jquery.hoverIntent.min.js"></script>
+        <script src="assets/js/jquery.waypoints.min.js"></script>
+        <script src="assets/js/superfish.min.js"></script>
+        <script src="assets/js/owl.carousel.min.js"></script>
+        <script src="assets/js/wNumb.js"></script>
+        <script src="assets/js/bootstrap-input-spinner.js"></script>
+        <script src="assets/js/jquery.magnific-popup.min.js"></script>
+        <script src="assets/js/nouislider.min.js"></script>
+        <!-- Main JS File -->
+        <script src="assets/js/main.js"></script>
+    </body>
 
 
 
-                    <!-- molla/category-boxed.html  22 Nov 2019 10:03:02 GMT -->
-                    </html>
+    <!-- molla/category-boxed.html  22 Nov 2019 10:03:02 GMT -->
+</html>
