@@ -18,6 +18,39 @@
         <link rel="icon" type="image/png" sizes="16x16" href="../admin/images/favicon.png">
         <!-- Custom Stylesheet -->
         <link href="../admin/css/style.css" rel="stylesheet">
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script>
+            function myfun() {
+                var a = document.getElementById("phone").value;
+                if (a.length < 10) {
+                    alert("Phone number must be 10 digit!");
+                    return false;
+
+                }
+                if (a.length > 10) {
+                    alert("Phone number must be 10 digit!");
+                    return false;
+
+                }
+            }
+
+            function validatephone(phone)
+            {
+
+                phone = phone.replace(/[^0-9]/g, '');
+                $("#phone").val(phone);
+                if (phone == '' || !phone.match(/^0[0-9]{9}$/))
+                {
+                    $("#phone").css({'background': '#FFEDEF', 'border': 'solid 1px red'});
+
+                    return false;
+                } else
+                {
+                    $("#phone").css({'background': '#99FF99', 'border': 'solid 1px #99FF99'});
+                    return true;
+                }
+            }
+        </script>
 
     </head>
 
@@ -98,7 +131,7 @@
 
 
                                     <div class="basic-form">
-                                        <form action="imAddCompany" method="POST">
+                                        <form action="imAddCompany" method="POST" onsubmit="return myfun()">
 
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Company Name</label>
@@ -115,7 +148,7 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Phone</label>
                                                 <div class="col-sm-10">
-                                                    <input type="number" name="phone" class="form-control" placeholder="Phone" value="" required>
+                                                    <input id="phone" type="number" name="phone" class="form-control" placeholder="Phone" value="" onkeyup=" return validatephone(this.value); " required>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
