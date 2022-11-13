@@ -189,7 +189,6 @@ public class CusCartController extends HttpServlet {
                     request.getRequestDispatcher("cusCart.jsp").forward(request, response);
                 }
             }
-
             session.setAttribute("cart", cart);
             request.getRequestDispatcher("cushome").forward(request, response);
         }

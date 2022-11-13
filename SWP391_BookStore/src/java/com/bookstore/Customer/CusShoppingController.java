@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bookstore.controller;
+package com.bookstore.Customer;
 
 import com.bookstore.Author.Author;
 import com.bookstore.Author.AuthorDAO;
@@ -265,7 +265,7 @@ public class CusShoppingController extends HttpServlet {
 //            request.setAttribute("endPage", endPage);
 //            request.setAttribute("listC", listC);
 //            request.getRequestDispatcher("filter.jsp").forward(request, response);
-        } else {
+        }else {
             String indexString = request.getParameter("index");
             int index = Integer.parseInt(indexString);
             BookShopDAO dao = new BookShopDAO();

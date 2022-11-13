@@ -322,7 +322,7 @@
                             <c:if test='${checkQuanity == "Store has no more quantity of this book left. We apologize for the inconvenience."}'>
                                 <h5  class="center-parent"style="color: red;">${checkQuanity}</h5>
                             </c:if>
-                            <div class="row">
+                            <div class="row" id="content">
                                 <c:forEach items="${listAll}" var="listAll" >
                                     <div class="col-6 col-md-4 col-lg-4 col-xl-3">
                                         <div class="product">
@@ -737,18 +737,18 @@
                                                         price = list[list.length - 1].innerText.replace("VND", "");
                                                         }
                                                         const categoryLists = Array.from(test).map(v => v.checked);
-                                                        $.ajax({url: "${pageContext.request.contextPath }customer/cusshopping?index=1", data: {price: price, categories: categoryLists.join("-")}, success: function (result) {
+                                                        $.ajax({url: "cusshopping", data: {price: price, categories: categoryLists.join("-")}, success: function (result) {
                                                                 console.log({result})
                                                     const htmlString = result.map((o) => `
                                                             <div class=\"col-6 col-md-4 col-lg-4 col-xl-3\">
                                                                 <div class=\"product\">
                                                                     <figure class=\"product-media\">
                                                                         \${o.discountPercent > 1 ? "<span class=\"product-label label-new\">Discount</span>" : ""}
-                                                                        <a href=\"detail?pbookCode=\${o.bookCode}&categoryBook=\${o.cateName}\">
+                                                                        <a href=\"cusdetail?pbookCode=\${o.bookCode}&categoryBook=\${o.cateName}\">
                                                                             <img style="width:277px; height:375px;" src="\${o.image}" alt="Product image" class="product-image">
                                                                         </a>
                                                                         <div class=\"product-action\">
-                                                                            <a href=\"#\" class=\"btn-product btn-cart\"><span>Add to Cart</span></a>
+                                                                            <a href=\"${pageContext.request.contextPath}/customer/cusshoppingpage?&action=addToCart&bookCode=\${o.bookCode}\" class=\"btn-product btn-cart\"><span>Add to Cart</span></a>
                                                                         </div>
                                                                     </figure>
                                                                     <div class=\"product-body\">
@@ -766,7 +766,6 @@
                                                                     `);
                                                             console.log({htmlString});
                                                             $("#content").html(htmlString);
-                                                                
                                                         }
                                                     });
                                                 }

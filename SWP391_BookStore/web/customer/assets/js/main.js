@@ -162,7 +162,7 @@ $(document).ready(function () {
     }
 
     // Slider For category pages / filter price
-  if ( typeof noUiSlider === 'object' ) {
+    if ( typeof noUiSlider === 'object' ) {
 		var priceSlider  = document.getElementById('price-slider');
 
 		// Check if #price-slider elem is exists if not return
