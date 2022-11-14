@@ -54,7 +54,7 @@ public class CusCartController extends HttpServlet {
                     if (quantityBookAvailable > 0) { // kiem tra sach add vao co qua so luong trong kho khong?
                         cart.add(new Cart(b.getBookBybookCode(request.getParameter("bookCode")), 1));
                     } else {
-                        session.setAttribute("checkQuanity", "Store has no more quantity of this book left. We apologize for the inconvenience.");
+                        request.setAttribute("checkQuanityAddHome4", "Store has no more quantity of this book left. We apologize for the inconvenience.");
                         request.getRequestDispatcher("cushome").forward(request, response);
                     }
                 } else { // add nhung cuon tiep theo
@@ -64,7 +64,7 @@ public class CusCartController extends HttpServlet {
                         if (quantityBookAvailable > 0) {
                             cart.add(new Cart(b.getBookBybookCode(request.getParameter("bookCode")), 1));
                         } else {
-                            request.setAttribute("checkQuanity", "Store has no more quantity of this book left. We apologize for the inconvenience.");
+                            request.setAttribute("checkQuanityAddHome5", "Store has no more quantity of this book left. We apologize for the inconvenience.");
                             request.getRequestDispatcher("cushome").forward(request, response);
                         }
                     } else {
@@ -73,7 +73,7 @@ public class CusCartController extends HttpServlet {
                             int quantity = cart.get(index).getQty() + 1;
                             cart.get(index).setQty(quantity);
                         } else {
-                            session.setAttribute("checkQuanity", "Store has no more quantity of this book left. We apologize for the inconvenience.");
+                            request.setAttribute("checkQuanityAddHome6", "Store has no more quantity of this book left. We apologize for the inconvenience.");
                             request.getRequestDispatcher("cushome").forward(request, response);
                         }
                     }
@@ -185,10 +185,11 @@ public class CusCartController extends HttpServlet {
                     session.setAttribute("cart", cart);
                     request.getRequestDispatcher("cusCart.jsp").forward(request, response);
                 } else {
-                    request.setAttribute("checkQuanity", "Store has no more quantity of this book left. We apologize for the inconvenience.");
+                    request.setAttribute("checkQuanityAddCart2", "Store has no more quantity of this book left. We apologize for the inconvenience.");
                     request.getRequestDispatcher("cusCart.jsp").forward(request, response);
                 }
             }
+
             session.setAttribute("cart", cart);
             request.getRequestDispatcher("cushome").forward(request, response);
         }

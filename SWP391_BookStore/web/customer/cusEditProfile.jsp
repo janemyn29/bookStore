@@ -47,62 +47,82 @@
                         <div class="container">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="cushome">Home</a></li>
-<!--                                <li class="breadcrumb-item"><a href="#">Shop</a></li>-->
+                                <!--                                <li class="breadcrumb-item"><a href="#">Shop</a></li>-->
                                 <li class="breadcrumb-item active" aria-current="page">My Account</li>
                             </ol>
                         </div><!-- End .container -->
                     </nav><!-- End .breadcrumb-nav -->
 
-                    <div class="page-content">
-                        <div class="dashboard">
-                            <div class="container">
-                                <div class="row">
-                                    <aside class="col-md-4 col-lg-3">
-                                        <ul class="nav nav-dashboard flex-column mb-3 mb-md-0" role="tablist">
-                                            <li class="nav-item">
-                                                <a class="nav-link active" id="tab-account-link" data-toggle="tab" href="#tab-account" role="tab" aria-controls="tab-account" aria-selected="true">My Profile</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="cusorderhome">My Orders</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="cushistoryhome">My History</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="cusreturnmanagementnav">My Return Management</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="cusChangePass.jsp">Change Password</a>
-                                            </li>
-                                            
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/SWP391_BookStore/logout">Sign Out</a>
-                                            </li>
-                                        </ul>
-                                    </aside><!-- End .col-lg-3 -->
+                <c:if test='${check == "UPDATE SUCCESS"}'>
+                    <div class="alert2">
+                        <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span>
+                        <p align="center"> UPDATE SUCCESS </p> 
+                    </div>
+                </c:if>
+                <c:if test='${check == "The phone numer is already used!!!"}'>
+                    <div class="alert3">
+                        <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span>
+                        <p align="center" style="color: white"> The phone numer is already used!!! </p> 
+                    </div>
+                </c:if>
+                <c:if test='${check == "The user name is already used!!!"}'>
+                    <div class="alert3">
+                        <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span>
+                        <p align="center" style="color: white"> The user name is already used!!! </p> 
+                    </div>
+                </c:if>
+                <style>
+                    p {
+                        text-align: center;
+                    }
+                </style>
 
-                                    <div class="col-md-8 col-lg-9">
-                                        <div class="tab-content">
-                                            
+                <div class="page-content">
+                    <div class="dashboard">
+                        <div class="container">
+                            <div class="row">
+                                <aside class="col-md-4 col-lg-3">
+                                    <ul class="nav nav-dashboard flex-column mb-3 mb-md-0" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="tab-account-link" data-toggle="tab" href="#tab-account" role="tab" aria-controls="tab-account" aria-selected="true">My Profile</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="cusorderhome">My Orders</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="cushistoryhome">My History</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="cusreturnmanagementnav">My Return Management</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="cusChangePass.jsp">Change Password</a>
+                                        </li>
 
-                                            <div class="tab-pane fade show active" id="tab-account" role="tabpanel" aria-labelledby="tab-account-link">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/SWP391_BookStore/logout">Sign Out</a>
+                                        </li>
+                                    </ul>
+                                </aside><!-- End .col-lg-3 -->
+
+                                <div class="col-md-8 col-lg-9">
+                                    <div class="tab-content">
 
 
-                                                <form name="formEditProfile" action="cuseditprofile" method="post">
-                                                    <div>
-                                                        <label>User Name *</label>
-                                                        <small class="form-text">(This will be how your name will be displayed in the account section and in reviews)</small>
-                                                        <input type="text" class="form-control" name="txtUserName" value="${acc.getUsername()}" required>
-                                                    <c:if test='${check == "The user name is already used!!!"}'>
-                                                        <small style="color: red;">${check}</small>
-                                                    </c:if>
+                                        <div class="tab-pane fade show active" id="tab-account" role="tabpanel" aria-labelledby="tab-account-link">
+
+
+                                            <form name="formEditProfile" action="cuseditprofile" method="post">
+                                                <div>
+                                                    <label>User Name *</label>
+                                                    <small class="form-text">(This will be how your name will be displayed in the account section and in reviews)</small>
+                                                    <input type="text" class="form-control" name="txtUserName" value="${acc.getUsername()}" required>
+
                                                 </div>
                                                 <div>
                                                     <label>Phone Number *</label>
                                                     <input type="text" class="form-control" name="txtPhoneNumber" value="${acc.getPhone()}" maxlength="10" required>
-                                                    <c:if test='${check == "The phone numer is already used!!!"}'>
-                                                        <small style="color: red;">${check}</small>
-                                                    </c:if>
+
                                                 </div>
                                                 <label>Email address *</label>
                                                 <input type="email" class="form-control" name="txtEmailAddress" value="${acc.getEmail()}"readonly>
@@ -111,11 +131,7 @@
                                                 <button type="submit" class="btn btn-outline-primary-2" onclick="alertShow()">
                                                     <span>SAVE CHANGES</span>
                                                     <i class="icon-arrow-down"></i>
-                                                </button>
-                                                <c:if test='${check == "UPDATE SUCCESS"}'>
-                                                    <label  style="color: greenyellow;">${check}</label>
-                                                </c:if>
-
+                                                </button>                                              
                                                 </script>
                                             </form>
 
@@ -128,21 +144,21 @@
                 </div><!-- End .page-content -->
             </main><!-- End .main -->
 
-            <footer class="footer">
+            <footer class="footer footer-dark">
                 <div class="footer-middle">
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-6 col-lg-3">
                                 <div class="widget widget-about">
                                     <img src="assets/images/logo.png" class="footer-logo" alt="Footer Logo" width="105" height="25">
-                                    <p>Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. </p>
+                                    <p>Connect social apps coming soon</p>
 
                                     <div class="social-icons">
-                                        <a href="#" class="social-icon" target="_blank" title="Facebook"><i class="icon-facebook-f"></i></a>
-                                        <a href="#" class="social-icon" target="_blank" title="Twitter"><i class="icon-twitter"></i></a>
-                                        <a href="#" class="social-icon" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
-                                        <a href="#" class="social-icon" target="_blank" title="Youtube"><i class="icon-youtube"></i></a>
-                                        <a href="#" class="social-icon" target="_blank" title="Pinterest"><i class="icon-pinterest"></i></a>
+                                        <a class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
+                                        <a class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+                                        <a class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
+                                        <a class="social-icon" title="Youtube" target="_blank"><i class="icon-youtube"></i></a>
+                                        <a class="social-icon" title="Pinterest" target="_blank"><i class="icon-pinterest"></i></a>
                                     </div><!-- End .soial-icons -->
                                 </div><!-- End .widget about-widget -->
                             </div><!-- End .col-sm-6 col-lg-3 -->
@@ -152,11 +168,16 @@
                                     <h4 class="widget-title">Useful Links</h4><!-- End .widget-title -->
 
                                     <ul class="widget-list">
-                                        <li><a href="about.html">About Molla</a></li>
-                                        <li><a href="#">How to shop on Molla</a></li>
-                                        <li><a href="#">FAQ</a></li>
-                                        <li><a href="contact.html">Contact us</a></li>
-                                        <li><a href="login.html">Log in</a></li>
+                                        <li><a>Contact us</a>
+                                            <small> 
+                                                <br>
+                                                Any questions contact:
+                                                <br> <i class="icon-facebook-f"></i> Tran My
+                                                <br> <i class="icon-google">mail</i> : mytran@gmail.com
+                                                <br> <i class="icon-phone"></i> 0837462988
+                                            </small>
+                                        </li>
+                                        <li><a href="login.jsp">Sign up</a></li>
                                     </ul><!-- End .widget-list -->
                                 </div><!-- End .widget -->
                             </div><!-- End .col-sm-6 col-lg-3 -->
@@ -166,12 +187,8 @@
                                     <h4 class="widget-title">Customer Service</h4><!-- End .widget-title -->
 
                                     <ul class="widget-list">
-                                        <li><a href="#">Payment Methods</a></li>
-                                        <li><a href="#">Money-back guarantee!</a></li>
-                                        <li><a href="#">Returns</a></li>
-                                        <li><a href="#">Shipping</a></li>
-                                        <li><a href="#">Terms and conditions</a></li>
-                                        <li><a href="#">Privacy Policy</a></li>
+                                        <li><a href="cusHistory.jsp">Returns</a></li>
+                                        <li><a href="cusHistory.jsp">Feed Back</a></li>
                                     </ul><!-- End .widget-list -->
                                 </div><!-- End .widget -->
                             </div><!-- End .col-sm-6 col-lg-3 -->
@@ -181,11 +198,10 @@
                                     <h4 class="widget-title">My Account</h4><!-- End .widget-title -->
 
                                     <ul class="widget-list">
-                                        <li><a href="#">Sign In</a></li>
-                                        <li><a href="cart.html">View Cart</a></li>
-                                        <li><a href="#">My Wishlist</a></li>
-                                        <li><a href="#">Track My Order</a></li>
-                                        <li><a href="#">Help</a></li>
+                                        <li><a href="cusCart.jsp">View Cart</a></li>
+                                        <li><a href="cusOrders.jsp">Track My Order</a></li>
+                                        <li><a href="cusEditProfile.jsp.jsp">Change Profile Info</a></li>
+                                        <li><a href="cusChangePass.jsp">Change Password</a></li>
                                     </ul><!-- End .widget-list -->
                                 </div><!-- End .widget -->
                             </div><!-- End .col-sm-6 col-lg-3 -->
@@ -500,5 +516,68 @@
         <script src="assets/js/owl.carousel.min.js"></script>
         <!-- Main JS File -->
         <script src="assets/js/main.js"></script>
+        <script>
+                                                    // Get all elements with class="closebtn"
+                                                    var close = document.getElementsByClassName("closebtn");
+                                                    var i;
+
+                                                    // Loop through all close buttons
+                                                    for (i = 0; i < close.length; i++) {
+                                                        // When someone clicks on a close button
+                                                        close[i].onclick = function () {
+
+                                                            // Get the parent of <span class="closebtn"> (<div class="alert">)
+                                                            var div = this.parentElement;
+
+                                                            // Set the opacity of div to 0 (transparent)
+                                                            div.style.opacity = "0";
+
+                                                            // Hide the div after 600ms (the same amount of milliseconds it takes to fade out)
+                                                            setTimeout(function () {
+                                                                div.style.display = "none";
+                                                            }, 600);
+                                                        }
+                                                    }
+        </script>
     </body>
+
+    <style>
+        .alert2 {
+            padding: 20px;
+            background-color: honeydew; /* Red */
+            color: green;
+            margin-bottom: 15px;
+        }
+        .alert3 {
+            padding: 20px;
+            background-color: red; /* Red */
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        /* The close button */
+        .closebtn {
+            margin-left: 15px;
+            color: black;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        /* When moving the mouse over the close button */
+        .closebtn:hover {
+            color: black;
+        }
+
+    </style>
+
+    <style>
+        .alert {
+            opacity: 1;
+            transition: opacity 0.6s; /* 600ms to fade out */
+        }
+    </style>
 </html>

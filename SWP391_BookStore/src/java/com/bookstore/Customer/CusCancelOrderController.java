@@ -63,10 +63,7 @@ public class CusCancelOrderController extends HttpServlet {
                         b.updateQuantityBookByBookCode(quanityBookInStoreAfter, bookCode);
                     }
                     odao.updateOrderStatusByID(orderID);
-                    session.setAttribute("checkstatus", "Cancel order success");
-                    request.getRequestDispatcher("cusorderhome").forward(request, response);
-                } else if (status.equals("delivering")) {
-                    session.setAttribute("checkstatus", "You cannot return the product being delivered.");
+                    request.setAttribute("checkstatus", "Cancel order success");
                     request.getRequestDispatcher("cusorderhome").forward(request, response);
                 } else if (status.equals("received")) {
                     // lay list detail tu ham lay list theo id
@@ -97,11 +94,8 @@ public class CusCancelOrderController extends HttpServlet {
                 LocalDateTime now = LocalDateTime.now();
                 String receivedDate = dtf.format(now);
                 odao.updateOrderStatusByIDConfirm(receivedDate, orderID);
-                Account acc = (Account) session.getAttribute("acc");
-                int accountID = acc.getAccID();
-                List<Order> listOrd2 = odao.getOrderListByStatus2(accountID);
-                request.setAttribute("listOrd2", listOrd2);
-                request.getRequestDispatcher("cusHistory.jsp").forward(request, response);
+                request.setAttribute("confirm", "confirm");
+                request.getRequestDispatcher("cusorderhome").forward(request, response);
             }
         }
         OrderDAO odao = new OrderDAO();

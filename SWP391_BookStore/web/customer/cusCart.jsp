@@ -35,7 +35,7 @@
         <!-- Main CSS File -->
         <link rel="stylesheet" href="assets/css/style.css">
     </head>
-    
+
     <style>
         .navigation-item.active {
             color:red
@@ -213,11 +213,13 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <div class="dropdown-cart-products">
-                                        <label  style="color: black;">Your cart is empty</label>
+                                        <label>
+                                            <img style="width: 320px; height: 200px;" src="assets/images/mini-cart-empty.png" alt="Product image">
+                                        </label>
                                     </div>
                                     <div class="dropdown-cart-action">
-                                        <a href="cusCart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span></a>
-                                        <a href="cusCheckOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
+                                        <a href="cart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span><i class='fas'>&#xf07a;</i></a>
+                                        <a href="checkOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class='fas'>&#xf53d;</i></a>
                                     </div><!-- End .dropdown-cart-total -->
                                 </div><!-- End .dropdown-menu -->
                             </div><!-- End .cart-dropdown -->
@@ -255,8 +257,8 @@
                                     </c:forEach>
 
                                     <div class="dropdown-cart-action">
-                                        <a href="cusCart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span></a>
-                                        <a href="cusCheckOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
+                                        <a href="cusCart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span><i class='fas'>&#xf07a;</i></a>
+                                        <a href="cusCheckOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class='fas'>&#xf53d;</i></a>
                                     </div><!-- End .dropdown-cart-total -->
                                 </div><!-- End .dropdown-menu -->
                             </div><!-- End .cart-dropdown -->
@@ -281,146 +283,176 @@
                             <li class="breadcrumb-item active" aria-current="page">Shopping Cart</li>
                         </ol>
                     </div><!-- End .container -->
-                    <c:if test='${checkQuanity == "Store has no more quantity of this book left. We apologize for the inconvenience."}'>
-                        <h5  class="center-parent"style="color: red;">${checkQuanity}</h5>
+                    <c:if test='${checkQuanityAddCart2 == "Store has no more quantity of this book left. We apologize for the inconvenience."}'>
+                        <div class="alert2">
+                            <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span>
+                            <p align="center" style="color: white">${checkQuanityAddCart2}</p>
+                        </div>
                     </c:if>
                 </nav><!-- End .breadcrumb-nav -->
+
+                <style>
+                    p {
+                        text-align: center;
+                    }
+                </style>
+                
+                <c:if test='${cart == null}'>
+                    <div class="page-content">
+                        <div class="cart">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-9">
+                                        <img style="width: 600px; height: 350px;" src="assets/images/cart-empty.png" alt="Product image">
+                                    </div>
+                                    <aside class="col-lg-3">
+                                        <div class="summary summary-cart">
+                                            <a class="logo" style="color: orange">
+                                                <img src="assets/images/logo.png" alt="Molla Logo" width="105" height="25">
+                                                <h9 class="right-parent"><i class="icon-phone"></i>Call: +0123 456 789</h9>
+                                                <h9>(Tra My)</h9>
+                                            </a>
+                                            <h5 class="center-parent">BILL</h5><!-- End .summary-title -->
+                                            <h7>Guess Name: ${acc.getUsername()}</h7><br>
+                                            <h7>Guess Phone Number: ${acc.getPhone()}</h7>
+                                            <h1 class="summary-title"></h1>
+                                            <table class="table table-summary">
+                                                <tbody>                                              
+                                                    <tr class="summary-subtotal">
+                                                        <td>Quantity</td>
+                                                        <td class="center-parent">Name</td>
+                                                        <td>Price</td>
+                                                    </tr><!-- End .summary-subtotal -->
+                                                </tbody>
+                                                <tr>
+                                                    <td class="total-col">Total:</td>
+
+                                                    <td class="total-col">                                    
+                                                    </td>
+                                                </tr><!-- End .summary-total -->
+                                            </table><!-- End .table table-summary -->    
+                                            <a href="cushome" class="btn btn-outline-primary-2 btn-block mb-3"><span>CONTINUE SHOPPING</span><i style='font-size:24px' class='fas'>&#xf217;</i></a>
+                                        </div><!-- End .summary -->
+                                    </aside><!-- End .col-lg-3 -->
+                                </div><!-- End .row -->
+                            </div><!-- End .container -->
+                        </div><!-- End .cart -->
+                    </div><!-- End .page-content -->
+                </c:if>
 
                 <div class="page-content">
                     <div class="cart">
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-9">
-                                    <table class="table table-cart table-mobile">
-                                        <thead>
-                                            <tr>
-                                                <th>Product</th>
-                                                <th>Price</th>
-                                                <th></th>
-                                                <th>Quantity</th>
-                                                <th>Total</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-                                            <c:forEach items="${cart}" var="cart">
+                                    <c:if test='${cart != null}'>
+                                        <table class="table table-cart table-mobile">
+                                            <thead>
                                                 <tr>
-                                                    <td class="product-col">
-                                                        <div class="product">
-                                                            <figure class="product-media">
-                                                                <img src="${cart.book.image}" alt="Product image" class="product-image">
-                                                            </figure>
-                                                            <h3 class="product-title">
-                                                                <a href="product.jsp">${cart.book.bookName}</a>
-                                                            </h3> 
-                                                        </div> 
-                                                    </td>
-
-                                                    <c:if test='${cart.book.buyPrice == cart.buyPrice}'>
-                                                        <td class="price-col">
-                                                            <fmt:formatNumber value="${cart.book.buyPrice}" pattern=" #,##0 VND" /> 
-                                                        </td>
-                                                        <td></td>
-                                                    </c:if>
-
-                                                    <c:if test='${cart.book.buyPrice != cart.buyPrice}'>
-                                                        <td class="price-col">
-                                                            <fmt:formatNumber value="${cart.buyPrice}" pattern=" #,##0 VND" />
-                                                        </td>
-                                                        <td class="line-through">
-                                                            <fmt:formatNumber value="${cart.book.buyPrice}" pattern=" #,##0 VND" />  
-                                                        </td>
-                                                    </c:if>
-
-
-                                                    <td class="quantity-col">
-                                                        <div class="cart-product-quantity">
-                                                            <a href="${pageContext.request.contextPath }/customer/cuscart?action=decre&bookCode=${cart.book.bookCode}">-</a>
-                                                            <a class="alert">
-                                                                ${cart.qty}                                                     
-                                                            </a>
-                                                            <a href="${pageContext.request.contextPath }/customer/cuscart?action=incre&bookCode=${cart.book.bookCode}">+</a>
-                                                        </div>
-                                                    </td>
-
-                                                    <td class="total-col">
-                                                        <fmt:formatNumber value="${cart.buyPrice * cart.qty}" pattern=" #,##0 VND" /> 
-                                                    </td>
-
-
-                                                    <td class="remove-col">
-                                                        <a href="${pageContext.request.contextPath }/customer/cuscart?action=remove&bookCode=${cart.book.bookCode}" class="btn-remove">
-                                                            <i class="icon-close"></i>
-                                                        </a>
-                                                    </td>
+                                                    <th>Product</th>
+                                                    <th>Price</th>
+                                                    <th></th>
+                                                    <th>Quantity</th>
+                                                    <th>Total</th>
+                                                    <th></th>
                                                 </tr>
-                                            </c:forEach>
-                                        </tbody>
-
-                                    </table><!-- End .table table-wishlist -->
-                                </div><!-- End .col-lg-9 -->
-                                <aside class="col-lg-3">
-
-
-                                    <div class="summary summary-cart">
-                                        <a class="logo" style="color: orange">
-                                            <img src="assets/images/logo.png" alt="Molla Logo" width="105" height="25">
-                                            <h9 class="right-parent"><i class="icon-phone"></i>Call: +0123 456 789</h9>
-                                            <h9>(Tra My)</h9>
-                                        </a>
-
-                                        <h5 class="center-parent">BILL</h5><!-- End .summary-title -->
-                                        <h7>Guess Name: ${acc.getUsername()}</h7><br>
-                                        <h7>Guess Phone Number: ${acc.getPhone()}</h7>
-                                        <h1 class="summary-title"></h1>
-
-                                        <table class="table table-summary">
-
-                                            <tbody>                                              
-                                                <tr class="summary-subtotal">
-                                                    <td>Quantity</td>
-                                                    <td class="center-parent">Name</td>
-                                                    <td>Price</td>
-                                                </tr><!-- End .summary-subtotal -->
+                                            </thead>
+                                            <tbody>
                                                 <c:forEach items="${cart}" var="cart">
-                                                    <tr class="summary-subtotal">
-                                                        <td>X ${cart.qty}</td>
-                                                        <td>${cart.book.bookName}</td>
-                                                        <td>
-                                                            <fmt:formatNumber value="${cart.buyPrice * cart.qty}" pattern=" #,##0 VND" />  
+                                                    <tr>
+                                                        <td class="product-col">
+                                                            <div class="product">
+                                                                <figure class="product-media">
+                                                                    <img src="${cart.book.image}" alt="Product image" class="product-image">
+                                                                </figure>
+                                                                <h3 class="product-title">
+                                                                    <a href="product.jsp">${cart.book.bookName}</a>
+                                                                </h3> 
+                                                            </div> 
                                                         </td>
-                                                    </tr><!-- End .summary-subtotal -->
+                                                        <c:if test='${cart.book.buyPrice == cart.buyPrice}'>
+                                                            <td class="price-col">
+                                                                <fmt:formatNumber value="${cart.book.buyPrice}" pattern=" #,##0 VND" /> 
+                                                            </td>
+                                                            <td></td>
+                                                        </c:if>
+                                                        <c:if test='${cart.book.buyPrice != cart.buyPrice}'>
+                                                            <td class="price-col">
+                                                                <fmt:formatNumber value="${cart.buyPrice}" pattern=" #,##0 VND" />
+                                                            </td>
+                                                            <td class="line-through">
+                                                                <fmt:formatNumber value="${cart.book.buyPrice}" pattern=" #,##0 VND" />  
+                                                            </td>
+                                                        </c:if>
+                                                        <td class="quantity-col">
+                                                            <div class="cart-product-quantity">
+                                                                <a href="${pageContext.request.contextPath }/customer/cuscart?action=decre&bookCode=${cart.book.bookCode}">-</a>
+                                                                <a class="alert">
+                                                                    ${cart.qty}                                                     
+                                                                </a>
+                                                                <a href="${pageContext.request.contextPath }/customer/cuscart?action=incre&bookCode=${cart.book.bookCode}">+</a>
+                                                            </div>
+                                                        </td>
+                                                        <td class="total-col">
+                                                            <fmt:formatNumber value="${cart.buyPrice * cart.qty}" pattern=" #,##0 VND" /> 
+                                                        </td>
+                                                        <td class="remove-col">
+                                                            <a href="${pageContext.request.contextPath }/customer/cuscart?action=remove&bookCode=${cart.book.bookCode}" class="btn-remove">
+                                                                <i class="icon-close"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
                                                 </c:forEach>
                                             </tbody>
-                                            <tr>
+                                        </table><!-- End .table table-wishlist -->
+                                    </c:if>
+                                </div><!-- End .col-lg-9 -->
+                                <aside class="col-lg-3">
+                                    <c:if test='${cart != null}'>
+                                        <div class="summary summary-cart">
+                                            <a class="logo" style="color: orange">
+                                                <img src="assets/images/logo.png" alt="Molla Logo" width="105" height="25">
+                                                <h9 class="right-parent"><i class="icon-phone"></i>Call: +0123 456 789</h9>
+                                                <h9>(Tra My)</h9>
+                                            </a>
+                                            <h5 class="center-parent">BILL</h5><!-- End .summary-title -->
+                                            <h7>Guess Name: ${acc.getUsername()}</h7><br>
+                                            <h7>Guess Phone Number: ${acc.getPhone()}</h7>
+                                            <h1 class="summary-title"></h1>
+                                            <table class="table table-summary">
+                                                <tbody>                                              
+                                                    <tr class="summary-subtotal">
+                                                        <td>Quantity</td>
+                                                        <td class="center-parent">Name</td>
+                                                        <td>Price</td>
+                                                    </tr><!-- End .summary-subtotal -->
+                                                    <c:forEach items="${cart}" var="cart">
+                                                        <tr class="summary-subtotal">
+                                                            <td>X ${cart.qty}</td>
+                                                            <td>${cart.book.bookName}</td>
+                                                            <td>
+                                                                <fmt:formatNumber value="${cart.buyPrice * cart.qty}" pattern=" #,##0 VND" />  
+                                                            </td>
+                                                        </tr><!-- End .summary-subtotal -->
+                                                    </c:forEach>
+                                                </tbody>
+                                                <tr>
+                                                    <td class="total-col">Total:</td>
+                                                    <c:forEach items="${cart}" var="cart">
+                                                    <script>
+                                                        int total += ${cart.buyPrice * cart.qty};
+                                                    </script>
+                                                </c:forEach>
+                                                <c:set value="${total}" var="totalAll"></c:set>
 
-                                                <td class="total-col">Total:</td>
-                                                <c:forEach items="${cart}" var="cart">
-                                                <script>
-                                                    int total += ${cart.buyPrice * cart.qty};
-                                                </script>
-                                            </c:forEach>
-                                            <c:set value="${total}" var="totalAll"></c:set>
-
-                                                <td class="total-col">
-                                                <fmt:formatNumber value="${totalPrice}" pattern=" #,##0 VND" />                                       
-                                            </td>
-
-
-                                            </tr><!-- End .summary-total -->
-                                        </table><!-- End .table table-summary -->
-
-                                        <c:if test='${cart == null}'>
-                                            <label  style="color: red;">You have no item in cart!<br>Pls continue to shopping</label>
-                                            </c:if>
-                                            <c:if test='${cart != null}'>
+                                                    <td class="total-col">
+                                                    <fmt:formatNumber value="${totalPrice}" pattern=" #,##0 VND" />                                       
+                                                </td>
+                                                </tr><!-- End .summary-total -->
+                                            </table><!-- End .table table-summary -->
                                             <a href="cusCheckOut.jsp" class="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO CHECKOUT</a>
-                                        </c:if>
-
-                                    </div><!-- End .summary -->
-
-                                    <a href="cushome" class="btn btn-outline-dark-2 btn-block mb-3"><span>CONTINUE SHOPPING</span><i class="icon-refresh"></i></a>
+                                        </div><!-- End .summary -->
+                                    </c:if>
                                 </aside><!-- End .col-lg-3 -->
                             </div><!-- End .row -->
                         </div><!-- End .container -->
@@ -801,7 +833,64 @@
         <script src="assets/js/bootstrap-input-spinner.js"></script>
         <!-- Main JS File -->
         <script src="assets/js/main.js"></script>
+        <script>
+                                                        // Get all elements with class="closebtn"
+                                                        var close = document.getElementsByClassName("closebtn");
+                                                        var i;
+
+                                                        // Loop through all close buttons
+                                                        for (i = 0; i < close.length; i++) {
+                                                            // When someone clicks on a close button
+                                                            close[i].onclick = function () {
+
+                                                                // Get the parent of <span class="closebtn"> (<div class="alert">)
+                                                                var div = this.parentElement;
+
+                                                                // Set the opacity of div to 0 (transparent)
+                                                                div.style.opacity = "0";
+
+                                                                // Hide the div after 600ms (the same amount of milliseconds it takes to fade out)
+                                                                setTimeout(function () {
+                                                                    div.style.display = "none";
+                                                                }, 600);
+                                                            }
+                                                        }
+        </script>
     </body>
 
+
+    <style>
+        .alert2 {
+            padding: 20px;
+            background-color: #f44336; /* Red */
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        /* The close button */
+        .closebtn {
+            margin-left: 15px;
+            color: white;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        /* When moving the mouse over the close button */
+        .closebtn:hover {
+            color: black;
+        }
+
+    </style>
+
+    <style>
+        .alert {
+            opacity: 1;
+            transition: opacity 0.6s; /* 600ms to fade out */
+        }
+    </style>
     <!-- molla/cart.html  22 Nov 2019 09:55:06 GMT -->
 </html>

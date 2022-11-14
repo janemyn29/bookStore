@@ -223,11 +223,13 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <div class="dropdown-cart-products">
-                                        <label  style="color: black;">Your cart is empty</label>
+                                        <label>
+                                            <img style="width: 320px; height: 200px;" src="assets/images/mini-cart-empty.png" alt="Product image">
+                                        </label>
                                     </div>
                                     <div class="dropdown-cart-action">
-                                        <a href="cusCart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span></a>
-                                        <a href="cusCheckOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
+                                        <a href="cusCart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span><i class='fas'>&#xf07a;</i></a>
+                                        <a href="cusCheckOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class='fas'>&#xf53d;</i></a>
                                     </div><!-- End .dropdown-cart-total -->
                                 </div><!-- End .dropdown-menu -->
                             </div><!-- End .cart-dropdown -->
@@ -265,8 +267,8 @@
                                     </c:forEach>
 
                                     <div class="dropdown-cart-action">
-                                        <a href="cusCart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span></a>
-                                        <a href="cusCheckOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
+                                        <a href="cusCart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span><i class='fas'>&#xf07a;</i></a>
+                                        <a href="cusCheckOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class='fas'>&#xf53d;</i></a>
                                     </div><!-- End .dropdown-cart-total -->
                                 </div><!-- End .dropdown-menu -->
                             </div><!-- End .cart-dropdown -->
@@ -308,21 +310,32 @@
 
                 <div class="page-content">
                     <div class="container">
-                        <div class="toolbox">
-                            <div class="toolbox-left">
-                                <a href="#" class="sidebar-toggler"><i class="icon-bars"></i>Filters</a>
-                            </div><!-- End .toolbox-left -->
-
-                            <div class="toolbox-center">
-                            </div><!-- End .toolbox-center -->
-
-                        </div><!-- End .toolbox -->
-
                         <div class="products">
-                            <c:if test='${checkQuanity == "Store has no more quantity of this book left. We apologize for the inconvenience."}'>
-                                <h5  class="center-parent"style="color: red;">${checkQuanity}</h5>
+                            <c:if test='${checkQuanityAddShop4 == "Store has no more quantity of this book left. We apologize for the inconvenience."}'>
+                                <div class="alert2">
+                                    <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span>
+                                    <p align="center" style="color: white"> Store has no more quantity of this book left. We apologize for the inconvenience. </p> 
+                                </div>
                             </c:if>
-                            <div class="row" id="content">
+                            <c:if test='${checkQuanityAddShop5 == "Store has no more quantity of this book left. We apologize for the inconvenience."}'>
+                                <div class="alert2">
+                                    <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span>
+                                    <p align="center" style="color: white"> Store has no more quantity of this book left. We apologize for the inconvenience. </p> 
+                                </div>
+                            </c:if>
+                            <c:if test='${checkQuanityAddShop6 == "Store has no more quantity of this book left. We apologize for the inconvenience."}'>
+                                <div class="alert2">
+                                    <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span>
+                                    <p align="center" style="color: white"> Store has no more quantity of this book left. We apologize for the inconvenience. </p> 
+                                </div>
+                            </c:if>
+
+                            <style>
+                                p {
+                                    text-align: center;
+                                }
+                            </style>
+                            <div class="row">
                                 <c:forEach items="${listAll}" var="listAll" >
                                     <div class="col-6 col-md-4 col-lg-4 col-xl-3">
                                         <div class="product">
@@ -639,160 +652,23 @@
                                                     </aside> End .sidebar-filter -->
                         </div>
                     </div><!-- End .page-content -->
-                    <aside class="sidebar-shop sidebar-filter">
-                            <div class="sidebar-filter-wrapper">
-                                <div class="widget widget-clean">
-                                    <label><i class="icon-close"></i>Filters</label>
-                                    <a href="#" class="sidebar-filter-clear">Clean All</a>
-                                </div><!-- End .widget -->
-                                <div class="widget widget-collapsible">
-                                    <h3 class="widget-title">
-                                        <a data-toggle="collapse" href="#widget-1" role="button" aria-expanded="true" aria-controls="widget-1">
-                                            Category
-                                        </a>
-                                    </h3><!-- End .widget-title -->
-
-                                    <div class="collapse show" id="widget-1">
-                                        <div class="widget-body">
-                                            <div class="filter-items filter-items-count">
-                                                <div class="filter-item">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="cat-1">
-                                                        <label class="custom-control-label" for="cat-1">Art - Literary </label>
-                                                    </div><!-- End .custom-checkbox -->
-                                                </div><!-- End .filter-item -->
-
-                                                <div class="filter-item">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="cat-2">
-                                                        <label class="custom-control-label" for="cat-2">Comics</label>
-                                                    </div><!-- End .custom-checkbox -->
-                                                </div><!-- End .filter-item -->
-
-                                                <div class="filter-item">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="cat-3">
-                                                        <label class="custom-control-label" for="cat-3">Textbook - Syllabus </label>
-                                                    </div><!-- End .custom-checkbox -->
-                                                </div><!-- End .filter-item -->
-
-                                                <div class="filter-item">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="cat-4">
-                                                        <label class="custom-control-label" for="cat-4">Novel </label>
-                                                    </div><!-- End .custom-checkbox -->
-                                                </div><!-- End .filter-item -->
-
-                                                <div class="filter-item">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="cat-5">
-                                                        <label class="custom-control-label" for="cat-5">Foreign language </label>
-                                                    </div><!-- End .custom-checkbox -->
-                                                </div><!-- End .filter-item -->
-
-                                                <div class="filter-item">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="cat-6">
-                                                        <label class="custom-control-label" for="cat-6">Science </label>
-                                                    </div><!-- End .custom-checkbox -->
-                                                </div><!-- End .filter-item -->
-
-                                                <div class="filter-item">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="cat-7">
-                                                        <label class="custom-control-label" for="cat-7">Horror </label>
-                                                    </div><!-- End .custom-checkbox -->
-                                                </div><!-- End .filter-item -->
-
-                                            </div><!-- End .filter-items -->
-                                        </div><!-- End .widget-body -->
-                                    </div><!-- End .collapse -->
-                                </div><!-- End .widget -->
-
-                                <div class="widget widget-collapsible">
-                                    <h3 class="widget-title">
-                                        <a data-toggle="collapse" href="#widget-5" role="button" aria-expanded="true" aria-controls="widget-5">
-                                            Price
-                                        </a>
-                                    </h3><!-- End .widget-title -->
-
-                                    <div class="collapse show" id="widget-5">
-                                        <div class="widget-body">
-                                            <div class="filter-price">
-                                                <div class="filter-price-text">
-                                                    Price Range:
-                                                    <span id="filter-price-range"></span>
-                                                </div><!-- End .filter-price-text -->
-
-                                                <div id="price-slider"></div><!-- End #price-slider -->
-                                            </div><!-- End .filter-price -->
-                                            <button onclick="handleClick()" >Sort</button>
-                                            <script>
-                                                function handleClick() {
-                                                const list = document.querySelectorAll(".noUi-tooltip");
-                                                const test = document.querySelectorAll(".custom-control-input");
-                                                let price;
-                                                if (list.length > 1) {
-                                                    
-                                                        price = list[list.length - 1].innerText.replace("VND", "");
-                                                        }
-                                                        const categoryLists = Array.from(test).map(v => v.checked);
-                                                        $.ajax({url: "cusshopping", data: {price: price, categories: categoryLists.join("-")}, success: function (result) {
-                                                                console.log({result})
-                                                    const htmlString = result.map((o) => `
-                                                            <div class=\"col-6 col-md-4 col-lg-4 col-xl-3\">
-                                                                <div class=\"product\">
-                                                                    <figure class=\"product-media\">
-                                                                        \${o.discountPercent > 1 ? "<span class=\"product-label label-new\">Discount</span>" : ""}
-                                                                        <a href=\"cusdetail?pbookCode=\${o.bookCode}&categoryBook=\${o.cateName}\">
-                                                                            <img style="width:277px; height:375px;" src="\${o.image}" alt="Product image" class="product-image">
-                                                                        </a>
-                                                                        <div class=\"product-action\">
-                                                                            <a href=\"${pageContext.request.contextPath}/customer/cusshoppingpage?&action=addToCart&bookCode=\${o.bookCode}\" class=\"btn-product btn-cart\"><span>Add to Cart</span></a>
-                                                                        </div>
-                                                                    </figure>
-                                                                    <div class=\"product-body\">
-                                                                        <div class=\"product-cat\">
-                                                                            <a href="">\${o.cateName}</a>
-                                                                        </div>
-                                                                        <h3 class="product-title">
-                                                                            <a href="detail?pbookCode=\${o.bookCode}&categoryBook=\${o.cateName}">\${o.bookName}</a>
-                                                                        </h3>
-                                                                        \${o.discountPercent == 0 ? "<div class=\"product-price\">Price: " + o.buyPrice + "</div>" :"<div class=\"product-price\">Sale Price: " + (o.buyPrice-(o.discountPercent *o.buyPrice/100)) + "</div>"}
-                                                                        <div class="product-author">Author: \${o.authorNum == 1 ? o.author : ""+o.author+""}</div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                                    `);
-                                                            console.log({htmlString});
-                                                            $("#content").html(htmlString);
-                                                        }
-                                                    });
-                                                }
-
-                                            </script>
-                                        </div><!-- End .widget-body -->
-                                    </div><!-- End .collapse -->
-                                </div><!-- End .widget -->
-                            </div><!-- End .sidebar-filter-wrapper -->
-                        </aside><!-- End .sidebar-filter -->
             </main><!-- End .main -->
 
-            <footer class="footer">
+            <footer class="footer footer-dark">
                 <div class="footer-middle">
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-6 col-lg-3">
                                 <div class="widget widget-about">
                                     <img src="assets/images/logo.png" class="footer-logo" alt="Footer Logo" width="105" height="25">
-                                    <p>Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. </p>
+                                    <p>Connect social apps coming soon</p>
 
                                     <div class="social-icons">
-                                        <a href="#" class="social-icon" target="_blank" title="Facebook"><i class="icon-facebook-f"></i></a>
-                                        <a href="#" class="social-icon" target="_blank" title="Twitter"><i class="icon-twitter"></i></a>
-                                        <a href="#" class="social-icon" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
-                                        <a href="#" class="social-icon" target="_blank" title="Youtube"><i class="icon-youtube"></i></a>
-                                        <a href="#" class="social-icon" target="_blank" title="Pinterest"><i class="icon-pinterest"></i></a>
+                                        <a class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
+                                        <a class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+                                        <a class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
+                                        <a class="social-icon" title="Youtube" target="_blank"><i class="icon-youtube"></i></a>
+                                        <a class="social-icon" title="Pinterest" target="_blank"><i class="icon-pinterest"></i></a>
                                     </div><!-- End .soial-icons -->
                                 </div><!-- End .widget about-widget -->
                             </div><!-- End .col-sm-6 col-lg-3 -->
@@ -802,11 +678,16 @@
                                     <h4 class="widget-title">Useful Links</h4><!-- End .widget-title -->
 
                                     <ul class="widget-list">
-                                        <li><a href="about.html">About Molla</a></li>
-                                        <li><a href="#">How to shop on Molla</a></li>
-                                        <li><a href="#">FAQ</a></li>
-                                        <li><a href="contact.html">Contact us</a></li>
-                                        <li><a href="login.html">Log in</a></li>
+                                        <li><a>Contact us</a>
+                                            <small> 
+                                                <br>
+                                                Any questions contact:
+                                                <br> <i class="icon-facebook-f"></i> Tran My
+                                                <br> <i class="icon-google">mail</i> : mytran@gmail.com
+                                                <br> <i class="icon-phone"></i> 0837462988
+                                            </small>
+                                        </li>
+                                        <li><a href="login.jsp">Sign up</a></li>
                                     </ul><!-- End .widget-list -->
                                 </div><!-- End .widget -->
                             </div><!-- End .col-sm-6 col-lg-3 -->
@@ -816,12 +697,8 @@
                                     <h4 class="widget-title">Customer Service</h4><!-- End .widget-title -->
 
                                     <ul class="widget-list">
-                                        <li><a href="#">Payment Methods</a></li>
-                                        <li><a href="#">Money-back guarantee!</a></li>
-                                        <li><a href="#">Returns</a></li>
-                                        <li><a href="#">Shipping</a></li>
-                                        <li><a href="#">Terms and conditions</a></li>
-                                        <li><a href="#">Privacy Policy</a></li>
+                                        <li><a href="cusHistory.jsp">Returns</a></li>
+                                        <li><a href="cusHistory.jsp">Feed Back</a></li>
                                     </ul><!-- End .widget-list -->
                                 </div><!-- End .widget -->
                             </div><!-- End .col-sm-6 col-lg-3 -->
@@ -831,11 +708,10 @@
                                     <h4 class="widget-title">My Account</h4><!-- End .widget-title -->
 
                                     <ul class="widget-list">
-                                        <li><a href="#">Sign In</a></li>
-                                        <li><a href="cart.html">View Cart</a></li>
-                                        <li><a href="#">My Wishlist</a></li>
-                                        <li><a href="#">Track My Order</a></li>
-                                        <li><a href="#">Help</a></li>
+                                        <li><a href="cusCart.jsp">View Cart</a></li>
+                                        <li><a href="cusOrders.jsp">Track My Order</a></li>
+                                        <li><a href="cusEditProfile.jsp.jsp">Change Profile Info</a></li>
+                                        <li><a href="cusChangePass.jsp">Change Password</a></li>
                                     </ul><!-- End .widget-list -->
                                 </div><!-- End .widget -->
                             </div><!-- End .col-sm-6 col-lg-3 -->
@@ -845,7 +721,7 @@
 
                 <div class="footer-bottom">
                     <div class="container">
-
+                        <p class="footer-copyright">Copyright © 2019 Molla Store. All Rights Reserved.</p><!-- End .footer-copyright -->
                         <figure class="footer-payments">
                             <img src="assets/images/payments.png" alt="Payment methods" width="272" height="20">
                         </figure><!-- End .footer-payments -->
@@ -878,8 +754,66 @@
         <script src="assets/js/nouislider.min.js"></script>
         <!-- Main JS File -->
         <script src="assets/js/main.js"></script>
+        <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+        <script>
+                                        // Get all elements with class="closebtn"
+                                        var close = document.getElementsByClassName("closebtn");
+                                        var i;
+
+                                        // Loop through all close buttons
+                                        for (i = 0; i < close.length; i++) {
+                                            // When someone clicks on a close button
+                                            close[i].onclick = function () {
+
+                                                // Get the parent of <span class="closebtn"> (<div class="alert">)
+                                                var div = this.parentElement;
+
+                                                // Set the opacity of div to 0 (transparent)
+                                                div.style.opacity = "0";
+
+                                                // Hide the div after 600ms (the same amount of milliseconds it takes to fade out)
+                                                setTimeout(function () {
+                                                    div.style.display = "none";
+                                                }, 600);
+                                            }
+                                        }
+        </script>
     </body>
 
+
+    <style>
+        .alert2 {
+            padding: 20px;
+            background-color: #f44336; /* Red */
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        /* The close button */
+        .closebtn {
+            margin-left: 15px;
+            color: white;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        /* When moving the mouse over the close button */
+        .closebtn:hover {
+            color: black;
+        }
+
+    </style>
+
+    <style>
+        .alert {
+            opacity: 1;
+            transition: opacity 0.6s; /* 600ms to fade out */
+        }
+    </style>
 
 
     <!-- molla/category-boxed.html  22 Nov 2019 10:03:02 GMT -->

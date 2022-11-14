@@ -180,11 +180,13 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <div class="dropdown-cart-products">
-                            <label  style="color: black;">Your cart is empty</label>
+                            <label>
+                                <img style="width: 320px; height: 200px;" src="assets/images/mini-cart-empty.png" alt="Product image">
+                            </label>
                         </div>
                         <div class="dropdown-cart-action">
-                            <a href="cart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span></a>
-                            <a href="checkOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
+                            <a href="cart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span><i class='fas'>&#xf07a;</i></a>
+                            <a href="checkOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class='fas'>&#xf53d;</i></a>
                         </div><!-- End .dropdown-cart-total -->
                     </div><!-- End .dropdown-menu -->
                 </div><!-- End .cart-dropdown -->
@@ -221,8 +223,8 @@
                         </c:forEach>
 
                         <div class="dropdown-cart-action">
-                            <a href="cart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span></a>
-                            <a href="checkOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
+                            <a href="cart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span><i class='fas'>&#xf07a;</i></a>
+                            <a href="checkOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class='fas'>&#xf53d;</i></a>
                         </div><!-- End .dropdown-cart-total -->
                     </div><!-- End .dropdown-menu -->
                 </div><!-- End .cart-dropdown -->
@@ -231,3 +233,4 @@
         </div><!-- End .container -->
     </div><!-- End .header-middle -->
 </header><!-- End .header -->
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>

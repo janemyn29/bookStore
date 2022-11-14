@@ -56,7 +56,7 @@ public class CusProductPageController extends HttpServlet {
                     if (quantityBookAvailable > 0) { // kiem tra sach add vao co qua so luong trong kho khong?
                         cart.add(new Cart(b.getBookBybookCode(request.getParameter("bookCode")), 1));
                     } else {
-                        session.setAttribute("checkQuanity", "Store has no more quantity of this book left. We apologize for the inconvenience.");
+                        request.setAttribute("checkQuanityAddProduct4", "Store has no more quantity of this book left. We apologize for the inconvenience.");
                     }
                 } else { // add nhung cuon tiep theo
                     cart = (List<Cart>) session.getAttribute("cart");
@@ -65,7 +65,7 @@ public class CusProductPageController extends HttpServlet {
                         if (quantityBookAvailable > 0) {
                             cart.add(new Cart(b.getBookBybookCode(request.getParameter("bookCode")), 1));
                         } else {
-                            session.setAttribute("checkQuanity", "Store has no more quantity of this book left. We apologize for the inconvenience.");
+                            request.setAttribute("checkQuanityAddProduct5", "Store has no more quantity of this book left. We apologize for the inconvenience.");
                         }
                     } else {
                         int quantityBookInCart = cart.get(index).getQty();
@@ -73,7 +73,7 @@ public class CusProductPageController extends HttpServlet {
                             int quantity = cart.get(index).getQty() + 1;
                             cart.get(index).setQty(quantity);
                         } else {
-                            session.setAttribute("checkQuanity", "Store has no more quantity of this book left. We apologize for the inconvenience.");
+                            request.setAttribute("checkQuanityAddProduct6", "Store has no more quantity of this book left. We apologize for the inconvenience.");
                         }
                     }
                 }
