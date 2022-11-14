@@ -36,6 +36,40 @@
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
         <!-- Main CSS File -->
         <link rel="stylesheet" href="assets/css/style.css">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script>
+            function myfun() {
+                var a = document.getElementById("phone").value;
+                if (a.length < 10) {
+                    alert("Phone number must be 10 digit!");
+                    return false;
+
+                }
+                if (a.length > 10) {
+                    alert("Phone number must be 10 digit!");
+                    return false;
+
+                }
+            }
+
+            function validatephone(phone)
+            {
+
+                phone = phone.replace(/[^0-9]/g, '');
+                $("#phone").val(phone);
+                if (phone == '' || !phone.match(/^0[0-9]{9}$/))
+                {
+                    $("#phone").css({'background': '#FFEDEF', 'border': 'solid 1px red'});
+
+                    return false;
+                } else
+                {
+                    $("#phone").css({'background': '#99FF99', 'border': 'solid 1px #99FF99'});
+                    return true;
+                }
+            }
+        </script>
     </head>
 
     <body>
@@ -117,21 +151,21 @@
                                             <div class="form-group">
                                                 <label for="register-password-2">Phone Number *</label>
                                                 <c:if test='${mess == null}'>
-                                                    <input type="number" class="form-control" id="register-password-2" name="phone" required>
+                                                    <input id="phone" type="number" class="form-control" id="register-password-2" name="phone" required>
                                                 </c:if>
                                                 <c:if test='${mess == "Username alreadly existed!"}'>
-                                                    <input type="number" class="form-control" id="register-password-2" name="phone" value='${phone}' required>
+                                                    <input id="phone" type="number" class="form-control" id="register-password-2" name="phone" value='${phone}' required>
                                                 </c:if>
 
                                                 <c:if test='${mess == "Confirmation password is incorrect!"}'>
-                                                    <input type="number" class="form-control" id="register-password-2" name="phone" value='${phone}' required>
+                                                    <input id="phone" type="number" class="form-control" id="register-password-2" name="phone" value='${phone}' required>
                                                 </c:if>
                                                 <c:if test='${mess == "Email was registered!"}'>
-                                                    <input type="number" class="form-control" id="register-password-2" name="phone" value='${phone}' required>
+                                                    <input id="phone" type="number" class="form-control" id="register-password-2" name="phone" value='${phone}' required>
                                                 </c:if>
 
                                                 <c:if test='${mess == "Phone Number alreadly used!"}'>
-                                                    <input type="number" class="form-control" id="register-password-2" name="phone" required>
+                                                    <input id="phone" type="number" class="form-control" id="register-password-2" name="phone" required>
                                                 </c:if>
 
 
@@ -180,7 +214,7 @@
 
                                                 </div><!-- End .custom-checkbox -->
 
-                                                <a href="login.jsp" class="forgot-link">Back to Login</a>
+                                                <a href="loginnav" class="forgot-link">Back to Login</a>
 
 
                                             </div><!-- End .form-footer -->
@@ -196,80 +230,7 @@
                 </div><!-- End .login-page section-bg -->
             </main><!-- End .main -->
 
-            <footer class="footer">
-                <div class="footer-middle">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-6 col-lg-3">
-                                <div class="widget widget-about">
-                                    <img src="assets/images/logo.png" class="footer-logo" alt="Footer Logo" width="105" height="25">
-                                    <p>Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. </p>
-
-                                    <div class="social-icons">
-                                        <a href="#" class="social-icon" target="_blank" title="Facebook"><i class="icon-facebook-f"></i></a>
-                                        <a href="#" class="social-icon" target="_blank" title="Twitter"><i class="icon-twitter"></i></a>
-                                        <a href="#" class="social-icon" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
-                                        <a href="#" class="social-icon" target="_blank" title="Youtube"><i class="icon-youtube"></i></a>
-                                        <a href="#" class="social-icon" target="_blank" title="Pinterest"><i class="icon-pinterest"></i></a>
-                                    </div><!-- End .soial-icons -->
-                                </div><!-- End .widget about-widget -->
-                            </div><!-- End .col-sm-6 col-lg-3 -->
-
-                            <div class="col-sm-6 col-lg-3">
-                                <div class="widget">
-                                    <h4 class="widget-title">Useful Links</h4><!-- End .widget-title -->
-
-                                    <ul class="widget-list">
-                                        <li><a href="about.html">About Molla</a></li>
-                                        <li><a href="#">How to shop on Molla</a></li>
-                                        <li><a href="#">FAQ</a></li>
-                                        <li><a href="contact.html">Contact us</a></li>
-                                        <li><a href="login.html">Log in</a></li>
-                                    </ul><!-- End .widget-list -->
-                                </div><!-- End .widget -->
-                            </div><!-- End .col-sm-6 col-lg-3 -->
-
-                            <div class="col-sm-6 col-lg-3">
-                                <div class="widget">
-                                    <h4 class="widget-title">Customer Service</h4><!-- End .widget-title -->
-
-                                    <ul class="widget-list">
-                                        <li><a href="#">Payment Methods</a></li>
-                                        <li><a href="#">Money-back guarantee!</a></li>
-                                        <li><a href="#">Returns</a></li>
-                                        <li><a href="#">Shipping</a></li>
-                                        <li><a href="#">Terms and conditions</a></li>
-                                        <li><a href="#">Privacy Policy</a></li>
-                                    </ul><!-- End .widget-list -->
-                                </div><!-- End .widget -->
-                            </div><!-- End .col-sm-6 col-lg-3 -->
-
-                            <div class="col-sm-6 col-lg-3">
-                                <div class="widget">
-                                    <h4 class="widget-title">My Account</h4><!-- End .widget-title -->
-
-                                    <ul class="widget-list">
-                                        <li><a href="#">Sign In</a></li>
-                                        <li><a href="cart.html">View Cart</a></li>
-                                        <li><a href="#">My Wishlist</a></li>
-                                        <li><a href="#">Track My Order</a></li>
-                                        <li><a href="#">Help</a></li>
-                                    </ul><!-- End .widget-list -->
-                                </div><!-- End .widget -->
-                            </div><!-- End .col-sm-6 col-lg-3 -->
-                        </div><!-- End .row -->
-                    </div><!-- End .container -->
-                </div><!-- End .footer-middle -->
-
-                <div class="footer-bottom">
-                    <div class="container">
-                        <p class="footer-copyright">Copyright © 2019 Molla Store. All Rights Reserved.</p><!-- End .footer-copyright -->
-                        <figure class="footer-payments">
-                            <img src="assets/images/payments.png" alt="Payment methods" width="272" height="20">
-                        </figure><!-- End .footer-payments -->
-                    </div><!-- End .container -->
-                </div><!-- End .footer-bottom -->
-            </footer><!-- End .footer -->
+            <jsp:include page="footer.jsp"></jsp:include>
         </div><!-- End .page-wrapper -->
         <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
 

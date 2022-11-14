@@ -230,7 +230,7 @@
                         <ul class="widget-list">
                                 <li><a href="cusCart.jsp">View Cart</a></li>
                                 <li><a href="cusOrders.jsp">Track My Order</a></li>
-                                <li><a href="cusEditProfile.jsp.jsp">Change Profile Info</a></li>
+                                <li><a href="cusEditProfile.jsp">Change Profile Info</a></li>
                                 <li><a href="cusChangePass.jsp">Change Password</a></li>
                         </ul><!-- End .widget-list -->
                     </div><!-- End .widget -->
@@ -241,7 +241,7 @@
 
     <div class="footer-bottom">
         <div class="container">
-            <p class="footer-copyright">Copyright © 2019 Molla Store. All Rights Reserved.</p><!-- End .footer-copyright -->
+            
             <figure class="footer-payments">
                 <img src="assets/images/payments.png" alt="Payment methods" width="272" height="20">
             </figure><!-- End .footer-payments -->
