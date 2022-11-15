@@ -11,6 +11,8 @@ import com.bookstore.Book.BookShop;
 import com.bookstore.Book.BookShopDAO;
 import com.bookstore.Category.Category;
 import com.bookstore.Category.CategoryDAO;
+import com.bookstore.Feedback.Feedback;
+import com.bookstore.Feedback.FeedbackDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -90,6 +92,9 @@ public class CusDetailController extends HttpServlet {
             request.setAttribute("listRecentArrival", RelatedBook);
             request.setAttribute("listC", listC);
             request.setAttribute("detailProduct", b);
+            FeedbackDAO fdao = new FeedbackDAO();
+            List<Feedback> listF = fdao.getFeedbackByBookCode(bookcode);
+            request.setAttribute("listF", listF);
             request.getRequestDispatcher("cusproduct.jsp").forward(request, response);
         }
     }
