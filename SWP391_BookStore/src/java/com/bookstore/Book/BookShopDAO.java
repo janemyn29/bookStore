@@ -398,15 +398,15 @@ public class BookShopDAO {
     }
 
     public boolean uploadBookInforVs2(String img, int price, String des, String cate, String code) {
-
+        String now = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
         String sql = "";
         if (img.equals("")) {
             sql = " update tblBook\n"
-                    + "set  buyPrice= ?, description=?,cateID=?,postID='1'\n"
+                    + "set  buyPrice= ?, description=?,cateID=?,postID='1',postDate=?\n"
                     + "where bookCode=? ";
         } else {
             sql = " update tblBook\n"
-                    + "set img=? , buyPrice= ?, description=?,cateID=?,postID='1'\n"
+                    + "set img=? , buyPrice= ?, description=?,cateID=?,postID='1',postDate=?\n"
                     + "where bookCode=? ";
         }
         boolean check = false;
@@ -420,14 +420,16 @@ public class BookShopDAO {
                 ps.setInt(1, price);
                 ps.setString(2, des);
                 ps.setString(3, cate);
-                ps.setString(4, code);
+                ps.setString(4, now);
+                ps.setString(5, code);
 
             } else {
                 ps.setString(1, img);
                 ps.setInt(2, price);
                 ps.setString(3, des);
                 ps.setString(4, cate);
-                ps.setString(5, code);
+                ps.setString(5, now);
+                ps.setString(6, code);
 
             }
 

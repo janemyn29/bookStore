@@ -580,7 +580,7 @@ public class BookDAO {
     }
 
     public void uploadUnpostBook(String id) {
-         String now = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+        String now = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
         String sql = " update tblBook\n"
                 + "set postID=1,postDate=?\n"
                 + "where bookCode=? ";
