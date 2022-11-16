@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -579,13 +580,15 @@ public class BookDAO {
     }
 
     public void uploadUnpostBook(String id) {
+         String now = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
         String sql = " update tblBook\n"
-                + "set postID=1\n"
+                + "set postID=1,postDate=?\n"
                 + "where bookCode=? ";
         try {
             conn = new DBUtils().getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, id);
+            ps.setString(1, now);
+            ps.setString(2, id);
             ps.executeUpdate();
         } catch (Exception e) {
         }

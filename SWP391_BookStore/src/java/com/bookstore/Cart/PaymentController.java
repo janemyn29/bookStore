@@ -67,7 +67,7 @@ public class PaymentController extends HttpServlet {
         String vnp_Command = "pay";
         String vnp_OrderInfo = "Thanh toan hoa don tai THE5 BookStore";
         String orderType = "billpayment";
-        String vnp_TxnRef = String.valueOf(orderID);
+        String vnp_TxnRef = String.valueOf("200");
         String vnp_IpAddr = Config.getIpAddress(request);
         String vnp_TmnCode = Config.vnp_TmnCode;
 
