@@ -86,7 +86,7 @@
                             <li class="nav-label" style="background-color: #c96;">Hello Admin ${acc.getUsername()}</li>
                         <li>
                             <a href="home" aria-expanded="false">
-                                <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
+                               <i class="fa fa-home"></i><span class="nav-text">Home</span>
                             </a>
 
                         </li>
@@ -149,7 +149,7 @@
 
                         </li>
                         <li>
-                            <a href="widgets.html" aria-expanded="false">
+                            <a href="adprofit" aria-expanded="false">
                                 <i class="fa fa-money menu-icon"></i><span class="nav-text">Profit Management</span>
                             </a>
                         </li>

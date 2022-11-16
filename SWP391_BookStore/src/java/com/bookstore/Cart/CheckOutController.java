@@ -61,12 +61,12 @@ public class CheckOutController extends HttpServlet {
             LocalDateTime now = LocalDateTime.now();
             String orderDate = dtf.format(now);
 
-            String address = request.getParameter("txtAddress");
+            String address =(String) session.getAttribute("tempAddress");
 
             List<Cart> cart = (List<Cart>) session.getAttribute("cart");
             int total = totalPrice(cart);
 
-            String note = request.getParameter("txtNote");
+            String note = (String) session.getAttribute("tempNote");
             if (note.equals("")) {
                 note = "(empty)";
             }

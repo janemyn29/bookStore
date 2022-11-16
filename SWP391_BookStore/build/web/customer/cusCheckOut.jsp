@@ -208,8 +208,8 @@
                                         </label>
                                     </div>
                                     <div class="dropdown-cart-action">
-                                        <a href="cusCart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span><i class='fas'>&#xf07a;</i></a>
-                                        <a href="cusCheckOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class='fas'>&#xf53d;</i></a>
+                                        <a href="cusCartNav" class="btn btn-outline-primary-2"><span>View Cart</span><i class='fas'>&#xf07a;</i></a>
+                                        <a href="cusCheckOut" class="btn btn-outline-primary-2"><span>Checkout</span><i class='fas'>&#xf53d;</i></a>
                                     </div><!-- End .dropdown-cart-total -->
                                 </div><!-- End .dropdown-menu -->
                             </div><!-- End .cart-dropdown -->
@@ -247,8 +247,8 @@
                                     </c:forEach>
 
                                     <div class="dropdown-cart-action">
-                                        <a href="cusCart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span><i class='fas'>&#xf07a;</i></a>
-                                        <a href="cusCheckOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class='fas'>&#xf53d;</i></a>
+                                        <a href="cusCartNav" class="btn btn-outline-primary-2"><span>View Cart</span><i class='fas'>&#xf07a;</i></a>
+                                        <a href="cusCheckOut" class="btn btn-outline-primary-2"><span>Checkout</span><i class='fas'>&#xf53d;</i></a>
                                     </div><!-- End .dropdown-cart-total -->
                                 </div><!-- End .dropdown-menu -->
                             </div><!-- End .cart-dropdown -->
@@ -278,7 +278,7 @@
                     <div class="checkout">
                         <div class="container">
 
-                            <form action="checkout" method="post">
+                            <form action="payment" method="post">
 
                                 <div class="row">
                                     <div class="col-lg-9">
@@ -689,7 +689,6 @@
         <script src="assets/js/owl.carousel.min.js"></script>
         <!-- Main JS File -->
         <script src="assets/js/main.js"></script>
-        <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     </body>
 
 

@@ -5,6 +5,7 @@
  */
 package com.bookstore.Discount;
 
+import com.bookstore.Account.Account;
 import com.bookstore.Utils.DBUtils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -98,13 +99,36 @@ public class DiscountDAO {
         return list;
     }
 
+    public Discount countDiscount() {
+        Discount dis = new Discount();
+
+        String sql = " select count(d.discountID) from tblDiscount d ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return new Discount(rs.getInt(1));
+            }
+
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
     public void addNewDis(String bookcode, String percent, String start, String end) {
 
         DiscountDAO dAO = new DiscountDAO();
         List<Discount> list = dAO.getAllDiscount();
         int lastUID;
-        int sizeList = list.size() - 1;
-        lastUID = list.get(sizeList).getDiscountID() + 1;
+        if (list.size() == 0 || list.isEmpty()) {
+            lastUID = 1;
+        } else {
+
+            int sizeList = list.size() - 1;
+            lastUID = list.get(sizeList).getDiscountID() + 1;
+        }
         String sql = " insert into tblDiscount\n"
                 + "values (?,?,?,?,?) ";
         try {
@@ -133,9 +157,53 @@ public class DiscountDAO {
         }
     }
 
-    public static void main(String[] args) {
+    public List<Discount> getDiscountDashboards() {
+        List<Discount> tempList = new ArrayList<>();
         DiscountDAO dAO = new DiscountDAO();
-        dAO.addNewDis("9780194801850", "1/1/2023", "3/1/2023", "12");
+        List<Discount> list = dAO.getAllDiscount();
+
+        for (Discount d : list) {
+            java.util.Date date = new java.util.Date();
+            long now = date.getTime();
+            long start = now - d.getStartDate().getTime();
+            long end = d.getEndDate().getTime() - now;
+
+            if (start > 0 && end > 0) {
+                d.setStatus("Still due");
+            } else if (start <= 0) {
+                d.setStatus("Not yet");
+            } else if (end <= 0) {
+                d.setStatus("Expired");
+            }
+        }
+        int temp1 = 0;
+        int temp2 = 0;
+        int temp3 = 0;
+        for (Discount discount : list) {
+            if (discount.getStatus().equals("Still due")) {
+                temp1 = temp1 + 1;
+            }
+            if (discount.getStatus().equals("Not yet")) {
+                temp2 = temp2 + 1;
+            }
+            if (discount.getStatus().equals("Expired")) {
+                temp3 = temp3 + 1;
+            }
+        }
+        Discount dis1= new Discount(temp1, "Still due");
+        Discount dis2= new Discount(temp2, "Not yet");
+        Discount dis3= new Discount(temp3, "Expired");
+        tempList.add(dis1);
+        tempList.add(dis2);
+        tempList.add(dis3);
+
+        return tempList;
+    }
+
+    public static void main(String[] args) {
+        DiscountDAO discountDAO = new DiscountDAO();
+        List<Discount> discount = discountDAO.getDiscountDashboards();
+        System.out.println(discount);
 
     }
 }

@@ -43,7 +43,7 @@
             <h1>SORRY</h1>
             <h2>You do not have permission to access this page.
             </h2>
-            <p>Please return to the <a href="home.jsp">Home Page.</a></p>
+            <p>Please return to the <a href="home">Home Page.</a></p>
         </div>
     </body>
 </html>

@@ -640,9 +640,28 @@ public class BookDAO {
         return 0;
     }
 
+    public BookShop countBook() {
+        BookShop bookShop = new BookShop();
+
+        String sql = " select count(a.bookCode) from tblBook a\n"
+                + "where a.postID!=3 ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return new BookShop(rs.getInt(1), "");
+            }
+
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
-        BookDAO dAO = new BookDAO();
-        List<Book> list = dAO.getBookManage();
-        System.out.println(list);
+        BookDAO bdao = new BookDAO();
+        BookShop bookShop = bdao.countBook();
+        System.out.println(bookShop);
     }
 }

@@ -520,10 +520,58 @@ public class BookShopDAO {
         }
         return list;
     }
-    
+
+    public List<BookDashboard> getBookDashboards() {
+        List<BookDashboard> list = new ArrayList<>();
+        String sql = " select count(b.bookCode) from tblBook b\n"
+                + "where b.postID = 1 ";
+
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+
+                list.add(new BookDashboard("Posted", rs.getInt(1)));
+            }
+        } catch (Exception e) {
+        }
+        String sql1 = " select count(b.bookCode) from tblBook b\n"
+                + "where b.postID = 2 ";
+
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql1);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+
+                list.add(new BookDashboard("New", rs.getInt(1)));
+            }
+        } catch (Exception e) {
+        }
+        String sql2 = " select count(b.bookCode) from tblBook b\n"
+                + "where b.postID = 4 ";
+
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql2);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+
+                list.add(new BookDashboard("Unpost", rs.getInt(1)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
     public static void main(String[] args) {
-        BookShopDAO dAO= new BookShopDAO();
-        BookShop book = dAO.getBookBybookCodeVS3("2341234");
-        System.out.println(book);
+        BookShopDAO dAO = new BookShopDAO();
+        List<BookDashboard> bookdashboard = dAO.getBookDashboards();
+        System.out.println(bookdashboard);
+        
     }
 }
