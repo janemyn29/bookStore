@@ -108,7 +108,19 @@
                                                                     <td>${count}</td>
                                                                 <td>${ord.orderDate}</td>
                                                                 <td>${ord.address}</td>
-                                                                <td>${ord.status}</td>
+                                                                
+                                                                <c:if test='${ord.status == "returned"}'>
+                                                                    <td style="color: green"><b>${ord.status}</b></td>
+                                                                        </c:if>
+                                                                        <c:if test='${ord.status == "out of date"}'>
+                                                                    <td style="color: red"><b>${ord.status}</b></td>
+                                                                        </c:if>
+                                                                        <c:if test='${ord.status == "returning"}'>
+                                                                    <td style="color: blue"><b>${ord.status}</b></td>
+                                                                        </c:if>
+                                                                        <c:if test='${ord.status == "wait to approve"}'>
+                                                                    <td style="color: blue"><b>${ord.status}</b></td>
+                                                                        </c:if>
 
                                                                 <td><a class="icon-eye" href="cusreturnmanagementdetail?orderID=${ord.orderID}"></a></td>
 

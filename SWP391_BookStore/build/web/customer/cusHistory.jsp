@@ -131,7 +131,12 @@
                                                                 <td>${ord2.orderDate}</td>
                                                                 <td>${ord2.receivedDate}</td>
                                                                 <td>${ord2.address}</td>
-                                                                <td>${ord2.status}</td>
+                                                                <c:if test='${ord2.status == "received"}'>
+                                                                    <td style="color: green"><b>${ord2.status}</b></td>
+                                                                        </c:if>
+                                                                    <c:if test='${ord2.status == "cancelled"}'>
+                                                                    <td style="color: red"><b>${ord2.status}</b></td>
+                                                                </c:if>
                                                                 <td><a class="icon-eye" href="cushistoryorderdetail?orderID=${ord2.orderID}&odetailID=${ord2.oDetailID}"></a></td>
 
                                                                 <c:if test='${ord2.status == "received"}'>

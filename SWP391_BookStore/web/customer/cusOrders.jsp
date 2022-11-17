@@ -122,7 +122,12 @@
                                                                     <td>${count}</td>
                                                                 <td>${ord.orderDate}</td>
                                                                 <td>${ord.address}</td>
-                                                                <td>${ord.status}</td>
+                                                                <c:if test='${ord.status == "delivering"}'>
+                                                                    <td style="color: green"><b>${ord.status}</b></td>
+                                                                </c:if>
+                                                                    <c:if test='${ord.status == "confirming"}'>
+                                                                    <td style="color: blue"><b>${ord.status}</b></td>
+                                                                </c:if>
 
                                                                 <td><a class="icon-eye" href="cusorderdetailhome?orderID=${ord.orderID}"></a></td>
 
