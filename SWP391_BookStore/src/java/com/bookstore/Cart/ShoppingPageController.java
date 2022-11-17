@@ -138,7 +138,7 @@ public class ShoppingPageController extends HttpServlet {
                 if(cart.isEmpty()){
                     cart=null;
                     session.setAttribute("cart", cart);
-                    request.getRequestDispatcher("cart.jsp").forward(request, response);
+                    request.getRequestDispatcher("shopping?index=1").forward(request, response);
                 }
                 request.getRequestDispatcher("shopping?index=1").forward(request, response);
             }

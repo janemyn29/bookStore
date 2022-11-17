@@ -158,7 +158,7 @@ public class CartController extends HttpServlet {
                 if(cart.isEmpty()){
                     cart=null;
                     session.setAttribute("cart", cart);
-                    request.getRequestDispatcher("cart.jsp").forward(request, response);
+                    request.getRequestDispatcher("home").forward(request, response);
                 }
                 request.getRequestDispatcher("home").forward(request, response);
 

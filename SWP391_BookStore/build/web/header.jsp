@@ -25,8 +25,8 @@
                     <li>
                         <ul>
                             <li><a href=""></a></li>
-                            <li><a href="about.html">About Us</a></li>
-                            <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="aboutUs.jsp">About Us</a></li>
+                            <li><a href="contact.jsp">Contact Us</a></li>
                             <li><a href="loginnav">Login</a></li>
                         </ul>
                     </li>

@@ -137,7 +137,7 @@ public class CusShoppingPageController extends HttpServlet {
                 if(cart.isEmpty()){
                     cart=null;
                     session.setAttribute("cart", cart);
-                    request.getRequestDispatcher("cart.jsp").forward(request, response);
+                    request.getRequestDispatcher("cusshopping?index=1").forward(request, response);
                 }
                 request.getRequestDispatcher("cusshopping?index=1").forward(request, response);
             }

@@ -137,6 +137,7 @@ public class CusCartController extends HttpServlet {
                 if(cart.isEmpty()){
                     cart=null;
                     session.setAttribute("cart", cart);
+                    request.getRequestDispatcher("cusCart.jsp").forward(request, response);
                 }
                 request.getRequestDispatcher("cusCart.jsp").forward(request, response);
 
@@ -157,7 +158,7 @@ public class CusCartController extends HttpServlet {
                 if(cart.isEmpty()){
                     cart=null;
                     session.setAttribute("cart", cart);
-                    request.getRequestDispatcher("cart.jsp").forward(request, response);
+                    request.getRequestDispatcher("cushome").forward(request, response);
                 }
                 request.getRequestDispatcher("cushome").forward(request, response);
 
@@ -183,7 +184,7 @@ public class CusCartController extends HttpServlet {
                 if(cart.isEmpty()){
                     cart=null;
                     session.setAttribute("cart", cart);
-                    request.getRequestDispatcher("cart.jsp").forward(request, response);
+                    request.getRequestDispatcher("cusCart.jsp").forward(request, response);
                 }
                 request.getRequestDispatcher("cusCart.jsp").forward(request, response);
 
