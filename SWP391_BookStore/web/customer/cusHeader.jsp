@@ -26,8 +26,8 @@
                     <li>
                         <ul>
                             <li><a href="/SWP391_BookStore/logout">Logout</a></li>
-                            <li><a href="aboutUs.jsp">About Us</a></li>
-                            <li><a href="contact.jsp">Contact Us</a></li>
+                            <li><a href="cusAboutUs.jsp">About Us</a></li>
+                            <li><a href="cusContact.jsp">Contact Us</a></li>
 
                             <li><a href="cuseditNav">Hello ${acc.getUsername()}</a></li>
 
