@@ -28,8 +28,7 @@
                             <li><a href="/SWP391_BookStore/logout">Logout</a></li>
                             <li><a href="about.html">About Us</a></li>
                             <li><a href="contact.html">Contact Us</a></li>
-
-                            <li><a href="editprofile">Hello ${acc.getUsername()}</a></li>
+                            <li><a href="cuseditprofilenav">Hello ${acc.getUsername()}</a></li>
 
                         </ul>
                     </li>
@@ -188,8 +187,8 @@
                             </label>
                         </div>
                         <div class="dropdown-cart-action">
-                            <a href="cusCartNav" class="btn btn-outline-primary-2"><span>View Cart</span><i class='fas'>&#xf07a;</i></a>
-                            <a href="cusCheckOut" class="btn btn-outline-primary-2"><span>Checkout</span><i class='fas'>&#xf53d;</i></a>
+                            <a href="cusCartnav" class="btn btn-outline-primary-2"><span>View Cart</span><i class='fas'>&#xf07a;</i></a>
+                            <a href="cusCheckOutnav" class="btn btn-outline-primary-2"><span>Checkout</span><i class='fas'>&#xf53d;</i></a>
                         </div><!-- End .dropdown-cart-total -->
                     </div><!-- End .dropdown-menu -->
                 </div><!-- End .cart-dropdown -->
@@ -227,8 +226,8 @@
                         </c:forEach>
 
                         <div class="dropdown-cart-action">
-                            <a href="cusCartNav" class="btn btn-outline-primary-2"><span>View Cart</span><i class='fas'>&#xf07a;</i></a>
-                            <a href="cusCheckOut" class="btn btn-outline-primary-2"><span>Checkout</span><i class='fas'>&#xf53d;</i></a>
+                            <a href="cusCartnav" class="btn btn-outline-primary-2"><span>View Cart</span><i class='fas'>&#xf07a;</i></a>
+                            <a href="cusCheckOutnav" class="btn btn-outline-primary-2"><span>Checkout</span><i class='fas'>&#xf53d;</i></a>
                         </div><!-- End .dropdown-cart-total -->
                     </div><!-- End .dropdown-menu -->
                 </div><!-- End .cart-dropdown -->

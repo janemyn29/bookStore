@@ -6,6 +6,9 @@
 package com.bookstore.Customer;
 
 import com.bookstore.Account.Account;
+import com.bookstore.Book.BookShopDAO;
+import com.bookstore.Category.Category;
+import com.bookstore.Category.CategoryDAO;
 import com.bookstore.Order.Order;
 import com.bookstore.Order.OrderDAO;
 import com.bookstore.OrderDetail.OrderDetail;
@@ -58,6 +61,11 @@ public class CusOrderDetailHomeController extends HttpServlet {
             List<Order> listOrd = odao.getOrderByOrderIDAndAccountID(id, accountID);
             // set attribute
             request.setAttribute("listOrd", listOrd);
+            CategoryDAO daoC = new CategoryDAO();
+            BookShopDAO daoB = new BookShopDAO();
+
+            List<Category> listC = daoC.getCategoryBook();
+            request.setAttribute("listC", listC);
             //chuyen trang
             request.getRequestDispatcher("cusOrderDetails.jsp").forward(request, response);
         }

@@ -47,7 +47,7 @@
                         <div class="container">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="cushome">Home</a></li>
-                                <li class="breadcrumb-item"><a href="cusEditProfile.jsp">My Account</a></li>
+                                <li class="breadcrumb-item"><a href="cuseditprofilenav">My Account</a></li>
                                 <li class="breadcrumb-item"><a href="cusorderhome">My Return Management</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">My Return Detail</li>
                             </ol>

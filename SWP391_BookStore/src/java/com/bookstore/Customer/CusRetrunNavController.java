@@ -6,6 +6,9 @@
 package com.bookstore.Customer;
 
 import com.bookstore.Account.Account;
+import com.bookstore.Book.BookShopDAO;
+import com.bookstore.Category.Category;
+import com.bookstore.Category.CategoryDAO;
 import com.bookstore.Order.Order;
 import com.bookstore.Order.OrderDAO;
 import java.io.IOException;
@@ -63,6 +66,11 @@ public class CusRetrunNavController extends HttpServlet {
             LocalDate now = LocalDate.now();
             Date today = Date.valueOf(now);
             String tmp = odao.checkRecievedDateByOrderID(id);
+            CategoryDAO daoC = new CategoryDAO();
+            BookShopDAO daoB = new BookShopDAO();
+
+            List<Category> listC = daoC.getCategoryBook();
+            request.setAttribute("listC", listC);
             if (tmp != null) {
                 Date recievedDate = Date.valueOf(tmp);
 

@@ -5,6 +5,9 @@
  */
 package com.bookstore.Customer;
 
+import com.bookstore.Book.BookShopDAO;
+import com.bookstore.Category.Category;
+import com.bookstore.Category.CategoryDAO;
 import com.bookstore.Feedback.Feedback;
 import com.bookstore.Feedback.FeedbackDAO;
 import com.bookstore.Order.Order;
@@ -50,6 +53,11 @@ public class CusFeedHomeController extends HttpServlet {
             List<Feedback> listFeedBack = fdao.getFeedbackManageByBookCodeAndOrder(bookid, detailID);
             request.setAttribute("listFeedBack", listFeedBack);
             request.setAttribute("listOrdetail", listOrdetail);
+            CategoryDAO daoC = new CategoryDAO();
+            BookShopDAO daoB = new BookShopDAO();
+
+            List<Category> listC = daoC.getCategoryBook();
+            request.setAttribute("listC", listC);
             //day du lieu va chuyen trang
             request.getRequestDispatcher("cusFeedBack.jsp").forward(request, response);
         }

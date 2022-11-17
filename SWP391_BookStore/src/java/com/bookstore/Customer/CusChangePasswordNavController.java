@@ -5,8 +5,9 @@
  */
 package com.bookstore.Customer;
 
-import com.bookstore.Order.Order;
-import com.bookstore.Order.OrderDAO;
+import com.bookstore.Book.BookShopDAO;
+import com.bookstore.Category.Category;
+import com.bookstore.Category.CategoryDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Admin
  */
-public class CusEditNoteController extends HttpServlet {
+public class CusChangePasswordNavController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,32 +35,16 @@ public class CusEditNoteController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String note = request.getParameter("txtNote");
-            OrderDAO odao = new OrderDAO();
-            String id = request.getParameter("txtorderID");
-            int orderID = Integer.parseInt(id);
-            List<Order> listOrder = odao.getOrderDetailByorderID(orderID);
-            if (note == null) {
-                note = "(empty)";
-                odao.updateNoteByOrderID(note, orderID);
-                // lay list detail tu ham lay list theo id
-                List<Order> listOrdetail = odao.getOrderDetailByorderID(orderID);
-                // set attribute len
-                request.setAttribute("listOrdetail", listOrdetail);
-                //day du lieu va chuyen trang
-                request.getRequestDispatcher("cusOrderDetails.jsp").forward(request, response);
-            }
-            odao.updateNoteByOrderID(note, orderID);
-            List<Order> listOrdetail = odao.getOrderDetailByorderID(orderID);
-            // set attribute len
-            request.setAttribute("listOrdetail", listOrdetail);
-            //day du lieu va chuyen trang
-            request.getRequestDispatcher("cusOrderDetails.jsp").forward(request, response);
-        }
+            CategoryDAO daoC = new CategoryDAO();
+            BookShopDAO daoB = new BookShopDAO();
 
+            List<Category> listC = daoC.getCategoryBook();
+            request.setAttribute("listC", listC);
+            request.getRequestDispatcher("cusChangePass.jsp").forward(request, response);
+        }
     }
 
-// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

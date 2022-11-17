@@ -231,8 +231,8 @@
                                         </label>
                                     </div>
                                     <div class="dropdown-cart-action">
-                                        <a href="cusCart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span><i class='fas'>&#xf07a;</i></a>
-                                        <a href="cusCheckOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class='fas'>&#xf53d;</i></a>
+                                        <a href="cusCartnav" class="btn btn-outline-primary-2"><span>View Cart</span><i class='fas'>&#xf07a;</i></a>
+                                        <a href="cusCheckOutnav" class="btn btn-outline-primary-2"><span>Checkout</span><i class='fas'>&#xf53d;</i></a>
                                     </div><!-- End .dropdown-cart-total -->
                                 </div><!-- End .dropdown-menu -->
                             </div><!-- End .cart-dropdown -->
@@ -270,8 +270,8 @@
                                     </c:forEach>
 
                                     <div class="dropdown-cart-action">
-                                        <a href="cusCart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span><i class='fas'>&#xf07a;</i></a>
-                                        <a href="cusCheckOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class='fas'>&#xf53d;</i></a>
+                                        <a href="cusCartnav" class="btn btn-outline-primary-2"><span>View Cart</span><i class='fas'>&#xf07a;</i></a>
+                                        <a href="cusCheckOutnav" class="btn btn-outline-primary-2"><span>Checkout</span><i class='fas'>&#xf53d;</i></a>
                                     </div><!-- End .dropdown-cart-total -->
                                 </div><!-- End .dropdown-menu -->
                             </div><!-- End .cart-dropdown -->
