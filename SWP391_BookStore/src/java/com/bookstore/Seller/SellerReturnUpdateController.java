@@ -51,7 +51,7 @@ public class SellerReturnUpdateController extends HttpServlet {
                 if(check.equals("returned")){
                 retur = dao.updateOrderStatusAndAddQty(orderid, check);
                 }else if (check.equals("returning")) {
-                 retur =dao.updateOrderStatusNormal(orderid, check);
+                 retur =dao.updateOrderStatusNormalVS2(orderid, check);
                 }else if (check.equals("reject")) {
                  retur =dao.updateOrderStatusNormal(orderid, check);
                 }

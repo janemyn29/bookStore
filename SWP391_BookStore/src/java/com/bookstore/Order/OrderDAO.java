@@ -17,6 +17,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -149,6 +151,34 @@ public class OrderDAO {
                 ps = conn.prepareStatement(sql);
                 ps.setString(1, check);
                 ps.setString(2, orderid);
+                int row = ps.executeUpdate();
+
+                if (row > 0) {
+                    return true;
+                }
+            }
+        } finally {
+            if (ps != null) {
+                ps.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return false;
+    }
+    public boolean updateOrderStatusNormalVS2(String orderid, String check) throws SQLException {
+        try {
+            Date temp =  new Date(System.currentTimeMillis());
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " update [dbo].[tblOrder] \n"
+                        + "set [status]= ?,[approveDate] = ?\n"
+                        + "where [orderID] = ? ";
+                ps = conn.prepareStatement(sql);
+                ps.setString(1, check);
+                ps.setDate(2,temp);
+                ps.setString(3, orderid);
                 int row = ps.executeUpdate();
 
                 if (row > 0) {
