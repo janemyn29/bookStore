@@ -207,7 +207,7 @@
                                             <form action="addnewseller" method="POST">
                                             </c:if>
                                             <c:if test='${role == "importer"}'>
-                                                <form action="addnewimp" method="POST">
+                                                <form action="addnewimp" method="POST" onsubmit="return myfun()">
                                                 </c:if>
 
 
@@ -226,7 +226,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-2 col-form-label">Phone</label>
                                                     <div class="col-sm-10">
-                                                        <input id="phone" type="number" name="phone" class="form-control" placeholder="Phone" required>
+                                                        <input id="phone" type="number" name="phone" class="form-control" placeholder="Phone" onkeyup=" return validatephone(this.value); " required>
                                                     </div>
                                                 </div>
 

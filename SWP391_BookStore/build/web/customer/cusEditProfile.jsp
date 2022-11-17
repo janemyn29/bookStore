@@ -33,6 +33,39 @@
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
         <!-- Main CSS File -->
         <link rel="stylesheet" href="assets/css/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script>
+            function myfun() {
+                var a = document.getElementById("phone").value;
+                if (a.length < 10) {
+                    alert("Phone number must be 10 digit!");
+                    return false;
+
+                }
+                if (a.length > 10) {
+                    alert("Phone number must be 10 digit!");
+                    return false;
+
+                }
+            }
+
+            function validatephone(phone)
+            {
+
+                phone = phone.replace(/[^0-9]/g, '');
+                $("#phone").val(phone);
+                if (phone == '' || !phone.match(/^0[0-9]{9}$/))
+                {
+                    $("#phone").css({'background': '#FFEDEF', 'border': 'solid 1px red'});
+
+                    return false;
+                } else
+                {
+                    $("#phone").css({'background': '#99FF99', 'border': 'solid 1px #99FF99'});
+                    return true;
+                }
+            }
+        </script>
     </head>
     <body>
         <div class="page-wrapper">
@@ -112,7 +145,7 @@
                                         <div class="tab-pane fade show active" id="tab-account" role="tabpanel" aria-labelledby="tab-account-link">
 
 
-                                            <form name="formEditProfile" action="cuseditprofile" method="post">
+                                            <form name="formEditProfile" action="cuseditprofile" method="post" onsubmit="return myfun()">
                                                 <div>
                                                     <label>User Name *</label>
                                                     <small class="form-text">(This will be how your name will be displayed in the account section and in reviews)</small>
@@ -121,7 +154,7 @@
                                                 </div>
                                                 <div>
                                                     <label>Phone Number *</label>
-                                                    <input type="text" class="form-control" name="txtPhoneNumber" value="${acc.getPhone()}" maxlength="10" required>
+                                                    <input type="number" id="phone" class="form-control" name="txtPhoneNumber" value="${acc.getPhone()}" onkeyup=" return validatephone(this.value); " maxlength="10" required>
 
                                                 </div>
                                                 <label>Email address *</label>

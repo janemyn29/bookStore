@@ -101,7 +101,7 @@
                                     <div class="tab-content">
                                         <div class="tab-pane fade show active" id="register-2" role="tabpanel" aria-labelledby="register-tab-2">
 
-                                            <form action="register" method="POST">
+                                            <form action="register" method="POST" onsubmit="return myfun()">
 
                                             <c:if test='${mess !=null}'>
                                                 <label for="singin-email-2" style="color: red;">${mess}</label>
@@ -151,17 +151,17 @@
                                             <div class="form-group">
                                                 <label for="register-password-2">Phone Number *</label>
                                                 <c:if test='${mess == null}'>
-                                                    <input id="phone" type="number" class="form-control" id="register-password-2" name="phone" required>
+                                                    <input id="phone" type="number" class="form-control" id="register-password-2" name="phone" required onkeyup=" return validatephone(this.value); ">
                                                 </c:if>
                                                 <c:if test='${mess == "Username alreadly existed!"}'>
-                                                    <input id="phone" type="number" class="form-control" id="register-password-2" name="phone" value='${phone}' required>
+                                                    <input id="phone" type="number" class="form-control" id="register-password-2" name="phone" value='${phone}' onkeyup=" return validatephone(this.value); " required>
                                                 </c:if>
 
                                                 <c:if test='${mess == "Confirmation password is incorrect!"}'>
-                                                    <input id="phone" type="number" class="form-control" id="register-password-2" name="phone" value='${phone}' required>
+                                                    <input id="phone" type="number" class="form-control" id="register-password-2" name="phone" value='${phone}' onkeyup=" return validatephone(this.value); " required>
                                                 </c:if>
                                                 <c:if test='${mess == "Email was registered!"}'>
-                                                    <input id="phone" type="number" class="form-control" id="register-password-2" name="phone" value='${phone}' required>
+                                                    <input id="phone" type="number" class="form-control" id="register-password-2" name="phone" value='${phone}' onkeyup=" return validatephone(this.value); " required>
                                                 </c:if>
 
                                                 <c:if test='${mess == "Phone Number alreadly used!"}'>
