@@ -134,6 +134,11 @@ public class CusCartController extends HttpServlet {
                 int totalPrice = totalPrice(cart);
                 session.setAttribute("totalPrice", totalPrice);// set tong tien
                 session.setAttribute("cart", cart);
+                if(cart.isEmpty()){
+                    cart=null;
+                    session.setAttribute("cart", cart);
+                    request.getRequestDispatcher("cusCart.jsp").forward(request, response);
+                }
                 request.getRequestDispatcher("cusCart.jsp").forward(request, response);
 
             } else if (action.equals("removeHome")) { // xoa sach trong minicart header
@@ -150,6 +155,11 @@ public class CusCartController extends HttpServlet {
                 int totalPrice = totalPrice(cart);
                 session.setAttribute("totalPrice", totalPrice);// set tong tien
                 session.setAttribute("cart", cart);
+                if(cart.isEmpty()){
+                    cart=null;
+                    session.setAttribute("cart", cart);
+                    request.getRequestDispatcher("cushome").forward(request, response);
+                }
                 request.getRequestDispatcher("cushome").forward(request, response);
 
             } else if (action.equals("decre")) { // giam quantity
@@ -171,6 +181,11 @@ public class CusCartController extends HttpServlet {
                 int totalPrice = totalPrice(cart);
                 session.setAttribute("totalPrice", totalPrice);// set tong tien
                 session.setAttribute("cart", cart);
+                if(cart.isEmpty()){
+                    cart=null;
+                    session.setAttribute("cart", cart);
+                    request.getRequestDispatcher("cusCart.jsp").forward(request, response);
+                }
                 request.getRequestDispatcher("cusCart.jsp").forward(request, response);
 
             } else if (action.equals("incre")) { // tang quantity

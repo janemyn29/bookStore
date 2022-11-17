@@ -6,6 +6,7 @@
 package com.bookstore.Customer;
 
 import com.bookstore.Account.Account;
+import com.bookstore.Book.BookShopDAO;
 import com.bookstore.Cart.Cart;
 import com.bookstore.Category.Category;
 import com.bookstore.Category.CategoryDAO;
@@ -44,9 +45,6 @@ public class CusFeedBackController extends HttpServlet {
             throws ServletException, IOException, NoSuchAlgorithmException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            CategoryDAO daoC = new CategoryDAO();
-            List<Category> listC = daoC.getCategoryBook();
-            request.setAttribute("listC", listC);
             FeedbackDAO fdao = new FeedbackDAO();
 
             List<Feedback> list = fdao.getFeedbackManage();
@@ -84,6 +82,11 @@ public class CusFeedBackController extends HttpServlet {
             List<Order> listOrdetail = odao.getOrderDetailByorderID(id);
             // set attribute len
             request.setAttribute("listOrdetail", listOrdetail);
+            CategoryDAO daoC = new CategoryDAO();
+            BookShopDAO daoB = new BookShopDAO();
+
+            List<Category> listC = daoC.getCategoryBook();
+            request.setAttribute("listC", listC);
             //day du lieu va chuyen trang
             request.getRequestDispatcher("cusDetailHistory.jsp").forward(request, response);
         }

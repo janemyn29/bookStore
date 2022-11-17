@@ -5,6 +5,7 @@
  */
 package com.bookstore.Customer;
 
+import com.bookstore.Book.BookShopDAO;
 import com.bookstore.Category.Category;
 import com.bookstore.Category.CategoryDAO;
 import com.bookstore.Feedback.Feedback;
@@ -38,9 +39,6 @@ public class CusFeedHomeController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            CategoryDAO daoC = new CategoryDAO();
-            List<Category> listC = daoC.getCategoryBook();
-            request.setAttribute("listC", listC);
             String oDetailID = request.getParameter("oDetailID");
             //parse id sang kieu int
             int detailID = Integer.parseInt(oDetailID);
@@ -55,6 +53,11 @@ public class CusFeedHomeController extends HttpServlet {
             List<Feedback> listFeedBack = fdao.getFeedbackManageByBookCodeAndOrder(bookid, detailID);
             request.setAttribute("listFeedBack", listFeedBack);
             request.setAttribute("listOrdetail", listOrdetail);
+            CategoryDAO daoC = new CategoryDAO();
+            BookShopDAO daoB = new BookShopDAO();
+
+            List<Category> listC = daoC.getCategoryBook();
+            request.setAttribute("listC", listC);
             //day du lieu va chuyen trang
             request.getRequestDispatcher("cusFeedBack.jsp").forward(request, response);
         }

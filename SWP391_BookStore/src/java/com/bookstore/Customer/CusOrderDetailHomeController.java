@@ -6,6 +6,7 @@
 package com.bookstore.Customer;
 
 import com.bookstore.Account.Account;
+import com.bookstore.Book.BookShopDAO;
 import com.bookstore.Category.Category;
 import com.bookstore.Category.CategoryDAO;
 import com.bookstore.Order.Order;
@@ -39,9 +40,7 @@ public class CusOrderDetailHomeController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            CategoryDAO daoC = new CategoryDAO();
-            List<Category> listC = daoC.getCategoryBook();
-            request.setAttribute("listC", listC);
+
             //lay orderID khi click vao xem detail
             String orderID = request.getParameter("orderID");
             //parse id sang kieu int
@@ -62,6 +61,11 @@ public class CusOrderDetailHomeController extends HttpServlet {
             List<Order> listOrd = odao.getOrderByOrderIDAndAccountID(id, accountID);
             // set attribute
             request.setAttribute("listOrd", listOrd);
+            CategoryDAO daoC = new CategoryDAO();
+            BookShopDAO daoB = new BookShopDAO();
+
+            List<Category> listC = daoC.getCategoryBook();
+            request.setAttribute("listC", listC);
             //chuyen trang
             request.getRequestDispatcher("cusOrderDetails.jsp").forward(request, response);
         }

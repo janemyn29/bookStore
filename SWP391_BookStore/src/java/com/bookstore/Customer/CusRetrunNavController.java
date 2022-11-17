@@ -6,6 +6,7 @@
 package com.bookstore.Customer;
 
 import com.bookstore.Account.Account;
+import com.bookstore.Book.BookShopDAO;
 import com.bookstore.Category.Category;
 import com.bookstore.Category.CategoryDAO;
 import com.bookstore.Order.Order;
@@ -42,9 +43,6 @@ public class CusRetrunNavController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            CategoryDAO daoC = new CategoryDAO();
-            List<Category> listC = daoC.getCategoryBook();
-            request.setAttribute("listC", listC);
             //lay orderID khi click vao xem detail
             String orderID = request.getParameter("orderID");
             //parse id sang kieu int
@@ -68,6 +66,11 @@ public class CusRetrunNavController extends HttpServlet {
             LocalDate now = LocalDate.now();
             Date today = Date.valueOf(now);
             String tmp = odao.checkRecievedDateByOrderID(id);
+            CategoryDAO daoC = new CategoryDAO();
+            BookShopDAO daoB = new BookShopDAO();
+
+            List<Category> listC = daoC.getCategoryBook();
+            request.setAttribute("listC", listC);
             if (tmp != null) {
                 Date recievedDate = Date.valueOf(tmp);
 
@@ -77,7 +80,7 @@ public class CusRetrunNavController extends HttpServlet {
                 c2.setTime(today);
                 Long noDay = (c2.getTime().getTime() - c1.getTime().getTime()) / (24 * 3600 * 1000);
                 if (noDay <= 5 && status.equals("received")) {
-                    request.getRequestDispatcher("resonform").forward(request, response);
+                    request.getRequestDispatcher("cusReasonForm.jsp").forward(request, response);
                 } else if (noDay > 5) {
                     request.setAttribute("checkDate", "Refund time expired!!!");
                     request.getRequestDispatcher("cushistoryhome").forward(request, response);

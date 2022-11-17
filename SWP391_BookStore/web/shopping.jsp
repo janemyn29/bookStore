@@ -226,8 +226,8 @@
                                         </label>
                                     </div>
                                     <div class="dropdown-cart-action">
-                                        <a href="cart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span><i class='fas'>&#xf07a;</i></a>
-                                        <a href="checkOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class='fas'>&#xf53d;</i></a>
+                                        <a href="cartnav" class="btn btn-outline-primary-2"><span>View Cart</span><i class='fas'>&#xf07a;</i></a>
+                                        <a href="checkOutnav" class="btn btn-outline-primary-2"><span>Checkout</span><i class='fas'>&#xf53d;</i></a>
                                     </div><!-- End .dropdown-cart-total -->
                                 </div><!-- End .dropdown-menu -->
                             </div><!-- End .cart-dropdown -->
@@ -264,8 +264,8 @@
                                     </c:forEach>
 
                                     <div class="dropdown-cart-action">
-                                        <a href="cart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span><i class='fas'>&#xf07a;</i></a>
-                                        <a href="checkOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class='fas'>&#xf53d;</i></a>
+                                        <a href="cartnav" class="btn btn-outline-primary-2"><span>View Cart</span><i class='fas'>&#xf07a;</i></a>
+                                        <a href="checkOutnav" class="btn btn-outline-primary-2"><span>Checkout</span><i class='fas'>&#xf53d;</i></a>
                                     </div><!-- End .dropdown-cart-total -->
                                 </div><!-- End .dropdown-menu -->
                             </div><!-- End .cart-dropdown -->
@@ -287,7 +287,7 @@
                             <li class="breadcrumb-item"><a href="home">Home</a></li>
                             <li class="breadcrumb-item"><a href="#">Shop</a></li>
                             <li class="breadcrumb-item"><a href="#">
-                                      <%
+                                    <%
                                         String categoryName = request.getParameter("categoryName");
                                         String searchkey = request.getParameter("searchKey");
                                         if (searchkey != null) {
@@ -314,253 +314,253 @@
                     <div class="container">
                         <div class="products">
                             <div class="toolbox">
-                            <div class="toolbox-left">
-                                <a href="#" class="sidebar-toggler"><i class="icon-bars"></i>Filters</a>
-                            </div><!-- End .toolbox-left -->
+                                <div class="toolbox-left">
+                                    <a href="#" class="sidebar-toggler"><i class="icon-bars"></i>Filters</a>
+                                </div><!-- End .toolbox-left -->
                             </div>
                         </div><!-- End .toolbox -->
-                            <c:if test='${checkQuanityAddShop1 == "Store has no more quantity of this book left. We apologize for the inconvenience."}'>
-                                <div class="alert2">
-                                    <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span>
-                                    <p align="center" style="color: white"> Store has no more quantity of this book left. We apologize for the inconvenience. </p> 
-                                </div>
-                            </c:if>
-                            <c:if test='${checkQuanityAddShop2 == "Store has no more quantity of this book left. We apologize for the inconvenience."}'>
-                                <div class="alert2">
-                                    <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span>
-                                    <p align="center" style="color: white"> Store has no more quantity of this book left. We apologize for the inconvenience. </p> 
-                                </div>
-                            </c:if>
-                            <c:if test='${checkQuanityAddShop3 == "Store has no more quantity of this book left. We apologize for the inconvenience."}'>
-                                <div class="alert2">
-                                    <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span>
-                                    <p align="center" style="color: white"> Store has no more quantity of this book left. We apologize for the inconvenience. </p> 
-                                </div>
-                            </c:if>
+                        <c:if test='${checkQuanityAddShop1 == "Store has no more quantity of this book left. We apologize for the inconvenience."}'>
+                            <div class="alert2">
+                                <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span>
+                                <p align="center" style="color: white"> Store has no more quantity of this book left. We apologize for the inconvenience. </p> 
+                            </div>
+                        </c:if>
+                        <c:if test='${checkQuanityAddShop2 == "Store has no more quantity of this book left. We apologize for the inconvenience."}'>
+                            <div class="alert2">
+                                <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span>
+                                <p align="center" style="color: white"> Store has no more quantity of this book left. We apologize for the inconvenience. </p> 
+                            </div>
+                        </c:if>
+                        <c:if test='${checkQuanityAddShop3 == "Store has no more quantity of this book left. We apologize for the inconvenience."}'>
+                            <div class="alert2">
+                                <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span>
+                                <p align="center" style="color: white"> Store has no more quantity of this book left. We apologize for the inconvenience. </p> 
+                            </div>
+                        </c:if>
 
-                            <style>
-                                p {
-                                    text-align: center;
-                                }
-                            </style>
-                            <div class="row" id="content">
-                                <c:forEach items="${listAll}" var="listAll" >
-                                    <div class="col-6 col-md-4 col-lg-4 col-xl-3">
-                                        <div class="product">
-                                            <figure class="product-media">
-                                                <c:if test="${listAll.discountPercent > 0}">
-                                                    <span class="product-label label-new">Discount</span>
+                        <style>
+                            p {
+                                text-align: center;
+                            }
+                        </style>
+                        <div class="row" id="content">
+                            <c:forEach items="${listAll}" var="listAll" >
+                                <div class="col-6 col-md-4 col-lg-4 col-xl-3">
+                                    <div class="product">
+                                        <figure class="product-media">
+                                            <c:if test="${listAll.discountPercent > 0}">
+                                                <span class="product-label label-new">Discount</span>
+                                            </c:if>
+
+                                            <a href="detail?pbookCode=${listAll.bookCode}&categoryBook=${listAll.cateName}">
+                                                <img style="width: 	277px; height: 	375px;" src="${listAll.image}" alt="Product image" class="product-image">
+                                            </a>
+
+                                            <div class="product-action action-icon-top">
+                                                <a href="${pageContext.request.contextPath }/shoppingpage?&action=addToCart&bookCode=${listAll.bookCode}&cateName=${listAll.cateName}&index=${i}" class="btn-product btn-cart"><span>add to cart</span></a>
+                                            </div><!-- End .product-action -->
+                                        </figure><!-- End .product-media -->
+
+                                        <div class="product-body">
+                                            <div class="product-cat">
+                                                <a href="">${listAll.cateName}</a>
+                                            </div><!-- End .product-cat -->
+                                            <h3 class="product-title"><a href="detail?pbookCode=${listAll.bookCode}&categoryBook=${listAll.cateName}">${listAll.bookName}</a></h3><!-- End .product-title -->
+                                                <c:if test="${listAll.discountPercent == 0}">
+                                                <div class="product-price">
+                                                    Price <fmt:formatNumber value="${listAll.buyPrice}" pattern=" #,##0 VND" />
+
+                                                </div><!-- End .product-price -->
+                                            </c:if>
+                                            <c:if test="${listAll.discountPercent > 0}">
+                                                <div class="product-price" style="text-decoration: line-through">
+                                                    Old Price: <fmt:formatNumber value="${listAll.buyPrice}" pattern=" #,##0 VND" />
+                                                </div><!-- End .product-price -->
+                                                <div class="product-price">
+                                                    Sale Price: <fmt:formatNumber value="${listAll.buyPrice- (listAll.discountPercent *listAll.buyPrice/100)}" pattern=" #,##0 VND" />
+                                                </div><!-- End .product-price -->
+                                            </c:if>
+
+                                            <div class="product-author">
+                                                Author: 
+                                                <c:if test="${listAll.getAuthorNum()==1}">
+                                                    ${listAll.author}
                                                 </c:if>
+                                                <c:if test="${listAll.getAuthorNum()!=1}">
 
-                                                <a href="detail?pbookCode=${listAll.bookCode}&categoryBook=${listAll.cateName}">
-                                                    <img style="width: 	277px; height: 	375px;" src="${listAll.image}" alt="Product image" class="product-image">
-                                                </a>
-
-                                                <div class="product-action action-icon-top">
-                                                    <a href="${pageContext.request.contextPath }/shoppingpage?&action=addToCart&bookCode=${listAll.bookCode}&cateName=${listAll.cateName}&index=${i}" class="btn-product btn-cart"><span>add to cart</span></a>
-                                                </div><!-- End .product-action -->
-                                            </figure><!-- End .product-media -->
-
-                                            <div class="product-body">
-                                                <div class="product-cat">
-                                                    <a href="">${listAll.cateName}</a>
-                                                </div><!-- End .product-cat -->
-                                                <h3 class="product-title"><a href="detail?pbookCode=${listAll.bookCode}&categoryBook=${listAll.cateName}">${listAll.bookName}</a></h3><!-- End .product-title -->
-                                                    <c:if test="${listAll.discountPercent == 0}">
-                                                    <div class="product-price">
-                                                        Price <fmt:formatNumber value="${listAll.buyPrice}" pattern=" #,##0 VND" />
-
-                                                    </div><!-- End .product-price -->
+                                                    <div class="product">
+                                                        <c:forTokens var="token" items="${listAll.author}" delims=",">
+                                                            <li><c:out value="${token}"/></li>
+                                                            </c:forTokens>
+                                                    </div><!-- End .ratings -->
                                                 </c:if>
-                                                <c:if test="${listAll.discountPercent > 0}">
-                                                    <div class="product-price" style="text-decoration: line-through">
-                                                        Old Price: <fmt:formatNumber value="${listAll.buyPrice}" pattern=" #,##0 VND" />
-                                                    </div><!-- End .product-price -->
-                                                    <div class="product-price">
-                                                        Sale Price: <fmt:formatNumber value="${listAll.buyPrice- (listAll.discountPercent *listAll.buyPrice/100)}" pattern=" #,##0 VND" />
-                                                    </div><!-- End .product-price -->
-                                                </c:if>
-
-                                                <div class="product-author">
-                                                    Author: 
-                                                    <c:if test="${listAll.getAuthorNum()==1}">
-                                                        ${listAll.author}
-                                                    </c:if>
-                                                    <c:if test="${listAll.getAuthorNum()!=1}">
-
-                                                        <div class="product">
-                                                            <c:forTokens var="token" items="${listAll.author}" delims=",">
-                                                                <li><c:out value="${token}"/></li>
-                                                                </c:forTokens>
-                                                        </div><!-- End .ratings -->
-                                                    </c:if>
-                                                </div><!-- End .rating-container -->
-                                            </div><!-- End .product-body -->
-                                        </div><!-- End .product -->
-                                    </div><!-- End .col-sm-6 col-lg-4 col-xl-3 -->
-                                </c:forEach>
+                                            </div><!-- End .rating-container -->
+                                        </div><!-- End .product-body -->
+                                    </div><!-- End .product -->
+                                </div><!-- End .col-sm-6 col-lg-4 col-xl-3 -->
+                            </c:forEach>
 
 
-                                <div class="load-more-container text-center">
-                                    <c:forEach begin="1" end="${endPage}" var="i">
-                                        <a href="SearchController?index=${i}&searchKey=${searchKey}" class="btn btn-outline-darker btn-load-more">${i} <i class="icon-refresh"></i></a>
-                                            <c:set var="i" value="${i}"></c:set>
-                                        </c:forEach>
-                                </div><!-- End .load-more-container -->
-                            </div><!-- End .products -->
+                            <div class="load-more-container text-center">
+                                <c:forEach begin="1" end="${endPage}" var="i">
+                                    <a href="SearchController?index=${i}&searchKey=${searchKey}" class="btn btn-outline-darker btn-load-more">${i} <i class="icon-refresh"></i></a>
+                                        <c:set var="i" value="${i}"></c:set>
+                                    </c:forEach>
+                            </div><!-- End .load-more-container -->
+                        </div><!-- End .products -->
 
-                            <div class="sidebar-filter-overlay"></div>
-                        </div>
-                    </div><!-- End .page-content -->
-                    <div class="sidebar-filter-overlay"></div><!-- End .sidebar-filter-overlay -->
-                        <aside class="sidebar-shop sidebar-filter">
-                            <div class="sidebar-filter-wrapper">
-                                <div class="widget widget-clean">
-                                    <label><i class="icon-close"></i>Filters</label>
-                                    <a href="#" class="sidebar-filter-clear">Clean All</a>
-                                </div><!-- End .widget -->
-                                <div class="widget widget-collapsible">
-                                    <h3 class="widget-title">
-                                        <a data-toggle="collapse" href="#widget-1" role="button" aria-expanded="true" aria-controls="widget-1">
-                                            Category
-                                        </a>
-                                    </h3><!-- End .widget-title -->
+                        <div class="sidebar-filter-overlay"></div>
+                    </div>
+                </div><!-- End .page-content -->
+                <div class="sidebar-filter-overlay"></div><!-- End .sidebar-filter-overlay -->
+                <aside class="sidebar-shop sidebar-filter">
+                    <div class="sidebar-filter-wrapper">
+                        <div class="widget widget-clean">
+                            <label><i class="icon-close"></i>Filters</label>
+                            <a href="#" class="sidebar-filter-clear">Clean All</a>
+                        </div><!-- End .widget -->
+                        <div class="widget widget-collapsible">
+                            <h3 class="widget-title">
+                                <a data-toggle="collapse" href="#widget-1" role="button" aria-expanded="true" aria-controls="widget-1">
+                                    Category
+                                </a>
+                            </h3><!-- End .widget-title -->
 
-                                    <div class="collapse show" id="widget-1">
-                                        <div class="widget-body">
-                                            <div class="filter-items filter-items-count">
-                                                <div class="filter-item">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="cat-1">
-                                                        <label class="custom-control-label" for="cat-1">Art - Literary </label>
-                                                    </div><!-- End .custom-checkbox -->
-                                                </div><!-- End .filter-item -->
+                            <div class="collapse show" id="widget-1">
+                                <div class="widget-body">
+                                    <div class="filter-items filter-items-count">
+                                        <div class="filter-item">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="cat-1">
+                                                <label class="custom-control-label" for="cat-1">Art - Literary </label>
+                                            </div><!-- End .custom-checkbox -->
+                                        </div><!-- End .filter-item -->
 
-                                                <div class="filter-item">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="cat-2">
-                                                        <label class="custom-control-label" for="cat-2">Comics</label>
-                                                    </div><!-- End .custom-checkbox -->
-                                                </div><!-- End .filter-item -->
+                                        <div class="filter-item">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="cat-2">
+                                                <label class="custom-control-label" for="cat-2">Comics</label>
+                                            </div><!-- End .custom-checkbox -->
+                                        </div><!-- End .filter-item -->
 
-                                                <div class="filter-item">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="cat-3">
-                                                        <label class="custom-control-label" for="cat-3">Textbook - Syllabus </label>
-                                                    </div><!-- End .custom-checkbox -->
-                                                </div><!-- End .filter-item -->
+                                        <div class="filter-item">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="cat-3">
+                                                <label class="custom-control-label" for="cat-3">Textbook - Syllabus </label>
+                                            </div><!-- End .custom-checkbox -->
+                                        </div><!-- End .filter-item -->
 
-                                                <div class="filter-item">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="cat-4">
-                                                        <label class="custom-control-label" for="cat-4">Novel </label>
-                                                    </div><!-- End .custom-checkbox -->
-                                                </div><!-- End .filter-item -->
+                                        <div class="filter-item">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="cat-4">
+                                                <label class="custom-control-label" for="cat-4">Novel </label>
+                                            </div><!-- End .custom-checkbox -->
+                                        </div><!-- End .filter-item -->
 
-                                                <div class="filter-item">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="cat-5">
-                                                        <label class="custom-control-label" for="cat-5">Foreign language </label>
-                                                    </div><!-- End .custom-checkbox -->
-                                                </div><!-- End .filter-item -->
+                                        <div class="filter-item">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="cat-5">
+                                                <label class="custom-control-label" for="cat-5">Foreign language </label>
+                                            </div><!-- End .custom-checkbox -->
+                                        </div><!-- End .filter-item -->
 
-                                                <div class="filter-item">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="cat-6">
-                                                        <label class="custom-control-label" for="cat-6">Science </label>
-                                                    </div><!-- End .custom-checkbox -->
-                                                </div><!-- End .filter-item -->
+                                        <div class="filter-item">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="cat-6">
+                                                <label class="custom-control-label" for="cat-6">Science </label>
+                                            </div><!-- End .custom-checkbox -->
+                                        </div><!-- End .filter-item -->
 
-                                                <div class="filter-item">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="cat-7">
-                                                        <label class="custom-control-label" for="cat-7">Horror </label>
-                                                    </div><!-- End .custom-checkbox -->
-                                                </div><!-- End .filter-item -->
+                                        <div class="filter-item">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="cat-7">
+                                                <label class="custom-control-label" for="cat-7">Horror </label>
+                                            </div><!-- End .custom-checkbox -->
+                                        </div><!-- End .filter-item -->
 
-                                            </div><!-- End .filter-items -->
-                                        </div><!-- End .widget-body -->
-                                    </div><!-- End .collapse -->
-                                </div><!-- End .widget -->
+                                    </div><!-- End .filter-items -->
+                                </div><!-- End .widget-body -->
+                            </div><!-- End .collapse -->
+                        </div><!-- End .widget -->
 
-                                <div class="widget widget-collapsible">
-                                    <h3 class="widget-title">
-                                        <a data-toggle="collapse" href="#widget-5" role="button" aria-expanded="true" aria-controls="widget-5">
-                                            Price
-                                        </a>
-                                    </h3><!-- End .widget-title -->
+                        <div class="widget widget-collapsible">
+                            <h3 class="widget-title">
+                                <a data-toggle="collapse" href="#widget-5" role="button" aria-expanded="true" aria-controls="widget-5">
+                                    Price
+                                </a>
+                            </h3><!-- End .widget-title -->
 
-                                    <div class="collapse show" id="widget-5">
-                                        <div class="widget-body">
-                                            <div class="filter-price">
-                                                <div class="filter-price-text">
-                                                    Price Range:
-                                                    <span id="filter-price-range"></span>
-                                                </div><!-- End .filter-price-text -->
+                            <div class="collapse show" id="widget-5">
+                                <div class="widget-body">
+                                    <div class="filter-price">
+                                        <div class="filter-price-text">
+                                            Price Range:
+                                            <span id="filter-price-range"></span>
+                                        </div><!-- End .filter-price-text -->
 
-                                                <div id="price-slider"></div><!-- End #price-slider -->
-                                            </div><!-- End .filter-price -->
-                                            <button onclick="handleClick()" >Sort</button>
-                                            <script>
-                                                function handleClick() {
-                                                const list = document.querySelectorAll(".noUi-tooltip");
-                                                const test = document.querySelectorAll(".custom-control-input");
-                                                let price;
-                                                if (list.length > 1) {
-                                                    
-                                                        price = list[list.length - 1].innerText.replace("VND", "");
-                                                        }
-                                                        const categoryLists = Array.from(test).map(v => v.checked);
-                                                        $.ajax({url: "shopping?index=1", data: {price: price, categories: categoryLists.join("-")}, success: function (result) {
-                                                                console.log({result})
-                                                                
+                                        <div id="price-slider"></div><!-- End #price-slider -->
+                                    </div><!-- End .filter-price -->
+                                    <button onclick="handleClick()" >Sort</button>
+                                    <script>
+                                        function handleClick() {
+                                            const list = document.querySelectorAll(".noUi-tooltip");
+                                            const test = document.querySelectorAll(".custom-control-input");
+                                            let price;
+                                            if (list.length > 1) {
+
+                                                price = list[list.length - 1].innerText.replace("VND", "");
+                                            }
+                                            const categoryLists = Array.from(test).map(v => v.checked);
+                                            $.ajax({url: "shopping?index=1", data: {price: price, categories: categoryLists.join("-")}, success: function (result) {
+                                                    console.log({result})
+
                                                     const htmlString = result.map((o) => `
-                                                            <div class=\"col-6 col-md-4 col-lg-4 col-xl-3\">
-                                                                <div class=\"product\">
-                                                                    <figure class=\"product-media\">
-                                                                        \${o.discountPercent > 1 ? "<span class=\"product-label label-new\">Discount</span>" : ""}
-                                                                        <a href=\"detail?pbookCode=\${o.bookCode}&categoryBook=\${o.cateName}\">
-                                                                            <img style="width:277px; height:375px;" src="\${o.image}" alt="Product image" class="product-image">
-                                                                        </a>
-                                                                        <div class=\"product-action\">
-                                                                            <a href=\"${pageContext.request.contextPath }/cart?&action=addToCart&bookCode=\${o.bookCode}\" class=\"btn-product btn-cart\"><span>Add to Cart</span></a>
-                                                                        </div>
-                                                                    </figure>
-                                                                    <div class=\"product-body\">
-                                                                        <div class=\"product-cat\">
-                                                                            <a href="">\${o.cateName}</a>
-                                                                        </div>
-                                                                        <h3 class="product-title">
-                                                                            <a href="detail?pbookCode=\${o.bookCode}&categoryBook=\${o.cateName}">\${o.bookName}</a>
-                                                                        </h3>
-                                                                        \${o.discountPercent == 0 ? "<div class=\"product-price\">Price: " + o.buyPrice + "</div>" :"<div class=\"product-price\">Sale Price: " + (o.buyPrice-(o.discountPercent *o.buyPrice/100)) + "</div>"}
-                                                                        <div class="product-author">Author: \${o.authorNum == 1 ? o.author : ""+o.author+""}</div>
-                                                                    </div>
+                                                    <div class=\"col-6 col-md-4 col-lg-4 col-xl-3\">
+                                                        <div class=\"product\">
+                                                            <figure class=\"product-media\">
+                                                                \${o.discountPercent > 1 ? "<span class=\"product-label label-new\">Discount</span>" : ""}
+                                                                <a href=\"detail?pbookCode=\${o.bookCode}&categoryBook=\${o.cateName}\">
+                                                                    <img style="width:277px; height:375px;" src="\${o.image}" alt="Product image" class="product-image">
+                                                                </a>
+                                                                <div class=\"product-action\">
+                                                                    <a href=\"${pageContext.request.contextPath }/cart?&action=addToCart&bookCode=\${o.bookCode}\" class=\"btn-product btn-cart\"><span>Add to Cart</span></a>
                                                                 </div>
+                                                            </figure>
+                                                            <div class=\"product-body\">
+                                                                <div class=\"product-cat\">
+                                                                    <a href="">\${o.cateName}</a>
+                                                                </div>
+                                                                <h3 class="product-title">
+                                                                    <a href="detail?pbookCode=\${o.bookCode}&categoryBook=\${o.cateName}">\${o.bookName}</a>
+                                                                </h3>
+                                                                \${o.discountPercent == 0 ? "<div class=\"product-price\">Price: " + o.buyPrice + "</div>" :"<div class=\"product-price\">Sale Price: " + (o.buyPrice-(o.discountPercent *o.buyPrice/100)) + "</div>"}
+                                                                <div class="product-author">Author: \${o.authorNum == 1 ? o.author : ""+o.author+""}</div>
                                                             </div>
-                                                                    `);
-                                                            console.log({htmlString});
-                                                            $("#content").html(htmlString);
-                                                                
-                                                        }
-                                                    });
-                                                }
+                                                        </div>
+                                                    </div>
+                                                            `);
+                                                    console.log({htmlString});
+                                                    $("#content").html(htmlString);
 
-                                            </script>
-                                        </div><!-- End .widget-body -->
-                                    </div><!-- End .collapse -->
-                                </div><!-- End .widget -->
-                            </div><!-- End .sidebar-filter-wrapper -->
-                        </aside><!-- End .sidebar-filter -->
+                                                }
+                                            });
+                                        }
+
+                                    </script>
+                                </div><!-- End .widget-body -->
+                            </div><!-- End .collapse -->
+                        </div><!-- End .widget -->
+                    </div><!-- End .sidebar-filter-wrapper -->
+                </aside><!-- End .sidebar-filter -->
             </main><!-- End .main -->
 
             <jsp:include page="footer.jsp"></jsp:include>
-        </div><!-- End .page-wrapper -->
-        <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
+            </div><!-- End .page-wrapper -->
+            <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
 
 
 
-        <!-- Plugins JS File -->
+            <!-- Plugins JS File -->
         <%
             String nullProduct = (String) request.getAttribute("nullProduct");
             if (nullProduct != null) {

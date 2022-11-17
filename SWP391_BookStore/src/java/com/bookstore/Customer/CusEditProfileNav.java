@@ -5,6 +5,7 @@
  */
 package com.bookstore.Customer;
 
+import com.bookstore.Book.BookShopDAO;
 import com.bookstore.Category.Category;
 import com.bookstore.Category.CategoryDAO;
 import java.io.IOException;
@@ -36,6 +37,8 @@ public class CusEditProfileNav extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             CategoryDAO daoC = new CategoryDAO();
+            BookShopDAO daoB = new BookShopDAO();
+
             List<Category> listC = daoC.getCategoryBook();
             request.setAttribute("listC", listC);
             request.getRequestDispatcher("cusEditProfile.jsp").forward(request, response);

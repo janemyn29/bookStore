@@ -6,6 +6,7 @@
 package com.bookstore.Customer;
 
 import com.bookstore.Account.Account;
+import com.bookstore.Book.BookShopDAO;
 import com.bookstore.Category.Category;
 import com.bookstore.Category.CategoryDAO;
 import com.bookstore.Order.Order;
@@ -42,9 +43,6 @@ public class CusReturnManagementNavController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            CategoryDAO daoC = new CategoryDAO();
-            List<Category> listC = daoC.getCategoryBook();
-            request.setAttribute("listC", listC);
             OrderDAO odao = new OrderDAO();
             HttpSession session = request.getSession();
             Account acc = (Account) session.getAttribute("acc");
@@ -74,6 +72,11 @@ public class CusReturnManagementNavController extends HttpServlet {
                     }
                 }
             }
+            CategoryDAO daoC = new CategoryDAO();
+            BookShopDAO daoB = new BookShopDAO();
+
+            List<Category> listC = daoC.getCategoryBook();
+            request.setAttribute("listC", listC);
             request.getRequestDispatcher("cusReturnManagement.jsp").forward(request, response);
         }
     }

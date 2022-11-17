@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author tramy
  */
-public class ImPCompanyController extends HttpServlet {
+public class ImpCompanyController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,13 +35,13 @@ public class ImPCompanyController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String check=null;
-            check=(String)request.getAttribute("check");
+            String check = null;
+            check = (String) request.getAttribute("check");
             CompanyDAO dao = new CompanyDAO();
-             List<Company> listC = dao.getListPublishCompanyVS2();
-             request.setAttribute("check", check);
-                request.setAttribute("listC", listC);
-                request.getRequestDispatcher("imCompany.jsp").forward(request, response);
+            List<Company> listC = dao.getListPublishCompanyVS2();
+            request.setAttribute("check", check);
+            request.setAttribute("listC", listC);
+            request.getRequestDispatcher("imCompany.jsp").forward(request, response);
         }
     }
 

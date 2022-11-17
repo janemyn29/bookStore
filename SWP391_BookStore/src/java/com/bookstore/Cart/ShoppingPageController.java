@@ -135,6 +135,11 @@ public class ShoppingPageController extends HttpServlet {
                 int totalPrice = totalPrice(cart);
                 session.setAttribute("totalPrice", totalPrice);// set tong tien
                 session.setAttribute("cart", cart);
+                if(cart.isEmpty()){
+                    cart=null;
+                    session.setAttribute("cart", cart);
+                    request.getRequestDispatcher("shopping?index=1").forward(request, response);
+                }
                 request.getRequestDispatcher("shopping?index=1").forward(request, response);
             }
             session.setAttribute("cart", cart);
@@ -199,3 +204,4 @@ public class ShoppingPageController extends HttpServlet {
     }// </editor-fold>
 
 }
+    

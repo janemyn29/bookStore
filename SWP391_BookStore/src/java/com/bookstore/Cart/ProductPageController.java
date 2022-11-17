@@ -131,6 +131,11 @@ public class ProductPageController extends HttpServlet {
                     }
                 }
                 session.setAttribute("cart", cart);
+                if(cart.isEmpty()){
+                    cart=null;
+                    session.setAttribute("cart", cart);
+                    request.getRequestDispatcher("detail?pbookCode="+ bookCode +"&cateName=" + cateName).forward(request, response);
+                }
                 request.getRequestDispatcher("detail?pbookCode="+ bookCode +"&cateName=" + cateName).forward(request, response);
 
             }

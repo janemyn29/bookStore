@@ -6,6 +6,7 @@
 package com.bookstore.Customer;
 
 import com.bookstore.Account.Account;
+import com.bookstore.Book.BookShopDAO;
 import com.bookstore.Category.Category;
 import com.bookstore.Category.CategoryDAO;
 import com.bookstore.Order.Order;
@@ -39,9 +40,6 @@ public class CusHistoryOrderDetailHomeController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            CategoryDAO daoC = new CategoryDAO();
-            List<Category> listC = daoC.getCategoryBook();
-            request.setAttribute("listC", listC);
             String orderID = request.getParameter("orderID");
             //parse id sang kieu int
             int id = Integer.parseInt(orderID);
@@ -61,6 +59,11 @@ public class CusHistoryOrderDetailHomeController extends HttpServlet {
             List<Order> listOrd2 = odao.getOrderByOrderIDAndAccountID(id, accountID);
             // set attribute
             request.setAttribute("listOrd2", listOrd2);
+            CategoryDAO daoC = new CategoryDAO();
+            BookShopDAO daoB = new BookShopDAO();
+
+            List<Category> listC = daoC.getCategoryBook();
+            request.setAttribute("listC", listC);
             //chuyen trang
             request.getRequestDispatcher("cusDetailHistory.jsp").forward(request, response);
         }

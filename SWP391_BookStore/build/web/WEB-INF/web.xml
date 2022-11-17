@@ -218,7 +218,7 @@
     </servlet>
     <servlet>
         <servlet-name>CusEditProfileNavController</servlet-name>
-        <servlet-class>com.bookstore.Customer.CusEditProfileNavController</servlet-class>
+        <servlet-class>com.bookstore.Customer.CusEditProfileNav</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AdCustomerController</servlet-name>
@@ -627,6 +627,18 @@
     <servlet>
         <servlet-name>CusReasonFormNav</servlet-name>
         <servlet-class>com.bookstore.Customer.CusReasonFormNav</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckOutNavController</servlet-name>
+        <servlet-class>com.bookstore.Cart.CheckOutNavController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CusCartNavController</servlet-name>
+        <servlet-class>com.bookstore.Cart.CusCartNavController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CusChangePasswordNavController</servlet-name>
+        <servlet-class>com.bookstore.Customer.CusChangePasswordNavController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -1151,6 +1163,18 @@
     <servlet-mapping>
         <servlet-name>CusReasonFormNav</servlet-name>
         <url-pattern>/customer/resonform</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckOutNavController</servlet-name>
+        <url-pattern>/checkoutnav</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CusCartNavController</servlet-name>
+        <url-pattern>/customer/cuscartnav</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CusChangePasswordNavController</servlet-name>
+        <url-pattern>/customer/cuschangepassnav</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
