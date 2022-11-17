@@ -96,7 +96,7 @@
                                             <a class="nav-link" href="cusreturnmanagementnav">My Return Management</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="cusChangePass.jsp">Change Password</a>
+                                            <a class="nav-link" href="cuschangepassnav">Change Password</a>
                                         </li>
 
                                         <li class="nav-item">

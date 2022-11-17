@@ -59,7 +59,7 @@ public class CusEditProfileController extends HttpServlet {
                 }
             } else {
                 request.setAttribute("check","The user name is already used!!!");
-                request.getRequestDispatcher("cusEditProfile.jsp").forward(request, response);
+                request.getRequestDispatcher("editprofile").forward(request, response);
             }
         }
     }

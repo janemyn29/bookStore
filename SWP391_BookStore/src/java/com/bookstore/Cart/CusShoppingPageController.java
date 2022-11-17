@@ -134,6 +134,11 @@ public class CusShoppingPageController extends HttpServlet {
                 int totalPrice = totalPrice(cart);
                 session.setAttribute("totalPrice", totalPrice);// set tong tien
                 session.setAttribute("cart", cart);
+                if(cart.isEmpty()){
+                    cart=null;
+                    session.setAttribute("cart", cart);
+                    request.getRequestDispatcher("cart.jsp").forward(request, response);
+                }
                 request.getRequestDispatcher("cusshopping?index=1").forward(request, response);
             }
             session.setAttribute("cart", cart);

@@ -3,14 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bookstore.Customer;
+package com.bookstore.Cart;
 
-import com.bookstore.Account.Account;
 import com.bookstore.Book.BookShopDAO;
 import com.bookstore.Category.Category;
 import com.bookstore.Category.CategoryDAO;
-import com.bookstore.Order.Order;
-import com.bookstore.Order.OrderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -18,13 +15,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Admin
  */
-public class CusOrderHomeController extends HttpServlet {
+public class CusCartNavController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,18 +35,12 @@ public class CusOrderHomeController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            OrderDAO odao = new OrderDAO();
-            HttpSession session = request.getSession();
-            Account acc = (Account) session.getAttribute("acc");
-            int accountID = acc.getAccID();
-            List<Order> listOrd = odao.getOrderListByStatus(accountID);
-            request.setAttribute("listOrd", listOrd);
             CategoryDAO daoC = new CategoryDAO();
             BookShopDAO daoB = new BookShopDAO();
 
             List<Category> listC = daoC.getCategoryBook();
             request.setAttribute("listC", listC);
-            request.getRequestDispatcher("cusOrders.jsp").forward(request, response);
+            request.getRequestDispatcher("cusCart.jsp").forward(request, response);
         }
     }
 

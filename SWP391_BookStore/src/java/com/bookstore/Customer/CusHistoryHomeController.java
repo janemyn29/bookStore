@@ -6,6 +6,9 @@
 package com.bookstore.Customer;
 
 import com.bookstore.Account.Account;
+import com.bookstore.Book.BookShopDAO;
+import com.bookstore.Category.Category;
+import com.bookstore.Category.CategoryDAO;
 import com.bookstore.Order.Order;
 import com.bookstore.Order.OrderDAO;
 import java.io.IOException;
@@ -47,6 +50,11 @@ public class CusHistoryHomeController extends HttpServlet {
             int accountID = acc.getAccID();
             List<Order> listOrd2 = odao.getOrderListByStatus2(accountID);
             request.setAttribute("listOrd2", listOrd2);
+            CategoryDAO daoC = new CategoryDAO();
+            BookShopDAO daoB = new BookShopDAO();
+
+            List<Category> listC = daoC.getCategoryBook();
+            request.setAttribute("listC", listC);
             request.getRequestDispatcher("cusHistory.jsp").forward(request, response);
         }
     }

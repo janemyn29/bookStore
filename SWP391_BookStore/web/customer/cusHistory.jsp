@@ -47,7 +47,7 @@
                         <div class="container">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="cushome">Home</a></li>
-                                <li class="breadcrumb-item"><a href="cusEditProfile.jsp">My Account</a></li>
+                                <li class="breadcrumb-item"><a href="cuseditprofilenav">My Account</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">My History</li>
                             </ol>
                         </div><!-- End .container -->
@@ -148,7 +148,7 @@
                                                     </c:forEach>
                                                     </tbody>                                        
                                                 </table>
-                                                <a href="cusEditProfile.jsp" class="btn btn-outline-primary-2">
+                                                <a href="cuseditprofilenav" class="btn btn-outline-primary-2">
                                                     <span>BACK</span>
                                                     <i class="icon-arrow-left"></i>
                                                 </a>
