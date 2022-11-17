@@ -87,8 +87,9 @@ public class CusFeedBackController extends HttpServlet {
 
             List<Category> listC = daoC.getCategoryBook();
             request.setAttribute("listC", listC);
+            request.setAttribute("fed", "fed");
             //day du lieu va chuyen trang
-            request.getRequestDispatcher("cusDetailHistory.jsp").forward(request, response);
+            request.getRequestDispatcher("cushistoryhome").forward(request, response);
         }
     }
 
