@@ -47,7 +47,11 @@ public class Feedback {
         this.oDetailID = oDetailID;
     }
     
-    
+    public Feedback(String accName, String detail, int starID) {
+        this.accName = accName;
+        this.detail = detail;
+        this.starID = starID;
+    }
 
     public int getoDetailID() {
         return oDetailID;

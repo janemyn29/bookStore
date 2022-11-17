@@ -34,6 +34,7 @@
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
         <!-- Main CSS File -->
         <link rel="stylesheet" href="assets/css/style.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
     <body>
         <div class="page-wrapper">
@@ -48,26 +49,40 @@
                         <div class="container">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="cushome">Home</a></li>
+                                <li class="breadcrumb-item"><a href="cusEditProfile.jsp">My Account</a></li>
                                 <li class="breadcrumb-item"><a href="cushistoryhome">My History</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">My History Detail</li>
                             </ol>
                         </div><!-- End .container -->
                     </nav><!-- End .breadcrumb-nav -->
 
-                    <div class="page-content">
-                        <div class="dashboard">
-                            <div class="container">
-                                <div class="row">
-                                    <aside class="col-md-4 col-lg-3">
-                                        <ul class="nav nav-dashboard flex-column mb-3 mb-md-0" role="tablist">
-                                            <li class="nav-item">
-                                                <a class="nav-link active" id="tab-ordersdetail-link" data-toggle="tab" href="#tab-ordersdetail" role="tab" aria-controls="tab-ordersdetail" aria-selected="false">My History Detail</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/SWP391_BookStore/logout">Sign Out</a>
-                                            </li>
-                                        </ul>
-                                    </aside><!-- End .col-lg-3 -->
+                <c:if test='${fed == "fed"}'>
+                    <div class="alert2">
+                        <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span>
+                        <p align="center">Thank you for your feed back.</p> 
+                    </div>
+                </c:if>
+
+                <style>
+                    p {
+                        text-align: center;
+                    }
+                </style>
+
+                <div class="page-content">
+                    <div class="dashboard">
+                        <div class="container">
+                            <div class="row">
+                                <aside class="col-md-4 col-lg-3">
+                                    <ul class="nav nav-dashboard flex-column mb-3 mb-md-0" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="tab-ordersdetail-link" data-toggle="tab" href="#tab-ordersdetail" role="tab" aria-controls="tab-ordersdetail" aria-selected="false">My History Detail</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/SWP391_BookStore/logout">Sign Out</a>
+                                        </li>
+                                    </ul>
+                                </aside><!-- End .col-lg-3 -->
 
                                 <c:forEach items ="${listOrdetail}" var="orde">
                                     <c:set var="note" value="${orde.getNote()}"></c:set>
@@ -75,9 +90,6 @@
                                 <div class="col-md-8 col-lg-9">
                                     <div class="tab-content">
                                         <div class="tab-pane fade show active" id="tab-ordersdetail" role="tabpanel" aria-labelledby="tab-ordersdetail-link">
-                                            <c:if test='${message == "Thank you for your feed back"}'>
-                                                <h5 class="text-center" style="color: green">${message}</h5>
-                                            </c:if>
                                             <div class="table-responsive">
 
                                                 <div>
@@ -137,9 +149,7 @@
                                                         <th>Quantity</th>
                                                         <th>Price</th>
                                                         <th>Total Price</th>
-                                                            <c:if test='${status == "recieved"}'>
-                                                            <th>Feed back</th>
-                                                            </c:if>
+                                                        <th>Feed back</th>
                                                     </tr>
                                                     </thead>
 
@@ -153,11 +163,20 @@
                                                                 <td>${orde.oDetailQty}</td>
                                                                 <td>${orde.buyPrice}</td>
                                                                 <td>${orde.total}</td>
-                                                                <c:if test='${status == "received"}'>
-                                                                    <td><a class="underline" href="cusfeedhome?bookCode=${orde.bookCode}&orderID=${orde.orderID}&oDetailID=${orde.oDetailID}">Click here</a></td>
-                                                                </c:if>
-                                                            </tr>
-                                                        </c:forEach>
+
+                                                        <style type="text/css">
+                                                            .material-icons.md-48 { font-size: 48px; }
+                                                        </style>
+
+                                                        <c:if test='${status == "received"}'>
+                                                            <td>
+                                                                <a class="underline" href="cusfeedhome?bookCode=${orde.bookCode}&orderID=${orde.orderID}&oDetailID=${orde.oDetailID}">
+                                                                    <i class="material-icons md-48">feedback</i>
+                                                                </a>
+                                                            </td>
+                                                        </c:if>
+                                                        </tr>
+                                                    </c:forEach>
                                                     </tbody>  
                                                 </table>
                                                 <a href="cushistoryhome" class="btn btn-outline-primary-2">
@@ -173,7 +192,80 @@
                     </div><!-- End .page-content -->
             </main><!-- End .main -->
 
-            <jsp:include page="cusFooter.jsp"></jsp:include>
+            <footer class="footer footer-dark">
+                <div class="footer-middle">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="widget widget-about">
+                                    <img src="assets/images/logo.png" class="footer-logo" alt="Footer Logo" width="105" height="25">
+                                    <p>Connect social apps coming soon</p>
+
+                                    <div class="social-icons">
+                                        <a class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
+                                        <a class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+                                        <a class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
+                                        <a class="social-icon" title="Youtube" target="_blank"><i class="icon-youtube"></i></a>
+                                        <a class="social-icon" title="Pinterest" target="_blank"><i class="icon-pinterest"></i></a>
+                                    </div><!-- End .soial-icons -->
+                                </div><!-- End .widget about-widget -->
+                            </div><!-- End .col-sm-6 col-lg-3 -->
+
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="widget">
+                                    <h4 class="widget-title">Useful Links</h4><!-- End .widget-title -->
+
+                                    <ul class="widget-list">
+                                        <li><a>Contact us</a>
+                                            <small> 
+                                                <br>
+                                                Any questions contact:
+                                                <br> <i class="icon-facebook-f"></i> Tran My
+                                                <br> <i class="icon-google">mail</i> : mytran@gmail.com
+                                                <br> <i class="icon-phone"></i> 0837462988
+                                            </small>
+                                        </li>
+                                        <li><a href="login.jsp">Sign up</a></li>
+                                    </ul><!-- End .widget-list -->
+                                </div><!-- End .widget -->
+                            </div><!-- End .col-sm-6 col-lg-3 -->
+
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="widget">
+                                    <h4 class="widget-title">Customer Service</h4><!-- End .widget-title -->
+
+                                    <ul class="widget-list">
+                                        <li><a href="cusHistory.jsp">Returns</a></li>
+                                        <li><a href="cusHistory.jsp">Feed Back</a></li>
+                                    </ul><!-- End .widget-list -->
+                                </div><!-- End .widget -->
+                            </div><!-- End .col-sm-6 col-lg-3 -->
+
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="widget">
+                                    <h4 class="widget-title">My Account</h4><!-- End .widget-title -->
+
+                                    <ul class="widget-list">
+                                        <li><a href="cusCart.jsp">View Cart</a></li>
+                                        <li><a href="cusOrders.jsp">Track My Order</a></li>
+                                        <li><a href="cusEditProfile.jsp.jsp">Change Profile Info</a></li>
+                                        <li><a href="cusChangePass.jsp">Change Password</a></li>
+                                    </ul><!-- End .widget-list -->
+                                </div><!-- End .widget -->
+                            </div><!-- End .col-sm-6 col-lg-3 -->
+                        </div><!-- End .row -->
+                    </div><!-- End .container -->
+                </div><!-- End .footer-middle -->
+
+                <div class="footer-bottom">
+                    <div class="container">
+                        <p class="footer-copyright">Copyright © 2019 Molla Store. All Rights Reserved.</p><!-- End .footer-copyright -->
+                        <figure class="footer-payments">
+                            <img src="assets/images/payments.png" alt="Payment methods" width="272" height="20">
+                        </figure><!-- End .footer-payments -->
+                    </div><!-- End .container -->
+                </div><!-- End .footer-bottom -->
+            </footer><!-- End .footer -->
         </div><!-- End .page-wrapper -->
         <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
 
@@ -472,5 +564,62 @@
         <script src="assets/js/owl.carousel.min.js"></script>
         <!-- Main JS File -->
         <script src="assets/js/main.js"></script>
+        <script>
+                            // Get all elements with class="closebtn"
+                            var close = document.getElementsByClassName("closebtn");
+                            var i;
+
+                            // Loop through all close buttons
+                            for (i = 0; i < close.length; i++) {
+                                // When someone clicks on a close button
+                                close[i].onclick = function () {
+
+                                    // Get the parent of <span class="closebtn"> (<div class="alert">)
+                                    var div = this.parentElement;
+
+                                    // Set the opacity of div to 0 (transparent)
+                                    div.style.opacity = "0";
+
+                                    // Hide the div after 600ms (the same amount of milliseconds it takes to fade out)
+                                    setTimeout(function () {
+                                        div.style.display = "none";
+                                    }, 600);
+                                }
+                            }
+        </script>
     </body>
+
+    <style>
+        .alert2 {
+            padding: 20px;
+            background-color: honeydew; /* Red */
+            color: green;
+            margin-bottom: 15px;
+        }
+
+        /* The close button */
+        .closebtn {
+            margin-left: 15px;
+            color: black;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        /* When moving the mouse over the close button */
+        .closebtn:hover {
+            color: black;
+        }
+
+    </style>
+
+    <style>
+        .alert {
+            opacity: 1;
+            transition: opacity 0.6s; /* 600ms to fade out */
+        }
+    </style>
 </html>

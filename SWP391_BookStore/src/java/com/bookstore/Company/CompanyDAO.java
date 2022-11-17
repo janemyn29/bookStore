@@ -62,8 +62,13 @@ public class CompanyDAO {
 
         List<Company> list = dao.getListPublishCompany();
         int lastCID;
+        if (list.size()==0 ||list.isEmpty()) {
+            lastCID=1;
+        }else{
+        
         int sizeList = list.size() - 1;
         lastCID = list.get(sizeList).getCompanyID() + 1;
+        }
         String query = " insert into tblPublishCompany\n"
                 + "values (?,?,?,?,?) ";
         try {

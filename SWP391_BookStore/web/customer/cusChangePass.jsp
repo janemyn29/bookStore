@@ -36,49 +36,49 @@
     <body>
         <div class="page-wrapper">
             <jsp:include page="cusHeader.jsp"></jsp:include>
-            
-            <main class="main">
-                <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
-                    <div class="container">
-                        <h1 class="page-title">Change Password</h1>
-                    </div><!-- End .container -->
-                </div><!-- End .page-header -->
-                <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
-                    <div class="container">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="cushome">Home</a></li>
-<!--                            <li class="breadcrumb-item"><a href="#">Shop</a></li>-->
-                            <li class="breadcrumb-item active" aria-current="page">Change Password</li>
-                        </ol>
-                    </div><!-- End .container -->
-                </nav><!-- End .breadcrumb-nav -->
 
-                <div class="page-content">
-                    <div class="dashboard">
+                <main class="main">
+                    <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
                         <div class="container">
-                            <div class="row">
-                                <aside class="col-md-4 col-lg-3">
-                                    <ul class="nav nav-dashboard flex-column mb-3 mb-md-0" role="tablist">
-                                        <li class="nav-item">
-                                            <a class="nav-link active" id="tab-password-link" data-toggle="tab" href="#tab-password" role="tab" aria-controls="tab-password" aria-selected="true">Change Password</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/SWP391_BookStore/logout">Sign Out</a>
-                                        </li>
-                                    </ul>
-                                </aside><!-- End .col-lg-3 -->
+                            <h1 class="page-title">Change Password</h1>
+                        </div><!-- End .container -->
+                    </div><!-- End .page-header -->
+                    <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
+                        <div class="container">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="cushome">Home</a></li>
+                                <li class="breadcrumb-item"><a href="cusEditProfile.jsp">My Account</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Change Password</li>
+                            </ol>
+                        </div><!-- End .container -->
+                    </nav><!-- End .breadcrumb-nav -->
 
-                                <div class="col-md-8 col-lg-9">
-                                    <div class="tab-content">
+                    <div class="page-content">
+                        <div class="dashboard">
+                            <div class="container">
+                                <div class="row">
+                                    <aside class="col-md-4 col-lg-3">
+                                        <ul class="nav nav-dashboard flex-column mb-3 mb-md-0" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" id="tab-password-link" data-toggle="tab" href="#tab-password" role="tab" aria-controls="tab-password" aria-selected="true">Change Password</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="/SWP391_BookStore/logout">Sign Out</a>
+                                            </li>
+                                        </ul>
+                                    </aside><!-- End .col-lg-3 -->
 
-                                        <div class="tab-pane fade show active" onfocus="" id="tab-password" role="tabpanel" aria-labelledby="tab-password-link">
-                                            <form  action="cuschangepass" method="post">
+                                    <div class="col-md-8 col-lg-9">
+                                        <div class="tab-content">
 
-                                                <div>
-<!--                                                    <a href="" class="toolbox-right" style="color: red">Forgot password?</a>-->
-                                                    <label>Current Password </label>
-                                                    <input type="password" class="form-control" name="txtCurrentPassword" required >
-                                                    <c:if test='${check1 == "Current password incorrect!!!"}'>
+                                            <div class="tab-pane fade show active" onfocus="" id="tab-password" role="tabpanel" aria-labelledby="tab-password-link">
+                                                <form  action="cuschangepass" method="post">
+
+                                                    <div>
+                                                        <!--                                                    <a href="" class="toolbox-right" style="color: red">Forgot password?</a>-->
+                                                        <label>Current Password </label>
+                                                        <input type="password" class="form-control" name="txtCurrentPassword" required >
+                                                        <c:if test='${check1 == "Current password incorrect!!!"}'>
                                                         <small style="color: red;">${check1}</small>
                                                     </c:if>
                                                 </div>
@@ -94,17 +94,17 @@
                                                         <small style="color: red;">${check2}</small>
                                                     </c:if>
                                                 </div>
-                                                    <a href="cusEditProfile.jsp" class="btn btn-outline-primary-2">
-                                                        <span>BACK</span>
-                                                        <i class="icon-arrow-left"></i>
-                                                    </a>
+                                                <a href="cusEditProfile.jsp" class="btn btn-outline-primary-2">
+                                                    <span>BACK</span>
+                                                    <i class="icon-arrow-left"></i>
+                                                </a>
                                                 <button type="submit" class="btn btn-outline-primary-2">
                                                     <span>SAVE CHANGES</span>
                                                     <i class="icon-arrow-down"></i>
                                                 </button>
-                                                    <c:if test='${checksuccess == "Password update success"}'>
-                                                        <label style="color: green;">${checksuccess}</label>
-                                                    </c:if>
+                                                <c:if test='${checksuccess == "Password update success"}'>
+                                                    <label style="color: green;">${checksuccess}</label>
+                                                </c:if>
                                             </form>
                                         </div><!-- .End .tab-pane -->
                                     </div>
@@ -115,7 +115,7 @@
                 </div><!-- End .page-content -->
             </main><!-- End .main -->
 
-<jsp:include page="cusFooter.jsp"></jsp:include>
+            <jsp:include page="cusFooter.jsp"></jsp:include>
         </div><!-- End .page-wrapper -->
         <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
 

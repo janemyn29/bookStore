@@ -379,6 +379,29 @@ public class FeedbackDAO {
         return list;
     }
 
+    public List<Feedback> getFeedbackByBookCode(String bookCode) {
+        List<Feedback> list = new ArrayList<>();
+        String sql = " select ac.userName, f.feedbackDetail, f.starID\n"
+                + "from tblFeedback f inner join tblAccount ac on f.accountID = ac.accountID\n"
+                + "where f.bookCode = ? ";
+
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, bookCode);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                list.add(new Feedback(rs.getString(1).trim(),
+                        rs.getString(2).trim(),
+                        rs.getInt(3)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
     public static void main(String[] args) {
         FeedbackDAO dAO = new FeedbackDAO();
         //List<FeedbackTitle> list = dAO.addtotalAndStar();

@@ -5,6 +5,7 @@
  */
 package com.bookstore.Account;
 
+import com.bookstore.Book.BookDashboard;
 import com.bookstore.Utils.DBUtils;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -171,9 +172,13 @@ public class AccountDAO {
         AccountDAO dao = new AccountDAO();
         List<Account> list = dao.listUser();
         int lastUID;
-        int sizeList = list.size() - 1;
-        lastUID = list.get(sizeList).getAccID() + 1;
+        if (list.size() == 0 || list.isEmpty()) {
+            lastUID = 1;
+        } else {
 
+            int sizeList = list.size() - 1;
+            lastUID = list.get(sizeList).getAccID() + 1;
+        }
         //dePass
         String password = pass;
         MessageDigest md = MessageDigest.getInstance("MD5");
@@ -288,8 +293,12 @@ public class AccountDAO {
         AccountDAO dao = new AccountDAO();
         List<Account> list = dao.listUser();
         int lastUID;
-        int sizeList = list.size() - 1;
-        lastUID = list.get(sizeList).getAccID() + 1;
+        if (list.isEmpty()) {
+            lastUID = 1;
+        } else {
+            int sizeList = list.size() - 1;
+            lastUID = list.get(sizeList).getAccID() + 1;
+        }
 
         //dePass
         String pass = "000000";
@@ -649,10 +658,31 @@ public class AccountDAO {
         }
     }
 
+    public Account countAccount (){
+        Account acc = new Account();
+
+        String sql = " select count(a.accountID) from tblAccount a\n"
+                + "where a.roleID= 4 ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return new Account(rs.getInt(1), "", "", "", "", 0, 0);
+            }
+
+        } catch (Exception e) {
+        }
+        return null;
+    }
+    
+   
+
     public static void main(String[] args) throws NoSuchAlgorithmException {
         AccountDAO dao = new AccountDAO();
-        List<Account> list= dao.getListAccountsByRole("2", "2");
-        System.out.println(list);
+        Account account= dao.countAccount();
+        System.out.println(account);
 
     }
 }

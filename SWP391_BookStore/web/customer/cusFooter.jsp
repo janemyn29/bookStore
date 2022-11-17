@@ -41,8 +41,8 @@
                         <h4 class="widget-title">Customer Service</h4><!-- End .widget-title -->
 
                         <ul class="widget-list">
-                            <li><a href="cusHistory.jsp">Returns</a></li>
-                            <li><a href="cusHistory.jsp">Feed Back</a></li>
+                            <li><a href="cusEditProfile.jsp">Returns</a></li>
+                            <li><a href="cusEditProfile.jsp">Feed Back</a></li>
                         </ul><!-- End .widget-list -->
                     </div><!-- End .widget -->
                 </div><!-- End .col-sm-6 col-lg-3 -->
@@ -53,7 +53,7 @@
 
                         <ul class="widget-list">
                                 <li><a href="cusCart.jsp">View Cart</a></li>
-                                <li><a href="cusOrders.jsp">Track My Order</a></li>
+                                <li><a href="cusEditProfile.jsp">Track My Order</a></li>
                                 <li><a href="cusEditProfile.jsp">Change Profile Info</a></li>
                                 <li><a href="cusChangePass.jsp">Change Password</a></li>
                         </ul><!-- End .widget-list -->

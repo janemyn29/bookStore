@@ -372,9 +372,9 @@ public class BookShopDAO {
     }
 
     public boolean uploadBookInfor(String img, int price, String des, String cate, String code) {
-
+        String now = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
         String sql = " update tblBook\n"
-                + "set img=?, buyPrice= ?, description=?,cateID=?,postID='1'\n"
+                + "set img=?, buyPrice= ?, description=?,cateID=?,postID='1',postDate=? \n"
                 + "where bookCode=? ";
         boolean check = false;
         try {
@@ -386,7 +386,8 @@ public class BookShopDAO {
             ps.setInt(2, price);
             ps.setString(3, des);
             ps.setString(4, cate);
-            ps.setString(5, code);
+            ps.setString(5, now);
+            ps.setString(6, code);
 
             check = ps.executeUpdate() > 0;
 
@@ -405,7 +406,7 @@ public class BookShopDAO {
                     + "where bookCode=? ";
         } else {
             sql = " update tblBook\n"
-                    + "set img=? buyPrice= ?, description=?,cateID=?,postID='1',postDate=?\n"
+                    + "set img=? , buyPrice= ?, description=?,cateID=?,postID='1',postDate=?\n"
                     + "where bookCode=? ";
         }
         boolean check = false;
@@ -419,15 +420,17 @@ public class BookShopDAO {
                 ps.setInt(1, price);
                 ps.setString(2, des);
                 ps.setString(3, cate);
-                ps.setString(4, code);
-                ps.setString(5, now);
+                ps.setString(4, now);
+                ps.setString(5, code);
+
             } else {
                 ps.setString(1, img);
                 ps.setInt(2, price);
                 ps.setString(3, des);
                 ps.setString(4, cate);
-                ps.setString(5, code);
-                ps.setString(6, now);
+                ps.setString(5, now);
+                ps.setString(6, code);
+
             }
 
             check = ps.executeUpdate() > 0;
@@ -436,6 +439,11 @@ public class BookShopDAO {
             System.out.println("Update Student error!" + ex.getMessage());
         }
         return check;
+    }
+
+    public static void main(String[] args) {
+        BookShopDAO dao = new BookShopDAO();
+        dao.uploadBookInforVs2("2222", 11111, "1111", "1", "2341234");
     }
 
     public boolean plusQty(int qty, String code) {
@@ -520,10 +528,52 @@ public class BookShopDAO {
         }
         return list;
     }
-    
-    public static void main(String[] args) {
-        BookShopDAO dAO= new BookShopDAO();
-        BookShop book = dAO.getBookBybookCodeVS3("2341234");
-        System.out.println(book);
+
+    public List<BookDashboard> getBookDashboards() {
+        List<BookDashboard> list = new ArrayList<>();
+        String sql = " select count(b.bookCode) from tblBook b\n"
+                + "where b.postID = 1 ";
+
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+
+                list.add(new BookDashboard("Posted", rs.getInt(1)));
+            }
+        } catch (Exception e) {
+        }
+        String sql1 = " select count(b.bookCode) from tblBook b\n"
+                + "where b.postID = 2 ";
+
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql1);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+
+                list.add(new BookDashboard("New", rs.getInt(1)));
+            }
+        } catch (Exception e) {
+        }
+        String sql2 = " select count(b.bookCode) from tblBook b\n"
+                + "where b.postID = 4 ";
+
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql2);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+
+                list.add(new BookDashboard("Unpost", rs.getInt(1)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
     }
+
 }

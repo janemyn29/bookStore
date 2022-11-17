@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -579,13 +580,15 @@ public class BookDAO {
     }
 
     public void uploadUnpostBook(String id) {
+        String now = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
         String sql = " update tblBook\n"
-                + "set postID=1\n"
+                + "set postID=1,postDate=?\n"
                 + "where bookCode=? ";
         try {
             conn = new DBUtils().getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, id);
+            ps.setString(1, now);
+            ps.setString(2, id);
             ps.executeUpdate();
         } catch (Exception e) {
         }
@@ -640,9 +643,28 @@ public class BookDAO {
         return 0;
     }
 
+    public BookShop countBook() {
+        BookShop bookShop = new BookShop();
+
+        String sql = " select count(a.bookCode) from tblBook a\n"
+                + "where a.postID!=3 ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return new BookShop(rs.getInt(1), "");
+            }
+
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
-        BookDAO dAO = new BookDAO();
-        List<Book> list = dAO.getBookManage();
-        System.out.println(list);
+        BookDAO bdao = new BookDAO();
+        BookShop bookShop = bdao.countBook();
+        System.out.println(bookShop);
     }
 }

@@ -24,6 +24,11 @@ public class Discount {
     public Discount() {
     }
 
+    public Discount(int discountID) {
+        this.discountID = discountID;
+    }
+    
+
     public Discount(int discountID, long bookCode, Date startDate, Date endDate, int percent) {
         this.discountID = discountID;
         this.bookCode = bookCode;
@@ -32,6 +37,12 @@ public class Discount {
         this.percent = percent;
     }
 
+    public Discount(int discountID, String status) {
+        this.discountID = discountID;
+        this.status = status;
+    }
+
+    
     public Discount(int discountID, long bookCode, String bName, Date startDate, Date endDate, int percent, String status, String img) {
         this.discountID = discountID;
         this.bookCode = bookCode;

@@ -5,8 +5,6 @@
  */
 package com.bookstore.Author;
 
-import com.bookstore.Book.Book;
-import com.bookstore.Book.BookDAO;
 import com.bookstore.Utils.DBUtils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -87,8 +85,13 @@ public class AuthorDAO {
         AuthorDAO dAO = new AuthorDAO();
         List<Author> list = dAO.getAllAuthor();
         int lastUID;
+        if (list.isEmpty()) {
+            lastUID=1;
+        }else{
+        
         int sizeList = list.size() - 1;
         lastUID = list.get(sizeList).getAuID() + 1;
+        }
 
         String sql = " Insert into tblAuthor (authorID,authorName)\n"
                 + "values(?,?) ";
@@ -143,9 +146,15 @@ public class AuthorDAO {
     public void createCompose(String code, int auID) {
         AuthorDAO dAO = new AuthorDAO();
         List<Author> list = dAO.getAllCompose();
+        
         int lastUID;
+        if (list.isEmpty()) {
+            lastUID=1;
+        }else{
+        
         int sizeList = list.size() - 1;
         lastUID = list.get(sizeList).getAuID() + 1;
+        }
 
         String sql = " INSERT INTO tblCompose\n"
                 + " VALUES(?,?,?) ";
