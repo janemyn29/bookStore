@@ -229,7 +229,8 @@
                                                                 + "<a style='margin-left: 25px' href='sellerOrderDetail?id=" + elem.getOrderID() + "' data-toggle='tooltip' data-placement='bottom' title='View Order Detail'><i   class='icon-eye'></i></a>"
                                                                 + " </td></tr>");
                                                         }
-                                                    }                                                    %>
+                                                    }                                                    
+                                                %>
 
                                                 
                                             </tbody>

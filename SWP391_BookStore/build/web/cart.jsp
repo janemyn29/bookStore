@@ -245,7 +245,7 @@
                                                         <img src="${cart.book.image}" alt="product">
                                                     </a>
                                                 </figure>
-                                                <a href="${pageContext.request.contextPath }/cart?action=remove&bookCode=${cart.book.bookCode}" class="btn-remove"><i class="icon-close"></i></a>
+                                                <a href="${pageContext.request.contextPath }/cart?action=remove&bookCode=${cart.book.bookCode}" onclick="return confirm('Are you sure?')" class="btn-remove"><i class="icon-close"></i></a>
                                             </div><!-- End .product -->
 
                                         </div><!-- End .cart-product -->    
@@ -401,7 +401,7 @@
 
 
                                                         <td class="remove-col">
-                                                            <a href="${pageContext.request.contextPath }/cart?action=remove&bookCode=${cart.book.bookCode}" class="btn-remove">
+                                                            <a href="${pageContext.request.contextPath }/cart?action=remove&bookCode=${cart.book.bookCode}" onclick="return confirm('Are you sure?')" class="btn-remove">
                                                                 <i class="icon-close"></i>
                                                             </a>
                                                         </td>

@@ -354,7 +354,7 @@
 
                                         <div class="product-content">
                                             <p id="product-content-desc" class="product-content-desc">${detailProduct.description}</p>
-                                            <button class="btn btn-outline-primary-2" onclick="handleMoreLessClick()">show more/less</button>
+                                            <button class="btn btn-outline-primary-2" onclick="handleMoreLessClick()">Show more/less</button>
                                             <script>
                                                 const element = document.getElementById("product-content-desc");
                                                 function handleMoreLessClick() {

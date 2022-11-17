@@ -250,7 +250,7 @@
                                                         <img src="${cart.book.image}" alt="product">
                                                     </a>
                                                 </figure>
-                                                <a href="${pageContext.request.contextPath }/customer/cuscart?action=remove&bookCode=${cart.book.bookCode}" class="btn-remove"><i class="icon-close"></i></a>
+                                                <a href="${pageContext.request.contextPath }/customer/cuscart?action=remove&bookCode=${cart.book.bookCode}"  class="btn-remove"><i class="icon-close"></i></a>
                                             </div><!-- End .product -->
 
                                         </div><!-- End .cart-product -->    
@@ -278,8 +278,8 @@
                 <nav aria-label="breadcrumb" class="breadcrumb-nav">
                     <div class="container">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="home">Home</a></li>
-                            <li class="breadcrumb-item"><a href="shopping">Shop</a></li>
+                            <li class="breadcrumb-item"><a href="cushome">Home</a></li>
+                            <li class="breadcrumb-item"><a href="cusshopping?index=1">Shop</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Shopping Cart</li>
                         </ol>
                     </div><!-- End .container -->
@@ -397,7 +397,7 @@
                                                             <fmt:formatNumber value="${cart.buyPrice * cart.qty}" pattern=" #,##0 VND" /> 
                                                         </td>
                                                         <td class="remove-col">
-                                                            <a href="${pageContext.request.contextPath }/customer/cuscart?action=remove&bookCode=${cart.book.bookCode}" class="btn-remove">
+                                                            <a href="${pageContext.request.contextPath }/customer/cuscart?action=remove&bookCode=${cart.book.bookCode}" class="btn-remove" onclick="return confirm('Are you sure?')"> 
                                                                 <i class="icon-close"></i>
                                                             </a>
                                                         </td>
