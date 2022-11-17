@@ -213,6 +213,7 @@
 
                                             </div>
 
+
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Description :</label>
                                                 <div class="col-sm-10">
@@ -223,20 +224,24 @@
 
 
 
-                                            <div class="form-group row">
-                                                <table style="border: none">
-                                                    <td>
-                                                        <button type="submit" style="margin-left: 370px;"class="btn mb-1 btn-warning" ><span >Upload</span></button>
-                                                    </td>
 
-                                                    <td>
-                                                        <a href="adbook"><button  style="margin-left: 70px;"class="btn mb-1 btn-warning" ><span >Cancel</span></button></a>
-                                                    </td>
-                                                    
-                                                </table>
+                                            <div class="form-group row">
+                                                <div class="form-group row">
+                                                    <table style="border: none">
+                                                        <tr>
+                                                        <button type="submit" style="margin-left: 370px;"class="btn mb-1 btn-warning" ><span >Upload</span></button>
+                                                        </tr>
+                                                </div>
+
+                                                <tr>
+                                                <a style="margin-left: 70px" href="adbook" class="btn mb-1 btn-warning">Cancel</a>
+                                                <td>
+                                                    </table>
+
                                             </div>
-                                        </form>
+
                                     </div>
+                                    </form>
 
 
 
@@ -270,76 +275,73 @@
     <script src="js/gleek.js"></script>
     <script src="js/styleSwitcher.js"></script>
     <script>
-                                            var numb = document.forms['myform']['sell'];
-                                            var err = document.getElementById('error');
-                                            function validation() {
+                                                            var numb = document.forms['myform']['sell'];
+                                                            var err = document.getElementById('error');
+                                                            function validation() {
 
-                                                if (numb.value <= ${book.importPrice}) {
-                                                    err.innerHTML = "Sell Price must be larger than imported Price. Please input again!";
-                                                    err.style.display = "block";
-                                                    return false;
-                                                }
-                                                return true;
-                                            }
+                                                                if (numb.value <= ${book.importPrice}) {
+                                                                    err.innerHTML = "Sell Price must be larger than imported Price. Please input again!";
+                                                                    err.style.display = "block";
+                                                                    return false;
+                                                                }
+                                                                return true;
+                                                            }
 
     </script>
     <script>
-    function fileValidation(){
-    var fileInput = document.getElementById('fileUpload');
-    var filePath = fileInput.value;
-    var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
-    if(!allowedExtensions.exec(filePath)){
-        alert('Please upload file having extensions .jpeg/.jpg/.png/.gif only.');
-        fileInput.value = '';
-        return false;
-    }else{
-        //Image preview
-        if (fileInput.files && fileInput.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                document.getElementById('imagePreview').innerHTML = '<img src="'+e.target.result+'"/>';
-            };
-            reader.readAsDataURL(fileInput.files[0]);
+        function fileValidation() {
+            var fileInput = document.getElementById('fileUpload');
+            var filePath = fileInput.value;
+            var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+            if (!allowedExtensions.exec(filePath)) {
+                alert('Please upload file having extensions .jpeg/.jpg/.png/.gif only.');
+                fileInput.value = '';
+                return false;
+            } else {
+                //Image preview
+                if (fileInput.files && fileInput.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        document.getElementById('imagePreview').innerHTML = '<img src="' + e.target.result + '"/>';
+                    };
+                    reader.readAsDataURL(fileInput.files[0]);
+                }
+            }
         }
-    }
-}
     </script>
 
     <script type="text/javascript">
-        $(document).ready(function () {
+    $(document).ready(function () {
 
-        var max_fields = 10;
-                var wrapper = $("#wap");
-                var add_button = $("#add");
-                var x = 1;
-                $(add_button).click(function (e) {
-        e.preventDefault();
-                if (x < max_fields) {
-        x++;
-                $(wrapper).append('<div class="form-group row" ><label  class="col-sm-2 col-form-label">Author ' + x + ' :</label><div class="col-sm-10"><div class="input-group mb-3"><input name="author" type="text" class="form-control" required><div class="input-group-append"> <button class="btn btn-outline-dark" type="button"><a href="#" class="remove_field"><i class="icon-close"></i></a></button></div></div></div></div>');
-        }
-        });
-        
-                $(wrapper).on("click", ".remove_field", function (e) { //user click on remove text
+    var max_fields = 10;
+            var wrapper = $("#wap");
+            var add_button = $("#add");
+            var x = 1;
+            $(add_button).click(function (e) {
+    e.preventDefault();
+            if (x < max_fields) {
+    x++;
+            $(wrapper).append('<div class="form-group row" ><label  class="col-sm-2 col-form-label">Author ' + x + ' :</label><div class="col-sm-10"><div class="input-group mb-3"><input name="author" type="text" class="form-control" required><div class="input-group-append"> <button class="btn btn-outline-dark" type="button"><a href="#" class="remove_field"><i class="icon-close"></i></a></button></div></div></div></div>');
+    }
+    });
+            $(wrapper).on("click", ".remove_field", function (e) { //user click on remove text
 
-        e.preventDefault();
-                $(this).parent().parent().parent().parent().parent().remove();
-                x--;
-        });
-        
-        
-                maxFileSize = 10 * 1024 * 1024;
-                $("#fileUpload").change(function(){
-        fileSize = this.files[0].size;
-                if (fileSize > maxFileSize){
-        this.setCustomValidity("You can upload only files under 10MB");
-                this.reportValidity();
-        } else{
-        his.setCustomValidity("");
-        }
-        });
-        });
-                            </script >
+    e.preventDefault();
+            $(this).parent().parent().parent().parent().parent().remove();
+            x--;
+    });
+            maxFileSize = 10 * 1024 * 1024;
+            $("#fileUpload").change(function(){
+    fileSize = this.files[0].size;
+            if (fileSize > maxFileSize){
+    this.setCustomValidity("You can upload only files under 10MB");
+            this.reportValidity();
+    } else{
+    his.setCustomValidity("");
+    }
+    });
+    });
+                        </script >
                         
                         
                             </body>
