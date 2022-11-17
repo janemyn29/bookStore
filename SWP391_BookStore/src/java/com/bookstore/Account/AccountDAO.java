@@ -407,6 +407,14 @@ public class AccountDAO {
         }
         return false;
     }
+    public static void main(String[] args) {
+        AccountDAO dao = new AccountDAO();
+        try {
+            dao.updateAccountDetails("aaaaaa", "loan@gmail.com", "0356253423", 1);
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     public boolean updatePassword(String pass, int accID) throws SQLException, NoSuchAlgorithmException {
         String password = pass;
@@ -677,12 +685,5 @@ public class AccountDAO {
         return null;
     }
     
-   
 
-    public static void main(String[] args) throws NoSuchAlgorithmException {
-        AccountDAO dao = new AccountDAO();
-        Account account= dao.countAccount();
-        System.out.println(account);
-
-    }
 }

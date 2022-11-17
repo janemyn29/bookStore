@@ -57,12 +57,7 @@
                     <div class="nk-nav-scroll">
                         <ul class="metismenu" id="menu">
                             <li class="nav-label" style="background-color: #c96;">Hello Seller ${acc.getUsername()}</li>
-                        <li>
-                            <a href="home" aria-expanded="false">
-                                <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
-                            </a>
-
-                        </li>
+                        
                         <li>
                             <a href="sellerOrder" aria-expanded="false">
                                 <i class="icon-list"></i><span class="nav-text">Order Management</span>

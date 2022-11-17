@@ -349,8 +349,8 @@
                                     <div class="col-6 col-md-4 col-lg-4 col-xl-3">
                                         <div class="product">
                                             <figure class="product-media">
-                                                <c:if test="${listAll.discountPercent > 0}">
-                                                    <span class="product-label label-new">Discount</span>
+                                                 <c:if test="${listAll.discountPercent > 0}">
+                                                    <span class="product-label label-new">Discount ${listAll.discountPercent}%</span>
                                                 </c:if>
 
                                                 <a href="cusdetail?pbookCode=${listAll.bookCode}&categoryBook=${listAll.cateName}">

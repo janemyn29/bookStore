@@ -108,7 +108,7 @@
                                                         <span class="fa fa-globe"></span>
                                                     </div>
                                                     <div class="text pl-3">
-                                                        <p><span>Website</span> <a href="http://localhost:8084/SWP391_BookStore/home">The5.com</a></p>
+                                                        <p><span>Website</span> <a href="/SWP391_BookStore/home">The5.com</a></p>
                                                     </div>
                                                 </div>
                                             </div>

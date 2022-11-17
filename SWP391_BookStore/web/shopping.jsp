@@ -348,9 +348,9 @@
                                 <div class="col-6 col-md-4 col-lg-4 col-xl-3">
                                     <div class="product">
                                         <figure class="product-media">
-                                            <c:if test="${listAll.discountPercent > 0}">
-                                                <span class="product-label label-new">Discount</span>
-                                            </c:if>
+                                             <c:if test="${listAll.discountPercent > 0}">
+                                                    <span class="product-label label-new">Discount ${listAll.discountPercent}%</span>
+                                                </c:if>
 
                                             <a href="detail?pbookCode=${listAll.bookCode}&categoryBook=${listAll.cateName}">
                                                 <img style="width: 	277px; height: 	375px;" src="${listAll.image}" alt="Product image" class="product-image">

@@ -112,6 +112,9 @@
                                     <c:forEach items="${listDiscountBook}" var="discount">
                                         <div class="product product-11 text-center">
                                             <figure class="product-media">
+                                                <c:if test="${discount.discountPercent > 0}">
+                                                    <span class="product-label label-new">Discount ${discount.discountPercent}%</span>
+                                                </c:if>
                                                 <a href="detail?pbookCode=${discount.bookCode}&categoryBook=${discount.cateName}">
                                                     <img style="width: 	277px; height: 	375px;" src="${discount.image}" alt="Product image" class="product-image">
                                                     <!--<img src="assets/images/demos/demo-2/products/product-1-2.jpg" alt="Product image" class="product-image-hover">-->
@@ -255,6 +258,9 @@
                                             <div class="col-6 col-md-4 col-lg-3">
                                                 <div class="product product-11 mt-v3 text-center">
                                                     <figure class="product-media">
+                                                        <c:if test="${o.discountPercent > 0}">
+                                                            <span class="product-label label-new">Discount ${o.discountPercent}%</span>
+                                                        </c:if>
                                                         <a href="detail?pbookCode=${o.bookCode}&categoryBook=${o.cateName}">
                                                             <img style="width: 	277px; height: 	375px;" src="${o.image}" alt="Product image" class="product-image">
                                                         </a>

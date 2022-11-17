@@ -39,22 +39,33 @@ public class SellerEditProfileController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            HttpSession session=request.getSession();
-            Account account= (Account) session.getAttribute("acc");
-            int id= account.getAccID();
-            String email = account.getEmail();
+            String accID = request.getParameter("accID").trim();
             String phone = request.getParameter("phone").trim();
             String username = request.getParameter("username").trim();
-            
             AccountDAO dao = new AccountDAO();
+            Account account = dao.existUsernameForChange(username, accID);
+            Account account1 = dao.existPhoneForChange(phone, accID);
+
+            if (account != null) {
+                request.setAttribute("check", "This username already existed! Please input another username.");
+                request.getRequestDispatcher("sellereditProfileNav").forward(request, response);
+            } else if (account1 != null) {
+                request.setAttribute("check", "This phone already used! Please input another phone number.");
+                request.getRequestDispatcher("sellereditProfileNav").forward(request, response);
+            }
+            HttpSession session = request.getSession();
+            Account acc = (Account) session.getAttribute("acc");
+            int id = acc.getAccID();
+            String email = acc.getEmail();
+
             try {
                 dao.updateAccountDetails(username, email, phone, id);
             } catch (SQLException ex) {
                 Logger.getLogger(AdEditProfileController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            Account upAcc= new Account(id, username, phone, email, account.getPassword(), account.getRoleID(), account.getRoleName(), account.getActionID(), account.getActionName());
+            Account upAcc = new Account(id, username, phone, email, acc.getPassword(), acc.getRoleID(), acc.getRoleName(), acc.getActionID(), acc.getActionName());
             session.setAttribute("acc", upAcc);
-            
+
             response.sendRedirect("sellerProfile");
         }
     }

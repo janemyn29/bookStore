@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bookstore.Filter;
+package com.bookstore.Seller;
 
 import com.bookstore.Account.Account;
 import java.io.IOException;
@@ -23,7 +23,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author tramy
  */
-public class AdminFilter implements Filter {
+public class TempFilter implements Filter {
     
     private static final boolean debug = true;
 
@@ -32,16 +32,14 @@ public class AdminFilter implements Filter {
     // configured. 
     private FilterConfig filterConfig = null;
     
-    public AdminFilter() {
+    public TempFilter() {
     }    
     
     private void doBeforeProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
-            log("AdminFilter:DoBeforeProcessing");
+            log("TempFilter:DoBeforeProcessing");
         }
-        
-
 
         // Write code here to process the request and/or response before
         // the rest of the filter chain is invoked.
@@ -68,7 +66,7 @@ public class AdminFilter implements Filter {
     private void doAfterProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
-            log("AdminFilter:DoAfterProcessing");
+            log("TempFilter:DoAfterProcessing");
         }
 
         // Write code here to process the request and/or response after
@@ -104,17 +102,17 @@ public class AdminFilter implements Filter {
             throws IOException, ServletException {
         
         if (debug) {
-            log("AdminFilter:doFilter()");
+            log("TempFilter:doFilter()");
         }
         HttpServletRequest req = (HttpServletRequest) request;
        
         HttpSession session = req.getSession();
         Account account=(Account) session.getAttribute("acc");
         if (account==null) {
-            req.getRequestDispatcher("warning").forward(request, response);
+            req.getRequestDispatcher("sellerWarning").forward(request, response);
         
-        }else if (!account.getRoleName().equals("manager")&account.getActionID()==2) {
-                request.getRequestDispatcher("warning").forward(request, response);
+        }else if (!account.getRoleName().equals("seller")& account.getActionID()==2) {
+                request.getRequestDispatcher("sellerWarning").forward(request, response);
         }
         
         doBeforeProcessing(request, response);
@@ -174,7 +172,7 @@ public class AdminFilter implements Filter {
         this.filterConfig = filterConfig;
         if (filterConfig != null) {
             if (debug) {                
-                log("AdminFilter:Initializing filter");
+                log("TempFilter:Initializing filter");
             }
         }
     }
@@ -185,9 +183,9 @@ public class AdminFilter implements Filter {
     @Override
     public String toString() {
         if (filterConfig == null) {
-            return ("AdminFilter()");
+            return ("TempFilter()");
         }
-        StringBuffer sb = new StringBuffer("AdminFilter(");
+        StringBuffer sb = new StringBuffer("TempFilter(");
         sb.append(filterConfig);
         sb.append(")");
         return (sb.toString());

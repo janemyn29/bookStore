@@ -40,22 +40,7 @@ public class CheckExistFilter implements Filter {
             log("CheckExistFilter:DoBeforeProcessing");
         }
 
-        String accID = request.getParameter("accID").trim();
-        String phone = request.getParameter("phone").trim();
-        String username = request.getParameter("username").trim();
-        AccountDAO dao = new AccountDAO();
-        Account account = dao.existUsernameForChange(username, accID);
-        Account account1 = dao.existPhoneForChange(phone, accID);
         
-        
-        
-        if (account!=null) {
-            request.setAttribute("check", "This username already existed! Please input another username.");
-            request.getRequestDispatcher("editProfileNav").forward(request, response); 
-        }else if (account1!=null) {
-            request.setAttribute("check", "This phone already used! Please input another phone number.");
-                request.getRequestDispatcher("editProfileNav").forward(request, response);
-        }
         
             
         
@@ -122,6 +107,22 @@ public class CheckExistFilter implements Filter {
 
         if (debug) {
             log("CheckExistFilter:doFilter()");
+        }
+        String accID = request.getParameter("accID").trim();
+        String phone = request.getParameter("phone").trim();
+        String username = request.getParameter("username").trim();
+        AccountDAO dao = new AccountDAO();
+        Account account = dao.existUsernameForChange(username, accID);
+        Account account1 = dao.existPhoneForChange(phone, accID);
+        
+        
+        
+        if (account!=null) {
+            request.setAttribute("check", "This username already existed! Please input another username.");
+            request.getRequestDispatcher("editProfileNav").forward(request, response); 
+        }else if (account1!=null) {
+            request.setAttribute("check", "This phone already used! Please input another phone number.");
+                request.getRequestDispatcher("editProfileNav").forward(request, response);
         }
 
         doBeforeProcessing(request, response);

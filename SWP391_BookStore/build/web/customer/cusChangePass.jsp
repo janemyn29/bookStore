@@ -47,7 +47,7 @@
                         <div class="container">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="cushome">Home</a></li>
-                                <li class="breadcrumb-item"><a href="cusEditProfile.jsp">My Account</a></li>
+                                <li class="breadcrumb-item"><a href="editprofile">My Account</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Change Password</li>
                             </ol>
                         </div><!-- End .container -->
@@ -94,7 +94,7 @@
                                                         <small style="color: red;">${check2}</small>
                                                     </c:if>
                                                 </div>
-                                                <a href="cusEditProfile.jsp" class="btn btn-outline-primary-2">
+                                                <a href="editprofile" class="btn btn-outline-primary-2">
                                                     <span>BACK</span>
                                                     <i class="icon-arrow-left"></i>
                                                 </a>

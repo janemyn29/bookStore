@@ -36,6 +36,242 @@
         <filter-name>DiscountCheckFilter</filter-name>
         <filter-class>com.bookstore.Admin.DiscountCheckFilter</filter-class>
     </filter>
+    <filter>
+        <filter-name>CustomerFilter</filter-name>
+        <filter-class>com.bookstore.Customer.CustomerFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>ImpFilter</filter-name>
+        <filter-class>com.bookstore.Importer.SellerFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>TempFilter</filter-name>
+        <filter-class>com.bookstore.Seller.TempFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>TempFilter</filter-name>
+        <servlet-name>SellerChangePassController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>TempFilter</filter-name>
+        <servlet-name>SellerChangeNav</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>TempFilter</filter-name>
+        <servlet-name>SellerController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>TempFilter</filter-name>
+        <servlet-name>SellerEditProfileController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>TempFilter</filter-name>
+        <servlet-name>SellerEditProfileNav</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>TempFilter</filter-name>
+        <servlet-name>SellerOrderController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>TempFilter</filter-name>
+        <servlet-name>SellerOrderDetailController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>TempFilter</filter-name>
+        <servlet-name>SellerOrderStatusController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>TempFilter</filter-name>
+        <servlet-name>SellerProfileController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>TempFilter</filter-name>
+        <servlet-name>SellerReturnController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>TempFilter</filter-name>
+        <servlet-name>SellerReturnDetailController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>TempFilter</filter-name>
+        <servlet-name>SellerReturnStatusController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>TempFilter</filter-name>
+        <servlet-name>SellerReturnUpdateController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>TempFilter</filter-name>
+        <servlet-name>SellerUpdateStatusController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>TempFilter</filter-name>
+        <servlet-name>SellerhomeController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ImpFilter</filter-name>
+        <servlet-name>ImAddReceiptController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ImpFilter</filter-name>
+        <servlet-name>ImAddReceiptController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ImpFilter</filter-name>
+        <servlet-name>ImAddReceiptNav</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ImpFilter</filter-name>
+        <servlet-name>ImChangeController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ImpFilter</filter-name>
+        <servlet-name>ImChangePassController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ImpFilter</filter-name>
+        <servlet-name>ImCreateComController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ImpFilter</filter-name>
+        <servlet-name>ImCreateComNav</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ImpFilter</filter-name>
+        <servlet-name>ImEditComNav</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ImpFilter</filter-name>
+        <servlet-name>ImEditProfileNavController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ImpFilter</filter-name>
+        <servlet-name>ImEditProfileController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ImpFilter</filter-name>
+        <servlet-name>ImHomeController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ImpFilter</filter-name>
+        <servlet-name>ImProfileController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ImpFilter</filter-name>
+        <servlet-name>ImReceiptComtroller</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ImpFilter</filter-name>
+        <servlet-name>ImReceiptDetailController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ImpFilter</filter-name>
+        <servlet-name>ImpCompanyController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ImpFilter</filter-name>
+        <servlet-name>ImRemoveController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ImpFilter</filter-name>
+        <servlet-name>ImpEditCompanyController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ImpFilter</filter-name>
+        <servlet-name>ImpNavController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CustomerFilter</filter-name>
+        <servlet-name>CusCategoryController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CustomerFilter</filter-name>
+        <servlet-name>CusCancelOrderController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CustomerFilter</filter-name>
+        <servlet-name>CusChangePasswordController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CustomerFilter</filter-name>
+        <servlet-name>CusChangePasswordNavController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CustomerFilter</filter-name>
+        <servlet-name>CusContactController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CustomerFilter</filter-name>
+        <servlet-name>CusDetailController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CustomerFilter</filter-name>
+        <servlet-name>CusEditProfileController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CustomerFilter</filter-name>
+        <servlet-name>CusEditProfileNav</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CustomerFilter</filter-name>
+        <servlet-name>CusFeedBackController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CustomerFilter</filter-name>
+        <servlet-name>CusFeedHomeController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CustomerFilter</filter-name>
+        <servlet-name>CusHistoryHomeController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CustomerFilter</filter-name>
+        <servlet-name>CusHistoryOrderDetailHomeController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CustomerFilter</filter-name>
+        <servlet-name>CusHomeController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CustomerFilter</filter-name>
+        <servlet-name>CusHomeNavController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CustomerFilter</filter-name>
+        <servlet-name>CusOrderDetailHomeController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CustomerFilter</filter-name>
+        <servlet-name>CusOrderHomeController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CustomerFilter</filter-name>
+        <servlet-name>CusReasonFormNav</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CustomerFilter</filter-name>
+        <servlet-name>CusRetrunNavController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CustomerFilter</filter-name>
+        <servlet-name>CusReturnManagementDetailController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CustomerFilter</filter-name>
+        <servlet-name>CusReturnManagementNavController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CustomerFilter</filter-name>
+        <servlet-name>CusSearchController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CustomerFilter</filter-name>
+        <servlet-name>CusShoppingController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CustomerFilter</filter-name>
+        <servlet-name>CustomerAboutUsController</servlet-name>
+    </filter-mapping>
     <filter-mapping>
         <filter-name>DiscountCheckFilter</filter-name>
         <servlet-name>AdNewDiscountController</servlet-name>
@@ -43,10 +279,6 @@
     <filter-mapping>
         <filter-name>CheckSellerExistFilter</filter-name>
         <servlet-name>SellerEditProfileController</servlet-name>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>CheckExistFilter</filter-name>
-        <servlet-name>AdEditProfileController</servlet-name>
     </filter-mapping>
     <filter-mapping>
         <filter-name>AdminFilter</filter-name>
@@ -83,6 +315,111 @@
     <filter-mapping>
         <filter-name>AdminFilter</filter-name>
         <servlet-name>AdProfileController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AdBlacklistController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AdBookController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AdChangePassController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AdChangePassNavController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AdCustomerController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AdDeleteBookController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AdDeleteDisController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AdDiscountController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AdEditBookController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AdEditBookNavController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AdEditProfileController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AdEditProfileNavController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AdFeedCateController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AdFeedbackDetail</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AdNewDiscountController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AdNewDiscountNav</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AdProfitController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AdProfitFilterController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AdUnpostController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AdUploadController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AdUploadNavController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AddBlacklistController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AdminController</servlet-name>
+    </filter-mapping>
+    
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>DiscountCheckFilter</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>RestoreBlacklistController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>adFeedbackController</servlet-name>
     </filter-mapping>
     <filter-mapping>
         <filter-name>CheckPassFilter</filter-name>
@@ -489,10 +826,6 @@
         <servlet-class>com.bookstore.Importer.ImEditProfileNavController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ImPCompanyController</servlet-name>
-        <servlet-class>com.bookstore.Importer.ImPCompanyController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ImProfileController</servlet-name>
         <servlet-class>com.bookstore.Importer.ImProfileController</servlet-class>
     </servlet>
@@ -639,6 +972,30 @@
     <servlet>
         <servlet-name>CusChangePasswordNavController</servlet-name>
         <servlet-class>com.bookstore.Customer.CusChangePasswordNavController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CusContactController</servlet-name>
+        <servlet-class>com.bookstore.Customer.CusContactController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerAboutUsController</servlet-name>
+        <servlet-class>com.bookstore.Customer.CustomerAboutUsController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ImpCompanyController</servlet-name>
+        <servlet-class>com.bookstore.Importer.ImpCompanyController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerWarningController</servlet-name>
+        <servlet-class>com.bookstore.controller.CustomerWarningController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ImpWarningController</servlet-name>
+        <servlet-class>com.bookstore.controller.ImpWarningController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SellerWarningController</servlet-name>
+        <servlet-class>com.bookstore.controller.SellerWarningController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -1025,10 +1382,6 @@
         <url-pattern>/imp/imeditProfileNav</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ImPCompanyController</servlet-name>
-        <url-pattern>/imp/pcompany</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>ImProfileController</servlet-name>
         <url-pattern>/imp/imProfile</url-pattern>
     </servlet-mapping>
@@ -1175,6 +1528,30 @@
     <servlet-mapping>
         <servlet-name>CusChangePasswordNavController</servlet-name>
         <url-pattern>/customer/cuschangepassnav</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CusContactController</servlet-name>
+        <url-pattern>/customer/cuscontact</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerAboutUsController</servlet-name>
+        <url-pattern>/customer/cusAbout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImpCompanyController</servlet-name>
+        <url-pattern>/imp/pcompany</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerWarningController</servlet-name>
+        <url-pattern>/customer/cuswarming</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImpWarningController</servlet-name>
+        <url-pattern>/imp/impWarning</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SellerWarningController</servlet-name>
+        <url-pattern>/Seller/sellerWarning</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

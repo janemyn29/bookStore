@@ -40,22 +40,7 @@ public class CheckSellerExistFilter implements Filter {
             log("CheckSellerExistFilter:DoBeforeProcessing");
         }
 
-        String accID = request.getParameter("accID").trim();
-        String phone = request.getParameter("phone").trim();
-        String username = request.getParameter("username").trim();
-        AccountDAO dao = new AccountDAO();
-        Account account = dao.existUsernameForChange(username, accID);
-        Account account1 = dao.existPhoneForChange(phone, accID);
         
-        
-        
-        if (account!=null) {
-            request.setAttribute("check", "This username already existed! Please input another username.");
-            request.getRequestDispatcher("sellereditProfileNav").forward(request, response); 
-        }else if (account1!=null) {
-            request.setAttribute("check", "This phone already used! Please input another phone number.");
-                request.getRequestDispatcher("sellereditProfileNav").forward(request, response);
-        }
     }    
     
     private void doAfterProcessing(ServletRequest request, ServletResponse response)
@@ -99,6 +84,7 @@ public class CheckSellerExistFilter implements Filter {
         if (debug) {
             log("CheckSellerExistFilter:doFilter()");
         }
+        
         
         doBeforeProcessing(request, response);
         

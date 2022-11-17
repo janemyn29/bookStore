@@ -3,26 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bookstore.Admin;
+package com.bookstore.Customer;
 
-import com.bookstore.Account.Account;
-import com.bookstore.Account.AccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author tramy
  */
-public class AdEditProfileController extends HttpServlet {
+public class CustomerAboutUsController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,36 +32,15 @@ public class AdEditProfileController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-
-            String accID = request.getParameter("accID").trim();
-            String phone = request.getParameter("phone").trim();
-            String username = request.getParameter("username").trim();
-            AccountDAO dao = new AccountDAO();
-            Account account = dao.existUsernameForChange(username, accID);
-            Account account1 = dao.existPhoneForChange(phone, accID);
-
-            if (account != null) {
-                request.setAttribute("check", "This username already existed! Please input another username.");
-                request.getRequestDispatcher("editProfileNav").forward(request, response);
-            } else if (account1 != null) {
-                request.setAttribute("check", "This phone already used! Please input another phone number.");
-                request.getRequestDispatcher("editProfileNav").forward(request, response);
-            }else{
-            HttpSession session = request.getSession();
-            Account acc = (Account)session.getAttribute("acc");
-            int id = acc.getAccID();
-            String email = acc.getEmail();
-            try {
-                dao.updateAccountDetails(username, email, phone, id);
-            } catch (SQLException ex) {
-                Logger.getLogger(AdEditProfileController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            Account upAcc = new Account(id, username, phone, email, acc.getPassword(), acc.getRoleID(), acc.getRoleName(), acc.getActionID(), acc.getActionName());
-            session.setAttribute("acc", upAcc);
-
-            response.sendRedirect("adProfile");
-            }
-
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet CustomerAboutUsController</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet CustomerAboutUsController at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
