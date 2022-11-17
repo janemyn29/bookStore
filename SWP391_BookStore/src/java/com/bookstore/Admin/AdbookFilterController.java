@@ -9,6 +9,9 @@ import com.bookstore.Author.Author;
 import com.bookstore.Author.AuthorDAO;
 import com.bookstore.Book.Book;
 import com.bookstore.Book.BookDAO;
+import com.bookstore.Order.Return;
+import com.bookstore.Profit.Profit;
+import com.bookstore.Profit.ProfitDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -21,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author tramy
  */
-public class AdBookController extends HttpServlet {
+public class AdbookFilterController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,11 +40,14 @@ public class AdBookController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            
+            String status = request.getParameter("postid");
+            if (status.equals("All")) {
+                request.getRequestDispatcher("adbook").forward(request, response);
+            }else{
             String check = null;
             check = (String) request.getAttribute("check");
             BookDAO dao = new BookDAO();
-            List<Book> list = dao.getBookManage();
+            List<Book> list = dao.getBookManagebyStatus(status);
             AuthorDAO authordAO = new AuthorDAO();
 
             for (Book b : list) {
@@ -64,9 +70,11 @@ public class AdBookController extends HttpServlet {
             }
             request.setAttribute("listB", list);
             request.setAttribute("check", check);
-            request.setAttribute("temp", "All");
+            request.setAttribute("temp", status);
 
             request.getRequestDispatcher("adBook.jsp").forward(request, response);
+            }
+            
         }
     }
 

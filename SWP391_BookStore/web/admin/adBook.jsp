@@ -140,6 +140,42 @@
                                     <c:if test='${check != null}'>
                                         <div class="alert alert-success">${check}</div>
                                     </c:if>
+                                        <form  action="AdbookFilter" style="margin-top:15px ">
+                                    <label>Choose Status</label>
+                                        <div class="input-group">
+                                            <select name='postid' class="custom-select">
+                                                <c:if test="${temp.equals('All')}">
+                                                    <option selected="" value="All">All</option>
+                                                    <option  value="1">Posted</option>
+                                                    <option value="2">New</option>
+                                                    <option value="4">Unpost</option>
+                                                </c:if>
+                                                <c:if test="${temp.equals('1')}">
+                                                    <option value="All">All</option>
+                                                    <option selected="" value="1">Posted</option>
+                                                    <option value="2">New</option>
+                                                    <option value="4">Unpost</option>
+                                                </c:if>
+                                                <c:if test="${temp.equals('2')}">
+                                                    <option value="All">All</option>
+                                                    <option  value="1">Posted</option>
+                                                    <option selected="" value="2">New</option>
+                                                    <option value="4">Unpost</option>
+                                                </c:if>
+                                                <c:if test="${temp.equals('4')}">
+                                                    <option value="All">All</option>
+                                                    <option  value="1">Posted</option>
+                                                    <option value="2">New</option>
+                                                    <option selected="" value="3">Unpost</option>
+                                                </c:if>
+                                                
+                                            </select>
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-dark" type="submit">Filter
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
                                     <div class="table-responsive">
                                         <table class="table table-striped table-bordered zero-configuration">
                                             <thead>
