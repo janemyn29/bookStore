@@ -6,7 +6,9 @@
 package com.bookstore.Feedback;
 
 import com.bookstore.Book.Book;
+import com.bookstore.Order.Order;
 import com.bookstore.Utils.DBUtils;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -96,6 +98,7 @@ public class FeedbackDAO {
         }
         return list;
     }
+
     public List<FeedbackTitle> getTitle(String code) {
         List<FeedbackTitle> list = new ArrayList<>();
         String sql = " select b.bookCode , b.bookName, c.cateID, c.cateName\n"
@@ -240,6 +243,7 @@ public class FeedbackDAO {
         }
         return listTitles;
     }
+
     public List<FeedbackTitle> addtotalAndStarOfTitle(String bcode) {
         FeedbackDAO dAO = new FeedbackDAO();
         List<FeedbackTitle> listTitles = dAO.getTitle(bcode);
@@ -280,10 +284,128 @@ public class FeedbackDAO {
         return listTitles;
     }
 
+    public List<Feedback> getFeedbackManage() {
+        List<Feedback> list = new ArrayList<>();
+        String sql = "select *\n"
+                + "from tblFeedback";
+
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                list.add(new Feedback(rs.getInt(1),
+                        rs.getLong(2),
+                        rs.getInt(3),
+                        rs.getString(4).trim(),
+                        rs.getInt(5),
+                        rs.getInt(6)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public void addFeedback(int feedID, long bookcode, int accID, String detail, int starID, int oDetailID) throws NoSuchAlgorithmException {
+        String sql = "insert into tblFeedback\n"
+                + "values(?, ?, ?, ?, ?, ?)";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, feedID);
+            ps.setLong(2, bookcode);
+            ps.setInt(3, accID);
+            ps.setString(4, detail);
+            ps.setInt(5, starID);
+            ps.setInt(6, oDetailID);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+
+    public List<Feedback> getFeedbackManageByBookCode(String bookCode) {
+        List<Feedback> list = new ArrayList<>();
+        String sql = " select *\n"
+                + "from tblFeedback\n"
+                + "where bookCode = ? ";
+
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, bookCode);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                list.add(new Feedback(rs.getInt(1),
+                        rs.getLong(2),
+                        rs.getInt(3),
+                        rs.getString(4).trim(),
+                        rs.getInt(5),
+                        rs.getInt(6)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public List<Feedback> getFeedbackManageByBookCodeAndOrder(String bookCode, int oDetailID) {
+        List<Feedback> list = new ArrayList<>();
+        String sql = " select f.feedbackID, f.bookCode, f.accountID, f.feedbackDetail, f.starID, f.OdetailID\n"
+                + "from ((tblFeedback f inner join tblOrderDetail od on od.OdetailID = f.OdetailID)\n"
+                + "inner join tblOrder o on o.orderID = od.orderID)\n"
+                + "where f.bookCode = ? and od.OdetailID = ? ";
+
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, bookCode);
+            ps.setInt(2, oDetailID);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                list.add(new Feedback(rs.getInt(1),
+                        rs.getLong(2),
+                        rs.getInt(3),
+                        rs.getString(4).trim(),
+                        rs.getInt(5),
+                        rs.getInt(6)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public List<Feedback> getFeedbackByBookCode(String bookCode) {
+        List<Feedback> list = new ArrayList<>();
+        String sql = " select ac.userName, f.feedbackDetail, f.starID\n"
+                + "from tblFeedback f inner join tblAccount ac on f.accountID = ac.accountID\n"
+                + "where f.bookCode = ? ";
+
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, bookCode);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                list.add(new Feedback(rs.getString(1).trim(),
+                        rs.getString(2).trim(),
+                        rs.getInt(3)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
     public static void main(String[] args) {
         FeedbackDAO dAO = new FeedbackDAO();
-        List<FeedbackTitle> list = dAO.addtotalAndStar();
-        System.out.println(list.size());
+        //List<FeedbackTitle> list = dAO.addtotalAndStar();
+        System.out.println(dAO.getFeedbackManageByBookCodeAndOrder("8935244875454", 2));
     }
 
 }

@@ -4,9 +4,9 @@
     Author     : tramy
 --%>
 
-<%@page import="com.bookstore.Account.Account"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style>
     .navigation-item.active {
         color:red
@@ -24,18 +24,10 @@
                 <ul class="top-menu">
                     <li>
                         <ul>
-                            <li><a href="/SWP391_BookStore/logout">Logout</a></li>
+                            <li><a href=""></a></li>
                             <li><a href="about.html">About Us</a></li>
                             <li><a href="contact.html">Contact Us</a></li>
-                                <%
-                                        Account acc = (Account) request.getSession().getAttribute("acc");
-                                    if (acc == null) {
-                                %>
-                            <li><a href="loginnav">Login</li>
-                                <%
-                                } else {%>
-                            <li><a href="editprofile">Hello ${acc.getUsername()}</a></li>
-                                <%}%>
+                            <li><a href="loginnav">Login</a></li>
                         </ul>
                     </li>
                 </ul><!-- End .top-menu -->
@@ -80,61 +72,85 @@
                                 </div><!-- End .row -->
                             </div><!-- End .megamenu megamenu-sm -->
                         </li>
-                                                <script>
-                                                    const navList = document.querySelectorAll('.navigation-item');
-                                                    const path = window.location.href.replace("http://localhost:8084/SWP391_BookStore/", "");
-                                                    switch(path) {
-                                                        case "home": {
-                                                                navList[0].classList.toggle("active")
-                                                                break;
-                                                        }
-                                                        case "shopping": {
-                                                                navList[1].classList.toggle("active")
-                                                                break;
-                                                        }
-                                                        case "detail": {
-                                                                navList[2].classList.toggle("")
-                                                                break;
-                                                        }
-                                                        case "category?categoryName=Art%20-%20Literary": {
-                                                                navList[3].classList.toggle("active")
-                                                                break;
-                                                        }
-                                                        case "category?categoryName=Comics": {
-                                                                navList[4].classList.toggle("active")
-                                                                break;
-                                                        }
-                                                        case "category?categoryName=Textbook%20-%20Syllabus": {
-                                                                navList[5].classList.toggle("active")
-                                                                break;
-                                                        }
-                                                        case "category?categoryName=Novel": {
-                                                                navList[6].classList.toggle("active")
-                                                                break;
-                                                        }
-                                                        case "category?categoryName=Foreign%20language": {
-                                                                navList[7].classList.toggle("active")
-                                                                break;
-                                                        }
-                                                        case "category?categoryName=Science": {
-                                                                navList[8].classList.toggle("active")
-                                                                break;
-                                                        }
-                                                        case "category?categoryName=Horror": {
-                                                                navList[9].classList.toggle("active")
-                                                                break;
-                                                        }
-                                                        case "": {
-                                                                navList[10].classList.toggle("")
-                                                                break;
-                                                        }
-                                                        default: {
-                                                                navList[11].classList.toggle("")
-                                                                break;
-                                                        }
+                        <script>
+                            const navList = document.querySelectorAll('.navigation-item');
+                            const path = window.location.href.replace("http://localhost:8084/SWP391_BookStore/", "");
+                            switch (path) {
+                                case "home":
+                                {
+                                    navList[0].classList.toggle("active")
+                                    break;
+                                }
+                                case "shopping":
+                                {
+                                    navList[1].classList.toggle("active")
+                                    break;
+                                }
+                                case "detail":
+                                {
+                                    navList[2].classList.toggle("")
+                                    break;
+                                }
+                                case "category?categoryName=Art%20-%20Literary":
+                                {
+                                    navList[3].classList.toggle("active")
+                                    break;
+                                }
+                                case "category?categoryName=Comics":
+                                {
+                                    navList[4].classList.toggle("active")
+                                    break;
+                                }
+                                case "category?categoryName=Textbook%20-%20Syllabus":
+                                {
+                                    navList[5].classList.toggle("active")
+                                    break;
+                                }
+                                case "category?categoryName=Novel":
+                                {
+                                    navList[6].classList.toggle("active")
+                                    break;
+                                }
+                                case "category?categoryName=Foreign%20language":
+                                {
+                                    navList[7].classList.toggle("active")
+                                    break;
+                                }
+                                case "category?categoryName=Science":
+                                {
+                                    navList[8].classList.toggle("active")
+                                    break;
+                                }
+                                case "category?categoryName=Horror":
+                                {
+                                    navList[9].classList.toggle("active")
+                                    break;
+                                }
+                                case "":
+                                {
+                                    navList[10].classList.toggle("")
+                                    break;
+                                }
+                                default:
+                                {
+                                    navList[11].classList.toggle("")
+                                    break;
+                                }
+                            }
+
+                        </script>
+                        <!--                        <script>
+                                                    // Add active class to the current button (highlight it)
+                                                    var header = document.getElementById("menu-active-Class");
+                                                    var btns = header.getElementsByClassName("navigation-item");
+                                                    for (var i = 0; i < btns.length; i++) {
+                                                        btns[i].addEventListener("click", function () {
+                                                            var current = document.getElementsByClassName("active");
+                                                            current[0].className = current[0].className.replace(" active", "");
+                                                            this.className += " active";
+                                                        });
                                                     }
-                                                    
-                                                </script>
+                                                </script>-->
                     </ul><!-- End .menu -->
                 </nav><!-- End .main-nav -->
             </div><!-- End .header-left -->
@@ -152,6 +168,7 @@
                         </div><!-- End .header-search-wrapper -->
                     </form>
                 </div><!-- End .header-search -->
+
                 <%
 
                     if (session.getAttribute("cart") == null) {
@@ -163,11 +180,13 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <div class="dropdown-cart-products">
-                            <label  style="color: black;">Your cart is empty</label>
+                            <label>
+                                <img style="width: 320px; height: 200px;" src="assets/images/mini-cart-empty.png" alt="Product image">
+                            </label>
                         </div>
                         <div class="dropdown-cart-action">
-                            <a href="cart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span></a>
-                            <a href="checkOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
+                            <a href="cartnav" class="btn btn-outline-primary-2"><span>View Cart</span><i class='fas'>&#xf07a;</i></a>
+                            <a href="checkOutnav" class="btn btn-outline-primary-2"><span>Checkout</span><i class='fas'>&#xf53d;</i></a>
                         </div><!-- End .dropdown-cart-total -->
                     </div><!-- End .dropdown-menu -->
                 </div><!-- End .cart-dropdown -->
@@ -187,8 +206,8 @@
                                         </h4>
 
                                         <span class="cart-product-info">
-                                            <span class="cart-product-qty">${cart.qty}</span>
-                                            x ${cart.book.buyPrice} vnd
+                                            <span class="cart-product-qty">${cart.qty}</span> X
+                                            <fmt:formatNumber value="${cart.buyPrice}" pattern=" #,##0 VND" />                                         
                                         </span>
                                     </div><!-- End .product-cart-details -->
 
@@ -204,8 +223,8 @@
                         </c:forEach>
 
                         <div class="dropdown-cart-action">
-                            <a href="cart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span></a>
-                            <a href="checkOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
+                            <a href="cartnav" class="btn btn-outline-primary-2"><span>View Cart</span><i class='fas'>&#xf07a;</i></a>
+                            <a href="checkOutnav" class="btn btn-outline-primary-2"><span>Checkout</span><i class='fas'>&#xf53d;</i></a>
                         </div><!-- End .dropdown-cart-total -->
                     </div><!-- End .dropdown-menu -->
                 </div><!-- End .cart-dropdown -->
@@ -214,3 +233,4 @@
         </div><!-- End .container -->
     </div><!-- End .header-middle -->
 </header><!-- End .header -->
+<<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>

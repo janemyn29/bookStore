@@ -5,10 +5,16 @@
  */
 package com.bookstore.controller;
 
+import com.bookstore.Author.Author;
+import com.bookstore.Author.AuthorDAO;
 import com.bookstore.Book.Book;
 import com.bookstore.Book.BookDAO;
+import com.bookstore.Book.BookShop;
+import com.bookstore.Book.BookShopDAO;
 import com.bookstore.Category.Category;
 import com.bookstore.Category.CategoryDAO;
+import com.bookstore.Discount.Discount;
+import com.bookstore.Discount.DiscountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -38,12 +44,12 @@ public class SearchController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String searchKey = request.getParameter("searchKey");
-        String indexString=request.getParameter("index");
-        int index=Integer.parseInt(indexString);
-        
-        CategoryDAO daoC=new CategoryDAO();
+        String indexString = request.getParameter("index");
+        int index = Integer.parseInt(indexString);
+
+        CategoryDAO daoC = new CategoryDAO();
         BookDAO daoB = new BookDAO();
-        
+
         int count = daoB.count(searchKey);
         int pageSize = 8;
         int endPage = 0;
@@ -52,19 +58,52 @@ public class SearchController extends HttpServlet {
             endPage++;
         }
 
-        List<Category> listC=daoC.getCategoryBook();
-        List<Book> list = daoB.SearchBook(searchKey,index,pageSize);
+        List<Category> listC = daoC.getCategoryBook();
+        BookShopDAO dao = new BookShopDAO();
+        AuthorDAO authordAO = new AuthorDAO();
+        List<BookShop> list = dao.SearchBook(searchKey, index, pageSize);
+
+
         if (list != null) {
+            for (BookShop b : list) {
+
+                String code = String.valueOf(b.getBookCode());
+                List<Author> listA = authordAO.getListAuthorByBookcode(code);
+                int countNum = 0;
+                String plusString = "";
+                if (listA == null) {
+
+                } else if (listA.size() == 1) {
+                    b.setAuthor(listA.get(0).getName());
+                    countNum = 1;
+                    b.setAuthorNum(countNum);
+
+                } else if (listA.size() > 1) {
+                    plusString = "";
+                    for (Author a : listA) {
+                        plusString = plusString + a.getName() + ",";
+                    }
+
+                    b.setAuthor(plusString);
+                }
+                String codeB = String.valueOf(b.getBookCode());
+                DiscountDAO dAO = new DiscountDAO();
+                List<Discount> listD = dAO.getDiscountByBookCode(codeB);
+                if (listD.size() > 0) {
+                    b.setDiscountPercent(listD.get(0).getPercent());
+                }
+            }
             request.setAttribute("listAll", list);
             request.setAttribute("endPage", endPage);
             request.setAttribute("searchKey", searchKey);
+
             request.setAttribute("listC", listC);
             request.getRequestDispatcher("shopping.jsp").forward(request, response);
-            
-        }else{
 
-        request.setAttribute("nullProduct", list);
-        request.getRequestDispatcher("shopping.jsp").forward(request, response);
+        } else {
+
+            request.setAttribute("nullProduct", list);
+            request.getRequestDispatcher("shopping.jsp").forward(request, response);
         }
 
     }

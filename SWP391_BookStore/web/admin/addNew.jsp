@@ -18,6 +18,40 @@
         <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
         <!-- Custom Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script>
+            function myfun() {
+                var a = document.getElementById("phone").value;
+                if (a.length < 10) {
+                    alert("Phone number must be 10 digit!");
+                    return false;
+
+                }
+                if (a.length > 10) {
+                    alert("Phone number must be 10 digit!");
+                    return false;
+
+                }
+            }
+
+            function validatephone(phone)
+            {
+
+                phone = phone.replace(/[^0-9]/g, '');
+                $("#phone").val(phone);
+                if (phone == '' || !phone.match(/^0[0-9]{9}$/))
+                {
+                    $("#phone").css({'background': '#FFEDEF', 'border': 'solid 1px red'});
+
+                    return false;
+                } else
+                {
+                    $("#phone").css({'background': '#99FF99', 'border': 'solid 1px #99FF99'});
+                    return true;
+                }
+            }
+        </script>
 
     </head>
 
@@ -52,13 +86,23 @@
                             <li class="nav-label" style="background-color: #c96;">Hello Admin ${acc.getUsername()}</li>
                         <li>
                             <a href="home" aria-expanded="false">
-                                <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
+                               <i class="fa fa-home"></i><span class="nav-text">Home</span>
                             </a>
 
                         </li>
+                        <li>
+                            <a href="adbook" aria-expanded="false">
+                                <i class="icon-book-open"></i><span class="nav-text">Book Management</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="addiscount" aria-expanded="false">
+                                <i class="fa fa-percent"></i><span class="nav-text">Discount Management</span>
+                            </a>
+                        </li>
                         <li class="mega-menu mega-menu-sm">
                             <a href="adcustomer" aria-expanded="false">
-                                <i class="fa fa-user menu-icon"></i><span class="nav-text">Customer Management</span>
+                                <i class="icon-user"></i><span class="nav-text">Customer Management</span>
                             </a>
 
                         </li>
@@ -94,7 +138,7 @@
 
                         <li>
                             <a href="blacklist" aria-expanded="false">
-                                <i class="fa fa-minus-circle menu-icon"></i> <span class="nav-text">Blacklist Management</span>
+                                <i class="icon-close"></i> <span class="nav-text">Blacklist Management</span>
                             </a>
 
                         </li>
@@ -105,7 +149,7 @@
 
                         </li>
                         <li>
-                            <a href="widgets.html" aria-expanded="false">
+                            <a href="adprofit" aria-expanded="false">
                                 <i class="fa fa-money menu-icon"></i><span class="nav-text">Profit Management</span>
                             </a>
                         </li>
@@ -182,7 +226,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-2 col-form-label">Phone</label>
                                                     <div class="col-sm-10">
-                                                        <input type="number" name="phone" class="form-control" placeholder="Phone" required>
+                                                        <input id="phone" type="number" name="phone" class="form-control" placeholder="Phone" required>
                                                     </div>
                                                 </div>
 

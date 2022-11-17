@@ -5,10 +5,15 @@
  */
 package com.bookstore.controller;
 
+import com.bookstore.Author.Author;
 import com.bookstore.Book.Book;
 import com.bookstore.Book.BookDAO;
+import com.bookstore.Book.BookShop;
+import com.bookstore.Book.BookShopDAO;
 import com.bookstore.Category.Category;
 import com.bookstore.Category.CategoryDAO;
+import com.bookstore.Discount.Discount;
+import com.bookstore.Discount.DiscountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -38,23 +43,28 @@ public class HomeController extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             // hàm này lấy hết book từ database
-        // hàm này ở trang home.jsp
-        CategoryDAO daoC= new CategoryDAO();
-        BookDAO daoB=new BookDAO();
-        
-        
-        
-        List<Category> listC=daoC.getCategoryBook();
-        List<Book> listRecentArrival=daoB.getRecentBook();
-        List<Book> listDiscountBook=daoB.getDiscountBook();
-        
-        
-        request.setAttribute("listRecentArrival", listRecentArrival);
-        request.setAttribute("listC", listC);
-        request.setAttribute("listDiscountBook", listDiscountBook);
-        
-        
-        request.getRequestDispatcher("home.jsp").forward(request, response);
+            // hàm này ở trang home.jsp
+            CategoryDAO daoC = new CategoryDAO();
+            BookShopDAO daoB = new BookShopDAO();
+
+            List<Category> listC = daoC.getCategoryBook();
+            List<BookShop> listRecentArrival = daoB.getRecentBook();
+            for (BookShop b : listRecentArrival) {
+                String codeB = String.valueOf(b.getBookCode());
+                DiscountDAO dAO = new DiscountDAO();
+                List<Discount> list = dAO.getDiscountByBookCode(codeB);
+                if (list.size() > 0) {
+                    b.setDiscountPercent(list.get(0).getPercent());
+                }
+            }
+
+            List<BookShop> listDiscountBook = daoB.getDiscountBook();
+
+            request.setAttribute("listRecentArrival", listRecentArrival);
+            request.setAttribute("listC", listC);
+            request.setAttribute("listDiscountBook", listDiscountBook);
+
+            request.getRequestDispatcher("home.jsp").forward(request, response);
         }
     }
 

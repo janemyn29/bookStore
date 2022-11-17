@@ -6,6 +6,7 @@
 package com.bookstore.Cart;
 
 import com.bookstore.Account.Account;
+import com.bookstore.Book.BookDAO;
 import com.bookstore.Order.Order;
 import com.bookstore.Order.OrderDAO;
 import java.io.IOException;
@@ -44,13 +45,12 @@ public class CheckOutController extends HttpServlet {
             throws ServletException, IOException, NoSuchAlgorithmException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+
             OrderDAO odao = new OrderDAO();
             List<Order> list = odao.getOrderManage();
-            int lastOrderID;
-            int sizeList = list.size() - 1;
-            lastOrderID = (int) (list.get(sizeList).getOrderID() + 1);
+            getLastOrderID(list);
 
-            int orderID = lastOrderID;
+            int orderID = getLastOrderID(list);
 
             HttpSession session = request.getSession();
 
@@ -61,38 +61,51 @@ public class CheckOutController extends HttpServlet {
             LocalDateTime now = LocalDateTime.now();
             String orderDate = dtf.format(now);
 
-            String address = request.getParameter("txtAddress");
+            String address =(String) session.getAttribute("tempAddress");
 
             List<Cart> cart = (List<Cart>) session.getAttribute("cart");
             int total = totalPrice(cart);
 
-            String note = request.getParameter("txtNote");
+            String note = (String) session.getAttribute("tempNote");
+            if (note.equals("")) {
+                note = "(empty)";
+            }
 
-            String status = "not confirm";
+            String status = "confirming";
 
             odao.addNewOrder(orderID, accountID, orderDate, address, total, note, status);
 
             for (Cart c : cart) {
-
+                // lay id tiep theo trong orderDetail
                 List<Order> list2 = odao.getOrderDetailManage();
-                int lastOrderDetailID;
-                int sizeList2 = list2.size() - 1;
-                lastOrderDetailID = (int) (list2.get(sizeList2).getoDetailID() + 1);
-
-                int oDetailID = lastOrderDetailID;
-
+                // gan id
+                int oDetailID = getLastOrderDetailID(list2);
+                // lay ma sach
                 long bookCode = c.getBook().getBookCode();
-
+                // lay quantity cua 1 quyen sach trong cart
                 int oDetailQty = c.getQty();
-
+                // lay gia sach
                 int buyPrice = c.getBuyPrice();
-
-                odao.addNewOrderDetail(oDetailID, bookCode, oDetailQty, buyPrice, orderID);
+                // sach chua dc danh gia
+                String statusFeed = "not yet";
+                //lay so luong 1 quyen sach trong cart
+                int quantityBookInCart = c.getQty();
+                //goi book dao
+                BookDAO bdao = new BookDAO();
+                //lay so luong sach co san trong kho
+                int quanityBookAvailable = bdao.getQuantityByBookCode(bookCode);
+                //tinh so luong sach con lai trong kho sau khi thanh toan
+                int quanityBookAvailableAfter = quanityBookAvailable - quantityBookInCart;
+                //cap nhat so luong quyen sach do trong kho
+                bdao.updateQuantityBookByBookCode(quanityBookAvailableAfter, bookCode);
+                // in hoa don xuong database
+                odao.addNewOrderDetail(oDetailID, bookCode, oDetailQty, buyPrice, orderID, statusFeed);
             }
-
+            // lam rong cart
             cart = null;
+            // set cart lai
             session.setAttribute("cart", cart);
-            request.getRequestDispatcher("cusOrders.jsp").forward(request, response);
+            request.getRequestDispatcher("cusorderhome").forward(request, response);
         }
     }
 
@@ -102,6 +115,26 @@ public class CheckOutController extends HttpServlet {
             totalPrice += c.getBuyPrice() * c.getQty();
         }
         return totalPrice;
+    }
+
+    private int getLastOrderID(List<Order> list) {
+        if (list.size() > 0) {
+            int lastOrderID;
+            int sizeList = list.size() - 1;
+            lastOrderID = (int) (list.get(sizeList).getOrderID() + 1);
+            return lastOrderID;
+        }
+        return 1;
+    }
+
+    private int getLastOrderDetailID(List<Order> list2) {
+        if (list2.size() > 0) {
+            int lastOrderDetailID;
+            int sizeList2 = list2.size() - 1;
+            lastOrderDetailID = (int) (list2.get(sizeList2).getoDetailID() + 1);
+            return lastOrderDetailID;
+        }
+        return 1;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

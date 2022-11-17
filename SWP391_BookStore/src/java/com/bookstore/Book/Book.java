@@ -65,6 +65,23 @@ public class Book {
         this.author = author;
         this.postName = postName;
     }
+//moi
+    public Book(long bookCode, String bookName, String image, int importPrice, int buyPrice, String description, int qty, String postName, String companyName,int cateID, String cateName,String auName) {
+        this.bookCode = bookCode;
+        this.bookName = bookName;
+        this.image = image;
+        this.importPrice = importPrice;
+        this.buyPrice = buyPrice;
+        this.description = description;
+        this.qty = qty;
+        this.postName = postName;
+        this.companyName = companyName;
+        this.cateID= cateID;
+        this.cateName= cateName;
+        this.authorName= auName;
+    }
+    
+    
     
     
     
@@ -135,6 +152,32 @@ public class Book {
         this.postDate = postDate;
         this.authorName = authorName;
     }
+
+    public Book(long bookCode, String bookName, String image, int importPrice, int buyPrice, String description, int qty, int cateID, String cateName, int postID, String postName, int companyID, String companyName, Date postDate, int discountPercent, String authorName) {
+        this.bookCode = bookCode;
+        this.bookName = bookName;
+        this.image = image;
+        this.importPrice = importPrice;
+        this.buyPrice = buyPrice;
+        this.description = description;
+        this.qty = qty;
+        this.cateID = cateID;
+        this.cateName = cateName;
+        this.postID = postID;
+        this.postName = postName;
+        this.companyID = companyID;
+        this.companyName = companyName;
+        this.postDate = postDate;
+        this.discountPercent = discountPercent;
+        this.authorName = authorName;
+    }
+
+    public Book(int qty) {
+        this.qty = qty;
+    }
+    
+    
+        
     Book(long aLong, String string, String string0, String string1, String string2, String string3, int aInt, String string4, int aInt0, int aInt1) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -258,12 +301,14 @@ public class Book {
     public void setAuthor(String author) {
         this.author = author;
     }
-    
 
     @Override
     public String toString() {
-        return "Book{" + "bookCode=" + getBookCode() + ", bookName=" + getBookName() + ", image=" + getImage() + ", importPrice=" + getImportPrice() + ", buyPrice=" + getBuyPrice() + ", description=" + getDescription() + ", qty=" + getQty() + ", cateID=" + getCateID() + ", cateName=" + getCateName() + ", postID=" + getPostID() + ", postName=" + getPostName() + ", companyID=" + getCompanyID() + ", companyName=" + getCompanyName() + ", postDate=" + getPostDate() + '}';
+        return "Book{" + "bookCode=" + bookCode + ", bookName=" + bookName + ", image=" + image + ", importPrice=" + importPrice + ", buyPrice=" + buyPrice + ", description=" + description + ", qty=" + qty + ", cateID=" + cateID + ", cateName=" + cateName + ", postID=" + postID + ", postName=" + postName + ", companyID=" + companyID + ", companyName=" + companyName + ", postDate=" + postDate + ", discountPercent=" + discountPercent + ", author=" + author + ", authorName=" + authorName + '}';
     }
+
+
+    
 
     /**
      * @return the checkActive

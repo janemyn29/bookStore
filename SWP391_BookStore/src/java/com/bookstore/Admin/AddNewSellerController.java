@@ -64,6 +64,7 @@ public class AddNewSellerController extends HttpServlet {
             } catch (NoSuchAlgorithmException ex) {
                 Logger.getLogger(AddNewImpController.class.getName()).log(Level.SEVERE, null, ex);
             }
+                request.setAttribute("check", "Add new seller account sucessful!");
             request.getRequestDispatcher("adseller").forward(request, response);
             
             }

@@ -11,17 +11,15 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Admin
+ * @author tramy
  */
-@WebServlet(name = "ImpCompanyController", urlPatterns = {"/importer/ImpCompanyController"})
-public class ImpCompanyController extends HttpServlet {
+public class ImPCompanyController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,12 +34,14 @@ public class ImpCompanyController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-              CompanyDAO dao = new CompanyDAO();
-             List<Company> listC = dao.getListPublishCompany();
-
+            /* TODO output your page here. You may use following sample code. */
+            String check=null;
+            check=(String)request.getAttribute("check");
+            CompanyDAO dao = new CompanyDAO();
+             List<Company> listC = dao.getListPublishCompanyVS2();
+             request.setAttribute("check", check);
                 request.setAttribute("listC", listC);
-                request.getRequestDispatcher("impListCompany.jsp").forward(request, response);
-
+                request.getRequestDispatcher("imCompany.jsp").forward(request, response);
         }
     }
 

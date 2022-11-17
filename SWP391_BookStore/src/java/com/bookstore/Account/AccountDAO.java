@@ -5,6 +5,7 @@
  */
 package com.bookstore.Account;
 
+import com.bookstore.Book.BookDashboard;
 import com.bookstore.Utils.DBUtils;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -171,9 +172,13 @@ public class AccountDAO {
         AccountDAO dao = new AccountDAO();
         List<Account> list = dao.listUser();
         int lastUID;
-        int sizeList = list.size() - 1;
-        lastUID = list.get(sizeList).getAccID() + 1;
+        if (list.size() == 0 || list.isEmpty()) {
+            lastUID = 1;
+        } else {
 
+            int sizeList = list.size() - 1;
+            lastUID = list.get(sizeList).getAccID() + 1;
+        }
         //dePass
         String password = pass;
         MessageDigest md = MessageDigest.getInstance("MD5");
@@ -229,7 +234,7 @@ public class AccountDAO {
         String sql = "  select  a.accountID,a.userName,a.phoneNumber,a.email,a.userPass,a.roleID,r.roleName,a.actionID,act.actionName\n"
                 + "from  ((tblAccount a inner join tblRole r on  a.roleID=r.roleID)\n"
                 + "inner join tblAction act on act.actionID=a.actionID)\n"
-                + "where a.roleID=? and a.actionID=? ";
+                + "where a.roleID=? and a.actionID!=? ";
         try {
             conn = new DBUtils().getConnection();
             ps = conn.prepareStatement(sql);
@@ -288,8 +293,12 @@ public class AccountDAO {
         AccountDAO dao = new AccountDAO();
         List<Account> list = dao.listUser();
         int lastUID;
-        int sizeList = list.size() - 1;
-        lastUID = list.get(sizeList).getAccID() + 1;
+        if (list.isEmpty()) {
+            lastUID = 1;
+        } else {
+            int sizeList = list.size() - 1;
+            lastUID = list.get(sizeList).getAccID() + 1;
+        }
 
         //dePass
         String pass = "000000";
@@ -300,7 +309,7 @@ public class AccountDAO {
         String dePass = DatatypeConverter.printHexBinary(digest).toLowerCase();
 
         String sql = " insert into tblAccount\n"
-                + "values(?,?,?,?,?,?,1) ";
+                + "values(?,?,?,?,?,?,3) ";
         try {
             conn = new DBUtils().getConnection();
             ps = conn.prepareStatement(sql);
@@ -445,10 +454,11 @@ public class AccountDAO {
         }
         return check;
     }
+
     public boolean restoreToBlacklist(String id) {
 
         String sql = " UPDATE tblAccount\n"
-                + "set actionID=1\n"
+                + "set actionID=2\n"
                 + "where accountID=? ";
         boolean check = false;
         try {
@@ -465,9 +475,8 @@ public class AccountDAO {
         }
         return check;
     }
-    
+
     public Account getAccountByID(int accID) throws NoSuchAlgorithmException {
-        
 
         String sql = " select  a.accountID,a.userName,a.phoneNumber,a.email,a.userPass,a.roleID,r.roleName,a.actionID,act.actionName\n"
                 + "from  ((tblAccount a inner join tblRole r on  a.roleID=r.roleID)\n"
@@ -495,8 +504,7 @@ public class AccountDAO {
 
         return null;
     }
-    
-    
+
     public boolean updatePasswordImporter(String pass, int accID) throws SQLException, NoSuchAlgorithmException {
         String password = pass;
         MessageDigest md = MessageDigest.getInstance("MD5");
@@ -527,6 +535,7 @@ public class AccountDAO {
         }
         return false;
     }
+
     public boolean updateAccountImporter(String username, String email, String phone, int accID) throws SQLException {
         try {
             conn = DBUtils.getConnection();
@@ -634,13 +643,46 @@ public class AccountDAO {
         return null;
     }
 
+    public void updateAction(String accountID) {
+
+        String sql = " update tblAccount \n"
+                + "set actionID=1\n"
+                + "where email=?  ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, accountID);
+            rs = ps.executeQuery();
+
+        } catch (Exception e) {
+        }
+    }
+
+    public Account countAccount (){
+        Account acc = new Account();
+
+        String sql = " select count(a.accountID) from tblAccount a\n"
+                + "where a.roleID= 4 ";
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return new Account(rs.getInt(1), "", "", "", "", 0, 0);
+            }
+
+        } catch (Exception e) {
+        }
+        return null;
+    }
+    
+   
+
     public static void main(String[] args) throws NoSuchAlgorithmException {
         AccountDAO dao = new AccountDAO();
-        try {
-            dao.updatePassword("hahaaaa", 1);
-        } catch (SQLException ex) {
-            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Account account= dao.countAccount();
+        System.out.println(account);
 
     }
 }

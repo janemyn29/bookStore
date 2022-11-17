@@ -59,7 +59,7 @@ public class LoginController extends HttpServlet {
             } else if (account.getRoleName().equals("seller")) {
                 request.getRequestDispatcher("Seller/sellerhome").forward(request, response);
             } else if (account.getRoleName().equals("import manager")) {
-                request.getRequestDispatcher("importer/imphome").forward(request, response);
+                request.getRequestDispatcher("imp/imhome").forward(request, response);
             } else if (account.getRoleName().equals("customer")) {
                 request.getRequestDispatcher("customer/cushomenav").forward(request, response);
             }

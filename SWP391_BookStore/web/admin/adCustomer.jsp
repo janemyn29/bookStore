@@ -55,13 +55,23 @@
                             <li class="nav-label" style="background-color: #c96;">Hello Admin ${acc.getUsername()}</li>
                         <li>
                             <a href="home" aria-expanded="false">
-                                <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
+                                <i class="fa fa-home"></i><span class="nav-text">Home</span>
                             </a>
 
                         </li>
+                        <li>
+                            <a href="adbook" aria-expanded="false">
+                                <i class="icon-book-open"></i><span class="nav-text">Book Management</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="addiscount" aria-expanded="false">
+                                <i class="fa fa-percent"></i><span class="nav-text">Discount Management</span>
+                            </a>
+                        </li>
                         <li class="mega-menu mega-menu-sm">
                             <a class="active" href="adcustomer" aria-expanded="false">
-                                <i class="fa fa-user menu-icon"></i><span class="nav-text">Customer Management</span>
+                                <i class="icon-user"></i><span class="nav-text">Customer Management</span>
                             </a>
 
                         </li>
@@ -79,7 +89,7 @@
                         </li>
                         <li>
                             <a href="blacklist" aria-expanded="false">
-                                <i class="fa fa-minus-circle menu-icon"></i> <span class="nav-text">Blacklist Management</span>
+                                <i class="icon-close"></i> <span class="nav-text">Blacklist Management</span>
                             </a>
 
                         </li>
@@ -90,7 +100,7 @@
 
                         </li>
                         <li>
-                            <a href="widgets.html" aria-expanded="false">
+                            <a href="adprofit" aria-expanded="false">
                                 <i class="fa fa-money menu-icon"></i><span class="nav-text">Profit Management</span>
                             </a>
                         </li>
@@ -146,7 +156,8 @@
                                                             <td style="color: red">${o.getEmail()}</td>
                                                             <td style="color: red">${o.getCanceled()}</td>
                                                             <td style="color: red">
-                                                                <a onclick='showMess(${o.getAccID()})' style="margin-left: 31px ;" class="fa fa-minus-circle"></a>
+                                                                <a href="#" data-toggle="tooltip" onclick='showMess(${o.getAccID()})' data-placement="bottum" title="Remove to Blacklist"><i style="margin-left: 40px" class="icon-close"></i></a>
+                                                                
                                                             </td>
                                                         </c:if>
                                                         <c:if test="${o.getCanceled()<3}">

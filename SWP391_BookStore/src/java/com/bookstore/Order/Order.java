@@ -15,22 +15,29 @@ public class Order {
 
     private int orderID;
     private int accountID;
-    private String orderDate;
+    private Date orderDate;
     private String address;
     private int total;
     private String Note;
     private String status;
-    private int oDetailID;
-    private long bookCode;
+    private String accName;
+    private String email;
+    private String phone;
     private int oDetailQty;
     private int buyPrice;
+    private int oDetailID;
+    private long bookCode;
     private String bookName;
-    private String image;
+    private String statusFeed;
+    private Date receivedDate;
+    private Date requestDate;
+    private String returnReason;
+    private Date approveDate;
 
     public Order() {
     }
 
-    public Order(int orderID, int accountID, String orderDate, String address, int total, String Note, String status) {
+    public Order(int orderID, int accountID, Date orderDate, String address, int total, String Note, String status) {
         this.orderID = orderID;
         this.accountID = accountID;
         this.orderDate = orderDate;
@@ -40,36 +47,113 @@ public class Order {
         this.status = status;
     }
 
-    public Order(int oDetailID, long bookCode, int oDetailQty, int buyPrice, int orderID) {
-        this.oDetailID = oDetailID;
-        this.bookCode = bookCode;
-        this.oDetailQty = oDetailQty;
-        this.buyPrice = buyPrice;
+    public Order(int orderID, int accountID, Date orderDate, String address, int total, String Note, String status, String accName, String email, String phone) {
         this.orderID = orderID;
-    }
-
-        public Order(String orderDate, String address, int total, String Note, String status, int oDetailID, long bookCode, int oDetailQty, int buyPrice, String bookName, String image) {
+        this.accountID = accountID;
         this.orderDate = orderDate;
         this.address = address;
         this.total = total;
         this.Note = Note;
         this.status = status;
+        this.accName = accName;
+        this.email = email;
+        this.phone = phone;
+    }
+
+    public Order(int oDetailID, long bookCode, int oDetailQty, int buyPrice, int orderID, String statusFeed) {
         this.oDetailID = oDetailID;
         this.bookCode = bookCode;
         this.oDetailQty = oDetailQty;
         this.buyPrice = buyPrice;
-        this.bookName = bookName;
-        this.image = image;
+        this.orderID = orderID;
+        this.statusFeed = statusFeed;
     }
 
-    public Order(String orderDate, String address, String Note, String status) {
+    public Order(int orderID, Date orderDate, String address, String status, Date receivedDate) {
+        this.orderID = orderID;
         this.orderDate = orderDate;
         this.address = address;
-        this.Note = Note;
+        this.status = status;
+        this.receivedDate = receivedDate;
+    }
+    
+    public Order(int orderID, Date orderDate, String address, String status, Date receivedDate, Date requestDate) {
+        this.orderID = orderID;
+        this.orderDate = orderDate;
+        this.address = address;
+        this.status = status;
+        this.receivedDate = receivedDate;
+        this.requestDate = requestDate;
+    }
+    
+    
+    public Order(int orderID, Date orderDate, String address, String status) {
+        this.orderID = orderID;
+        this.orderDate = orderDate;
+        this.address = address;
         this.status = status;
     }
-        
-        
+
+    public Order(int total, String Note, int oDetailQty, int buyPrice, String bookName, long bookCode, int orderID, int oDetailID) {
+        this.total = total;
+        this.Note = Note;
+        this.oDetailQty = oDetailQty;
+        this.buyPrice = buyPrice;
+        this.bookName = bookName;
+        this.bookCode = bookCode;
+        this.orderID = orderID;
+        this.oDetailID = oDetailID;
+    }
+
+    public Date getApproveDate() {
+        return approveDate;
+    }
+
+    public void setApproveDate(Date approveDate) {
+        this.approveDate = approveDate;
+    }
+    
+
+    public Order(String status) {
+        this.status = status;
+    }
+
+    public Order(int oDetailQty, long bookCode) {
+        this.oDetailQty = oDetailQty;
+        this.bookCode = bookCode;
+    }
+
+    public String getStatusFeed() {
+        return statusFeed;
+    }
+
+    public void setStatusFeed(String statusFeed) {
+        this.statusFeed = statusFeed;
+    }
+
+    public String getBookName() {
+        return bookName;
+    }
+
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
+    }
+
+    public int getoDetailQty() {
+        return oDetailQty;
+    }
+
+    public void setoDetailQty(int oDetailQty) {
+        this.oDetailQty = oDetailQty;
+    }
+
+    public int getBuyPrice() {
+        return buyPrice;
+    }
+
+    public void setBuyPrice(int buyPrice) {
+        this.buyPrice = buyPrice;
+    }
 
     public int getoDetailID() {
         return oDetailID;
@@ -85,22 +169,6 @@ public class Order {
 
     public void setBookCode(long bookCode) {
         this.bookCode = bookCode;
-    }
-
-    public int getoDetailQty() {
-        return oDetailQty;
-    }
-
-    public void setoDetailQty(int oDetailQty) {
-        this.oDetailQty = oDetailQty;
-    }
-
-    public int getPrice() {
-        return buyPrice;
-    }
-
-    public void setbuyPrice(int buyPrice) {
-        this.buyPrice = buyPrice;
     }
 
     public int getOrderID() {
@@ -119,11 +187,11 @@ public class Order {
         this.accountID = accountID;
     }
 
-    public String getOrderDate() {
+    public Date getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(String orderDate) {
+    public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
     }
 
@@ -159,33 +227,60 @@ public class Order {
         this.status = status;
     }
 
-    public int getBuyPrice() {
-        return buyPrice;
+    public String getAccName() {
+        return accName;
     }
 
-    public void setBuyPrice(int buyPrice) {
-        this.buyPrice = buyPrice;
+    public void setAccName(String accName) {
+        this.accName = accName;
     }
 
-    public String getBookName() {
-        return bookName;
+    public String getEmail() {
+        return email;
     }
 
-    public void setBookName(String bookName) {
-        this.bookName = bookName;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getImage() {
-        return image;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Date getReceivedDate() {
+        return receivedDate;
+    }
+
+    public void setReceivedDate(Date receivedDate) {
+        this.receivedDate = receivedDate;
+    }
+
+    public Date getRequestDate() {
+        return requestDate;
+    }
+
+    public void setRequestDate(Date requestDate) {
+        this.requestDate = requestDate;
+    }
+
+    public String getReturnReason() {
+        return returnReason;
+    }
+
+    public void setReturnReason(String returnReason) {
+        this.returnReason = returnReason;
     }
 
     @Override
     public String toString() {
-        return "Order{" + "orderID=" + orderID + ", accountID=" + accountID + ", orderDate=" + orderDate + ", address=" + address + ", total=" + total + ", Note=" + Note + ", status=" + status + ", oDetailID=" + oDetailID + ", bookCode=" + bookCode + ", oDetailQty=" + oDetailQty + ", buyPrice=" + buyPrice + '}';
+        return "Order{" + "orderID=" + orderID + ", accountID=" + accountID + ", orderDate=" + orderDate + ", address=" + address + ", total=" + total + ", Note=" + Note + ", status=" + status + ", accName=" + accName + ", email=" + email + ", phone=" + phone + ", oDetailQty=" + oDetailQty + ", buyPrice=" + buyPrice + ", oDetailID=" + oDetailID + ", bookCode=" + bookCode + ", bookName=" + bookName + ", statusFeed=" + statusFeed + ", receivedDate=" + receivedDate + ", requestDate=" + requestDate + ", returnReason=" + returnReason + ", approveDate=" + approveDate + '}';
     }
+    
+    
+    
 
 }

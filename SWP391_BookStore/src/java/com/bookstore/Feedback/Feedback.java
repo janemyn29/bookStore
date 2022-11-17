@@ -16,6 +16,7 @@ public class Feedback {
     private String accName;
     private String detail;
     private int starID;
+    private int oDetailID;
 
     public Feedback() {
     }
@@ -28,6 +29,38 @@ public class Feedback {
         this.detail = detail;
         this.starID = starID;
     }
+
+    public Feedback(int feedID, long bookcode, int accID, String detail, int starID) {
+        this.feedID = feedID;
+        this.bookcode = bookcode;
+        this.accID = accID;
+        this.detail = detail;
+        this.starID = starID;
+    }
+
+    public Feedback(int feedID, long bookcode, int accID, String detail, int starID, int oDetailID) {
+        this.feedID = feedID;
+        this.bookcode = bookcode;
+        this.accID = accID;
+        this.detail = detail;
+        this.starID = starID;
+        this.oDetailID = oDetailID;
+    }
+    
+    public Feedback(String accName, String detail, int starID) {
+        this.accName = accName;
+        this.detail = detail;
+        this.starID = starID;
+    }
+
+    public int getoDetailID() {
+        return oDetailID;
+    }
+
+    public void setoDetailID(int oDetailID) {
+        this.oDetailID = oDetailID;
+    }
+    
 
     public int getFeedID() {
         return feedID;
@@ -79,8 +112,10 @@ public class Feedback {
 
     @Override
     public String toString() {
-        return "Feedback{" + "feedID=" + feedID + ", bookcode=" + bookcode + ", accID=" + accID + ", accName=" + accName + ", detail=" + detail + ", starID=" + starID + '}';
+        return "Feedback{" + "feedID=" + feedID + ", bookcode=" + bookcode + ", accID=" + accID + ", accName=" + accName + ", detail=" + detail + ", starID=" + starID + ", oDetailID=" + oDetailID + '}';
     }
+
+
     
     
     

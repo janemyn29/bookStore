@@ -1,5 +1,6 @@
 <%@page import="com.bookstore.Account.Account"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,7 +34,226 @@
 
     <body>
         <div class="page-wrapper">
-            <jsp:include page="header.jsp"></jsp:include>
+            <header class="header">
+                <div class="header-top">
+                    <div class="container">
+                        <div class="header-left">
+
+                        </div><!-- End .header-left -->
+
+                        <div class="header-right">
+                            <ul class="top-menu">
+                                <li>
+                                    <ul>
+                                        <li><a href=""></a></li>
+                                        <li><a href="about.html">About Us</a></li>
+                                        <li><a href="contact.html">Contact Us</a></li>
+                                        <li><a href="loginnav">Login</a></li>
+                                    </ul>
+                                </li>
+                            </ul><!-- End .top-menu -->
+                        </div><!-- End .header-right -->
+                    </div><!-- End .container -->
+                </div><!-- End .header-top -->
+
+                <div class="header-middle sticky-header">
+                    <div class="container">
+                        <div class="header-left">
+                            <button class="mobile-menu-toggler">
+                                <span class="sr-only">Toggle mobile menu</span>
+                                <i class="icon-bars"></i>
+                            </button>
+
+                            <a href="home" class="logo">
+                                <img src="assets/images/logo.png" alt="Molla Logo" width="105" height="25">
+                            </a>
+
+                            <nav class="main-nav" >
+                                <ul class="menu sf-arrows" id="menu-active-Class">
+                                    <li>
+                                        <a href="home" class="navigation-item ">Home</a>
+                                    </li>
+                                    <li>
+                                        <a href="shopping?index=1" class="navigation-item">Shopping</a>
+                                    </li>
+                                    <li>
+                                        <a href="" id="sf-with-ul" class="navigation-item">Category</a>
+                                        <div class="megamenu megamenu-sm">
+                                            <div class="row no-gutters">
+                                                <div class="col-md-12">
+                                                    <div class="menu-col">
+                                                        <ul>
+                                                            <c:forEach items="${listC}" var="o">
+                                                                <li><a href="category?categoryName=${o.name}">${o.name}</a></li>
+                                                                <!--href giúp truy?n ???ng d?n--> 
+                                                            </c:forEach>
+                                                        </ul>
+                                                    </div><!-- End .menu-col -->
+                                                </div><!-- End .col-md-6 -->
+                                            </div><!-- End .row -->
+                                        </div><!-- End .megamenu megamenu-sm -->
+                                    </li>
+                                    <script>
+                                        const navList = document.querySelectorAll('.navigation-item');
+                                        const path = window.location.href.replace("http://localhost:8084/SWP391_BookStore/", "");
+                                        switch (path) {
+                                            case "home":
+                                            {
+                                                navList[0].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "shopping":
+                                            {
+                                                navList[1].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "detail":
+                                            {
+                                                navList[2].classList.toggle("")
+                                                break;
+                                            }
+                                            case "category?categoryName=Art%20-%20Literary":
+                                            {
+                                                navList[3].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "category?categoryName=Comics":
+                                            {
+                                                navList[4].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "category?categoryName=Textbook%20-%20Syllabus":
+                                            {
+                                                navList[5].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "category?categoryName=Novel":
+                                            {
+                                                navList[6].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "category?categoryName=Foreign%20language":
+                                            {
+                                                navList[7].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "category?categoryName=Science":
+                                            {
+                                                navList[8].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "category?categoryName=Horror":
+                                            {
+                                                navList[9].classList.toggle("active")
+                                                break;
+                                            }
+                                            case "":
+                                            {
+                                                navList[10].classList.toggle("")
+                                                break;
+                                            }
+                                            default:
+                                            {
+                                                navList[11].classList.toggle("")
+                                                break;
+                                            }
+                                        }
+
+                                    </script>
+                                    <!--                        <script>
+                                                                // Add active class to the current button (highlight it)
+                                                                var header = document.getElementById("menu-active-Class");
+                                                                var btns = header.getElementsByClassName("navigation-item");
+                                                                for (var i = 0; i < btns.length; i++) {
+                                                                    btns[i].addEventListener("click", function () {
+                                                                        var current = document.getElementsByClassName("active");
+                                                                        current[0].className = current[0].className.replace(" active", "");
+                                                                        this.className += " active";
+                                                                    });
+                                                                }
+                                                            </script>-->
+                                </ul><!-- End .menu -->
+                            </nav><!-- End .main-nav -->
+                        </div><!-- End .header-left -->
+
+                        <div class="header-right">
+                            <div class="header-search">
+                                <a href="#" class="search-toggle" role="button" title="Search"><i class="icon-search"></i></a>
+                                <form action="SearchController?index=1" method="post">
+                                    <div class="header-search-wrapper">
+                                        <label for="q" class="sr-only">Search</label>
+                                        <input type="search" class="form-control" name="searchKey" 
+                                               placeholder="Search in..." required>
+                                        <input type="submit" class="search-btn" value="Search" />
+
+                                    </div><!-- End .header-search-wrapper -->
+                                </form>
+                            </div><!-- End .header-search -->
+
+                            <%
+
+                                if (session.getAttribute("cart") == null) {
+                            %>
+                            <div class="dropdown cart-dropdown">
+                                <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                                    <i class="icon-shopping-cart"></i>
+                                    <span class="cart-count">${cart.size()}</span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <div class="dropdown-cart-products">
+                                        <label>
+                                            <img style="width: 320px; height: 200px;" src="assets/images/mini-cart-empty.png" alt="Product image">
+                                        </label>
+                                    </div>
+                                    <div class="dropdown-cart-action">
+                                        <a href="cart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span><i class='fas'>&#xf07a;</i></a>
+                                        <a href="checkOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class='fas'>&#xf53d;</i></a>
+                                    </div><!-- End .dropdown-cart-total -->
+                                </div><!-- End .dropdown-menu -->
+                            </div><!-- End .cart-dropdown -->
+                            <%} else {%>
+                            <div class="dropdown cart-dropdown">
+                                <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                                    <i class="icon-shopping-cart"></i>
+                                    <span class="cart-count">${cart.size()}</span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <c:forEach items="${cart}" var="cart">
+                                        <div class="dropdown-cart-products">
+                                            <div class="product">
+                                                <div class="product-cart-details">
+                                                    <h4 class="product-title">
+                                                        <a href="product.html">${cart.book.bookName}</a>
+                                                    </h4>
+
+                                                    <span class="cart-product-info">
+                                                        <span class="cart-product-qty">${cart.qty}</span> X
+                                                        <fmt:formatNumber value="${cart.buyPrice}" pattern=" #,##0 VND" />                                         
+                                                    </span>
+                                                </div><!-- End .product-cart-details -->
+
+                                                <figure class="product-image-container">
+                                                    <a href="product.html" class="product-image">
+                                                        <img src="${cart.book.image}" alt="product">
+                                                    </a>
+                                                </figure>
+                                                <a href="${pageContext.request.contextPath }/cart?action=remove&bookCode=${cart.book.bookCode}" class="btn-remove"><i class="icon-close"></i></a>
+                                            </div><!-- End .product -->
+
+                                        </div><!-- End .cart-product -->    
+                                    </c:forEach>
+
+                                    <div class="dropdown-cart-action">
+                                        <a href="cart.jsp" class="btn btn-outline-primary-2"><span>View Cart</span><i class='fas'>&#xf07a;</i></a>
+                                        <a href="checkOut.jsp" class="btn btn-outline-primary-2"><span>Checkout</span><i class='fas'>&#xf53d;</i></a>
+                                    </div><!-- End .dropdown-cart-total -->
+                                </div><!-- End .dropdown-menu -->
+                            </div><!-- End .cart-dropdown -->
+                            <%}%>
+                        </div><!-- End .header-right -->
+                    </div><!-- End .container -->
+                </div><!-- End .header-middle -->
+            </header><!-- End .header -->
 
             <main class="main">
                 <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
@@ -143,7 +363,7 @@
                                             <c:if test='${acc == null}'>
                                                 <small>You need sign in first before checkout!</small><br>
                                                 <small>Click the button below to sign in.</small>
-                                                <a href="loginnav" class="btn btn-outline-primary-2 btn-order btn-block">Loggin to checkout</a>
+                                                <a href="login.jsp" class="btn btn-outline-primary-2 btn-order btn-block">Loggin to checkout</a>
                                             </c:if>
                                             <c:if test='${acc != null}'>
                                                 <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">Place Order</button>
@@ -160,80 +380,7 @@
 
             </main><!-- End .main -->
 
-            <footer class="footer">
-                <div class="footer-middle">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-6 col-lg-3">
-                                <div class="widget widget-about">
-                                    <img src="assets/images/logo.png" class="footer-logo" alt="Footer Logo" width="105" height="25">
-                                    <p>Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. </p>
-
-                                    <div class="social-icons">
-                                        <a href="#" class="social-icon" target="_blank" title="Facebook"><i class="icon-facebook-f"></i></a>
-                                        <a href="#" class="social-icon" target="_blank" title="Twitter"><i class="icon-twitter"></i></a>
-                                        <a href="#" class="social-icon" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
-                                        <a href="#" class="social-icon" target="_blank" title="Youtube"><i class="icon-youtube"></i></a>
-                                        <a href="#" class="social-icon" target="_blank" title="Pinterest"><i class="icon-pinterest"></i></a>
-                                    </div><!-- End .soial-icons -->
-                                </div><!-- End .widget about-widget -->
-                            </div><!-- End .col-sm-6 col-lg-3 -->
-
-                            <div class="col-sm-6 col-lg-3">
-                                <div class="widget">
-                                    <h4 class="widget-title">Useful Links</h4><!-- End .widget-title -->
-
-                                    <ul class="widget-list">
-                                        <li><a href="about.html">About Molla</a></li>
-                                        <li><a href="#">How to shop on Molla</a></li>
-                                        <li><a href="#">FAQ</a></li>
-                                        <li><a href="contact.html">Contact us</a></li>
-                                        <li><a href="login.html">Log in</a></li>
-                                    </ul><!-- End .widget-list -->
-                                </div><!-- End .widget -->
-                            </div><!-- End .col-sm-6 col-lg-3 -->
-
-                            <div class="col-sm-6 col-lg-3">
-                                <div class="widget">
-                                    <h4 class="widget-title">Customer Service</h4><!-- End .widget-title -->
-
-                                    <ul class="widget-list">
-                                        <li><a href="#">Payment Methods</a></li>
-                                        <li><a href="#">Money-back guarantee!</a></li>
-                                        <li><a href="#">Returns</a></li>
-                                        <li><a href="#">Shipping</a></li>
-                                        <li><a href="#">Terms and conditions</a></li>
-                                        <li><a href="#">Privacy Policy</a></li>
-                                    </ul><!-- End .widget-list -->
-                                </div><!-- End .widget -->
-                            </div><!-- End .col-sm-6 col-lg-3 -->
-
-                            <div class="col-sm-6 col-lg-3">
-                                <div class="widget">
-                                    <h4 class="widget-title">My Account</h4><!-- End .widget-title -->
-
-                                    <ul class="widget-list">
-                                        <li><a href="#">Sign In</a></li>
-                                        <li><a href="cart.html">View Cart</a></li>
-                                        <li><a href="#">My Wishlist</a></li>
-                                        <li><a href="#">Track My Order</a></li>
-                                        <li><a href="#">Help</a></li>
-                                    </ul><!-- End .widget-list -->
-                                </div><!-- End .widget -->
-                            </div><!-- End .col-sm-6 col-lg-3 -->
-                        </div><!-- End .row -->
-                    </div><!-- End .container -->
-                </div><!-- End .footer-middle -->
-
-                <div class="footer-bottom">
-                    <div class="container">
-                        <p class="footer-copyright">Copyright © 2019 Molla Store. All Rights Reserved.</p><!-- End .footer-copyright -->
-                        <figure class="footer-payments">
-                            <img src="assets/images/payments.png" alt="Payment methods" width="272" height="20">
-                        </figure><!-- End .footer-payments -->
-                    </div><!-- End .container -->
-                </div><!-- End .footer-bottom -->
-            </footer><!-- End .footer -->
+            <jsp:include page="footer.jsp"></jsp:include>
         </div><!-- End .page-wrapper -->
         <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
 

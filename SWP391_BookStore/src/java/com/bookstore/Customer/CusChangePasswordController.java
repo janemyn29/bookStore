@@ -7,11 +7,14 @@ package com.bookstore.Customer;
 
 import com.bookstore.Account.Account;
 import com.bookstore.Account.AccountDAO;
+import com.bookstore.Category.Category;
+import com.bookstore.Category.CategoryDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -40,6 +43,9 @@ public class CusChangePasswordController extends HttpServlet {
             throws ServletException, IOException, SQLException, NoSuchAlgorithmException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            CategoryDAO daoC = new CategoryDAO();
+            List<Category> listC = daoC.getCategoryBook();
+            request.setAttribute("listC", listC);
             //get parameter from editprofile.jsp
             String password = request.getParameter("txtCurrentPassword");
             String newpass = request.getParameter("txtNewPassword");

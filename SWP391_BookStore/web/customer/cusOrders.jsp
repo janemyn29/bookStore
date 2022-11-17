@@ -46,59 +46,115 @@
                     <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
                         <div class="container">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="home.jsp">Home</a></li>
-                                <li class="breadcrumb-item"><a href="shopping.jsp">Shop</a></li>
+                                <li class="breadcrumb-item"><a href="cushome">Home</a></li>
+                                <li class="breadcrumb-item"><a href="cusEditProfile.jsp">My Account</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">My Orders</li>
                             </ol>
                         </div><!-- End .container -->
                     </nav><!-- End .breadcrumb-nav -->
+                <c:if test='${checkstatus == "Cancel order success"}'>
+                    <div class="alert2">
+                        <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span>
+                        <p align="center" > CANCEL ORDER SUCCESSFULLY <br> YOUR ORDER HAS BEEN MOVED TO HISTORY PAGE WITH STATUS "CANCELLED"</p> 
+                    </div>
+                </c:if>
+                <c:if test='${confirm == "confirm"}'>
+                    <div class="alert2">
+                        <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span>
+                        <p align="center" > 
+                            CONFIRMED RECEIVED SUCCESSFULLY <br> YOUR ORDER HAS BEEN MOVED TO HISTORY PAGE WITH STATUS "RECEIVED" </p> 
+                    </div>
+                </c:if>
+                <style>
+                    p {
+                        text-align: center;
+                    }
+                </style>
+                <div class="page-content">
+                    <div class="dashboard">
+                        <div class="container">
+                            <div class="row">
+                                <aside class="col-md-4 col-lg-3">
+                                    <ul class="nav nav-dashboard flex-column mb-3 mb-md-0" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="tab-orders-link" data-toggle="tab" href="#tab-orders" role="tab" aria-controls="tab-orders" aria-selected="false">My Orders</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/SWP391_BookStore/logout">Sign Out</a>
+                                        </li>
+                                        <li>
+                                            <small>Notice:<br> - You can click on</small><i class="icon-eye"></i> <small> in the action column to view order details.<br>
+                                                - Or confirm receipt of goods with order status as "delivering".
+                                            </small>
+                                            <small style="color: green"> 
+                                                <br>
+                                                Any questions contact:
+                                                <br> <i class="icon-facebook-f"></i> Tran My
+                                                <br> <i class="icon-google">mail</i> : mytran@gmail.com
+                                                <br> <i class="icon-phone"></i> 0837462988
+                                            </small>
+                                        <li>
+                                    </ul>
+                                </aside><!-- End .col-lg-3 -->
 
-                    <div class="page-content">
-                        <div class="dashboard">
-                            <div class="container">
-                                <div class="row">
-                                    <aside class="col-md-4 col-lg-3">
-                                        <ul class="nav nav-dashboard flex-column mb-3 mb-md-0" role="tablist">
-                                            <li class="nav-item">
-                                                <a class="nav-link" id="tab-orders-link" data-toggle="tab" href="#tab-orders" role="tab" aria-controls="tab-orders" aria-selected="false">My Orders</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">Sign Out</a>
-                                            </li>
-                                        </ul>
-                                    </aside><!-- End .col-lg-3 -->
+                                <div class="col-md-8 col-lg-9">
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade show active" id="tab-orders" role="tabpanel" aria-labelledby="tab-orders-link">
+                                            <div class="table-responsive">
+                                                <table class="table table-striped table-bordered zero-configuration">
 
-                                    <div class="col-md-8 col-lg-9">
-                                        <div class="tab-content">
-                                            <div class="tab-pane fade show active" id="tab-orders" role="tabpanel" aria-labelledby="tab-orders-link">
-                                                <div class="table-responsive">
-                                                    <table class="table table-striped table-bordered zero-configuration">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Numbers</th>
-                                                                <th>Order Note</th> 
-                                                                <th>Order Date</th>
-                                                                <th>Order Address</th>
-                                                                <th>Status</th>
-                                                                <th>Action</th>
-                                                            </tr>
-                                                        </thead>
+                                                    <thead>
+                                                        <tr class="center-parent">
+                                                            <th>Number</th>
+                                                            <th>Order Date</th>
+                                                            <th>Order Address</th>
+                                                            <th>Status</th>
+                                                            <th>Action</th>
+                                                            <th>Cancel</th>
+                                                        </tr>
+                                                    </thead>
 
-                                                        <tbody>
-
+                                                    <tbody>
+                                                        <c:set var="count" value="0"></c:set>
                                                         <c:forEach items ="${listOrd}" var="ord">
-                                                            <tr>
-                                                                <td>1</td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>   
+                                                            <c:set var="count" value="${count=count+1}"></c:set>
+                                                                <tr class="center-parent">
+                                                                    <td>${count}</td>
+                                                                <td>${ord.orderDate}</td>
+                                                                <td>${ord.address}</td>
+                                                                <td>${ord.status}</td>
+
+                                                                <td><a class="icon-eye" href="cusorderdetailhome?orderID=${ord.orderID}"></a></td>
+
+
+
+                                                                <c:if test='${ord.status == "confirming"}'>
+                                                                    <td>
+                                                                        <a class="icon-close" onclick='showMess1(${ord.orderID})'></a>
+                                                                    </td> 
+                                                                </c:if>  
+                                                                <c:if test='${ord.status == "delivering"}'>
+                                                                    <td>
+                                                                    </td> 
+                                                                </c:if>  
                                                             </tr>
                                                         </c:forEach>
+
+                                                    <script>
+                                                        function showMess1(id) {
+                                                            var option = confirm("Are you sure to cancel this order ?");
+                                                            if (option === true) {
+                                                                window.location.href = "cuscancelorder?orderID=" + id;
+                                                            }
+                                                        }
+                                                    </script>
                                                     </tbody>                                        
                                                 </table>
 
+                                                <a href="editprofile" class="btn btn-outline-primary-2">
+                                                    <span>BACK</span>
+                                                    <i class="icon-arrow-left"></i>
+                                                </a>
                                             </div>
                                         </div><!-- .End .tab-pane -->
                                     </div><!-- End .container -->
@@ -109,21 +165,21 @@
                 </div><!-- End .page-content -->
             </main><!-- End .main -->
 
-            <footer class="footer">
+            <footer class="footer footer-dark">
                 <div class="footer-middle">
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-6 col-lg-3">
                                 <div class="widget widget-about">
                                     <img src="assets/images/logo.png" class="footer-logo" alt="Footer Logo" width="105" height="25">
-                                    <p>Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. </p>
+                                    <p>Connect social apps coming soon</p>
 
                                     <div class="social-icons">
-                                        <a href="#" class="social-icon" target="_blank" title="Facebook"><i class="icon-facebook-f"></i></a>
-                                        <a href="#" class="social-icon" target="_blank" title="Twitter"><i class="icon-twitter"></i></a>
-                                        <a href="#" class="social-icon" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
-                                        <a href="#" class="social-icon" target="_blank" title="Youtube"><i class="icon-youtube"></i></a>
-                                        <a href="#" class="social-icon" target="_blank" title="Pinterest"><i class="icon-pinterest"></i></a>
+                                        <a class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
+                                        <a class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+                                        <a class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
+                                        <a class="social-icon" title="Youtube" target="_blank"><i class="icon-youtube"></i></a>
+                                        <a class="social-icon" title="Pinterest" target="_blank"><i class="icon-pinterest"></i></a>
                                     </div><!-- End .soial-icons -->
                                 </div><!-- End .widget about-widget -->
                             </div><!-- End .col-sm-6 col-lg-3 -->
@@ -133,11 +189,16 @@
                                     <h4 class="widget-title">Useful Links</h4><!-- End .widget-title -->
 
                                     <ul class="widget-list">
-                                        <li><a href="about.html">About Molla</a></li>
-                                        <li><a href="#">How to shop on Molla</a></li>
-                                        <li><a href="#">FAQ</a></li>
-                                        <li><a href="contact.html">Contact us</a></li>
-                                        <li><a href="login.html">Log in</a></li>
+                                        <li><a>Contact us</a>
+                                            <small> 
+                                                <br>
+                                                Any questions contact:
+                                                <br> <i class="icon-facebook-f"></i> Tran My
+                                                <br> <i class="icon-google">mail</i> : mytran@gmail.com
+                                                <br> <i class="icon-phone"></i> 0837462988
+                                            </small>
+                                        </li>
+                                        <li><a href="login">Sign up</a></li>
                                     </ul><!-- End .widget-list -->
                                 </div><!-- End .widget -->
                             </div><!-- End .col-sm-6 col-lg-3 -->
@@ -147,26 +208,21 @@
                                     <h4 class="widget-title">Customer Service</h4><!-- End .widget-title -->
 
                                     <ul class="widget-list">
-                                        <li><a href="#">Payment Methods</a></li>
-                                        <li><a href="#">Money-back guarantee!</a></li>
-                                        <li><a href="#">Returns</a></li>
-                                        <li><a href="#">Shipping</a></li>
-                                        <li><a href="#">Terms and conditions</a></li>
-                                        <li><a href="#">Privacy Policy</a></li>
+                                        <li><a href="cusHistory.jsp">Returns</a></li>
+                                        <li><a href="cusHistory.jsp">Feed Back</a></li>
                                     </ul><!-- End .widget-list -->
                                 </div><!-- End .widget -->
                             </div><!-- End .col-sm-6 col-lg-3 -->
 
                             <div class="col-sm-6 col-lg-3">
                                 <div class="widget">
-                                    <h4 class="widget-title">My Orders</h4><!-- End .widget-title -->
+                                    <h4 class="widget-title">My Account</h4><!-- End .widget-title -->
 
                                     <ul class="widget-list">
-                                        <li><a href="#">Sign In</a></li>
-                                        <li><a href="cart.html">View Cart</a></li>
-                                        <li><a href="#">My Wishlist</a></li>
-                                        <li><a href="#">Track My Order</a></li>
-                                        <li><a href="#">Help</a></li>
+                                        <li><a href="cusCartNav">View Cart</a></li>
+                                        <li><a href="cusOrders.jsp">Track My Order</a></li>
+                                        <li><a href="cusEditProfile.jsp">Change Profile Info</a></li>
+                                        <li><a href="cusChangePass.jsp">Change Password</a></li>
                                     </ul><!-- End .widget-list -->
                                 </div><!-- End .widget -->
                             </div><!-- End .col-sm-6 col-lg-3 -->
@@ -176,7 +232,7 @@
 
                 <div class="footer-bottom">
                     <div class="container">
-                        <p class="footer-copyright">Copyright © 2019 Molla Store. All Rights Reserved.</p><!-- End .footer-copyright -->
+                        
                         <figure class="footer-payments">
                             <img src="assets/images/payments.png" alt="Payment methods" width="272" height="20">
                         </figure><!-- End .footer-payments -->
@@ -481,5 +537,63 @@
         <script src="assets/js/owl.carousel.min.js"></script>
         <!-- Main JS File -->
         <script src="assets/js/main.js"></script>
+        <script>
+                                                        // Get all elements with class="closebtn"
+                                                        var close = document.getElementsByClassName("closebtn");
+                                                        var i;
+
+                                                        // Loop through all close buttons
+                                                        for (i = 0; i < close.length; i++) {
+                                                            // When someone clicks on a close button
+                                                            close[i].onclick = function () {
+
+                                                                // Get the parent of <span class="closebtn"> (<div class="alert">)
+                                                                var div = this.parentElement;
+
+                                                                // Set the opacity of div to 0 (transparent)
+                                                                div.style.opacity = "0";
+
+                                                                // Hide the div after 600ms (the same amount of milliseconds it takes to fade out)
+                                                                setTimeout(function () {
+                                                                    div.style.display = "none";
+                                                                }, 600);
+                                                            }
+                                                        }
+        </script>
     </body>
+
+
+    <style>
+        .alert2 {
+            padding: 20px;
+            background-color: honeydew; /* Red */
+            color: green;
+            margin-bottom: 15px;
+        }
+
+        /* The close button */
+        .closebtn {
+            margin-left: 15px;
+            color: black;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        /* When moving the mouse over the close button */
+        .closebtn:hover {
+            color: black;
+        }
+
+    </style>
+
+    <style>
+        .alert {
+            opacity: 1;
+            transition: opacity 0.6s; /* 600ms to fade out */
+        }
+    </style>
 </html>

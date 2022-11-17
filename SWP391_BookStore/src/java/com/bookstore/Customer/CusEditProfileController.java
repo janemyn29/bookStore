@@ -8,9 +8,11 @@ package com.bookstore.Customer;
 import com.bookstore.Account.Account;
 import com.bookstore.Account.AccountDAO;
 import com.bookstore.Category.Category;
+import com.bookstore.Category.CategoryDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -38,6 +40,9 @@ public class CusEditProfileController extends HttpServlet {
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            CategoryDAO daoC = new CategoryDAO();
+            List<Category> listC = daoC.getCategoryBook();
+            request.setAttribute("listC", listC);
             String username = request.getParameter("txtUserName");
             String phone = request.getParameter("txtPhoneNumber");
             HttpSession session = request.getSession();

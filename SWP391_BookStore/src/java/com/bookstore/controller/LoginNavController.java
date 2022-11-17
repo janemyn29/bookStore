@@ -35,9 +35,16 @@ public class LoginNavController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-        CategoryDAO dao= new CategoryDAO();
+            
+            String temp= null;
+            temp=(String)request.getAttribute("temp");
+            String check= null;
+            check=(String)request.getAttribute("check");
+            CategoryDAO dao= new CategoryDAO();
         List<Category> listC=dao.getCategoryBook();
         request.setAttribute("listC", listC);
+                request.setAttribute("temp", temp);
+                request.setAttribute("check", check);
         request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }

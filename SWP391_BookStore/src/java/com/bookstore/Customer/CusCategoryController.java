@@ -5,9 +5,14 @@
  */
 package com.bookstore.Customer;
 
-import com.bookstore.Book.Book;
+import com.bookstore.Author.Author;
+import com.bookstore.Author.AuthorDAO;
+import com.bookstore.Book.BookShop;
+import com.bookstore.Book.BookShopDAO;
 import com.bookstore.Category.Category;
 import com.bookstore.Category.CategoryDAO;
+import com.bookstore.Discount.Discount;
+import com.bookstore.Discount.DiscountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -36,17 +41,45 @@ public class CusCategoryController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String categoryName=request.getParameter("categoryName");
-            CategoryDAO daoC=new CategoryDAO();
-            
-            
-            
-            List<Book> list=daoC.getBookByCategory(categoryName);
-            List<Category> listC=daoC.getCategoryBook();
-            
-            
-            
-            request.setAttribute("listAll", list);
+            String categoryName = request.getParameter("categoryName").trim();
+            CategoryDAO daoC = new CategoryDAO();
+            AuthorDAO authordAO = new AuthorDAO();
+
+            BookShopDAO dao = new BookShopDAO();
+            List<BookShop> listAll = dao.getBookByCategory(categoryName);
+            for (BookShop b : listAll) {
+
+                String code = String.valueOf(b.getBookCode());
+                List<Author> listA = authordAO.getListAuthorByBookcode(code);
+                int countNum = 0;
+                String plusString = "";
+                if (listA == null) {
+
+                } else if (listA.size() == 1) {
+                    b.setAuthor(listA.get(0).getName());
+                    countNum = 1;
+                    b.setAuthorNum(countNum);
+
+                } else if (listA.size() > 1) {
+                    plusString = "";
+                    for (Author a : listA) {
+                        plusString = plusString + a.getName() + ",";
+                    }
+
+                    b.setAuthor(plusString);
+                }
+
+                String codeB = String.valueOf(b.getBookCode());
+                DiscountDAO dAO = new DiscountDAO();
+                List<Discount> list = dAO.getDiscountByBookCode(codeB);
+                if (list.size() > 0) {
+                    b.setDiscountPercent(list.get(0).getPercent());
+                }
+            }
+
+            List<Category> listC = daoC.getCategoryBook();
+
+            request.setAttribute("listAll", listAll);
             request.setAttribute("listC", listC);
             // listAll vì sort bằng category ở trong shopping
             request.getRequestDispatcher("cusShopping.jsp").forward(request, response);

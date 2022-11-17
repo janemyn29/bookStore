@@ -52,9 +52,19 @@
                             <li class="nav-label" style="background-color: #c96;">Hello Admin ${acc.getUsername()}</li>
                         <li>
                             <a href="home" aria-expanded="false">
-                                <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
+                                <i class="fa fa-home"></i><span class="nav-text">Home</span>
                             </a>
 
+                        </li>
+                        <li>
+                            <a href="adbook" aria-expanded="false">
+                                <i class="fa fa-money menu-icon"></i><span class="nav-text">Book Management</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="addiscount" aria-expanded="false">
+                                <i class="fa fa-percent"></i><span class="nav-text">Discount Management</span>
+                            </a>
                         </li>
                         <li class="mega-menu mega-menu-sm">
                             <a href="adcustomer" aria-expanded="false">
@@ -90,7 +100,7 @@
 
                         </li>
                         <li>
-                            <a href="widgets.html" aria-expanded="false">
+                            <a href="adprofit" aria-expanded="false">
                                 <i class="fa fa-money menu-icon"></i><span class="nav-text">Profit Management</span>
                             </a>
                         </li>
@@ -142,11 +152,11 @@
                                             <div class="form-group row">
                                                 <div class="col-sm-10">
                                                     <div class="basic-form">
-                                                        <button type="button" class="btn mb-1 btn-rounded btn-outline-warning"><a style="margin-left: 23px;margin-right: 22px" href="editProfileNav">Edit Profile</a></button>
-                                                       
+                                                        <a href="editProfileNav" ><button class="btn mb-1 btn-warning" ><span style="margin-left: 23px;margin-right: 22px">Edit Profile</span></button></a>
+
                                                     </div>
                                                     <div class="basic-form">
-                                                        <button type="button" class="btn mb-1 btn-rounded btn-outline-warning"><a href="changenav">Change Password</a></button>
+                                                        <a href="changenav"><button  class="btn mb-1 btn-warning" >Change Password</button></a>
                                                         
                                                     </div>
                                                 </div>

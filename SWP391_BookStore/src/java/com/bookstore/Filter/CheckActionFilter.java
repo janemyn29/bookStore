@@ -7,6 +7,7 @@ package com.bookstore.Filter;
 
 import com.bookstore.Account.Account;
 import com.bookstore.Account.AccountDAO;
+import com.bookstore.VerifyLogin.UserVerifyLogin;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -50,27 +51,21 @@ public class CheckActionFilter implements Filter {
 
                 if (account != null && account.getRoleName().equalsIgnoreCase("customer") && account.getActionName().equalsIgnoreCase("block")) {
                     request.setAttribute("temp", "Your Account has been blocked for violating the Ordering Regulations!");
-                    request.getRequestDispatcher("login.jsp").forward(request, response);
+                    request.getRequestDispatcher("loginnav").forward(request, response);
                 }else if(account != null && account.getRoleName().equalsIgnoreCase("seller") && account.getActionName().equalsIgnoreCase("block")){
                      request.setAttribute("temp", "Your Account has been blocked !");
-                    request.getRequestDispatcher("login.jsp").forward(request, response);
+                    request.getRequestDispatcher("loginnav").forward(request, response);
                 }else if(account != null && account.getRoleName().equalsIgnoreCase("import manager") && account.getActionName().equalsIgnoreCase("block")){
                      request.setAttribute("temp", "Your Account has been blocked !");
-                    request.getRequestDispatcher("login.jsp").forward(request, response);
+                    request.getRequestDispatcher("loginnav").forward(request, response);
                 }else if(account != null && account.getRoleName().equalsIgnoreCase("manager") && account.getActionName().equalsIgnoreCase("block")){
                      request.setAttribute("temp", "Your Account has been blocked !");
-                    request.getRequestDispatcher("login.jsp").forward(request, response);
+                    request.getRequestDispatcher("loginnav").forward(request, response);
+                }else if (account != null && account.getActionName().equalsIgnoreCase("verify")) {
+                    UserVerifyLogin user = new UserVerifyLogin(email, password);
+                    request.setAttribute("user", user);
+                    request.getRequestDispatcher("sendlogin").forward(request, response);
                 }
-//                else {
-//                    int uid = account.getuID();
-//                    CustomerDAO dAO = new CustomerDAO();
-//                    CustomerDTO customer = dAO.getCustomerByID(uid);
-//                    HttpSession session = request.getSession();
-//                    session.setAttribute("acc", account);
-//                    session.setAttribute("cus", customer);
-//
-////                request.setAttribute("check", "fail");
-//                    request.getRequestDispatcher("home").forward(request, response);
 
             } catch (NoSuchAlgorithmException ex) {
 //                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
