@@ -58,6 +58,18 @@
                         <p align="center" style="color: white">Refund time expired!!!</p> 
                     </div>
                 </c:if>
+                <c:if test='${wait == "wait"}'>
+                    <div class="alert3">
+                        <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span>
+                        <p align="center">Your return reason have been sent.<br>Please wait for seller approve your request.<br>You can check on "My Return Management" to see your order</p> 
+                    </div>
+                </c:if>
+                <c:if test='${fed == "fed"}'>
+                    <div class="alert3">
+                        <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span>
+                        <p align="center">Thank you for your feed back</p> 
+                    </div>
+                </c:if>
                 <style>
                     p{
                         text-align: center;
@@ -119,7 +131,12 @@
                                                                 <td>${ord2.orderDate}</td>
                                                                 <td>${ord2.receivedDate}</td>
                                                                 <td>${ord2.address}</td>
-                                                                <td>${ord2.status}</td>
+                                                                <c:if test='${ord2.status == "received"}'>
+                                                                    <td style="color: green"><b>${ord2.status}</b></td>
+                                                                        </c:if>
+                                                                    <c:if test='${ord2.status == "cancelled"}'>
+                                                                    <td style="color: red"><b>${ord2.status}</b></td>
+                                                                </c:if>
                                                                 <td><a class="icon-eye" href="cushistoryorderdetail?orderID=${ord2.orderID}&odetailID=${ord2.oDetailID}"></a></td>
 
                                                                 <c:if test='${ord2.status == "received"}'>
@@ -565,6 +582,12 @@
             padding: 20px;
             background-color: #f44336; /* Red */
             color: white;
+            margin-bottom: 15px;
+        }
+        .alert3{
+            padding: 20px;
+            background-color: honeydew; /* Red */
+            color: green;
             margin-bottom: 15px;
         }
 

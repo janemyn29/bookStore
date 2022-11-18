@@ -246,66 +246,71 @@
 
 
                                             <div class="form-group row">
-                                                <div class="col-sm-10">
-                                                    <div class="basic-form">
-                                                        <button type="submit" style="margin-left: 420px;"class="btn mb-1 btn-warning" ><span >Save</span></button>
-                                                    </div>
-                                                    <div class="basic-form">
-                                                        <a href="adbook"><button  style="margin-left: 420px;"class="btn mb-1 btn-warning" ><span >Cancel</span></button></a>
-                                                    </div>
-
+                                                <div class="form-group row">
+                                                    <table style="border: none">
+                                                        <tr>
+                                                        <button type="submit" style="margin-left: 370px;"class="btn mb-1 btn-warning" ><span >Upload</span></button>
+                                                        </tr>
                                                 </div>
+
+                                                <tr>
+                                                <a style="margin-left: 70px" href="adbook" class="btn mb-1 btn-warning">Cancel</a>
+                                                <td>
+                                                    </table>
+
                                             </div>
-                                        </form>
+
                                     </div>
-
-
-
+                                    </form>
                                 </div>
+
+
+
                             </div>
                         </div>
                     </div>
-
-
                 </div>
+
+
             </div>
-            <!-- #/ container -->
         </div>
-        <!--**********************************
-            Content body end
-        ***********************************-->
-
-
-
+        <!-- #/ container -->
     </div>
     <!--**********************************
-        Main wrapper end
+        Content body end
     ***********************************-->
 
-    <!--**********************************
-        Scripts
-    ***********************************-->
-    <script src="plugins/common/common.min.js"></script>
-    <script src="js/custom.min.js"></script>
-    <script src="js/settings.js"></script>
-    <script src="js/gleek.js"></script>
-    <script src="js/styleSwitcher.js"></script>
-    <script>
-                                            var numb = document.forms['myform']['sell'];
-                                            var err = document.getElementById('error');
-                                            function validation() {
 
-                                                if (numb.value <= ${book.importPrice}) {
-                                                    err.innerHTML = "Sell Price must be larger than imported Price. Please input again!";
-                                                    err.style.display = "block";
-                                                    return false;
-                                                }
-                                                return true;
+
+</div>
+<!--**********************************
+    Main wrapper end
+***********************************-->
+
+<!--**********************************
+    Scripts
+***********************************-->
+<script src="plugins/common/common.min.js"></script>
+<script src="js/custom.min.js"></script>
+<script src="js/settings.js"></script>
+<script src="js/gleek.js"></script>
+<script src="js/styleSwitcher.js"></script>
+<script>
+                                        var numb = document.forms['myform']['sell'];
+                                        var err = document.getElementById('error');
+                                        function validation() {
+
+                                            if (numb.value <= ${book.importPrice}) {
+                                                err.innerHTML = "Sell Price must be larger than imported Price. Please input again!";
+                                                err.style.display = "block";
+                                                return false;
                                             }
+                                            return true;
+                                        }
 
-    </script>
+</script>
 
-    <script type="text/javascript">
+<script type="text/javascript">
         $(document).ready(function () {
 
         var max_fields = 10;
@@ -336,9 +341,9 @@
         }
         });
         });
-                            </script >
+                        </script >
                         
                         
-                        </body>
+                            </body>
                             
-                            </html>
+                                </html>

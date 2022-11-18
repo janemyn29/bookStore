@@ -91,8 +91,8 @@ public class CusCancelOrderController extends HttpServlet {
                 String requestDate = dtf.format(now);
                 String reason = request.getParameter("txtReason");
                 odao.updateOrderStatusByIDUpgrade(requestDate, reason, orderID);
-
-                request.getRequestDispatcher("cusHistory.jsp").forward(request, response);
+                request.setAttribute("wait", "wait");
+                request.getRequestDispatcher("cushistoryhome").forward(request, response);
 
             } else if (action.equals("confirm") && status.equals("delivering")) { // xac nhan da nhan duoc hang
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
@@ -109,7 +109,7 @@ public class CusCancelOrderController extends HttpServlet {
         int accountID = acc.getAccID();
         List<Order> listOrd2 = odao.getOrderListByStatus2(accountID);
         request.setAttribute("listOrd2", listOrd2);
-        request.getRequestDispatcher("cusHistory.jsp").forward(request, response);
+        request.getRequestDispatcher("cushistoryhome").forward(request, response);
     }
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

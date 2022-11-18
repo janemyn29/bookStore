@@ -3,19 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bookstore.Seller;
+package com.bookstore.Admin;
 
-import com.bookstore.Order.OrderDAO;
+import com.bookstore.Author.Author;
+import com.bookstore.Author.AuthorDAO;
+import com.bookstore.Book.Book;
+import com.bookstore.Book.BookDAO;
 import com.bookstore.Order.Return;
-import com.bookstore.Order.ReturnDAO;
-import com.bookstore.OrderDetail.OrderDetail;
-import com.bookstore.OrderDetail.OrderDetailDAO;
+import com.bookstore.Profit.Profit;
+import com.bookstore.Profit.ProfitDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author tramy
  */
-public class SellerReturnUpdateController extends HttpServlet {
+public class AdbookFilterController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,36 +40,41 @@ public class SellerReturnUpdateController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String check = request.getParameter("check");
-            String orderid = request.getParameter("orderid");
+            String status = request.getParameter("postid");
+            if (status.equals("All")) {
+                request.getRequestDispatcher("adbook").forward(request, response);
+            }else{
+            String check = null;
+            check = (String) request.getAttribute("check");
+            BookDAO dao = new BookDAO();
+            List<Book> list = dao.getBookManagebyStatus(status);
+            AuthorDAO authordAO = new AuthorDAO();
 
-            OrderDAO dao = new OrderDAO();
-            ReturnDAO dao1 = new ReturnDAO();
-            boolean retur = false;
-            try {
-                if(check.equals("returned")){
-                retur = dao.updateOrderStatusAndAddQty(orderid, check);
-                }else if (check.equals("returning")) {
-                 retur =dao.updateOrderStatusNormalVS2(orderid, check);
-                }else if (check.equals("reject")) {
-                 retur =dao.updateOrderStatusNormal(orderid, check);
+            for (Book b : list) {
+
+                String code = String.valueOf(b.getBookCode());
+                List<Author> listA = authordAO.getListAuthorByBookcode(code);
+                String plusString = "";
+                if (listA==null) {
+                    
+                }else if (listA.size() == 1) {
+                    b.setAuthorName(listA.get(0).getName());
+
+                } else if (listA.size() > 1) {
+                    plusString = "";
+                    for (Author a : listA) {
+                        plusString = plusString  + a.getName()+ ",";
+                    }
+                    b.setAuthorName(plusString);
                 }
-            } catch (SQLException ex) {
-                Logger.getLogger(SellerUpdateStatusController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if (retur == true) {
+            request.setAttribute("listB", list);
+            request.setAttribute("check", check);
+            request.setAttribute("temp", status);
 
-                Return order=dao1.getReturnByID(orderid);
-
-                OrderDetailDAO detailDAO = new OrderDetailDAO();
-                List<OrderDetail> list = detailDAO.getListDetailByOrder(orderid);
-                
-                
-                request.setAttribute("mess", "Update Status of Returned-Order Successfull!");
-                request.setAttribute("order", order);
-                request.setAttribute("detail", list);
-                request.getRequestDispatcher("sellerReturnDetail.jsp").forward(request, response);
+            request.getRequestDispatcher("adBook.jsp").forward(request, response);
             }
+            
         }
     }
 

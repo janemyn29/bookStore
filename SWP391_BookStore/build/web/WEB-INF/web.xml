@@ -408,7 +408,6 @@
         <filter-name>AdminFilter</filter-name>
         <servlet-name>AdminController</servlet-name>
     </filter-mapping>
-    
     <filter-mapping>
         <filter-name>AdminFilter</filter-name>
         <servlet-name>DiscountCheckFilter</servlet-name>
@@ -421,6 +420,13 @@
         <filter-name>AdminFilter</filter-name>
         <servlet-name>adFeedbackController</servlet-name>
     </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>AdbookFilterController</servlet-name>
+    </filter-mapping>
+    
+    
+    
     <filter-mapping>
         <filter-name>CheckPassFilter</filter-name>
         <servlet-name>ResetPassController</servlet-name>
@@ -997,6 +1003,10 @@
         <servlet-name>SellerWarningController</servlet-name>
         <servlet-class>com.bookstore.controller.SellerWarningController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdbookFilterController</servlet-name>
+        <servlet-class>com.bookstore.Admin.AdbookFilterController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -1552,6 +1562,10 @@
     <servlet-mapping>
         <servlet-name>SellerWarningController</servlet-name>
         <url-pattern>/Seller/sellerWarning</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdbookFilterController</servlet-name>
+        <url-pattern>/admin/AdbookFilter</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

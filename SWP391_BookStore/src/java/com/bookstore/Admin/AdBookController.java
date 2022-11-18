@@ -64,6 +64,7 @@ public class AdBookController extends HttpServlet {
             }
             request.setAttribute("listB", list);
             request.setAttribute("check", check);
+            request.setAttribute("temp", "All");
 
             request.getRequestDispatcher("adBook.jsp").forward(request, response);
         }

@@ -89,7 +89,6 @@
 
                         </li>
 
-                        >
                         <li>
                             <a  href="adseller" aria-expanded="false">
                                 <i class="fa fa-cart-plus menu-icon"></i> <span class="nav-text">Seller Management</span>
@@ -193,11 +192,13 @@
 
                                         <div class="form-group row">
                                             <div class="col-sm-10">
+                                                <center>
                                                 <div class="basic-form">
 
                                                     <button type="submit" class="btn mb-1 btn-warning">Add New Discount</button>
 
                                                 </div>
+                                                    </center>
                                             </div>
                                         </div>
                                     </form>

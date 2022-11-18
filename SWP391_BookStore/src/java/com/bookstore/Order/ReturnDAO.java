@@ -142,6 +142,32 @@ public class ReturnDAO {
         }
         return false;
     }
+    public boolean updateReturnVS2(String orderid) throws SQLException {
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " update [dbo].[tblOrder]\n"
+                        + "set [status]='out of date'\n"
+                        + "where [orderID] = ? ";
+                ps = conn.prepareStatement(sql);
+
+                ps.setString(1, orderid);
+                int row = ps.executeUpdate();
+
+                if (row > 0) {
+                    return true;
+                }
+            }
+        } finally {
+            if (ps != null) {
+                ps.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return false;
+    }
 
     public static void main(String[] args) {
         ReturnDAO dAO = new ReturnDAO();

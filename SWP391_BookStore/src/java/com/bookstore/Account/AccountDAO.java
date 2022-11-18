@@ -409,11 +409,7 @@ public class AccountDAO {
     }
     public static void main(String[] args) {
         AccountDAO dao = new AccountDAO();
-        try {
-            dao.updateAccountDetails("aaaaaa", "loan@gmail.com", "0356253423", 1);
-        } catch (SQLException ex) {
-            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        dao.restoreToBlacklist("5");
     }
 
     public boolean updatePassword(String pass, int accID) throws SQLException, NoSuchAlgorithmException {
@@ -466,7 +462,7 @@ public class AccountDAO {
     public boolean restoreToBlacklist(String id) {
 
         String sql = " UPDATE tblAccount\n"
-                + "set actionID=2\n"
+                + "set actionID=3\n"
                 + "where accountID=? ";
         boolean check = false;
         try {
@@ -483,6 +479,7 @@ public class AccountDAO {
         }
         return check;
     }
+   
 
     public Account getAccountByID(int accID) throws NoSuchAlgorithmException {
 

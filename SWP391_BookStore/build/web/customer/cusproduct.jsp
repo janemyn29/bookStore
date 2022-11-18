@@ -477,65 +477,65 @@
                             <div class="heading heading-center mb-6">
                                 <h2 class="title">Feed Back</h2><!-- End .title -->
                             </div><!-- End .heading -->
-                            <c:forEach items="${listF}" var="listF">
-                                <div class="row">
+                                <c:forEach items="${listF}" var="listF">
+                                    <div class="row">
 
-                                    <div class="col-lg-9">
-                                        product-action  <div class="row">
-                                            <label>
-                                                <img style="width: 	40px; height: 	35px;" src="assets/images/unkown.png" alt="Product image" class="product-image">
+                                        <div class="col-lg-9">
+                                            <div class="row">
+                                                <label>
+                                                    <img style="width: 	40px; height: 	35px;" src="assets/images/unkown.png" alt="Product image" class="product-image">
+                                                </label>
+                                                &#160;
+                                                &#160;
+                                                <label class="product-title">${listF.accName}</label>
+                                                &#160;&#160;&#160;
+                                                <br>
+
+                                                <c:if test='${listF.starID == 5}'>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                </c:if>
+                                                <c:if test='${listF.starID == 4}'>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star"></span>
+                                                </c:if>
+                                                <c:if test='${listF.starID == 3}'>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                </c:if>
+                                                <c:if test='${listF.starID == 2}'>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                </c:if>
+                                                <c:if test='${listF.starID == 1}'>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                </c:if>
+
+                                            </div><!-- End .col-lg-9 -->
+                                            <label class="center-parent">
+                                                ${listF.detail}
                                             </label>
-                                            &#160;
-                                            &#160;
-                                            <label class="product-title">${listF.accName}</label>
-                                            &#160;&#160;&#160;
-                                            <br>
 
-                                            <c:if test='${listF.starID == 5}'>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                            </c:if>
-                                            <c:if test='${listF.starID == 4}'>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star"></span>
-                                            </c:if>
-                                            <c:if test='${listF.starID == 3}'>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star"></span>
-                                                <span class="fa fa-star"></span>
-                                            </c:if>
-                                            <c:if test='${listF.starID == 2}'>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star"></span>
-                                                <span class="fa fa-star"></span>
-                                                <span class="fa fa-star"></span>
-                                            </c:if>
-                                            <c:if test='${listF.starID == 1}'>
-                                                <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star"></span>
-                                                <span class="fa fa-star"></span>
-                                                <span class="fa fa-star"></span>
-                                                <span class="fa fa-star"></span>
-                                            </c:if>
-
-                                        </div><!-- End .col-lg-9 -->
-                                        <label class="center-parent">
-                                            ${listF.detail}
-                                        </label>
-
-                                    </div><!-- End .products -->
-                                </div>
-                                <br> <br>
-                            </c:forEach>
+                                        </div><!-- End .products -->
+                                    </div>
+                                    <br> <br>
+                                </c:forEach>
                         </div>
 
 

@@ -328,6 +328,28 @@ public class BookDAO {
         }
         return list;
     }
+    public List<Book> getBookManagebyStatus(String status) {
+        List<Book> list = new ArrayList<>();
+        String sql = " select b.bookCode, b.bookName, b.img , b.importPrice, b.buyPrice,b.description ,b.quantity,p.postName ,pc.companyName, b.cateID,c.cateName\n"
+                + "from (((tblBook b left join tblCategory c on b.cateID=c.cateID)\n"
+                + "inner join tblPostHistory p on p.postID=b.postID)\n"
+                + "inner join tblPublishCompany pc on pc.companyID=b.companyID )\n"
+                + "where p.postID!=3 and p.postID=? ";
+
+        try {
+            conn = new DBUtils().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, status);
+            rs = ps.executeQuery();
+            
+            while (rs.next()) {
+
+                list.add(new Book(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getString(6), rs.getInt(7), rs.getString(8), rs.getString(9), rs.getInt(10), rs.getString(11), ""));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
 
     public Book getAuthorByBookCode(String bookCode) {
         String sql = " select a.authorName \n"
@@ -664,7 +686,7 @@ public class BookDAO {
 
     public static void main(String[] args) {
         BookDAO bdao = new BookDAO();
-        BookShop bookShop = bdao.countBook();
-        System.out.println(bookShop);
+        List<Book> list = bdao.getBookManagebyStatus("1");
+        System.out.println(list);
     }
 }
